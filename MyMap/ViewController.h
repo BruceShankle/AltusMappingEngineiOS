@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ME/ME.h>
 
 @interface ViewController : UIViewController
-
+@property (retain) MEMapViewController* meMapViewController;
+@property (retain) MEMapView* meMapView;
 @end
