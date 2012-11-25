@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		320C04321661BF7700BD4AB4 /* world.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 320C04311661BF7700BD4AB4 /* world.mbtiles */; };
+		320C04351661BF8800BD4AB4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C04341661BF8800BD4AB4 /* CoreLocation.framework */; };
+		320C04371661BF8F00BD4AB4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C04361661BF8F00BD4AB4 /* OpenGLES.framework */; };
+		320C04391661BF9500BD4AB4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C04381661BF9500BD4AB4 /* GLKit.framework */; };
+		320C043B1661BF9C00BD4AB4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C043A1661BF9C00BD4AB4 /* CoreText.framework */; };
+		320C043D1661BFA300BD4AB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C043C1661BFA300BD4AB4 /* QuartzCore.framework */; };
+		320C043F1661BFB200BD4AB4 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C043E1661BFB200BD4AB4 /* libstdc++.6.dylib */; };
+		320C04411661BFC300BD4AB4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C04401661BFC300BD4AB4 /* libsqlite3.0.dylib */; };
+		320C04431661BFD600BD4AB4 /* ME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C04421661BFD600BD4AB4 /* ME.framework */; };
 		325CF2771661B4FE00E67B66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF2761661B4FE00E67B66 /* UIKit.framework */; };
 		325CF2791661B4FE00E67B66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF2781661B4FE00E67B66 /* Foundation.framework */; };
 		325CF27B1661B4FE00E67B66 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF27A1661B4FE00E67B66 /* CoreGraphics.framework */; };
@@ -24,6 +33,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		320C04311661BF7700BD4AB4 /* world.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = world.mbtiles; sourceTree = "<group>"; };
+		320C04341661BF8800BD4AB4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		320C04361661BF8F00BD4AB4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		320C04381661BF9500BD4AB4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		320C043A1661BF9C00BD4AB4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		320C043C1661BFA300BD4AB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		320C043E1661BFB200BD4AB4 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		320C04401661BFC300BD4AB4 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		320C04421661BFD600BD4AB4 /* ME.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ME.framework; sourceTree = "<group>"; };
 		325CF2721661B4FE00E67B66 /* MyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		325CF2761661B4FE00E67B66 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		325CF2781661B4FE00E67B66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,6 +68,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320C04431661BFD600BD4AB4 /* ME.framework in Frameworks */,
+				320C04411661BFC300BD4AB4 /* libsqlite3.0.dylib in Frameworks */,
+				320C043F1661BFB200BD4AB4 /* libstdc++.6.dylib in Frameworks */,
+				320C043D1661BFA300BD4AB4 /* QuartzCore.framework in Frameworks */,
+				320C043B1661BF9C00BD4AB4 /* CoreText.framework in Frameworks */,
+				320C04391661BF9500BD4AB4 /* GLKit.framework in Frameworks */,
+				320C04371661BF8F00BD4AB4 /* OpenGLES.framework in Frameworks */,
+				320C04351661BF8800BD4AB4 /* CoreLocation.framework in Frameworks */,
 				325CF2771661B4FE00E67B66 /* UIKit.framework in Frameworks */,
 				325CF2791661B4FE00E67B66 /* Foundation.framework in Frameworks */,
 				325CF27B1661B4FE00E67B66 /* CoreGraphics.framework in Frameworks */,
@@ -61,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320C04301661BF7700BD4AB4 /* BundledMaps */ = {
+			isa = PBXGroup;
+			children = (
+				320C04311661BF7700BD4AB4 /* world.mbtiles */,
+			);
+			path = BundledMaps;
+			sourceTree = "<group>";
+		};
 		325CF2671661B4FE00E67B66 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +115,14 @@
 		325CF2751661B4FE00E67B66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				320C04421661BFD600BD4AB4 /* ME.framework */,
+				320C04401661BFC300BD4AB4 /* libsqlite3.0.dylib */,
+				320C043E1661BFB200BD4AB4 /* libstdc++.6.dylib */,
+				320C043C1661BFA300BD4AB4 /* QuartzCore.framework */,
+				320C043A1661BF9C00BD4AB4 /* CoreText.framework */,
+				320C04381661BF9500BD4AB4 /* GLKit.framework */,
+				320C04361661BF8F00BD4AB4 /* OpenGLES.framework */,
+				320C04341661BF8800BD4AB4 /* CoreLocation.framework */,
 				325CF2761661B4FE00E67B66 /* UIKit.framework */,
 				325CF2781661B4FE00E67B66 /* Foundation.framework */,
 				325CF27A1661B4FE00E67B66 /* CoreGraphics.framework */,
@@ -91,6 +133,7 @@
 		325CF27C1661B4FE00E67B66 /* MyMap */ = {
 			isa = PBXGroup;
 			children = (
+				320C04301661BF7700BD4AB4 /* BundledMaps */,
 				325CF2851661B4FE00E67B66 /* AppDelegate.h */,
 				325CF2861661B4FE00E67B66 /* AppDelegate.m */,
 				325CF28E1661B4FE00E67B66 /* MainStoryboard_iPhone.storyboard */,
@@ -183,6 +226,7 @@
 				325CF28D1661B4FE00E67B66 /* Default-568h@2x.png in Resources */,
 				325CF2901661B4FE00E67B66 /* MainStoryboard_iPhone.storyboard in Resources */,
 				325CF2931661B4FE00E67B66 /* MainStoryboard_iPad.storyboard in Resources */,
+				320C04321661BF7700BD4AB4 /* world.mbtiles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +326,10 @@
 		325CF29A1661B4FE00E67B66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyMap/MyMap-Prefix.pch";
 				INFOPLIST_FILE = "MyMap/MyMap-Info.plist";
@@ -297,6 +345,10 @@
 		325CF29B1661B4FE00E67B66 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyMap/MyMap-Prefix.pch";
 				INFOPLIST_FILE = "MyMap/MyMap-Info.plist";
