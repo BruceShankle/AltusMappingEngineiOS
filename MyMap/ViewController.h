@@ -16,5 +16,4 @@
 @property (retain) CLLocationManager* locationManager;
 @property (retain) MEMapViewController* meMapViewController;
 @property (retain) MEMapView* meMapView;
-@property (assign) BOOL isTrackupMode;
 @end

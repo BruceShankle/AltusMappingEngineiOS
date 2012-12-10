@@ -68,33 +68,8 @@
 	[self.meMapView setCenterCoordinate:newLocation.coordinate
 					  animationDuration:1.0];
 	
-	if(self.isTrackupMode)
-	{
-		[self.meMapViewController.meMapView setCameraOrientation:newLocation.course
-															roll:0
-														   pitch:0
-											   animationDuration:1.0];
-	}
-	
 }
 
-///////////////////////////////////////////////
-//Turn track-up mode on or off
-- (void) enableTrackupMode:(BOOL) enabled
-{
-	if(enabled)
-	{
-		[self.meMapViewController setRenderMode:METrackUp];
-		self.meMapView.panEnabled = NO;
-	}
-	else
-	{
-		[self.meMapViewController unsetRenderMode:METrackUp];
-		self.meMapView.panEnabled = YES;
-	}
-	
-	self.isTrackupMode = enabled;
-}
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
@@ -115,9 +90,6 @@
 	
 	//Turn on the GPS
 	[self initializeGPS];
-	
-	//Turn on trackup mode
-	[self enableTrackupMode:YES];
 }
 
 - (void) dealloc {
