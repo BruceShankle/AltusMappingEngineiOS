@@ -5,6 +5,7 @@
 //  Created by Bruce Shankle III on 11/24/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
 //
+// Tutorial 1: Initialize mapping engine and display an embedded low-res TileMill-generated map of planet Earth.
 
 #import "ViewController.h"
 
