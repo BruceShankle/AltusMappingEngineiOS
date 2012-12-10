@@ -48,6 +48,59 @@
 	
 }
 
+////////////////////////////////////////////////
+//Init GPS
+- (void) initializeGPS
+{
+	self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+	self.locationManager.delegate = self;
+	[self.locationManager startUpdatingLocation];
+}
+
+///////////////////////////////////////////////
+//Respond to GPS
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"Location: %@", [newLocation description]);
+	
+	[self.meMapView setCenterCoordinate:newLocation.coordinate
+					  animationDuration:1.0];
+	
+	if(self.isTrackupMode)
+	{
+		[self.meMapViewController.meMapView setCameraOrientation:newLocation.course
+															roll:0
+														   pitch:0
+											   animationDuration:1.0];
+	}
+	
+}
+
+///////////////////////////////////////////////
+//Turn track-up mode on or off
+- (void) enableTrackupMode:(BOOL) enabled
+{
+	if(enabled)
+	{
+		[self.meMapViewController setRenderMode:METrackUp];
+		self.meMapView.panEnabled = NO;
+	}
+	else
+	{
+		[self.meMapViewController unsetRenderMode:METrackUp];
+		self.meMapView.panEnabled = YES;
+	}
+	
+	self.isTrackupMode = enabled;
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+	NSLog(@"Error: %@", [error description]);
+}
 
 - (void)viewDidLoad
 {
@@ -60,12 +113,26 @@
 	//Turn on the embedded raster map
 	[self turnOnBaseMap];
 	
+	//Turn on the GPS
+	[self initializeGPS];
+	
+	//Turn on trackup mode
+	[self enableTrackupMode:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) dealloc {
+	
+	//Turn off the GPS
+	[self.locationManager stopUpdatingLocation];
+	self.locationManager = nil;
+	
+	//Shut down mapping engine
+	[self.meMapViewController shutdown];
+	self.meMapViewController = nil;
+	self.meMapView = nil;
+	
+	[super dealloc];
 }
+
 
 @end
