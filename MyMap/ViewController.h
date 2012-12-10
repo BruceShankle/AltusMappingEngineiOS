@@ -10,7 +10,7 @@
 #import <ME/ME.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate>
+@interface ViewController : UIViewController <CLLocationManagerDelegate, MEMarkerMapDelegate>
 
 //Properties
 @property (retain) CLLocationManager* locationManager;

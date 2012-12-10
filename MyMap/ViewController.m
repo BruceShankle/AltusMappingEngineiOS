@@ -5,12 +5,13 @@
 //  Created by Bruce Shankle III on 11/24/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
 //
-// Tutorial 4:
+// Tutorial 5:
 //	* Initialize mapping engine and display an embedded low-res TileMill-generated map of planet Earth.
 //	* Turn on GPS and update map to center on current GPS coordinate.
 //	* Add and enable track-up mode so map rotates based on GPS course.
 //	* Add buttons to toggle GPS and track-up mode.
 //	* Handle device rotations and starting up in landscape mode.
+//	* Add support for an own-ship marker that updates based on current location and course.
 
 #import "ViewController.h"
 
@@ -67,10 +68,13 @@
 			self.locationManager.delegate = self;
 		}
 		[self.locationManager startUpdatingLocation];
+		[self addOwnShipMarker];
+
 	}
 	else
 	{
 		[self.locationManager stopUpdatingLocation];
+		[self removeOwnShipMarker];
 	}
 }
 
@@ -85,6 +89,12 @@
 	[self.meMapView setCenterCoordinate:newLocation.coordinate
 					  animationDuration:1.0];
 	
+	//Update own-ship marker position
+	[self updateOwnShipMarkerLocation:newLocation.coordinate
+							  heading:newLocation.course
+					animationDuration:1.0];
+	
+	//If in track up mode, then the heading of the marker needs to be updated
 	if(self.isTrackupMode)
 	{
 		[self.meMapViewController.meMapView setCameraOrientation:newLocation.course
@@ -198,6 +208,72 @@
 	
 }
 
+
+
+////////////////////////////////////////////////////////////////////////////
+//Create a marker layer which will contain our 'own-ship' marker
+- (void) addOwnShipMarker
+{
+	//Create an array to hold markers (even though we're only adding 1)
+	NSMutableArray* markers= [[[NSMutableArray alloc]init]autorelease];
+	
+	//Create a single marker annotation which describes the marker
+	MEMarkerAnnotation* ownShipMarker = [[[MEMarkerAnnotation alloc]init]autorelease];
+	ownShipMarker.metaData = @"ownship";
+	ownShipMarker.weight=0;
+	[markers addObject:ownShipMarker];
+	
+	//Create a marker map info object which will describe the marker layer
+	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
+	mapInfo.name = @"ownship marker layer";
+	mapInfo.mapType = kMapTypeDynamicMarker;
+	mapInfo.markerImageLoadingStrategy = kMarkerImageLoadingSynchronous;
+	mapInfo.zOrder = 999;
+	mapInfo.meMarkerMapDelegate = self;
+	mapInfo.markers = markers;
+	
+	[self.meMapViewController addMapUsingMapInfo:mapInfo];
+}
+
+////////////////////////////////////////////////////////////////////////////
+//Update the location and heading of the dynamic marker
+-(void) updateOwnShipMarkerLocation:(CLLocationCoordinate2D) location
+							heading:(double) heading
+				  animationDuration:(CGFloat) animationDuration
+
+{
+	
+	[self.meMapViewController updateMarkerInMap:@"ownship marker layer"
+									   metaData:@"ownship"
+									newLocation:location
+									newRotation:heading
+							  animationDuration:animationDuration];
+	
+	
+}
+
+////////////////////////////////////////////////////////////////////////////
+//Remove the own-ship marker layer
+- (void) removeOwnShipMarker
+{
+	[self.meMapViewController removeMap:@"ownship marker layer" clearCache:NO];
+}
+
+////////////////////////////////////////////////////////////////////////////
+//Implement MEMarkerMapDelegate methods
+- (void) mapView:(MEMapView*)mapView
+updateMarkerInfo:(MEMarkerInfo*) markerInfo
+		 mapName:(NSString*) mapName
+{
+	//Return an image for the ownship marker
+	if([markerInfo.metaData isEqualToString:@"ownship"])
+	{
+		markerInfo.rotationType = kMarkerRotationTrueNorthAligned;
+		markerInfo.uiImage = [UIImage imageNamed:@"blueplane"];
+		markerInfo.anchorPoint = CGPointMake(markerInfo.uiImage.size.width/2,
+											 markerInfo.uiImage.size.height/2);
+	}
+}
 
 - (void) dealloc {
 	

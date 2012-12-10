@@ -16,6 +16,8 @@
 		320C043F1661BFB200BD4AB4 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C043E1661BFB200BD4AB4 /* libstdc++.6.dylib */; };
 		320C04411661BFC300BD4AB4 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C04401661BFC300BD4AB4 /* libsqlite3.0.dylib */; };
 		320C04431661BFD600BD4AB4 /* ME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320C04421661BFD600BD4AB4 /* ME.framework */; };
+		32125A031676A3850081298A /* blueplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 32125A011676A3850081298A /* blueplane.png */; };
+		32125A041676A3850081298A /* blueplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32125A021676A3850081298A /* blueplane@2x.png */; };
 		325CF2771661B4FE00E67B66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF2761661B4FE00E67B66 /* UIKit.framework */; };
 		325CF2791661B4FE00E67B66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF2781661B4FE00E67B66 /* Foundation.framework */; };
 		325CF27B1661B4FE00E67B66 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF27A1661B4FE00E67B66 /* CoreGraphics.framework */; };
@@ -42,6 +44,8 @@
 		320C043E1661BFB200BD4AB4 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		320C04401661BFC300BD4AB4 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		320C04421661BFD600BD4AB4 /* ME.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ME.framework; sourceTree = "<group>"; };
+		32125A011676A3850081298A /* blueplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueplane.png; sourceTree = "<group>"; };
+		32125A021676A3850081298A /* blueplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueplane@2x.png"; sourceTree = "<group>"; };
 		325CF2721661B4FE00E67B66 /* MyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		325CF2761661B4FE00E67B66 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		325CF2781661B4FE00E67B66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,6 +99,15 @@
 			path = BundledMaps;
 			sourceTree = "<group>";
 		};
+		32125A001676A3850081298A /* images */ = {
+			isa = PBXGroup;
+			children = (
+				32125A011676A3850081298A /* blueplane.png */,
+				32125A021676A3850081298A /* blueplane@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		325CF2671661B4FE00E67B66 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +146,7 @@
 		325CF27C1661B4FE00E67B66 /* MyMap */ = {
 			isa = PBXGroup;
 			children = (
+				32125A001676A3850081298A /* images */,
 				320C04301661BF7700BD4AB4 /* BundledMaps */,
 				325CF2851661B4FE00E67B66 /* AppDelegate.h */,
 				325CF2861661B4FE00E67B66 /* AppDelegate.m */,
@@ -227,6 +241,8 @@
 				325CF2901661B4FE00E67B66 /* MainStoryboard_iPhone.storyboard in Resources */,
 				325CF2931661B4FE00E67B66 /* MainStoryboard_iPad.storyboard in Resources */,
 				320C04321661BF7700BD4AB4 /* world.mbtiles in Resources */,
+				32125A031676A3850081298A /* blueplane.png in Resources */,
+				32125A041676A3850081298A /* blueplane@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
