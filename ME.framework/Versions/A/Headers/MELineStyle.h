@@ -1,0 +1,17 @@
+//  Copyright (c) 2012 BA3, LLC. All rights reserved.
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@interface MELineStyle : NSObject
+
+/**Color to stroke object with.*/
+@property (atomic, retain) UIColor* strokeColor;
+
+/**Width in pixels of stroke.*/
+@property (nonatomic, assign) CGFloat strokeWidth;
+
+/**Initialize with stroke color and stroke width.*/
+- (id) initWithStrokeColor:(UIColor*) sColor
+               strokeWidth:(CGFloat) sWidth;
+@end
