@@ -5,10 +5,12 @@
 //  Created by Bruce Shankle III on 11/24/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
 //
-// Tutorial 3:
+// Tutorial 4:
 //	* Initialize mapping engine and display an embedded low-res TileMill-generated map of planet Earth.
 //	* Turn on GPS and update map to center on current GPS coordinate.
 //	* Add and enable track-up mode so map rotates based on GPS course.
+//	* Add buttons to toggle GPS and track-up mode.
+//	* Handle device rotations and starting up in landscape mode.
 
 #import "ViewController.h"
 
@@ -29,8 +31,9 @@
 	
 	//Add the map view as a sub view to our main view and size it.
 	[self.view addSubview:self.meMapView];
+	[self.view sendSubviewToBack:self.meMapView];
 	self.meMapView.frame = self.view.bounds;
-	
+
 	//Initialize the map view controller
 	[self.meMapViewController initialize];
 }
@@ -54,11 +57,21 @@
 
 ////////////////////////////////////////////////
 //Init GPS
-- (void) initializeGPS
+- (void) initializeGPS:(BOOL) enabled
 {
-	self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-	self.locationManager.delegate = self;
-	[self.locationManager startUpdatingLocation];
+	if(enabled)
+	{
+		if(self.locationManager==nil)
+		{
+			self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+			self.locationManager.delegate = self;
+		}
+		[self.locationManager startUpdatingLocation];
+	}
+	else
+	{
+		[self.locationManager stopUpdatingLocation];
+	}
 }
 
 ///////////////////////////////////////////////
@@ -106,10 +119,76 @@
 	NSLog(@"Error: %@", [error description]);
 }
 
+////////////////////////////////////////////////////////////////////////////
+//Add some extremely simple UI right on top of the map.
+//Normally you would do this using the interface builder, but our goal here
+//is to keep this very simple to illustrate mapping-engine concepts.
+- (void) addButtons
+{
+	self.btnGPS = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnGPS setTitle:@"GPS - Off" forState:UIControlStateNormal];
+	[self.btnGPS setTitle:@"GPS - On" forState:UIControlStateSelected];
+	[self.view addSubview:self.btnGPS];
+	[self.view bringSubviewToFront:self.btnGPS];
+	self.btnGPS.frame=CGRectMake(0,0,90,30);
+	[self.btnGPS addTarget:self
+			   action:@selector(gpsButtonTapped)
+	 forControlEvents:UIControlEventTouchDown];
+	
+	
+	self.btnTrackUp = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnTrackUp setTitle:@"TU - Off" forState:UIControlStateNormal];
+	[self.btnTrackUp setTitle:@"TU - On" forState:UIControlStateSelected];
+	[self.view addSubview:self.btnTrackUp];
+	[self.view bringSubviewToFront:self.btnTrackUp];
+	self.btnTrackUp.frame=CGRectMake(self.btnGPS.frame.size.width, 0, 90, 30);
+	[self.btnTrackUp addTarget:self
+					action:@selector(trackUpButtonTapped)
+		  forControlEvents:UIControlEventTouchDown];
+		
+}
+
+- (void) gpsButtonTapped
+{
+	//Toggle GPS
+	self.isGPSMode = !self.isGPSMode;
+	[self initializeGPS:self.isGPSMode];
+	self.btnGPS.selected = self.isGPSMode;
+}
+
+- (void) trackUpButtonTapped
+{
+	//Toggle trackup mode
+	self.isTrackupMode = !self.isTrackupMode;
+	[self enableTrackupMode:self.isTrackupMode];
+	self.btnTrackUp.selected = self.isTrackupMode;
+}
+
+
+////////////////////////////////////////////////////////////////////////////
+//Size map view when device rotates
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	self.meMapView.frame = self.view.bounds;
+}
+
+////////////////////////////////////////////////////////////////////////////
+//Size map view when view appears (handles landscape startup)
+- (void) viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	self.meMapView.frame = self.view.bounds;
+}
+
+////////////////////////////////////////////////////////////////////////////
+//Initialize things
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+	//Add some UI
+	[self addButtons];
 	
 	//Initialize the mapping engine
 	[self initializeMappingEngine];
@@ -117,12 +196,8 @@
 	//Turn on the embedded raster map
 	[self turnOnBaseMap];
 	
-	//Turn on the GPS
-	[self initializeGPS];
-	
-	//Turn on trackup mode
-	[self enableTrackupMode:YES];
 }
+
 
 - (void) dealloc {
 	

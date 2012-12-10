@@ -17,4 +17,14 @@
 @property (retain) MEMapViewController* meMapViewController;
 @property (retain) MEMapView* meMapView;
 @property (assign) BOOL isTrackupMode;
+@property (assign) BOOL isGPSMode;
+
+//UI properties
+@property (retain) IBOutlet UIButton* btnGPS;
+@property (retain) IBOutlet UIButton* btnTrackUp;
+
+//Methods
+- (void) gpsButtonTapped;
+- (void) trackUpButtonTapped;
+
 @end
