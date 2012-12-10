@@ -27,7 +27,9 @@
 - (void) pinchBegan:(MEMapView *) mapView;
 - (void) pinchEnded:(MEMapView *) mapView;
 
-- (BOOL) gestureRecognizer : (UIGestureRecognizer *) gestureRecognizer shouldReceiveTouch : (UITouch *) touch;
+- (BOOL) meGestureRecognizer : (UIGestureRecognizer *) gestureRecognizer shouldReceiveTouch : (UITouch *) touch;
+
+- (BOOL) meGestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
 
 /*
  - (void)mapView:(MEMapView *)mapView locationWillChangeAnimated:(BOOL)animated;
@@ -101,7 +103,9 @@
 - (void) tapOnMarker:(MEMarkerInfo*) markerInfo
 		   onMapView:(MEMapView*) mapView
 			 mapName:(NSString*) mapName
-	   atScreenPoint:(CGPoint)point;
+	   atScreenPoint:(CGPoint)screenPoint
+	   atMarkerPoint:(CGPoint) markerPoint;
+
 @end
 
 /**The MEVectorMapDelegate protocol defines a set of methods that you can use to receive vector map related update messages. Implement this protocol when you add dynamic vector maps and you need to receive vector map related notifications*/

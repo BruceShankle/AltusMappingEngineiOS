@@ -30,6 +30,5 @@
  */
 @property (nonatomic, copy) NSString* metaData;
 
-/**Initial rotation of the marker.*/
-@property (nonatomic, assign) double rotation;
+
 @end

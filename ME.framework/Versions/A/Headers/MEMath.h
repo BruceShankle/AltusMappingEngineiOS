@@ -37,6 +37,15 @@
 /**Converts nautical miles to radians.*/
 +(double) nauticalMilesToRadians:(double) nauticalMiles;
 
+/**Returns a point on a radial a given distance from an origin point.
+ @param point Where x = longitude, y = latitude
+ @param radial Angle in degrees.
+ @param distance Distance in nautical miles.*/
++(CGPoint) pointOnRadial:(CGPoint) point
+				  radial:(double) radial
+				distance:(double) distance;
+
+//(vec2d origin, double radial, double distance)
 /**Tesselates a route between two georaphic points into an array of points of nodeCount size.*/
 +(NSArray*) tesselateRoute:(CGPoint) point1
 					point2:(CGPoint) point2

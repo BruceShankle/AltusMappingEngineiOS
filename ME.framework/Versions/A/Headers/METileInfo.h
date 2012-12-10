@@ -50,7 +50,10 @@ typedef enum {
 /**If set, a pointer to a jpg or png file which the engine will load and decompress. The engine has native support decompressing png and jpg images very quickly.*/
 @property (retain) NSString* fileName;
 
-/**If setting nsImageData or pImageData, you should set this to the appropriate image data type.*/
+/** If set, specifies the name of a cached tile to use. You may cache tiles by using MEMapViewController addCachedTile.*/
+@property (retain) NSString* cachedTileName;
+
+/** If setting nsImageData or pImageData, you should set this to the appropriate image data type.*/
 @property (assign) MEImageDataType imageDataType;
 
 /**If set, tells the mapping engine that every pixel of the tile is lit and has no semi-transparenty pixels. This allows the engine to optimize storage and layering of the tile (i.e. no tile underneath this tile will be visible if it is opaque.*/
@@ -59,7 +62,7 @@ typedef enum {
 /**If set to true, the engine will stop requesting this tile. For example, if you are loading the tile from a remote resource that you cannot connect to, you can set this to YES and engine will stop requesting this tile.*/
 @property (assign) BOOL isNotAvailable;
 
-/**If set to true, the engine will not draw anything and not request any higher detail level tiles withingthis tiles boundary.*/
+/**If set to true, the engine will not draw anything and not request any higher detail level tiles within this tile's boundary.*/
 @property (assign) BOOL isEmpty;
 
 /**The minium geographic longitude of the tile. This is mainly of use with BA3 map tiles where this data is relevant.*/

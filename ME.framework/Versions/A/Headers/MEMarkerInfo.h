@@ -4,6 +4,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+/**Specifies how marker rotations are rendered by the engine.*/
+typedef enum {
+	kMarkerRotationScreenEdgeAligned,
+	kMarkerRotationTrueNorthAligned
+} MEMarkerRotationType;
+
 /**
  Describes information about a marker. The engine will create and provide an instance of this object to a marker map's MEMarkerMapDelegate for each marker that needs to be displayed.
  */
@@ -20,6 +26,9 @@
 
 /**Rotation of the marker in degrees.*/
 @property (nonatomic, assign) double rotation;
+
+/**Specifies how the engine will render rotation of the marker. The default is kMarkerRotationScreenEdgeAligned.*/
+@property (nonatomic, assign) MEMarkerRotationType rotationType;
 
 /**Geographic location of the marker.*/
 @property (nonatomic, readonly) CLLocationCoordinate2D location;
