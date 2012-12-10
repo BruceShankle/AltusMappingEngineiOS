@@ -5,6 +5,10 @@
 //  Created by Bruce Shankle III on 11/24/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
 //
+// Tutorial 3:
+//	* Initialize mapping engine and display an embedded low-res TileMill-generated map of planet Earth.
+//	* Turn on GPS and update map to center on current GPS coordinate.
+//	* Add and enable track-up mode so map rotates based on GPS course.
 
 #import "ViewController.h"
 
