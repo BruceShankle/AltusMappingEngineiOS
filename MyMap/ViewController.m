@@ -12,7 +12,7 @@
 //	* Add buttons to toggle GPS and track-up mode.
 //	* Handle device rotations and starting up in landscape mode.
 //	* Add support for an own-ship marker that updates based on current location and course.
-
+//	* Add tile provider and virtual map that downloads MapBox street map.
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -37,6 +37,9 @@
 
 	//Initialize the map view controller
 	[self.meMapViewController initialize];
+	
+	//Allow zooming in very close
+    self.meMapViewController.meMapView.minimumZoom=0.0003;
 }
 
 - (void) turnOnBaseMap
@@ -135,6 +138,7 @@
 //is to keep this very simple to illustrate mapping-engine concepts.
 - (void) addButtons
 {
+	//Add GPS button
 	self.btnGPS = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[self.btnGPS setTitle:@"GPS - Off" forState:UIControlStateNormal];
 	[self.btnGPS setTitle:@"GPS - On" forState:UIControlStateSelected];
@@ -146,6 +150,7 @@
 	 forControlEvents:UIControlEventTouchDown];
 	
 	
+	//Add trackup button
 	self.btnTrackUp = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[self.btnTrackUp setTitle:@"TU - Off" forState:UIControlStateNormal];
 	[self.btnTrackUp setTitle:@"TU - On" forState:UIControlStateSelected];
@@ -155,7 +160,26 @@
 	[self.btnTrackUp addTarget:self
 					action:@selector(trackUpButtonTapped)
 		  forControlEvents:UIControlEventTouchDown];
+	
+	//Add street map button
+	self.btnStreetMap = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnStreetMap setTitle:@"SM - Off" forState:UIControlStateNormal];
+	[self.btnStreetMap setTitle:@"SM - On" forState:UIControlStateSelected];
+	[self.view addSubview:self.btnStreetMap];
+	[self.view bringSubviewToFront:self.btnStreetMap];
+	self.btnStreetMap.frame=CGRectMake(self.btnTrackUp.frame.origin.x +
+									   self.btnTrackUp.frame.size.width, 0, 90, 30);
+	[self.btnStreetMap addTarget:self
+						action:@selector(streetMapButtonTapped)
+			  forControlEvents:UIControlEventTouchDown];
 		
+}
+
+- (void) streetMapButtonTapped
+{
+	self.isStreetMapMode = !self.isStreetMapMode;
+	[self enableStreetMap:self.isStreetMapMode];
+	self.btnStreetMap.selected = self.isStreetMapMode;
 }
 
 - (void) gpsButtonTapped
@@ -172,6 +196,23 @@
 	self.isTrackupMode = !self.isTrackupMode;
 	[self enableTrackupMode:self.isTrackupMode];
 	self.btnTrackUp.selected = self.isTrackupMode;
+}
+
+- (void) enableStreetMap:(BOOL) enabled
+{
+	//Add a virtual map layer using a tile provider that pulls tiles down from the internet
+	if(self.streetMap==nil)
+	{
+		self.streetMap=[[[MEMapBoxLandCoverStreetMap alloc]init]autorelease];
+		self.streetMap.compressTextures = YES;
+		self.streetMap.meMapViewController = self.meMapViewController;
+		self.streetMap.zOrder = 3;
+	}
+	if(enabled)
+		[self.streetMap show];
+	else
+		[self.streetMap hide];
+		
 }
 
 
