@@ -121,9 +121,11 @@
 	}
 	tileinfo.isOpaque = YES;
 	tileinfo.fileName = fileName;
+	tileinfo.tileProviderResponse = kTileResponseRenderFilename;
     if(self.returnUIImages)
     {
         tileinfo.uiImage = [UIImage imageWithContentsOfFile:fileName];
+		tileinfo.tileProviderResponse =  kTileResponseRenderUIImage;
 		tileinfo.fileName = nil;
     }
 }
