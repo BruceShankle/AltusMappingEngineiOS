@@ -228,6 +228,10 @@
 			   newRotation:(double) newRotation
 		 animationDuration:(double) animationDuration;
 
+/** For marker maps, tell the mapping engine that you want the marker image to be re-requested.*/
+- (void) refreshMarkerInMap:(NSString*) mapName
+				   metaData:(NSString*) metaData;
+
 /** For dynamic marker maps, updates the rotation of the marker.
  */
 - (void) updateMarkerRotationInMap:(NSString*) mapName
