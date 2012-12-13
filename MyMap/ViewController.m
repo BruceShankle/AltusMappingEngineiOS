@@ -94,6 +94,21 @@ updateMarkerInfo:(MEMarkerInfo*) markerInfo
 }
 
 
+////////////////////////////////////////////////////////////////////////////
+//Size map view when device rotates
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+	self.meMapView.frame = self.view.bounds;
+}
+
+////////////////////////////////////////////////////////////////////////////
+//Size map view when view appears (handles landscape startup)
+- (void) viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	self.meMapView.frame = self.view.bounds;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
