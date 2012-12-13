@@ -10,9 +10,27 @@ typedef enum {
     kImageDataTypeJPG
 } MEImageDataType;
 
+typedef enum {
+	kTileResponseUnknown,
+	kTileResponseTransparentWithChildren,
+	kTileResponseTransparentWithoutChildren,
+	kTileResponseNotAvailable,
+	kTileResponseRenderUIImage,
+	kTileResponseRenderNSData,
+	kTileResponseRenderFilename,
+	kTileResponseRenderImageData,
+	kTileResponseRenderNamedCachedTile
+} METileProviderResponse;
+
 /**
  This object is when communicating with METileProvider derived objects that manage getting tiles for virtual map layers. When a virtual layer is added, these objects will be pass to the requestTile function on the delegate in the case of syncrhonous tile providers where the tile provider will populate the uiImage, nsImageData, fileName, or pImageData members to return an image to the engine. In the case of nsImageData or pImageData, the data should point to compressed imaged data and the imageDataType should also be set so the engine can interpret the data correctly. In the case of pImageData, pImageDataLength should also be set.*/
 @interface METileInfo : NSObject
+
+/**Tile providers set this value based on how the mapping engine should interpret the tile METileInfo it gets back form the tile provider.
+ Valid responses are:
+
+ */
+@property (assign) METileProviderResponse tileProviderResponse;
 
 /**The internal 64-bit ID of the tile.*/
 @property (assign, readonly) uint64_t uid;
