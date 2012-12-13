@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <ME/ME.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <MEMapViewDelegate, MEMarkerMapDelegate>
 @property (retain) MEMapViewController* meMapViewController;
 @property (retain) MEMapView* meMapView;
+@property (assign) int markerCounter;
 @end
