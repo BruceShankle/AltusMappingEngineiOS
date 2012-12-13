@@ -20,18 +20,22 @@
 @property (assign) BOOL isTrackupMode;
 @property (assign) BOOL isGPSMode;
 @property (assign) BOOL isStreetMapMode;
+@property (assign) BOOL isLandSatMapMode;
 
 //UI properties
 @property (retain) IBOutlet UIButton* btnGPS;
 @property (retain) IBOutlet UIButton* btnTrackUp;
 @property (retain) IBOutlet UIButton* btnStreetMap;
+@property (retain) IBOutlet UIButton* btnLandSatMap;
 
 //Internet maps
 @property (retain) MEMapBoxLandCoverStreetMap* streetMap;
+@property (retain) MEMapBoxLandSatMap* landSatMap;
 
 //Methods
 - (void) gpsButtonTapped;
 - (void) trackUpButtonTapped;
 - (void) streetMapButtonTapped;
+- (void) landSatMapButtonTapped;
 
 @end

@@ -119,3 +119,21 @@
 	return [[MEMapBoxLandCoverTileProvider alloc]init];
 }
 @end
+
+////////////////////////////////////////////////////////////////////////
+@implementation MEMapBoxLandSatMap
+
+- (id) init
+{
+    if(self = [super init])
+    {
+        self.name=@"MapBox LandSat";
+    }
+    return self;
+}
+
+-(MEInternetTileProvider*) createTileProvider
+{
+	return [[MEMapBoxLandSatTileProvider alloc]init];
+}
+@end

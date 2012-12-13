@@ -5,7 +5,7 @@
 //  Created by Bruce Shankle III on 11/24/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
 //
-// Tutorial 6:
+// Tutorial 7:
 //	* Initialize mapping engine and display an embedded low-res TileMill-generated map of planet Earth.
 //	* Turn on GPS and update map to center on current GPS coordinate.
 //	* Add and enable track-up mode so map rotates based on GPS course.
@@ -13,6 +13,7 @@
 //	* Handle device rotations and starting up in landscape mode.
 //	* Add support for an own-ship marker that updates based on current location and course.
 //	* Add tile provider and virtual map that downloads MapBox street map.
+//	* Add tile provider and UI support for MapBox landsat data
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -172,6 +173,18 @@
 	[self.btnStreetMap addTarget:self
 						action:@selector(streetMapButtonTapped)
 			  forControlEvents:UIControlEventTouchDown];
+	
+	//Add landsat map button
+	self.btnLandSatMap = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnLandSatMap setTitle:@"LSM - Off" forState:UIControlStateNormal];
+	[self.btnLandSatMap setTitle:@"LSM - On" forState:UIControlStateSelected];
+	[self.view addSubview:self.btnLandSatMap];
+	[self.view bringSubviewToFront:self.btnLandSatMap];
+	self.btnLandSatMap.frame=CGRectMake(self.btnStreetMap.frame.origin.x +
+									   self.btnStreetMap.frame.size.width, 0, 90, 30);
+	[self.btnLandSatMap addTarget:self
+						  action:@selector(landSatMapButtonTapped)
+				forControlEvents:UIControlEventTouchDown];
 		
 }
 
@@ -180,6 +193,13 @@
 	self.isStreetMapMode = !self.isStreetMapMode;
 	[self enableStreetMap:self.isStreetMapMode];
 	self.btnStreetMap.selected = self.isStreetMapMode;
+}
+
+- (void) landSatMapButtonTapped
+{
+	self.isLandSatMapMode = !self.isLandSatMapMode;
+	[self enableLandSatMap:self.isLandSatMapMode];
+	self.btnLandSatMap.selected = self.isLandSatMapMode;
 }
 
 - (void) gpsButtonTapped
@@ -213,6 +233,23 @@
 	else
 		[self.streetMap hide];
 		
+}
+
+- (void) enableLandSatMap:(BOOL) enabled
+{
+	//Add a virtual map layer using a tile provider that pulls tiles down from the internet
+	if(self.landSatMap==nil)
+	{
+		self.landSatMap=[[[MEMapBoxLandSatMap alloc]init]autorelease];
+		self.landSatMap.compressTextures = YES;
+		self.landSatMap.meMapViewController = self.meMapViewController;
+		self.landSatMap.zOrder = 4;
+	}
+	if(enabled)
+		[self.landSatMap show];
+	else
+		[self.landSatMap hide];
+	
 }
 
 

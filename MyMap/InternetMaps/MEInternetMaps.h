@@ -31,6 +31,9 @@
 @interface MEMapBoxLandCoverStreetMap : MEInternetMap
 @end
 
+@interface MEMapBoxLandSatMap : MEInternetMap
+@end
+
 
 
 

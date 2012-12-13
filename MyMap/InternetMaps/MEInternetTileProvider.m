@@ -239,8 +239,8 @@
 	return fileName;
 }
 
-
 @end
+
 /////////////////////////////////////////////////////////////////////////////////
 @implementation MEMapBoxLandCoverTileProvider
 -(MEMapBoxLandCoverTileProvider*) init
@@ -381,6 +381,44 @@
         }
         [self.meMapViewController tileLoadComplete:tileInfo];
     }
+}
+
+@end
+
+/////////////////////////////////////////////////////////////////////////////////
+@implementation MEMapBoxLandSatTileProvider
+-(MEMapBoxLandSatTileProvider*) init
+{
+	self = [super init];
+    if ( self )
+	{
+		//URL for a single tile from the MapBox landsat map.
+		//To see these, right click a tile and click 'Inspect Element'
+		//in the Chrome web browser
+		//http://a.tiles.mapbox.com/v3/examples.map-2k9d7u0c/9/96/204.png
+		self.mapDomain = @"a.tiles.mapbox.com/v3/examples.map-2k9d7u0c";
+		self.shortName = @"mapboxlandsat";
+		self.returnUIImages = YES;
+		self.copyrightNotice = @"Source: MapBox, LLC http://www.mapbox.com";
+    }
+    return self;
+}
+
+- (NSString*) tileFileExtension
+{
+	return @"png";
+}
+
+- (NSString*) tileURLForX:(int) X Y:(int) Y Zoom:(int) Zoom
+{
+	
+	return [NSString stringWithFormat:@"http://%@/%d/%d/%d.%@",
+			self.mapDomain,
+			Zoom,
+			X,
+			Y,
+			[self tileFileExtension]];
+	
 }
 
 @end

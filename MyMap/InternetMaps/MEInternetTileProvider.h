@@ -29,7 +29,6 @@
 @interface MEMapBoxMarsTileProvider : MEMapBoxTileProvider
 @end
 
-
 @interface MEMapBoxLandCoverTileProvider : MEMapBoxTileProvider
 @end
 
@@ -45,8 +44,10 @@
 @interface MEStamenTerrainTileProvider : MEMapBoxTileProvider
 @end
 
-
 @interface MEArgyleTileProvider : MEMapBoxTileProvider
+@end
+
+@interface MEMapBoxLandSatTileProvider : MEMapBoxTileProvider
 @end
 
 
