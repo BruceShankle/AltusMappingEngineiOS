@@ -71,8 +71,17 @@ static unsigned int _activeDownloadCount=0;
 									 returningResponse:&response
 												 error:&error];
 		
+		NSLog(@"Downloading %@. Try %d.", urlString, i+1);
+		if(response.statusCode==404)
+			NSLog(@"Error 404");
+		
 		if(response.statusCode==200 || response.statusCode==404)
 			break;
+		
+		if(error!=nil)
+		{
+			NSLog(@"Error: %@", error.localizedFailureReason);
+		}
 	}
 	
 	if(response.statusCode==200)
