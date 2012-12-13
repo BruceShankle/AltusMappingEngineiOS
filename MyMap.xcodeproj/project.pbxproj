@@ -21,6 +21,8 @@
 		32125A0A1676AC760081298A /* MEFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32125A071676AC760081298A /* MEFileDownloader.m */; };
 		32125A0B1676AC760081298A /* MEInternetTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32125A091676AC760081298A /* MEInternetTileProvider.m */; };
 		32125A0E1676AD550081298A /* MEInternetMaps.m in Sources */ = {isa = PBXBuildFile; fileRef = 32125A0C1676AD550081298A /* MEInternetMaps.m */; };
+		32454067167969C30010E1C0 /* grayGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 32454065167969C30010E1C0 /* grayGrid.png */; };
+		32454068167969C30010E1C0 /* grayGrid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32454066167969C30010E1C0 /* grayGrid@2x.png */; };
 		325CF2771661B4FE00E67B66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF2761661B4FE00E67B66 /* UIKit.framework */; };
 		325CF2791661B4FE00E67B66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF2781661B4FE00E67B66 /* Foundation.framework */; };
 		325CF27B1661B4FE00E67B66 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325CF27A1661B4FE00E67B66 /* CoreGraphics.framework */; };
@@ -55,6 +57,8 @@
 		32125A091676AC760081298A /* MEInternetTileProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEInternetTileProvider.m; sourceTree = "<group>"; };
 		32125A0C1676AD550081298A /* MEInternetMaps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEInternetMaps.m; sourceTree = "<group>"; };
 		32125A0D1676AD550081298A /* MEInternetMaps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEInternetMaps.h; sourceTree = "<group>"; };
+		32454065167969C30010E1C0 /* grayGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayGrid.png; sourceTree = "<group>"; };
+		32454066167969C30010E1C0 /* grayGrid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayGrid@2x.png"; sourceTree = "<group>"; };
 		325CF2721661B4FE00E67B66 /* MyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		325CF2761661B4FE00E67B66 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		325CF2781661B4FE00E67B66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -111,6 +115,8 @@
 		32125A001676A3850081298A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				32454065167969C30010E1C0 /* grayGrid.png */,
+				32454066167969C30010E1C0 /* grayGrid@2x.png */,
 				32125A011676A3850081298A /* blueplane.png */,
 				32125A021676A3850081298A /* blueplane@2x.png */,
 			);
@@ -266,6 +272,8 @@
 				320C04321661BF7700BD4AB4 /* world.mbtiles in Resources */,
 				32125A031676A3850081298A /* blueplane.png in Resources */,
 				32125A041676A3850081298A /* blueplane@2x.png in Resources */,
+				32454067167969C30010E1C0 /* grayGrid.png in Resources */,
+				32454068167969C30010E1C0 /* grayGrid@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

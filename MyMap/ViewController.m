@@ -5,7 +5,7 @@
 //  Created by Bruce Shankle III on 11/24/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
 //
-// Tutorial 7:
+// Tutorial 8:
 //	* Initialize mapping engine and display an embedded low-res TileMill-generated map of planet Earth.
 //	* Turn on GPS and update map to center on current GPS coordinate.
 //	* Add and enable track-up mode so map rotates based on GPS course.
@@ -14,6 +14,7 @@
 //	* Add support for an own-ship marker that updates based on current location and course.
 //	* Add tile provider and virtual map that downloads MapBox street map.
 //	* Add tile provider and UI support for MapBox landsat data
+//	* Add a 'default' gray grid tile that is displayed when waiting on an internet map tile to download.
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -41,6 +42,11 @@
 	
 	//Allow zooming in very close
     self.meMapViewController.meMapView.minimumZoom=0.0003;
+	
+	//Add a default tile that can be used when waiting on other tile to load
+	[self.meMapViewController addCachedTile:[UIImage imageNamed:@"grayGrid"]
+								   withName:@"grayGrid"
+							compressTexture:YES];
 }
 
 - (void) turnOnBaseMap

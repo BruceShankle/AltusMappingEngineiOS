@@ -53,7 +53,7 @@
 	vMapInfo.isSlippyMap = YES;
 	vMapInfo.zOrder = self.zOrder;
 	vMapInfo.maxLevel = self.maxLevel;
-	//vMapInfo.defaultTileName = @"grayGrid";
+	vMapInfo.defaultTileName = @"grayGrid";
 	vMapInfo.loadingStrategy = kHighestDetailOnly;
 	if(self.zoomIndependent)
 		vMapInfo.contentType = kZoomIndependent;
