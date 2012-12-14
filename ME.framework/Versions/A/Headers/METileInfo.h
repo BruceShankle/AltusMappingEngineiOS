@@ -19,7 +19,8 @@ typedef enum {
 	kTileResponseRenderNSData,
 	kTileResponseRenderFilename,
 	kTileResponseRenderImageData,
-	kTileResponseRenderNamedCachedTile
+	kTileResponseRenderNamedCachedTile,
+	kTileResponseWasCancelled
 } METileProviderResponse;
 
 /**
