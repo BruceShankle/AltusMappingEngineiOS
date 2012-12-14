@@ -1,6 +1,15 @@
 #!/bin/bash
 #The intent of this script is to update all of the
 #tutorial branches with updates from blankslate.
-git checkout tutorial1
-git merge blankslate -m 'Updating engine.'
+
+for i in {1..9}
+do
+git checkout tutorial$i
+git merge blankslate -m 'Updating ME.framework'
+done
+
+
+
+
+
 
