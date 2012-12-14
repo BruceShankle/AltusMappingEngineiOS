@@ -52,6 +52,9 @@
 /** Controls the maximum number of tiles in flight per frame. Defaults to 3 on single-core devices, and 10 on dual-core devices. You should adjust this setting beforoe calling the intiaizlie function.*/
 @property (assign) unsigned int maxTilesInFlight;
 
+/** Controls the the number of levels up that parent tiles will be searched in virtual maps that are supplied tiles by tiler providers. The defaul is 5. Reducing this number can potentially save bandwidth in the case of internet-based tile providers, but at the cost of the user potentially not seeing map data if they zoom or pan quickly as tiles are downloading.*/
+@property (assign) unsigned int maxVirtualMapParentSearchDepth;
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Core rendering engine management
 /** Allocates resources for caching and map loading. Should be called after the cooresponding MEMapView is loaded.*/
