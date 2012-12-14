@@ -86,21 +86,24 @@
 	return fileName;
 }
 
-
-
-- (BOOL) downloadTileFromURL3:(NSString*) url toFileName:(NSString*) fileName
-{
-	return [MEFileDownloader downloadSync:url toFile:fileName];
-}
-
 - (BOOL) downloadTileFromURL:(NSString*) url toFileName:(NSString*) fileName
 {
-	return [self downloadTileFromURL3:url toFileName:fileName];
+	return [MEFileDownloader downloadSync:url toFile:fileName];
 }
 
 
 - (void) requestTile:(METileInfo*) tileinfo
 {
+	
+	//Check to make sure we still need to supply the tile.
+	//It is possible the mapping engine no longer needs the tile and cancelled
+	//the request.
+	if(!self.isAsynchronous)
+	{
+		if([self wasCancelled:tileinfo])
+			return;
+	}
+	
 	NSString* fileName=[self cacheFileNameForX:tileinfo.slippyX
 											 Y:tileinfo.slippyY
 										  Zoom:tileinfo.slippyZ];
