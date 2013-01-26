@@ -16,6 +16,7 @@
 #import "MEAnimatedVectorCircle.h"
 #import "MEAnimatedVectorReticle.h"
 #import "MEMarkerAnnotation.h"
+#import "MEMarkerInfo.h"
 #import "MEMapInfo.h"
 #import "MEHitTesting.h"
 
@@ -49,11 +50,18 @@
 /** The core in-memory cache size in bytes. Defaults to 60 MB on single-core devices, and 90 MB on dual-core devices. You should adjust this setting before calling the initialize function.*/
 @property (assign) unsigned long coreCacheSize;
 
-/** Controls the maximum number of tiles in flight per frame. Defaults to 3 on single-core devices, and 10 on dual-core devices. You should adjust this setting beforoe calling the intiaizlie function.*/
+/** Controls the maximum number of tiles in flight per frame. Defaults to 3 on single-core devices, and 10 on dual-core devices. You should adjust this setting before calling the intialize function.*/
 @property (assign) unsigned int maxTilesInFlight;
+
+/** Controls the maximum number of tiles that will be loaded per frame that are supplied by asynchronous tile providers. This is especially helpful for animated tile providers that may be returning a large numbers of frames at once and do not with to cause a frame-rate hitch. The default is 1 tile per frame. This only applies to tiles that supply image data. Tile provider responses that indicate no loading is neccessary (not available or inivisible) are all handled every frame.*/
+@property (assign) unsigned int maxAsyncTileLoadsPerFrame;
 
 /** Controls the the number of levels up that parent tiles will be searched in virtual maps that are supplied tiles by tiler providers. The defaul is 5. Reducing this number can potentially save bandwidth in the case of internet-based tile providers, but at the cost of the user potentially not seeing map data if they zoom or pan quickly as tiles are downloading.*/
 @property (assign) unsigned int maxVirtualMapParentSearchDepth;
+
+/** Controls the target frames per second to render when current run loop is in UITrackingRunLoopMode. This occurs, for example, when a table view is being scrolled. The default is 10.*/
+@property (assign) unsigned int uiTrackingRunLoopPreferredFramesPerSecond;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Core rendering engine management
@@ -172,6 +180,15 @@
  */
 - (void) playAnimatedVirtualMap:(NSString*)name;
 
+/** Triggers a tile request for tiles marked as ejectOnPoliteRefresh.*/
+- (void) politelyRefreshAnimatedVirtualMap:(NSString*)name;
+
+/** Triggers a tile request for tiles marked as ejectOnPoliteRefresh.*/
+- (void) politelyRefreshVirtualMap:(NSString*) name;
+
+/** Sets whether or not tiles are automatically requested for an animated map as the user pans / zooms. If set to NO, you should call politelyRefreshAnimatedVirtualMap to have tiles be requested on some periodic basis.*/
+- (void) setAutomaticTileRequestModeForAnimatedVirtualMap:(NSString*) name enabled:(BOOL) enabled;
+
 /** Sets the current frame of the animation in the given animated virtual map layer.
  @param name Name of the animated virtual map layer
  @param frame Frame to be set immediately
@@ -185,6 +202,11 @@
  */
 - (void) setAnimatedVirtualMapFrameCount:(NSString*)name
                               frameCount:(unsigned int) frameCount;
+
+/** Sets the frame that marks the beginning frame of the animation sequence. This frame will be displayed while other frames are being loaded. Frame numbers are index based starting with 0. The first frame wouldbe index 0, the nth frame would be index n-1, etc.*/
+- (void) setAnimatedMapStartFrame:(NSString*) name
+					frameNumber:(unsigned int) frameNumber;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Marker map management
@@ -241,12 +263,19 @@
 						  metaData:(NSString*) metaData
                        newRotation:(double) newRotation;
 
-/** For dynamic marker maps, updates the rotation of the marker.
+/**
+ For dynamic marker maps, updates the rotation of the marker.
  */
 - (void) updateMarkerRotationInMap:(NSString*) mapName
 						  metaData:(NSString*) metaData
                        newRotation:(double) newRotation
 				 animationDuration:(double) animationDuration;
+
+/**
+ Tells the rendering engine to stop drawing a marker. The marker will fade out. Presently, this is a one-way operation.
+ */
+- (void) hideMarkerInMap:(NSString*) mapName
+				metaData:(NSString*) metaData;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -346,11 +375,36 @@
 /**Returns the current terrain color bar.*/
 -(METerrainColorBar*) terrainColorBar;
 
-/**Called when a tile has been loaded through a virtual layer.*/
+/**Called when a tile has been loaded through a virtual layer. Should only be called on the main thread.*/
 - (void) tileLoadComplete:(METileInfo*) tileInfo;
+
+/**Returns whether or not the engine considers the tile represented by tileInfo to be required to satisfy the current view for any non-animated virtual map. This call will dispatched to the main queue if it is not made on the main queue. If you need to know if an animated map tile request is still valid, please call animatedTileIsNeeded which does not dispatch to the main queue.*/
+-(BOOL) tileIsNeeded:(METileInfo*) tileInfo;
+
+
+-(BOOL) animatedTileIsNeeded:(METileInfo*) tileInfo;
+
+/**Returns an array of METileRequest objects which represent the tiles currently needed by the mapping engine. You should only all this function on the main thread.*/
+-(NSArray*) currentAnimatedMapTileRequests;
 
 /**Tells the engine when the application receives a memory warning from the system.*/
 - (void) applicationDidReceiveMemoryWarning:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationWillResignActive:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationDidEnterBackground:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationWillEnterForeground:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationDidBecomeActive:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationWillTerminate:(UIApplication *)application;
+
 
 - (void) setClippingPlaneValue:(CGFloat) newValue;
 
@@ -383,18 +437,23 @@
  @param mapName The name of the map to be refreshed.*/
 - (void) refreshMap:(NSString*) mapName;
 
-
-
-/** Adds an image that will stay cached until it is removed using removeCachedTile. Cached tiles are identified by their name and may be specified as the defaul tile for certain maps types or returned by tile providers that have no specific tile to return for a given tile request. Generally this should be a fully opaque 256x256 or 512x512 pixel image.
+/** Adds an image that will stay cached until it is removed using removeCachedImage. Cached images are identified by their name and may be specified as the default tile for certain maps types or returned by tile providers that have no specific tile to return for a given tile request. Generally this should be a fully opaque 256x256 or 512x512 pixel image.
 @param uiImage A UIImage containing the image data.
 @param tileName The unique name of the tile.
 @param compressTexture Whether or not the image should be compressed to RGB565 format.*/
-- (void) addCachedTile:(UIImage*) uiImage
-			  withName:(NSString*) tileName
-	   compressTexture:(BOOL) compressTexture;
+- (void) addCachedImage:(UIImage*) uiImage
+			   withName:(NSString*) imageName
+		compressTexture:(BOOL) compressTexture;
 
-/** Removes a cached tile that was previously added with the addCachedTile function.*/
--(void) removeCachedTile:(NSString*) tileName;
+/** Adds an image that will stay cached until it is removed using removeCachedImage. The intent is for the image to be used as a marker image. Cached marker images are identified by their name and may be specified as the image to be used for a marker when a marker is added.*/
+- (void) addCachedMarkerImage:(UIImage*) uiImage
+					 withName:(NSString*) imageName
+			  compressTexture:(BOOL) compressTexture
+nearestNeighborTextureSampling:(BOOL) nearestNeighborTextureSampling;
+
+
+/** Removes a cached image or cached marker image that was previously added with the addCachedImage or addCachedMarkerImage function.*/
+-(void) removeCachedImage:(NSString*) tileName;
 
 
 /** Returns an angle relative to the verticle edge of the view that represents the rotation you would apply to a screen-aligned object so that it points to the given heading. You would use this function, for example, if you wanted to display an 2D arrow that points in at heading. If you desire for an object to do this and always be up to date and smoothly animated, you should use a marker layer with a marker whose rotation type is kMarkerRotationTrueNorthAligned, then the mapping engine will manage the rotation of the object.*/
@@ -402,6 +461,7 @@
 						withHeading:(CGFloat) heading;
 
 
+/** Returns an angle relative to the verticle edge of the view that represents the rotation you would apply to a screen-aligned object so that it points to the given heading releative to the current geographic point at the center of the view. You would use this function, for example, if you wanted to display an 2D arrow that points in at heading. If you desire for an object to do this and always be up to date and smoothly animated, you should use a marker layer with a marker whose rotation type is kMarkerRotationTrueNorthAligned, then the mapping engine will manage the rotation of the object.*/
 -(CGFloat) screenRotationForMapCenterWithHeading:(double) heading;
 
 @end

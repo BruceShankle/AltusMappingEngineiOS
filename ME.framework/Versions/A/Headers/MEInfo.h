@@ -18,6 +18,7 @@
 @property int tileCacheMemorySize;
 @property int tileCacheTileCount;
 @property int inFlightTileCount;
+@property int multiInFlightTileCount;
 @property int appMemoryUsage;
 
 @property int parallelWorkerCount;
