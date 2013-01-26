@@ -18,6 +18,12 @@
 /**If set to yes, the Engine will call your requestTileAsync function and expect you to call tileLoadComplete.*/
 @property (assign) BOOL isAsynchronous;
 
+/**Returns YES if the tile is still needed by a non-animated virtual map being displayed by the mapping engine. Warning: This call is marshalled to the main thread. Use isNeededAnimated for animated maps. */
+- (BOOL) isNeeded:(METileInfo*) tileInfo;
+
+/**Returns YES if the tile is still needed by an animated virtual map being displayed by the mapping engine. Warning: This call makes synchronizes access to the MEMapViewController.*/
+- (BOOL) isNeededAnimated:(METileInfo*) tileInfo;
+
 /**Called by the engine to request a tile from a synchronous tile provider. The callee should do one of the following to the tileInfo object:
  a)set uiImage to a valid UIImage object
  b)set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
@@ -61,14 +67,8 @@
  */
 - (void) requestTilesAsync:(NSArray*) tileInfos;
 
-/**
- In the case of asynchronous tile providers, this function is called by the engine when a tile that has not completed loading is no longer needed. For example, the user has panned away from the relevant area.
- */
-- (void) cancelTileRequest:(METileInfo*) tileInfo;
-
 /**This is provided as a convenience method and simply calls the MEMapViewController's tileLoadComplete function.*/
 - (void) tileLoadComplete:(METileInfo*) tileInfo;
-
 
 /** Convenience method for managing an array of URL request objects.*/
 - (void) addActiveRequest:(id)request withId:(id)requestId;

@@ -16,6 +16,7 @@
 #import "MEAnimatedVectorCircle.h"
 #import "MEAnimatedVectorReticle.h"
 #import "MEMarkerAnnotation.h"
+#import "MEMarkerInfo.h"
 #import "MEMapInfo.h"
 #import "MEHitTesting.h"
 
@@ -46,6 +47,22 @@
 /** When set to YES, tells the mapping engine to display verbose messages about state changes and activity.*/
 @property (atomic, assign) BOOL verboseMessagesEnabled;
 
+/** The core in-memory cache size in bytes. Defaults to 60 MB on single-core devices, and 90 MB on dual-core devices. You should adjust this setting before calling the initialize function.*/
+@property (assign) unsigned long coreCacheSize;
+
+/** Controls the maximum number of tiles in flight per frame. Defaults to 3 on single-core devices, and 10 on dual-core devices. You should adjust this setting before calling the intialize function.*/
+@property (assign) unsigned int maxTilesInFlight;
+
+/** Controls the maximum number of tiles that will be loaded per frame that are supplied by asynchronous tile providers. This is especially helpful for animated tile providers that may be returning a large numbers of frames at once and do not with to cause a frame-rate hitch. The default is 1 tile per frame. This only applies to tiles that supply image data. Tile provider responses that indicate no loading is neccessary (not available or inivisible) are all handled every frame.*/
+@property (assign) unsigned int maxAsyncTileLoadsPerFrame;
+
+/** Controls the the number of levels up that parent tiles will be searched in virtual maps that are supplied tiles by tiler providers. The defaul is 5. Reducing this number can potentially save bandwidth in the case of internet-based tile providers, but at the cost of the user potentially not seeing map data if they zoom or pan quickly as tiles are downloading.*/
+@property (assign) unsigned int maxVirtualMapParentSearchDepth;
+
+/** Controls the target frames per second to render when current run loop is in UITrackingRunLoopMode. This occurs, for example, when a table view is being scrolled. The default is 10.*/
+@property (assign) unsigned int uiTrackingRunLoopPreferredFramesPerSecond;
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Core rendering engine management
 /** Allocates resources for caching and map loading. Should be called after the cooresponding MEMapView is loaded.*/
@@ -58,7 +75,6 @@
  - MERenderNone: Disables rendering.
  - MERender2D: Render a 2D top-down view.
  - MERender3D: Render a 3D perspective view.
- - MEInterpolateCamera: Interpolate camera positions.
  - MEDisableDisplayList: Debugging use only.
  - METrackUp: Render with the observer always facing towards the top of the screen, no matter what the heading is.
  2D and 3D mode are mutually exclusive.
@@ -72,12 +88,10 @@
 - (BOOL) isRenderModeSet:(MERenderModeType) mode;
 
 /**If you have set the METrackUp rendering mode, you can set the trackup-forward distance with this function.
- @param meters The distance in meters the move the camera forward from the pivot point where rotation occurs when heading is adjusted.
- @param animated True if the track-up forward distance should be animated.
- @param If animated, the animation interval in seconds.
+ @param points The distance in screen points to move the camera forward from the pivot point where rotation occurs when heading is adjusted.
+ @param animationDuration If animated, the animation interval in seconds, zero otherwise.
  */
-- (void) setTrackUpForwardDistance:(double) meters
-						  animated:(BOOL) animated
+- (void) setTrackUpForwardDistance:(double) points
 				 animationDuration:(double) animationDuration;
 
 /**Returns the current track up forward distance.*/
@@ -86,7 +100,7 @@
 /**If you have set the METrackUp rendering mode, you can set the trackup-forward distance with this function.
  @param meters The distance in meters the move the camera forward from the pivot point where rotation occurs when heading is adjusted.
  */
-- (void) setTrackUpForwardDistance:(double) meters;
+- (void) setTrackUpForwardDistance:(double) points;
 
 //////////////////////////////////////////////////////////////
 //Map layer management
@@ -156,19 +170,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Virtual Map Management
 
-/** Add a MapBox style map generated in TileMill. Should be removed with the removeMBTilesMap function.
- @param name Unique name for this layer.
- @param databaseFile Full path to the .mbtiles sqlite file for the map.
- @param tileType The type of tiles, jpg or png.
- @param zOrder An integer value greater than or equal to 1 that sets the layers draw order relative to other layers. A lower value means the layer will lower in the stack.
- @param maxLevel Maximum zoom level tiles go to.
- */
--(void) addMBTilesMap:(NSString*) name
-		 databaseFile:(NSString*) databaseFile
-		   tileType:(MEImageDataType) tileType
-			   zOrder:(int) zOrder
-			 maxLevel:(int) maxLevel;
-
 /** Pauses the animation in the given animated virtual map layer.
  @param name Name of the animated virtual map layer
  */
@@ -179,6 +180,15 @@
  */
 - (void) playAnimatedVirtualMap:(NSString*)name;
 
+/** Triggers a tile request for tiles marked as ejectOnPoliteRefresh.*/
+- (void) politelyRefreshAnimatedVirtualMap:(NSString*)name;
+
+/** Triggers a tile request for tiles marked as ejectOnPoliteRefresh.*/
+- (void) politelyRefreshVirtualMap:(NSString*) name;
+
+/** Sets whether or not tiles are automatically requested for an animated map as the user pans / zooms. If set to NO, you should call politelyRefreshAnimatedVirtualMap to have tiles be requested on some periodic basis.*/
+- (void) setAutomaticTileRequestModeForAnimatedVirtualMap:(NSString*) name enabled:(BOOL) enabled;
+
 /** Sets the current frame of the animation in the given animated virtual map layer.
  @param name Name of the animated virtual map layer
  @param frame Frame to be set immediately
@@ -186,16 +196,27 @@
 - (void) setAnimatedVirtualMapFrame:(NSString*)name
                               frame:(unsigned int) frame;
 
+/** Sets the current frame count of the animation in the given animated virtual map layer.
+ @param name Name of the animated virtual map layer
+ @param frameCount Frame count to be set immediately
+ */
+- (void) setAnimatedVirtualMapFrameCount:(NSString*)name
+                              frameCount:(unsigned int) frameCount;
+
+/** Sets the frame that marks the beginning frame of the animation sequence. This frame will be displayed while other frames are being loaded. Frame numbers are index based starting with 0. The first frame wouldbe index 0, the nth frame would be index n-1, etc.*/
+- (void) setAnimatedMapStartFrame:(NSString*) name
+					frameNumber:(unsigned int) frameNumber;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Marker map management
 
-/** For dynamic marker maps, adds a new marker to the marker map.
+/** For dynamic and memory marker maps, adds a new marker to the marker map.
  @param mapName Unique name of the marker map layer.
- @param marker Object that describes the marker.
+ @param markerAnnotation Marker annotation that describes the marker.
  */
 - (void) addMarkerToMap:(NSString*)mapName
-                 marker:(MEMarkerAnnotation*)marker;
+	   markerAnnotation:(MEMarkerAnnotation*)markerAnnotation;
 
 /** Sets a height color bar for the specified marker map. Once set you can call setMarkerMapColorBarEnabled to turn use of the color bar on and off.*/
 - (void) setMarkerMapColorBar:(NSString*)mapName
@@ -218,13 +239,11 @@
  @param mapName Unique name of the marker map.
  @param metaData Unique ID of the marker to update.
  @param newLocation New geographic location of the marker.
- @param animated If YES, animate the marker to the new location.
  @param animationDuration The animation duration in seconds.
  */
 - (void) updateMarkerLocationInMap:(NSString*) mapName
 						  metaData:(NSString*) metaData
                        newLocation:(CLLocationCoordinate2D) newLocation
-						  animated:(BOOL) animated
 				 animationDuration:(double) animationDuration;
 
 /** For dynamic marker maps, update multiple attributes of a marker.*/
@@ -232,8 +251,11 @@
 				  metaData:(NSString*) metaData
 			   newLocation:(CLLocationCoordinate2D) newLocation
 			   newRotation:(double) newRotation
-				  animated:(BOOL) animated
 		 animationDuration:(double) animationDuration;
+
+/** For marker maps, tell the mapping engine that you want the marker image to be re-requested.*/
+- (void) refreshMarkerInMap:(NSString*) mapName
+				   metaData:(NSString*) metaData;
 
 /** For dynamic marker maps, updates the rotation of the marker.
  */
@@ -241,13 +263,19 @@
 						  metaData:(NSString*) metaData
                        newRotation:(double) newRotation;
 
-/** For dynamic marker maps, updates the rotation of the marker.
+/**
+ For dynamic marker maps, updates the rotation of the marker.
  */
 - (void) updateMarkerRotationInMap:(NSString*) mapName
 						  metaData:(NSString*) metaData
                        newRotation:(double) newRotation
-						  animated:(BOOL) animated
 				 animationDuration:(double) animationDuration;
+
+/**
+ Tells the rendering engine to stop drawing a marker. The marker will fade out. Presently, this is a one-way operation.
+ */
+- (void) hideMarkerInMap:(NSString*) mapName
+				metaData:(NSString*) metaData;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -347,11 +375,36 @@
 /**Returns the current terrain color bar.*/
 -(METerrainColorBar*) terrainColorBar;
 
-/**Called when a tile has been loaded through a virtual layer.*/
+/**Called when a tile has been loaded through a virtual layer. Should only be called on the main thread.*/
 - (void) tileLoadComplete:(METileInfo*) tileInfo;
+
+/**Returns whether or not the engine considers the tile represented by tileInfo to be required to satisfy the current view for any non-animated virtual map. This call will dispatched to the main queue if it is not made on the main queue. If you need to know if an animated map tile request is still valid, please call animatedTileIsNeeded which does not dispatch to the main queue.*/
+-(BOOL) tileIsNeeded:(METileInfo*) tileInfo;
+
+
+-(BOOL) animatedTileIsNeeded:(METileInfo*) tileInfo;
+
+/**Returns an array of METileRequest objects which represent the tiles currently needed by the mapping engine. You should only all this function on the main thread.*/
+-(NSArray*) currentAnimatedMapTileRequests;
 
 /**Tells the engine when the application receives a memory warning from the system.*/
 - (void) applicationDidReceiveMemoryWarning:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationWillResignActive:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationDidEnterBackground:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationWillEnterForeground:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationDidBecomeActive:(UIApplication *)application;
+
+/**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
+- (void)applicationWillTerminate:(UIApplication *)application;
+
 
 - (void) setClippingPlaneValue:(CGFloat) newValue;
 
@@ -361,7 +414,6 @@
 /**Update the position of an animated vector circle.*/
 - (void) updateAnimatedVectorCircleLocation:(NSString*) name
 								newLocation:(CLLocationCoordinate2D)newLocation
-								   animated:(BOOL) animated
 						  animationDuration:(CGFloat) animationDuration;
 
 /**Removes an animated vector circle.*/
@@ -373,7 +425,6 @@
 /**Update the position of an animated reticle.*/
 - (void) updateAnimatedVectorReticleLocation:(NSString*) name
 								 newLocation:(CLLocationCoordinate2D)newLocation
-									animated:(BOOL) animated
 						   animationDuration:(CGFloat) animationDuration;
 
 /**Removes an animated reticle.*/
@@ -381,5 +432,36 @@
 
 /**Adds a map using a map info object.*/
 - (void) addMapUsingMapInfo:(MEMapInfo*) meMapInfo;
+
+/**Instructs the mapping engine to reload a map.
+ @param mapName The name of the map to be refreshed.*/
+- (void) refreshMap:(NSString*) mapName;
+
+/** Adds an image that will stay cached until it is removed using removeCachedImage. Cached images are identified by their name and may be specified as the default tile for certain maps types or returned by tile providers that have no specific tile to return for a given tile request. Generally this should be a fully opaque 256x256 or 512x512 pixel image.
+@param uiImage A UIImage containing the image data.
+@param tileName The unique name of the tile.
+@param compressTexture Whether or not the image should be compressed to RGB565 format.*/
+- (void) addCachedImage:(UIImage*) uiImage
+			   withName:(NSString*) imageName
+		compressTexture:(BOOL) compressTexture;
+
+/** Adds an image that will stay cached until it is removed using removeCachedImage. The intent is for the image to be used as a marker image. Cached marker images are identified by their name and may be specified as the image to be used for a marker when a marker is added.*/
+- (void) addCachedMarkerImage:(UIImage*) uiImage
+					 withName:(NSString*) imageName
+			  compressTexture:(BOOL) compressTexture
+nearestNeighborTextureSampling:(BOOL) nearestNeighborTextureSampling;
+
+
+/** Removes a cached image or cached marker image that was previously added with the addCachedImage or addCachedMarkerImage function.*/
+-(void) removeCachedImage:(NSString*) tileName;
+
+
+/** Returns an angle relative to the verticle edge of the view that represents the rotation you would apply to a screen-aligned object so that it points to the given heading. You would use this function, for example, if you wanted to display an 2D arrow that points in at heading. If you desire for an object to do this and always be up to date and smoothly animated, you should use a marker layer with a marker whose rotation type is kMarkerRotationTrueNorthAligned, then the mapping engine will manage the rotation of the object.*/
+-(CGFloat) screenRotationForLocation:(CLLocationCoordinate2D) location
+						withHeading:(CGFloat) heading;
+
+
+/** Returns an angle relative to the verticle edge of the view that represents the rotation you would apply to a screen-aligned object so that it points to the given heading releative to the current geographic point at the center of the view. You would use this function, for example, if you wanted to display an 2D arrow that points in at heading. If you desire for an object to do this and always be up to date and smoothly animated, you should use a marker layer with a marker whose rotation type is kMarkerRotationTrueNorthAligned, then the mapping engine will manage the rotation of the object.*/
+-(CGFloat) screenRotationForMapCenterWithHeading:(double) heading;
 
 @end

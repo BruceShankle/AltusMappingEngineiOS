@@ -24,7 +24,9 @@ typedef enum {
     kMapTypeFileMarker,
 	kMapTypeFileMarkerCreate,
 	kMapTypeMemoryMarker,
+	kMapTypeMemoryMarkerFast,
 	kMapTypeDynamicMarker,
+	kMapTypeDynamicMarkerFast,
 	kMapTypeFileMBTiles
 } MEMapType;
 
@@ -47,7 +49,8 @@ typedef enum {
 /**Enumeration of different marker map loading strategies.*/
 typedef enum {
 	kMarkerImageLoadingAsynchronous,
-	kMarkerImageLoadingSynchronous
+	kMarkerImageLoadingSynchronous,
+	kMarkerImageLoadingPrecached
 } MEMarkerImageLoadingStrategy;
 
 
@@ -107,6 +110,9 @@ typedef enum {
 /**Specifies number of pixels that border each tile.*/
 @property (assign) unsigned int borderPixelCount;
 
+/**Specifies the name of the pre-loaded default tile to render while tiles are being loaded or to use when a tile is not available. */
+@property (retain) NSString* defaultTileName;
+
 @end
 
 //////////////////////////////////////////////////
@@ -133,6 +139,18 @@ typedef enum {
 
 /**Controls how the engine requests marker images. Defaults to kAsynchronousMarkerImageLoading. Note: frame hitching can occur if you use kMarkerImageLoadingAsynchronous for a large set of markers. Use asynchronous loading when possible.*/
 @property (assign) MEMarkerImageLoadingStrategy markerImageLoadingStrategy;
+
+/**Controls whether the engine performs touch-point hit testing against the markers. Defaults to YES.*/
+@property (assign) BOOL hitTestingEnabled;
+
+/**Specifies whether markers fade in.*/
+@property (assign) BOOL fadeEnabled;
+
+/**Amount of time in seconds that markers fade in.*/
+@property (assign) double fadeInTime;
+
+/**Amount of time in seconds that markers fade out.*/
+@property (assign) double fadeOutTime;
 
 @end
 
@@ -177,6 +195,9 @@ typedef enum {
 
 /**Specifies whether to apply an inter-frame fade.*/
 @property (assign) BOOL fadeEnabled;
+
+/**Specifies whether or not the mapping engine will automatically request tiles for the map. If set to NO, you can force tiles to be requested for the current view using MEMapViewController politelyRefreshAnimatedMap.*/
+@property (assign) BOOL automaticTileRequestMode;
 
 @end
 

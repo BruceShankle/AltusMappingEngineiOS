@@ -8,7 +8,6 @@ typedef enum {
     MERender2D,
     MERender3D,
 	MERenderAntialiasing,
-	MEInterpolateCamera,
 	MEDisableDisplayList,
 	METrackUp
 } MERenderModeType;

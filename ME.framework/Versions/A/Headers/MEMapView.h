@@ -25,8 +25,27 @@
 ////////////////////////////////////////////////
 //Properties. Please keep them documented.
 
-/**Controls the tile render size. This is the maximum size of a tile on screen and defaults to 380 points. If you make this value smaller, the engine will render more details (in essence a higher detail level) for a given scene width. If you make this value larger, the engine will render less tiles for a given scene width. You will want to adjust this setting based on 1) the render size of your map view, 2) the amount of detail you desire, 3) bandwidth in cases in where you download tiles. Halving this value will effectively quadruple the number of tiles rendered.*/
+/**Controls the tile render size. This is the maximum size of a tile on screen and defaults to 380 points. If you make this value smaller, the engine will render more details (in essence a higher detail level) for a given scene width. If you make this value larger, the engine will render less tiles for a given scene width. You will want to adjust this setting based on:
+ 1) the render size of your map view
+ 2) the amount of detail you desire
+ 3) bandwidth in cases in where you download tiles
+ 4) memory on the device
+ 5) the size you have set the engine's cache size to
+ 6) the physical capabilities of the display (retina or non-retina)
+ Halving this value will effectively quadruple the number of tiles rendered.
+*/
 @property (nonatomic, assign) uint maxTileRenderSize;
+
+/** Controls the amount of bias towards a given level of detail for all map types. The default setting is 0 and no biasing will be applied. This value should be adjusted if you are:
+ 1) displaying spherical mercator maps that are rendered differently at different levels (i.e. a MapBox streetmap)
+ 2) the virtual camera will be viewing the planet from an extremely high altitude
+ 3) you desire to force a consistent level to be rendered at all times
+ -or-
+ a) You have a densely populated clustered marker map that you desire to force to a consistent level of detail
+ 
+ If you are only displaying maps that are generated with meool from a single raster source or PDF you do not need to change this setting. Modifying this setting can result in increased CPU and memory utilization when the virtual camera is at a high altitude viewing the planet form orbit. Valid ranges are 0.0 to 1.0. This setting is ignored when in 3D mode.
+ */
+@property (nonatomic, assign) double tileLevelBias;
 
 ///////////////////////////
 //Gesture recognizers
@@ -86,6 +105,12 @@
  */
 - (CLLocationCoordinate2D)convertPoint:(CGPoint)point;
 
+/**Get the distance to the horizon given a point in screen space
+ @param point The point on screen to measure 
+ @return distance to horizon with 0 being on the horizon and 1 being in the center of the earth.
+ */
+- (double)distanceToHorizonFromPoint:(CGPoint)point;
+
 /** Converts a map coordinate to a point in the specified view.
  @param coordinate The map coordinate for which you want to find the corresponding point.
  @return The point (in the appropriate view or window coordinate system) corresponding to the specified latitude and longitude value.*/
@@ -95,11 +120,12 @@
 //Camera positioning
 /** Changes the center coordinate of the map and optionally animates the change. This function assumes the rendering system is in 2D mode.
  @param coordinate The new center coordinate for the map.
- @param animated Specify YES if you want the map view to scroll to the new location or NO if you want the map to display the new location immediately.
+ @param animationDuration Length of time to animate to new coodrindate. 0 to move instantly or stop prior animations
  */
-- (void)setCenterCoordinate:(CLLocationCoordinate2D)coordinate animated:(BOOL)animated;
+- (void)setCenterCoordinate:(CLLocationCoordinate2D)coordinate
+		  animationDuration:(CGFloat) animationDuration;
 
-/**The map coordinate at the center of the map view. Changing the value in this property centers the map on the new coordinate without changing the current zoom level. Changing the value of this property updates the map view immediately. If you want to animate the change, use the setCenterCoordinate:animated: method instead.
+/**The map coordinate at the center of the map view. Changing the value in this property centers the map on the new coordinate without changing the current zoom level. Changing the value of this property updates the map view immediately. If you want to animate the change, use the setCenterCoordinate:animationDuration: method instead.
  */
 @property (nonatomic, assign) CLLocationCoordinate2D centerCoordinate;
 
@@ -112,25 +138,40 @@
 
 /** Changes the center coordinate of the map and zoom and optionally animates the change. This function assumes the rendering system is in 2D mode.
  @param location The new center location to view the map from.
- @param animated Specify YES if you want the map view animate to the new location or NO if you want the map to display the new location immediately.
+ @param animationDuration Length of time to animate to the new position. Specify 0 for instant change.
  */
 - (void)setLocation:(MELocation) location
-           animated:(BOOL)animated;
+  animationDuration:(CGFloat)animationDuration;
 
 /** Similar to setLocation, but uses only 2 coordinates. Changes the center coordinate of the map and zoom and optionally animates the change. This function assumes the rendering system is in 2D mode. Makes the 2 coordiantes fit the view by moving the map. If it is not possible to actually view the 2 coordinates, the behavior is undefined.
  @param coordinate1 First coordinate that should be in view.
  @param coordinate2 Second coordinate that should be in view.
- @param animated Specify YES if you want the map view animate to the new location or NO if you want the map to display the new location immediately.*/
+ @param horizontalBufferInPoints number of points from edge of left and right of the screen to use as padding
+ @param verticalBufferInPoints number of points from the edge of the top and bottom of the screen to use as padding
+ @param animationDuration The lenght of time to animate the camera to the new position. Specify 0 to make the change instantaneous.*/
 - (void)lookAtCoordinate:(CLLocationCoordinate2D) coordinate1
            andCoordinate:(CLLocationCoordinate2D) coordinate2
-                animated:(BOOL)animated;
+    withHorizontalBuffer:(double)horizontalBufferInPoints
+      withVerticalBuffer:(double)verticalBufferInPoints
+	   animationDuration:(CGFloat) animationDuration;
 
-/** Returns the location needed to view the given bounds.*/
-- (MELocation) locationThatFitsBounds:(MELocationBounds) bounds;
+/** Returns the location needed to view the given bounds.
+ @param bounds geographics bounding box of the target region
+ @param horizontalBufferInPoints number of points from edge of left and right of the screen to use as padding
+ @param verticalBufferInPoints number of points from the edge of the top and bottom of the screen to use as padding
+ */
+- (MELocation) locationThatFitsBounds:(MELocationBounds) bounds
+                 withHorizontalBuffer:(double)horizontalBufferInPoints
+                   withVerticalBuffer:(double)verticalBufferInPoints;
 
 /** Returns a location at the minimum altitude to view all of the geographic points in the specified array. The locationThatFitsPoints API can be used to look at any set of aribrary points. If you provide points that cannot possibly be viewed from any vantage point, the behavior is undefined. You can use the encodeCoordinate and decodeCoordinate functions to wrap and uwrap CLLocationCoordinate2D structs for use with this function.
- @param points An array of NSValue objects that wrap CLLocationCoordinate2D objects.*/
-- (MELocation) locationThatFitsPoints:(NSArray*) points;
+ @param points An array of NSValue objects that wrap CLLocationCoordinate2D objects.
+@param horizontalBufferInPoints number of points from edge of left and right of the screen to use as padding
+@param verticalBufferInPoints number of points from the edge of the top and bottom of the screen to use as padding
+ */
+- (MELocation) locationThatFitsPoints:(NSArray*) points
+                 withHorizontalBuffer:(double)horizontalBufferInPoints
+                   withVerticalBuffer:(double)verticalBufferInPoints;
 
 /** Returns a CLLocationCoordinate that is wrapped inside an NSValue object.*/
 - (CLLocationCoordinate2D) decodeCoordinate:(NSValue*) valueWrappedCoordinate;
@@ -145,8 +186,12 @@
  @param heading Heading in degrees. 0 to 360.
  @param roll Roll in degrees. -180 to 180.
  @param pitch Pitch angle in degrees -180 to 180.
+ @param animationDuration Length of time in seconds to animate the change. Use 0 for no animation.
  */
-- (void) setCameraOrientation:(CGFloat) heading roll:(CGFloat) roll pitch:(CGFloat) pitch;
+- (void) setCameraOrientation:(CGFloat) heading
+						 roll:(CGFloat) roll
+						pitch:(CGFloat) pitch
+			animationDuration:(CGFloat) animationDuration;
 
 /** Zoom the view in as if the user has double-tapped / singled-touched on the view. The zoom will occur around the views center point.*/
 - (void) zoomIn;
@@ -155,8 +200,23 @@
 
 - (void) zoomOut;
 
-/**Converts a point value to its cooresponding pixel value.*/
+/** Converts a point value to its cooresponding pixel value.*/
 - (double) pointValueToPixelValue:(CGFloat)pointValue;
+
+/** Handles pan gesture. Default behaviour is to pan.*/
+- (IBAction) panGestureHandler:(UIGestureRecognizer *)sender;
+
+/** Handles pinch gesure. Default behaviour is to zoom in and out.*/
+- (IBAction) pinchGestureHandler:(UIGestureRecognizer *)sender;
+
+/** Handles tap gesture. Default behaviour is to do marker hit testing.*/
+- (IBAction) tapGestureHandler:(UIGestureRecognizer *)sender;
+
+/** Handles double-tap single press gesture. Default behaviour is to zoom in.*/
+- (IBAction) tapZoomInGestureHandler:(UIGestureRecognizer *)sender;
+
+/** Handles single-tap double press gesture. Default behaviour is to zoom out.*/
+- (IBAction) tapZoomOutGestureHandler:(UIGestureRecognizer *)sender;
 
 
 @end

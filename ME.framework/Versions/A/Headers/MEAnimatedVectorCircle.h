@@ -33,6 +33,9 @@
 /**The delay before the animation repeats.*/
 @property (assign) CGFloat repeatDelay;
 
+/**The delay that occurs before the circle fades.*/
+@property (assign) CGFloat fadeDelay;
+
 /**If set to true, the circle will fade (alpha 1->0) linearly to invisible over the course of the animation.*/
 @property (assign) BOOL fade;
 
