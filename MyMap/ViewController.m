@@ -44,7 +44,7 @@
     self.meMapViewController.meMapView.minimumZoom=0.0003;
 	
 	//Add a default tile that can be used when waiting on other tile to load
-	[self.meMapViewController addCachedTile:[UIImage imageNamed:@"grayGrid"]
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"grayGrid"]
 								   withName:@"grayGrid"
 							compressTexture:YES];
 }
