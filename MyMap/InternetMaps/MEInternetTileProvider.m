@@ -94,15 +94,9 @@
 
 - (void) requestTile:(METileInfo*) tileinfo
 {
-	
-	//Check to make sure we still need to supply the tile.
-	//It is possible the mapping engine no longer needs the tile and cancelled
-	//the request.
-	if(!self.isAsynchronous)
-	{
-		if([self wasCancelled:tileinfo])
-			return;
-	}
+	//Check to make sure we still need to supply the tile. If not, early exit.
+	if(![self.meMapViewController tileIsNeeded:tileinfo])
+		return;
 	
 	NSString* fileName=[self cacheFileNameForX:tileinfo.slippyX
 											 Y:tileinfo.slippyY
@@ -118,7 +112,8 @@
         {
             //For downloads that fail, show the gray grid
             tileinfo.isOpaque = YES;
-			tileinfo.cachedTileName = @"grayGrid";
+			tileinfo.cachedImageName = @"grayGrid";
+			tileinfo.tileProviderResponse = kTileResponseRenderNamedCachedImage;
 			return;
         }
 	}
