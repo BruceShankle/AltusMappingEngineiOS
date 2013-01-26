@@ -30,5 +30,4 @@
  */
 @property (nonatomic, copy) NSString* metaData;
 
-
 @end

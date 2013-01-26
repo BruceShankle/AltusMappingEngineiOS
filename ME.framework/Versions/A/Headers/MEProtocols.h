@@ -16,43 +16,44 @@
 @protocol MEMapViewDelegate <NSObject>
 @optional
 
+/**Called when the user taps on a map.*/
 - (void) mapView:(MEMapView *)mapView singleTapAt:(CGPoint) screenPoint withLocationCoordinate:(CLLocationCoordinate2D) locationCoordinate;
 
+/**Called when the engine begins loading data for a map.*/
 - (void) mapView:(MEMapView *)mapView willStartLoadingMap:(NSString*) mapName;
+
+/**Called when the engine has finished loading map data -OR- all tile requests have been submitted to tile providers for virtual maps.*/
 - (void) mapView:(MEMapView *)mapView didFinishLoadingMap:(NSString*) mapName;
+
+/**For animated maps, called when the animation transitions to a paused state.*/
+- (void) mapView:(MEMapView *)mapView animationPausedOnMap:(NSString*) mapName;
+
+/**For animated maps, called between the paused and playing states when the engine is waiting on full frame sets from the tile provider. This special state can only be entered when the map is paused, play is called, and the necessary tiles are not in the cache.*/
+- (void) mapView:(MEMapView *)mapView animationWaitingOnMap:(NSString*) mapName;
+
+/**For animated maps, called when the engine has started cycling through animation frames.*/
+- (void) mapView:(MEMapView *)mapView animationPlayingOnMap:(NSString*) mapName;
+
+/**For animated maps, called when a frame change occurs.*/
 - (void) mapView:(MEMapView *)mapView animationFrameChangedOnMap:(NSString*) mapName withFrame:(int)frame;
 
+/**Called when the user has started panning the view.*/
 - (void) panBegan:(MEMapView *) mapView;
+
+/**Called when the panning is completed.*/
 - (void) panEnded:(MEMapView *) mapView;
+
+/**Called when a pinch operation starts.*/
 - (void) pinchBegan:(MEMapView *) mapView;
+
+/**Called when a pinch operation ends.*/
 - (void) pinchEnded:(MEMapView *) mapView;
 
+/**Called to determine if the engine should receive the given gesture.*/
 - (BOOL) meGestureRecognizer : (UIGestureRecognizer *) gestureRecognizer shouldReceiveTouch : (UITouch *) touch;
 
+/**Called to determine if the given gesture recognizer should begin.*/
 - (BOOL) meGestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
-
-/*
- - (void)mapView:(MEMapView *)mapView locationWillChangeAnimated:(BOOL)animated;
- - (void)mapView:(MEMapView *)mapView locationDidChangeAnimated:(BOOL)animated;
- 
- - (void)mapViewWillStartLoadingMap:(MEMapView *)mapView mapName:(NSString*) mapName;
- - (void)mapViewDidFinishLoadingMap:(MEMapView *)mapView mapName:(NSString*) mapName;
- */
-
-/*Not implemented yet from RMMapViewDelegate
- - (void) afterMapTouch: (MEMapView*) map;
- - (void) beforeMapMove: (MEMapView*) map;
- - (void) afterMapMove: (MEMapView*) map ;
- - (void) beforeMapZoom: (MEMapView*) map byFactor: (float) zoomFactor near:(CGPoint) center;
- - (void) afterMapZoom: (MEMapView*) map byFactor: (float) zoomFactor near:(CGPoint) center;
- - (void) doubleTapOnMap: (MEMapView*) map At: (CGPoint) point;
- - (void) tapOnMarker: (MEMarker*) marker onMap: (MEMapView*) map;
- - (void) tapOnLabelForMarker: (MEMarker*) marker onMap: (MEMapView*) map;
- - (BOOL) mapView:(MEMapView *)map shouldDragMarker:(MEMarker *)marker withEvent:(UIEvent *)event;
- - (void) mapView:(MEMapView *)map didDragMarker:(MEMarker *)marker withEvent:(UIEvent *)event;
- - (void) dragMarkerPosition: (MEMarker*) marker onMap: (MEMapView*)map position:(CGPoint)position;
- 
- */
 
 @end
 
@@ -75,20 +76,20 @@
 
 @class MEMarkerInfo;
 /**
- The MEMarkerMapDelegate protocol defines a set of methods that you can use to receive marker map related update messages. Implement this protocol when you add marker layers to maps.
+ The MEMarkerMapDelegate protocol defines a set of methods that you can use to receive marker map related update messages. Implement this protocol when you add marker maps.
  */
 @protocol MEMarkerMapDelegate<NSObject>
-@required
+
+@optional
 /**
- Called when the mapping engine needs information for a marker in a marker layer. When called, you should Create and populate an MEMarkerInfo object. The engine will release the object, so you don't need to.
+ Called when the mapping engine needs information for a marker in a marker layer. When called, you should populate the provided MEMarkerInfo object. The engine will release the object, so you don't need to.
  @param mapView the MEMapView object that owns the marker.
- @param markerInfo
+ @param markerInfo Object for you to populate that describes the marker.
+ @param mapName The name of the map.
  */
 - (void) mapView:(MEMapView*)mapView
             updateMarkerInfo:(MEMarkerInfo*) markerInfo
 		 mapName:(NSString*) mapName;
-
-@optional
 
 /**
  Called when a marker is tapped on.
