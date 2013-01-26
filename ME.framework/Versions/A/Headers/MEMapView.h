@@ -25,8 +25,27 @@
 ////////////////////////////////////////////////
 //Properties. Please keep them documented.
 
-/**Controls the tile render size. This is the maximum size of a tile on screen and defaults to 380 points. If you make this value smaller, the engine will render more details (in essence a higher detail level) for a given scene width. If you make this value larger, the engine will render less tiles for a given scene width. You will want to adjust this setting based on 1) the render size of your map view, 2) the amount of detail you desire, 3) bandwidth in cases in where you download tiles. Halving this value will effectively quadruple the number of tiles rendered.*/
+/**Controls the tile render size. This is the maximum size of a tile on screen and defaults to 380 points. If you make this value smaller, the engine will render more details (in essence a higher detail level) for a given scene width. If you make this value larger, the engine will render less tiles for a given scene width. You will want to adjust this setting based on:
+ 1) the render size of your map view
+ 2) the amount of detail you desire
+ 3) bandwidth in cases in where you download tiles
+ 4) memory on the device
+ 5) the size you have set the engine's cache size to
+ 6) the physical capabilities of the display (retina or non-retina)
+ Halving this value will effectively quadruple the number of tiles rendered.
+*/
 @property (nonatomic, assign) uint maxTileRenderSize;
+
+/** Controls the amount of bias towards a given level of detail for all map types. The default setting is 0 and no biasing will be applied. This value should be adjusted if you are:
+ 1) displaying spherical mercator maps that are rendered differently at different levels (i.e. a MapBox streetmap)
+ 2) the virtual camera will be viewing the planet from an extremely high altitude
+ 3) you desire to force a consistent level to be rendered at all times
+ -or-
+ a) You have a densely populated clustered marker map that you desire to force to a consistent level of detail
+ 
+ If you are only displaying maps that are generated with meool from a single raster source or PDF you do not need to change this setting. Modifying this setting can result in increased CPU and memory utilization when the virtual camera is at a high altitude viewing the planet form orbit. Valid ranges are 0.0 to 1.0. This setting is ignored when in 3D mode.
+ */
+@property (nonatomic, assign) double tileLevelBias;
 
 ///////////////////////////
 //Gesture recognizers
