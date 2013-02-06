@@ -81,11 +81,12 @@ typedef enum {
 /**If set, tells the mapping engine that every pixel of the tile is lit and has no semi-transparenty pixels. This allows the engine to optimize storage and layering of the tile (i.e. no tile underneath this tile will be visible if it is opaque.*/
 @property (assign) BOOL isOpaque;
 
-/**If set to YES, and this tile if for an animate map, the tile can be ejected from the cached by calling politelyRefreshMap.*/
-@property (assign) BOOL ejectOnPoliteRefresh;
+/**If set to YES, this tile can be ejected and re-requested by calling refreshDirtyTiles on the MEMapViewController object.*/
+@property (assign) BOOL isDirty;
 
-/**If set to true, the engine will not draw anything and not request any higher detail level tiles within this tile's boundary.*/
-@property (assign) BOOL isEmpty;
+/** If set to YES, tells the mapping engine to only render the tile if it cannot sample from a parent tile that was previously requested. This response can be used, for example, if you have an intermittent internet connection and cannot download the requested tile, but do not with to show the user a placeholder tile if a parent tile can be sampled from.
+ */
+@property (assign) BOOL isProxy;
 
 /**The minium geographic longitude of the tile. This is mainly of use with BA3 map tiles where this data is relevant.*/
 @property (assign) double minX;
