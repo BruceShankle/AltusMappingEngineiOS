@@ -11,6 +11,7 @@ git push origin blankslate \
 	tutorial6 \
 	tutorial7 \
 	tutorial8 \
-	tutorial9
+	tutorial9 \
+	tutorial10
 
 
