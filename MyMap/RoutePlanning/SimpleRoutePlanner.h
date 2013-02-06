@@ -9,13 +9,15 @@
 #import <ME/ME.h>
 
 /** A simple route planning system.*/
-@interface SimpleRoutePlanner : NSObject <MEVectorMapDelegate>
+@interface SimpleRoutePlanner : NSObject <MEVectorMapDelegate, MEMarkerMapDelegate>
 
 //Properties
 @property (retain) MEMapViewController* meMapViewController;
 @property (retain) NSString* vectorLayerName;
+@property (retain) NSString* markerLayerName;
 @property (retain) NSMutableArray* routePoints;
 @property (retain) MELineStyle* lineStyle;
+@property (assign) CGPoint routeMarkerAnchorPoint;
 
 //Functions
 -(void) enable;

@@ -21,6 +21,8 @@
 {
 	//Create view controller
 	self.meMapViewController=[[[MEMapViewController alloc]init]autorelease];
+	self.meMapViewController.verboseMessagesEnabled = YES;
+	
 	//Create view
 	self.meMapView=[[[MEMapView alloc]init]autorelease];
 	//Assign view to view controller
