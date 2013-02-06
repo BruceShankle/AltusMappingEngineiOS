@@ -10,8 +10,10 @@
 //
 // * Implement a dynamic vector map layer to which points can be added and removed.
 // * Implement a dynamic marker layer that puts a marker at the route end-points and intersections.
+// * Implement simple route 'rubber banding' when a long-press event occurs.
 
 #import "SimpleRoutePlanner.h"
+#import "../LocationData.h"
 
 @implementation SimpleRoutePlanner
 
@@ -25,6 +27,10 @@
 		self.lineStyle = [[[MELineStyle alloc]init]autorelease];
 		self.lineStyle.strokeColor = [UIColor blueColor];
 		self.lineStyle.strokeWidth = 5.0;
+		self.longPress = [[[UILongPressGestureRecognizer alloc]
+						   initWithTarget:self
+						   action:@selector(handleLongPress:)]autorelease];
+        self.longPress.minimumPressDuration = 2.0;
 	}
 	return self;
 }
@@ -36,6 +42,7 @@
 	self.meMapViewController = nil;
 	self.routePoints = nil;
 	self.lineStyle = nil;
+	self.longPress = nil;
 	[super dealloc];
 }
 
@@ -67,7 +74,15 @@
 - (void) enable
 {
 	[self addMaps];
-	[self updateRoute];
+	
+	[self clearRoute];
+	
+	//Add two points
+	[self addWayPoint:RDU_COORD];
+	[self addWayPoint:SFO_COORD];
+	
+	//Register gesture recognizer
+	[self.meMapViewController.meMapView addGestureRecognizer:self.longPress];
 }
 
 -(void) addWayPoint:(CLLocationCoordinate2D) wayPoint
@@ -88,6 +103,9 @@
 - (void) disable
 {
 	[self removeMaps];
+	
+	//Unregister the gesture recognizer
+    [self.meMapViewController.meMapView removeGestureRecognizer:self.longPress];
 }
 
 /**
@@ -159,6 +177,26 @@ are pre-cached in the mapping engine for fastest possible display.
 {
 	NSLog(@"Marker tapped.");
 }
+
+/** Handle the long-press gesture recognizer.*/
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gesture
+{
+	//Get the view point where the user is touching
+    CGPoint viewPoint=[gesture locationInView:self.meMapViewController.meMapView];
+    
+	//Convert the view point to a coordinate
+    CLLocationCoordinate2D coordinate=[self.meMapViewController.meMapView convertPoint:viewPoint];
+    
+	//If the coordinant is valid update the route
+	if(coordinate.longitude!=0 && coordinate.latitude != 0)
+	{
+		[self clearRoute];
+		[self addWayPoint:RDU_COORD];
+		[self addWayPoint:coordinate];
+		[self addWayPoint:SFO_COORD];
+	}
+}
+
 
 /** Required: Returns the number of pixels used as a buffer between vector line segments and hit test points.*/
 - (double) lineSegmentHitTestPixelBufferDistance

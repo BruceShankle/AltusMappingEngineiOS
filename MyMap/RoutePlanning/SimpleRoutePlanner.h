@@ -18,6 +18,7 @@
 @property (retain) NSMutableArray* routePoints;
 @property (retain) MELineStyle* lineStyle;
 @property (assign) CGPoint routeMarkerAnchorPoint;
+@property (retain) UILongPressGestureRecognizer *longPress;
 
 //Functions
 -(void) enable;
