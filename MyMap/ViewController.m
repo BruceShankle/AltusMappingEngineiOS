@@ -37,6 +37,9 @@
 	//of touch events
 	self.meMapView.meMapViewDelegate = self;
 	
+	//Set tile level bias
+	self.meMapView.tileLevelBias = 1.0;
+	
 }
 
 //Handle single taps on the map view
