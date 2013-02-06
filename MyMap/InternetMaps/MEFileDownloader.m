@@ -76,7 +76,7 @@ static unsigned int _activeDownloadCount=0;
 		
 		if(error!=nil)
 		{
-			NSLog(@"Error: %@", error.localizedFailureReason);
+			NSLog(@"Error downloading image.");
 		}
 	}
 	

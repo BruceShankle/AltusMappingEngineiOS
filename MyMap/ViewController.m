@@ -40,6 +40,9 @@
 	
 	//Allow zooming in very close
     self.meMapViewController.meMapView.minimumZoom=0.0003;
+	
+	//Set tile bias level
+	self.meMapViewController.meMapView.tileLevelBias = 1.0;
 }
 
 - (void) turnOnBaseMap
