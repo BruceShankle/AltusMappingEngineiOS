@@ -249,7 +249,7 @@
 	if(self.landSatMap==nil)
 	{
 		self.landSatMap=[[[MEMapBoxLandSatMap alloc]init]autorelease];
-		self.landSatMap.compressTextures = YES;
+		self.landSatMap.compressTextures = NO;
 		self.landSatMap.meMapViewController = self.meMapViewController;
 		self.landSatMap.zOrder = 4;
 	}
