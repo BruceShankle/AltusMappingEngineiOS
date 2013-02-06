@@ -187,7 +187,7 @@ are pre-cached in the mapping engine for fastest possible display.
 	//Convert the view point to a coordinate
     CLLocationCoordinate2D coordinate=[self.meMapViewController.meMapView convertPoint:viewPoint];
     
-	//If the coordinant is valid update the route
+	//If the coordinante is valid update the route
 	if(coordinate.longitude!=0 && coordinate.latitude != 0)
 	{
 		[self clearRoute];
