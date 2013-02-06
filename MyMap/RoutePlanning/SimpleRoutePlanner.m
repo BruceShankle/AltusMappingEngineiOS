@@ -9,6 +9,7 @@
 // with the mapping engine to create a simple route planning system.
 //
 // * Implement a dynamic vector map layer to which points can be added and removed.
+// * Implement a dynamic marker layer that puts a marker at the route end-points and intersections.
 
 #import "SimpleRoutePlanner.h"
 
