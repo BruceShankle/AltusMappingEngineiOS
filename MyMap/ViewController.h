@@ -10,6 +10,7 @@
 #import <ME/ME.h>
 #import <CoreLocation/CoreLocation.h>
 #import "InternetMaps/MEInternetMaps.h"
+#import "RoutePlanning/SimpleRoutePlanner.h"
 
 @interface ViewController : UIViewController <CLLocationManagerDelegate, MEMarkerMapDelegate>
 
@@ -33,6 +34,9 @@
 //Internet maps
 @property (retain) MEMapBoxLandCoverStreetMap* streetMap;
 @property (retain) MEMapBoxLandSatMap* landSatMap;
+
+//Simple route planner
+@property (retain) SimpleRoutePlanner* routePlanner;
 
 //Methods
 - (void) gpsButtonTapped;

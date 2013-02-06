@@ -37,6 +37,7 @@
 		325CF2961661B4FE00E67B66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325CF2951661B4FE00E67B66 /* ViewController.m */; };
 		32A0EA2A1661BCE700AD6D0E /* libGEOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A0EA281661BCE700AD6D0E /* libGEOS.a */; };
 		32A0EA2B1661BCE700AD6D0E /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A0EA291661BCE700AD6D0E /* libturbojpeg.a */; };
+		32EBA7B916C21AEB008610DA /* SimpleRoutePlanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EBA7B816C21AEB008610DA /* SimpleRoutePlanner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,9 @@
 		325CF2951661B4FE00E67B66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		32A0EA281661BCE700AD6D0E /* libGEOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGEOS.a; sourceTree = "<group>"; };
 		32A0EA291661BCE700AD6D0E /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libturbojpeg.a; sourceTree = "<group>"; };
+		32EBA7B716C21AEB008610DA /* SimpleRoutePlanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleRoutePlanner.h; sourceTree = "<group>"; };
+		32EBA7B816C21AEB008610DA /* SimpleRoutePlanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleRoutePlanner.m; sourceTree = "<group>"; };
+		32EBA7BA16C22B83008610DA /* LocationData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationData.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,7 @@
 		325CF27C1661B4FE00E67B66 /* MyMap */ = {
 			isa = PBXGroup;
 			children = (
+				32EBA7B616C21AEB008610DA /* RoutePlanning */,
 				32125A051676AC760081298A /* InternetMaps */,
 				32125A001676A3850081298A /* images */,
 				320C04301661BF7700BD4AB4 /* BundledMaps */,
@@ -185,6 +190,7 @@
 				325CF2951661B4FE00E67B66 /* ViewController.m */,
 				325CF27D1661B4FE00E67B66 /* Supporting Files */,
 				32A0EA271661BCE700AD6D0E /* libs */,
+				32EBA7BA16C22B83008610DA /* LocationData.h */,
 			);
 			path = MyMap;
 			sourceTree = "<group>";
@@ -210,6 +216,15 @@
 				32A0EA291661BCE700AD6D0E /* libturbojpeg.a */,
 			);
 			path = libs;
+			sourceTree = "<group>";
+		};
+		32EBA7B616C21AEB008610DA /* RoutePlanning */ = {
+			isa = PBXGroup;
+			children = (
+				32EBA7B716C21AEB008610DA /* SimpleRoutePlanner.h */,
+				32EBA7B816C21AEB008610DA /* SimpleRoutePlanner.m */,
+			);
+			path = RoutePlanning;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +305,7 @@
 				32125A0A1676AC760081298A /* MEFileDownloader.m in Sources */,
 				32125A0B1676AC760081298A /* MEInternetTileProvider.m in Sources */,
 				32125A0E1676AD550081298A /* MEInternetMaps.m in Sources */,
+				32EBA7B916C21AEB008610DA /* SimpleRoutePlanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

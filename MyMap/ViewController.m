@@ -9,6 +9,7 @@
 //	* Builds on Tutorial 8 and adds a simple route planning system.
 
 #import "ViewController.h"
+#import "LocationData.h"
 
 @interface ViewController ()
 
@@ -42,6 +43,10 @@
 							compressTexture:YES];
 	//Set tile bias level
 	self.meMapViewController.meMapView.tileLevelBias = 1.0;
+	
+	//Create simple route planner and initialize it
+	self.routePlanner = [[[SimpleRoutePlanner alloc]init]autorelease];
+	self.routePlanner.meMapViewController = self.meMapViewController;
 }
 
 - (void) turnOnBaseMap
@@ -234,8 +239,10 @@
 
 - (void) routePlanningButtonTapped
 {
+	//Toggle route planning mode
 	self.isRoutePlanningMode = !self.isRoutePlanningMode;
 	self.btnRoutePlanning.selected = self.isRoutePlanningMode;
+	[self enableRoutePlanning:self.isRoutePlanningMode];
 }
 
 - (void) enableStreetMap:(BOOL) enabled
@@ -272,7 +279,20 @@
 	
 }
 
-
+- (void) enableRoutePlanning:(BOOL) enabled
+{
+	if(enabled)
+	{
+		[self.routePlanner enable];
+		[self.routePlanner clearRoute];
+		
+		//Add two points
+		[self.routePlanner addWayPoint:RDU_COORD];
+		[self.routePlanner addWayPoint:SFO_COORD];
+	}
+	else
+		[self.routePlanner disable];
+}
 ////////////////////////////////////////////////////////////////////////////
 //Size map view when device rotates
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
