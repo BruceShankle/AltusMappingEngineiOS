@@ -2,19 +2,12 @@
 //  ViewController.m
 //  MyMap
 //
-//  Created by Bruce Shankle III on 11/24/12.
-//  Copyright (c) 2012 BA3, LLC. All rights reserved.
+//  Created by Bruce Shankle III on 2/5/13.
+//  Copyright (c) 2013 BA3, LLC. All rights reserved.
 //
-// Tutorial 8:
-//	* Initialize mapping engine and display an embedded low-res TileMill-generated map of planet Earth.
-//	* Turn on GPS and update map to center on current GPS coordinate.
-//	* Add and enable track-up mode so map rotates based on GPS course.
-//	* Add buttons to toggle GPS and track-up mode.
-//	* Handle device rotations and starting up in landscape mode.
-//	* Add support for an own-ship marker that updates based on current location and course.
-//	* Add tile provider and virtual map that downloads MapBox street map.
-//	* Add tile provider and UI support for MapBox landsat data
-//	* Add a 'default' gray grid tile that is displayed when waiting on an internet map tile to download.
+// Tutorial 10:
+//	* Builds on Tutorial 8 and adds a simple route planning system.
+
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -193,6 +186,19 @@
 	[self.btnLandSatMap addTarget:self
 						  action:@selector(landSatMapButtonTapped)
 				forControlEvents:UIControlEventTouchDown];
+	
+	//Add route planning button
+	self.btnRoutePlanning = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnRoutePlanning setTitle:@"Route - Off" forState:UIControlStateNormal];
+	[self.btnRoutePlanning setTitle:@"Route - On" forState:UIControlStateSelected];
+	[self.view addSubview:self.btnRoutePlanning];
+	[self.view bringSubviewToFront:self.btnRoutePlanning];
+	self.btnRoutePlanning.frame=CGRectMake(self.btnLandSatMap.frame.origin.x +
+										self.btnLandSatMap.frame.size.width, 0, 90, 30);
+	[self.btnRoutePlanning addTarget:self
+						   action:@selector(routePlanningButtonTapped)
+				 forControlEvents:UIControlEventTouchDown];
+
 		
 }
 
@@ -224,6 +230,12 @@
 	self.isTrackupMode = !self.isTrackupMode;
 	[self enableTrackupMode:self.isTrackupMode];
 	self.btnTrackUp.selected = self.isTrackupMode;
+}
+
+- (void) routePlanningButtonTapped
+{
+	self.isRoutePlanningMode = !self.isRoutePlanningMode;
+	self.btnRoutePlanning.selected = self.isRoutePlanningMode;
 }
 
 - (void) enableStreetMap:(BOOL) enabled
