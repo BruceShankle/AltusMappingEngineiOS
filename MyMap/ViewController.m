@@ -182,15 +182,15 @@
 						action:@selector(streetMapButtonTapped)
 			  forControlEvents:UIControlEventTouchDown];
 	
-	//Add landsat map button
-	self.btnLandSatMap = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[self.btnLandSatMap setTitle:@"LSM - Off" forState:UIControlStateNormal];
-	[self.btnLandSatMap setTitle:@"LSM - On" forState:UIControlStateSelected];
-	[self.view addSubview:self.btnLandSatMap];
-	[self.view bringSubviewToFront:self.btnLandSatMap];
-	self.btnLandSatMap.frame=CGRectMake(self.btnStreetMap.frame.origin.x +
+	//Add open aerial
+	self.btnOpenAerialMap = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnOpenAerialMap setTitle:@"Sat - Off" forState:UIControlStateNormal];
+	[self.btnOpenAerialMap setTitle:@"Sat - On" forState:UIControlStateSelected];
+	[self.view addSubview:self.btnOpenAerialMap];
+	[self.view bringSubviewToFront:self.btnOpenAerialMap];
+	self.btnOpenAerialMap.frame=CGRectMake(self.btnStreetMap.frame.origin.x +
 									   self.btnStreetMap.frame.size.width, 0, 90, 30);
-	[self.btnLandSatMap addTarget:self
+	[self.btnOpenAerialMap addTarget:self
 						  action:@selector(landSatMapButtonTapped)
 				forControlEvents:UIControlEventTouchDown];
 	
@@ -200,8 +200,8 @@
 	[self.btnRoutePlanning setTitle:@"Route - On" forState:UIControlStateSelected];
 	[self.view addSubview:self.btnRoutePlanning];
 	[self.view bringSubviewToFront:self.btnRoutePlanning];
-	self.btnRoutePlanning.frame=CGRectMake(self.btnLandSatMap.frame.origin.x +
-										self.btnLandSatMap.frame.size.width, 0, 90, 30);
+	self.btnRoutePlanning.frame=CGRectMake(self.btnOpenAerialMap.frame.origin.x +
+										self.btnOpenAerialMap.frame.size.width, 0, 90, 30);
 	[self.btnRoutePlanning addTarget:self
 						   action:@selector(routePlanningButtonTapped)
 				 forControlEvents:UIControlEventTouchDown];
@@ -219,8 +219,8 @@
 - (void) landSatMapButtonTapped
 {
 	self.isLandSatMapMode = !self.isLandSatMapMode;
-	[self enableLandSatMap:self.isLandSatMapMode];
-	self.btnLandSatMap.selected = self.isLandSatMapMode;
+	[self enableOpenAerialMap:self.isLandSatMapMode];
+	self.btnOpenAerialMap.selected = self.isLandSatMapMode;
 }
 
 - (void) gpsButtonTapped
@@ -264,20 +264,20 @@
 		
 }
 
-- (void) enableLandSatMap:(BOOL) enabled
+- (void) enableOpenAerialMap:(BOOL) enabled
 {
 	//Add a virtual map layer using a tile provider that pulls tiles down from the internet
-	if(self.landSatMap==nil)
+	if(self.openAerialMap==nil)
 	{
-		self.landSatMap=[[[MEMapBoxLandSatMap alloc]init]autorelease];
-		self.landSatMap.compressTextures = NO;
-		self.landSatMap.meMapViewController = self.meMapViewController;
-		self.landSatMap.zOrder = 4;
+		self.openAerialMap=[[[MEMapQuestOpenAerialMap alloc]init]autorelease];
+		self.openAerialMap.compressTextures = NO;
+		self.openAerialMap.meMapViewController = self.meMapViewController;
+		self.openAerialMap.zOrder = 4;
 	}
 	if(enabled)
-		[self.landSatMap show];
+		[self.openAerialMap show];
 	else
-		[self.landSatMap hide];
+		[self.openAerialMap hide];
 	
 }
 
