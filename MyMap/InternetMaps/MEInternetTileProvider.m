@@ -300,7 +300,8 @@
 	self = [super init];
     if ( self )
 	{
-		self.mapDomain = @"oatile1.mqcdn.com/naip";
+		self.mapDomain = @"otile1.mqcdn.com/tiles/1.0.0/sat";
+		//self.mapDomain = @"oatile1.mqcdn.com/naip";
 		self.shortName = @"mapquestaerial";
 		self.returnUIImages = YES;
 		self.copyrightNotice = @"Tiles courtesy of MapQuest: http://www.mapquest.com. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency.";

@@ -28,12 +28,13 @@
 @property (retain) IBOutlet UIButton* btnGPS;
 @property (retain) IBOutlet UIButton* btnTrackUp;
 @property (retain) IBOutlet UIButton* btnStreetMap;
-@property (retain) IBOutlet UIButton* btnLandSatMap;
+@property (retain) IBOutlet UIButton* btnOpenAerialMap;
 @property (retain) IBOutlet UIButton* btnRoutePlanning;
 
 //Internet maps
 @property (retain) MEMapBoxLandCoverStreetMap* streetMap;
-@property (retain) MEMapBoxLandSatMap* landSatMap;
+@property (retain) MEMapQuestOpenAerialMap* openAerialMap;
+
 
 //Simple route planner
 @property (retain) SimpleRoutePlanner* routePlanner;

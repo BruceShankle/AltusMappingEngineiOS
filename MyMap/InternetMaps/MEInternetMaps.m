@@ -137,3 +137,21 @@
 	return [[MEMapBoxLandSatTileProvider alloc]init];
 }
 @end
+
+////////////////////////////////////////////////////////////////////////
+@implementation MEMapQuestOpenAerialMap
+
+- (id) init
+{
+    if(self = [super init])
+    {
+        self.name=@"MapQuest Open Aerial";
+    }
+    return self;
+}
+
+-(MEInternetTileProvider*) createTileProvider
+{
+	return [[MEMapQuestAerialTileProvider alloc]init];
+}
+@end

@@ -34,6 +34,9 @@
 @interface MEMapBoxLandSatMap : MEInternetMap
 @end
 
+@interface MEMapQuestOpenAerialMap : MEInternetMap
+@end
+
 
 
 
