@@ -43,9 +43,16 @@
  -or-
  a) You have a densely populated clustered marker map that you desire to force to a consistent level of detail
  
- If you are only displaying maps that are generated with meool from a single raster source or PDF you do not need to change this setting. Modifying this setting can result in increased CPU and memory utilization when the virtual camera is at a high altitude viewing the planet form orbit. Valid ranges are 0.0 to 1.0. This setting is ignored when in 3D mode.
+ If you are only displaying maps that are generated with meool from a single raster source or PDF you do not need to change this setting. Modifying this setting can result in increased CPU and memory utilization when the virtual camera is at a high altitude viewing the planet form orbit. Valid ranges are 0.0 to 1.0. This setting is ignored when in 3D mode. NOTE: Enabling this setting can result in potentially more tiles being loaded for virtual maps than are necessary for the current camera position.
  */
 @property (nonatomic, assign) double tileLevelBias;
+
+/** When tileLevelBias is greater than zero, setting this to YES limits level bias flip-flopping with smooth camera motion. NOTE: Enabling this setting can result in potentially more tiles being loaded for virtual maps than are necessary for the current camera position.
+ */
+@property (nonatomic, assign) BOOL tileBiasSmoothingEnabled;
+
+/** Defaults to 1.0. Pan gesture velocity is multiplied by this value before the pan gesture is handled. Set to a value between 0 and 1.*/
+@property (nonatomic, assign) double panVelocityScale;
 
 ///////////////////////////
 //Gesture recognizers
@@ -135,6 +142,8 @@
  */
 @property (nonatomic, assign) MELocation location;
 
+/** Returns the current altitude in meters that the camera is above sea level.*/
+@property (nonatomic, readonly) double altitude;
 
 /** Changes the center coordinate of the map and zoom and optionally animates the change. This function assumes the rendering system is in 2D mode.
  @param location The new center location to view the map from.
@@ -217,6 +226,5 @@
 
 /** Handles single-tap double press gesture. Default behaviour is to zoom out.*/
 - (IBAction) tapZoomOutGestureHandler:(UIGestureRecognizer *)sender;
-
 
 @end
