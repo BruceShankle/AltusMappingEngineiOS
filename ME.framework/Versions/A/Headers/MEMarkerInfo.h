@@ -63,9 +63,13 @@ typedef enum {
 /**Dimensions of the hit-test box for the marker in points. When set to anything other than width=0, height=0 (the default), this property overrides the normal hitTesting logic for the marker which is based on the anchor point and size of the marker image. This property should only be set when the marker image size is small enough that targeting it with a finger-tap would be difficult due to it being too small. When set, this size is automatically scaled to physical coordinates to take into account retina displays. The hit testing logic considers a box of this size around the anchor point of the marker.*/
 @property (nonatomic, assign) CGSize hitTestSize;
 
+/**Defauls to YES, but may be set to NO by the marker delegate if this marker is not to be drawn.*/
+@property (nonatomic, assign) BOOL isVisible;
+
 /**Create an MEMarkerInfo object.*/
 - (id) initWidthUid:(unsigned int) uid
 		   metaData:(NSString*) metaData
 			 weight:(double) weight
 		   location:(CLLocationCoordinate2D) location;
+
 @end
