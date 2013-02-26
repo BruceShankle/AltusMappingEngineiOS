@@ -21,8 +21,11 @@
 @property int multiInFlightTileCount;
 @property int appMemoryUsage;
 
-@property int parallelWorkerCount;
-@property int serialWorkerCount;
+@property int serialWorkerBackgroundCount;
+@property int serialWorkerLowCount;
+@property int serialWorkerDefaultCount;
+@property int serialWorkerHighCount;
+
 @property int totalWorkerCount;
 
 @end

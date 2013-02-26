@@ -216,6 +216,14 @@
 - (void) addMarkerToMap:(NSString*)mapName
 	   markerAnnotation:(MEMarkerAnnotation*)markerAnnotation;
 
+/** For dynamic and memory marker maps, removes a marker from the map.
+ @param mapName Unique name of the marker map layer.
+ @param markerMetaData The meta data supplied with the marker when it was added.
+ */
+- (void) removeMarkerFromMap:(NSString*) mapName
+			  markerMetaData:(NSString*) markerMetaData;
+
+
 /** Sets a height color bar for the specified marker map. Once set you can call setMarkerMapColorBarEnabled to turn use of the color bar on and off.*/
 - (void) setMarkerMapColorBar:(NSString*)mapName
 			   colorBar:(MEHeightColorBar*) colorBar;
