@@ -1,8 +1,8 @@
-BA3 Altus Mapping Engine
-=========================
+BA3 Altus Mapping Engine(TM)
+============================
 <a href="http://www.ba3.us/"><img src="./screenshot.jpeg"></a>
 
-The BA3 Altus Mapping Engine is a high-performance library designed for iOS developers who are creating
+The BA3 Altus Mapping Engine(TM) is a high-performance library designed for iOS developers who are creating
 both simple and demanding mapping apps for iPhones and iPads.
 Developers using things like MapKit and Route-Me generally run into performance,
 capacity or feature walls that block development, and the BA3 Mapping Engine can eliminate those walls.
