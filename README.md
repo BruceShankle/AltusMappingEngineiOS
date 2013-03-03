@@ -8,7 +8,8 @@ capacity or feature walls that block development, and the BA3 Mapping Engine can
 Get the BA3 Altus SDK and Sample Applications
 =============================================
 
-Complete source code is supplied for all of the Altus Mapping Engine tutorials.
+Complete source code is supplied for all of the Altus Mapping Engine tutorials in the 
+<a href="http://www.ba3.us/?page=pages/knowledge-base">Knowledge Base</a>.
 There is one code branch for each tutorial (e.g. "tutorial3"), as well as a "blankslate" branch that
 has all of the libraries for the Altus Mapping Engine linked in, but no code (blankslate displays a white screen).
 If this is your first time using these tutorials and you want to access the source code,
@@ -54,4 +55,4 @@ If you want to see a list of all of the source code available, type:
 git branch --list
 </pre>
 
-Questions? Please send them to info@ba3.us
+You can learn more about the BA3 Altus Mapping Engine at <a href="http://ba3.us">BA3.us</a>. Questions? Please send them to info@ba3.us
