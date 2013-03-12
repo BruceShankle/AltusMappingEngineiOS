@@ -8,6 +8,11 @@ git checkout tutorial$i
 git merge blankslate -m 'Updating ME.framework'
 done
 
+git checkout ReferenceApplication
+git merge blankslate -m 'Updating ME.framework'
+
+git checkout blankslate
+
 
 
 
