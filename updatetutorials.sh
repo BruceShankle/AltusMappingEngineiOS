@@ -5,11 +5,11 @@
 for i in {1..12}
 do
 git checkout tutorial$i
-git merge blankslate -m 'Updating ME.framework'
+git merge blankslate -m 'Propagating changes from blankslate branch.'
 done
 
 git checkout ReferenceApplication
-git merge blankslate -m 'Updating ME.framework'
+git merge blankslate -m 'Propagating changes from blankslate branch.'
 
 git checkout blankslate
 
