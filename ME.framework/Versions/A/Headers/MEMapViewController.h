@@ -20,7 +20,7 @@
 #import "MEMapInfo.h"
 #import "MEHitTesting.h"
 
-@interface MEMapViewController : GLKViewController <UIAlertViewDelegate>
+@interface MEMapViewController : GLKViewController <UIAlertViewDelegate, MEMarkerMapDelegate>
 
 /** Forces linker to link this file via NIB-only interfaces.*/
 + (void) forceLink; 
