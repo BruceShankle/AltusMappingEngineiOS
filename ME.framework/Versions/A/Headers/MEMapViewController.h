@@ -20,7 +20,7 @@
 #import "MEMapInfo.h"
 #import "MEHitTesting.h"
 
-@interface MEMapViewController : GLKViewController <UIAlertViewDelegate>
+@interface MEMapViewController : GLKViewController <UIAlertViewDelegate, MEMarkerMapDelegate>
 
 /** Forces linker to link this file via NIB-only interfaces.*/
 + (void) forceLink; 
@@ -180,13 +180,11 @@
  */
 - (void) playAnimatedVirtualMap:(NSString*)name;
 
-/** Triggers a tile request for tiles marked as ejectOnPoliteRefresh.*/
-- (void) politelyRefreshAnimatedVirtualMap:(NSString*)name;
+/** Triggers re-request of on-screen tiles that were marked as isDirty when they were requested from the tile provider. Also invalidates cached off-screen tiles that were marked as dirty. Applies to animated and non-animated virtual maps. */
+- (void) refreshDirtyTiles:(NSString*) name;
 
-/** Triggers a tile request for tiles marked as ejectOnPoliteRefresh.*/
-- (void) politelyRefreshVirtualMap:(NSString*) name;
 
-/** Sets whether or not tiles are automatically requested for an animated map as the user pans / zooms. If set to NO, you should call politelyRefreshAnimatedVirtualMap to have tiles be requested on some periodic basis.*/
+/** Sets whether or not tiles are automatically requested for an animated map as the user pans / zooms. If set to NO, you should call refreshDirtyTiles to have tiles be requested on some periodic basis.*/
 - (void) setAutomaticTileRequestModeForAnimatedVirtualMap:(NSString*) name enabled:(BOOL) enabled;
 
 /** Sets the current frame of the animation in the given animated virtual map layer.
@@ -217,6 +215,14 @@
  */
 - (void) addMarkerToMap:(NSString*)mapName
 	   markerAnnotation:(MEMarkerAnnotation*)markerAnnotation;
+
+/** For dynamic and memory marker maps, removes a marker from the map.
+ @param mapName Unique name of the marker map layer.
+ @param markerMetaData The meta data supplied with the marker when it was added.
+ */
+- (void) removeMarkerFromMap:(NSString*) mapName
+			  markerMetaData:(NSString*) markerMetaData;
+
 
 /** Sets a height color bar for the specified marker map. Once set you can call setMarkerMapColorBarEnabled to turn use of the color bar on and off.*/
 - (void) setMarkerMapColorBar:(NSString*)mapName
@@ -436,6 +442,15 @@
 /**Instructs the mapping engine to reload a map.
  @param mapName The name of the map to be refreshed.*/
 - (void) refreshMap:(NSString*) mapName;
+
+/**Instructs the mapping engine to reload the specified portion of a map.
+ @param mapName The name of the map.
+ @param lowerLeft The lower-left point of the region to refresh.
+ @param upperRight The upper-right point of the region to refresh.
+ */
+- (void) refreshMapRegion:(NSString*) mapName
+				lowerLeft:(CLLocationCoordinate2D) lowerLeft
+			   upperRight:(CLLocationCoordinate2D) upperRight;
 
 /** Adds an image that will stay cached until it is removed using removeCachedImage. Cached images are identified by their name and may be specified as the default tile for certain maps types or returned by tile providers that have no specific tile to return for a given tile request. Generally this should be a fully opaque 256x256 or 512x512 pixel image.
 @param uiImage A UIImage containing the image data.
