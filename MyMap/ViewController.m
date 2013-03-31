@@ -50,10 +50,6 @@
 	//Set tile bias level
 	self.meMapViewController.meMapView.tileLevelBias = 1.0;
 	
-	//Add gray grid tile as pre-cached image
-	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"grayGrid"]
-									withName:@"grayGrid"
-							 compressTexture:YES];
 }
 
 - (void) turnOnBaseMap
