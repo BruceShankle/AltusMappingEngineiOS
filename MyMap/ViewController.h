@@ -21,20 +21,19 @@
 @property (assign) BOOL isTrackupMode;
 @property (assign) BOOL isGPSMode;
 @property (assign) BOOL isStreetMapMode;
-@property (assign) BOOL isLandSatMapMode;
+@property (assign) BOOL isAerialMapMode;
 @property (assign) BOOL isRoutePlanningMode;
 
 //UI properties
 @property (retain) IBOutlet UIButton* btnGPS;
 @property (retain) IBOutlet UIButton* btnTrackUp;
 @property (retain) IBOutlet UIButton* btnStreetMap;
-@property (retain) IBOutlet UIButton* btnOpenAerialMap;
+@property (retain) IBOutlet UIButton* btnAerialMap;
 @property (retain) IBOutlet UIButton* btnRoutePlanning;
 
 //Internet maps
 @property (retain) MEMapBoxLandCoverStreetMap* streetMap;
-@property (retain) MEMapQuestOpenAerialMap* openAerialMap;
-
+@property (retain) MEMapQuestAerialMap* aerialMap;
 
 //Simple route planner
 @property (retain) SimpleRoutePlanner* routePlanner;
@@ -43,7 +42,8 @@
 - (void) gpsButtonTapped;
 - (void) trackUpButtonTapped;
 - (void) streetMapButtonTapped;
-- (void) landSatMapButtonTapped;
 - (void) routePlanningButtonTapped;
+- (void) aerialMapButtonTapped;
+
 
 @end

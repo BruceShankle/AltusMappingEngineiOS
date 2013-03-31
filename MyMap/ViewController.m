@@ -47,10 +47,19 @@
 	//Create simple route planner and initialize it
 	self.routePlanner = [[[SimpleRoutePlanner alloc]init]autorelease];
 	self.routePlanner.meMapViewController = self.meMapViewController;
+
 }
 
 - (void) turnOnBaseMap
 {
+	MEVirtualMapInfo* baseMap = [[[MEVirtualMapInfo alloc]init]autorelease];
+	baseMap.name=@"graygrid";
+	baseMap.zOrder = 1;
+	baseMap.maxLevel = 12;
+	baseMap.isSphericalMercator = NO;
+	baseMap.meTileProvider = [[[MEBaseMapTileProvider alloc]initWithCachedImageName:@"grayGrid"]autorelease];
+	[self.meMapViewController addMapUsingMapInfo:baseMap];
+	
 	//Determine the physical path of the map file file.
 	NSString* databaseFile = [[NSBundle mainBundle] pathForResource:@"world"
 															 ofType:@"mbtiles"];
@@ -61,7 +70,7 @@
 	mapInfo.mapType = kMapTypeFileMBTiles;
 	mapInfo.maxLevel = 6;
 	mapInfo.sqliteFileName = databaseFile;
-	mapInfo.zOrder = 1;
+	mapInfo.zOrder = 2;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
 }
@@ -180,16 +189,17 @@
 						action:@selector(streetMapButtonTapped)
 			  forControlEvents:UIControlEventTouchDown];
 	
-	//Add open aerial
-	self.btnOpenAerialMap = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[self.btnOpenAerialMap setTitle:@"Sat - Off" forState:UIControlStateNormal];
-	[self.btnOpenAerialMap setTitle:@"Sat - On" forState:UIControlStateSelected];
-	[self.view addSubview:self.btnOpenAerialMap];
-	[self.view bringSubviewToFront:self.btnOpenAerialMap];
-	self.btnOpenAerialMap.frame=CGRectMake(self.btnStreetMap.frame.origin.x +
+
+	//Add aerial map button
+	self.btnAerialMap = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnAerialMap setTitle:@"AM - Off" forState:UIControlStateNormal];
+	[self.btnAerialMap setTitle:@"AM - On" forState:UIControlStateSelected];
+	[self.view addSubview:self.btnAerialMap];
+	[self.view bringSubviewToFront:self.btnAerialMap];
+	self.btnAerialMap.frame=CGRectMake(self.btnStreetMap.frame.origin.x +
 									   self.btnStreetMap.frame.size.width, 0, 90, 30);
-	[self.btnOpenAerialMap addTarget:self
-						  action:@selector(landSatMapButtonTapped)
+	[self.btnAerialMap addTarget:self
+						  action:@selector(aerialMapButtonTapped)
 				forControlEvents:UIControlEventTouchDown];
 	
 	//Add route planning button
@@ -198,8 +208,8 @@
 	[self.btnRoutePlanning setTitle:@"Route - On" forState:UIControlStateSelected];
 	[self.view addSubview:self.btnRoutePlanning];
 	[self.view bringSubviewToFront:self.btnRoutePlanning];
-	self.btnRoutePlanning.frame=CGRectMake(self.btnOpenAerialMap.frame.origin.x +
-										self.btnOpenAerialMap.frame.size.width, 0, 90, 30);
+	self.btnRoutePlanning.frame=CGRectMake(self.btnAerialMap.frame.origin.x +
+										self.btnAerialMap.frame.size.width, 0, 90, 30);
 	[self.btnRoutePlanning addTarget:self
 						   action:@selector(routePlanningButtonTapped)
 				 forControlEvents:UIControlEventTouchDown];
@@ -214,11 +224,11 @@
 	self.btnStreetMap.selected = self.isStreetMapMode;
 }
 
-- (void) landSatMapButtonTapped
+- (void) aerialMapButtonTapped
 {
-	self.isLandSatMapMode = !self.isLandSatMapMode;
-	[self enableOpenAerialMap:self.isLandSatMapMode];
-	self.btnOpenAerialMap.selected = self.isLandSatMapMode;
+	self.isAerialMapMode = !self.isAerialMapMode;
+	[self enableAerialMap:self.isAerialMapMode];
+	self.btnAerialMap.selected = self.isAerialMapMode;
 }
 
 - (void) gpsButtonTapped
@@ -262,20 +272,21 @@
 		
 }
 
-- (void) enableOpenAerialMap:(BOOL) enabled
+- (void) enableAerialMap:(BOOL) enabled
 {
 	//Add a virtual map layer using a tile provider that pulls tiles down from the internet
-	if(self.openAerialMap==nil)
+
+	if(self.aerialMap==nil)
 	{
-		self.openAerialMap=[[[MEMapQuestOpenAerialMap alloc]init]autorelease];
-		self.openAerialMap.compressTextures = NO;
-		self.openAerialMap.meMapViewController = self.meMapViewController;
-		self.openAerialMap.zOrder = 4;
+		self.aerialMap=[[[MEMapQuestAerialMap alloc]init]autorelease];
+		self.aerialMap.meMapViewController = self.meMapViewController;
+		self.aerialMap.zOrder = 4;
 	}
 	if(enabled)
-		[self.openAerialMap show];
+		[self.aerialMap show];
 	else
-		[self.openAerialMap hide];
+		[self.aerialMap hide];
+
 	
 }
 
