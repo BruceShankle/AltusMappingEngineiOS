@@ -43,10 +43,23 @@
 	
 	//Set tile bias level
 	self.meMapViewController.meMapView.tileLevelBias = 1.0;
+	
+	//Add gray grid tile as pre-cached image
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"grayGrid"]
+									withName:@"grayGrid"
+							 compressTexture:YES];
 }
 
 - (void) turnOnBaseMap
 {
+	MEVirtualMapInfo* baseMap = [[[MEVirtualMapInfo alloc]init]autorelease];
+	baseMap.name=@"graygrid";
+	baseMap.zOrder = 1;
+	baseMap.maxLevel = 12;
+	baseMap.isSphericalMercator = NO;
+	baseMap.meTileProvider = [[[MEBaseMapTileProvider alloc]initWithCachedImageName:@"grayGrid"]autorelease];
+	[self.meMapViewController addMapUsingMapInfo:baseMap];
+	
 	//Determine the physical path of the map file file.
 	NSString* databaseFile = [[NSBundle mainBundle] pathForResource:@"world"
 															 ofType:@"mbtiles"];
@@ -57,7 +70,7 @@
 	mapInfo.mapType = kMapTypeFileMBTiles;
 	mapInfo.maxLevel = 6;
 	mapInfo.sqliteFileName = databaseFile;
-	mapInfo.zOrder = 1;
+	mapInfo.zOrder = 2;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
 }

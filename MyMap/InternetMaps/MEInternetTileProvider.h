@@ -14,6 +14,9 @@
 @property (nonatomic, retain) NSString* tileCacheRoot;
 @property (assign) BOOL returnUIImages;
 @property (nonatomic, retain) NSString* copyrightNotice;
+@property (assign) int tilesNotNeededCount;
+@property (assign) int serialQueueCount;
+@property (assign) int currentSerialQueue;
 - (NSString*) tileURLForX:(int) X Y:(int) Y Zoom:(int) Zoom;
 - (NSString*) cacheFileNameForX:(int) X Y:(int) Y Zoom:(int) Zoom;
 - (NSString*) tileFileExtension;
@@ -21,9 +24,6 @@
 @end
 
 @interface MEMapBoxTileProvider : MEInternetTileProvider
-@end
-
-@interface MEAsyncInternetTileProvider : MEMapBoxTileProvider
 @end
 
 @interface MEMapBoxMarsTileProvider : MEMapBoxTileProvider

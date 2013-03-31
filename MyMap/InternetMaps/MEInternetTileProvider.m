@@ -1,20 +1,13 @@
-//
-//  MEInternetTileProvider.m
-//  Mapp
-//
-//  Created by Bruce Shankle III on 8/17/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
-//
 
 #import "MEInternetTileProvider.h"
 #import "MEFileDownloader.h"
 
+
 @implementation MEInternetTileProvider
-@synthesize mapDomain;
-@synthesize shortName;
-@synthesize tileCacheRoot;
-@synthesize returnUIImages;
-@synthesize copyrightNotice;
+{
+	dispatch_queue_t* _serialBackgroundQueues;
+}
 
 /////////////////////////////////////////////////////////////////////////
 //Base class for internet tile providers
@@ -26,10 +19,57 @@
 		self.mapDomain = @"";
 		self.shortName = @"shortname";
 		self.tileCacheRoot = @"tilecache";
-        self.returnUIImages = NO;
+        self.returnUIImages = YES;
 		self.copyrightNotice = @"No copyright notice";
+		self.tilesNotNeededCount = 0;
+		self.serialQueueCount = 4;
+		self.currentSerialQueue = 0;
+		_serialBackgroundQueues = NULL;
     }
     return self;
+}
+
+
+- (void) createSerialQueues
+{
+	if(_serialBackgroundQueues)
+		return;
+	
+	_serialBackgroundQueues = (dispatch_queue_t*)malloc(self.serialQueueCount * sizeof(dispatch_queue_t));
+	
+	for(int i=0; i<self.serialQueueCount; i++)
+	{
+		NSString* qname = [NSString stringWithFormat:@"%@_%d",
+						   self.shortName, i];
+		_serialBackgroundQueues[i] = dispatch_queue_create(qname.UTF8String, DISPATCH_QUEUE_SERIAL);
+		
+	}
+}
+
+- (void) deleteSerialQueues
+{
+	if(!_serialBackgroundQueues)
+		return;
+	
+	for(int i=0; i<self.serialQueueCount; i++)
+	{
+		dispatch_release(_serialBackgroundQueues[i]);
+	}
+	
+	free(_serialBackgroundQueues);
+	_serialBackgroundQueues = NULL;
+}
+
+- (void) setIsAsynchronous:(BOOL)isAsynchronous
+{
+	if(!self.isAsynchronous)
+	{
+		if(isAsynchronous)
+		{
+			[self createSerialQueues];
+		}
+		[super setIsAsynchronous:isAsynchronous];
+	}
 }
 
 - (void) dealloc
@@ -38,6 +78,7 @@
 	self.shortName = nil;
 	self.tileCacheRoot = nil;
 	self.copyrightNotice = nil;
+	[self deleteSerialQueues];
     [super dealloc];
 }
 
@@ -72,7 +113,6 @@
 								  withIntermediateDirectories:YES
 												   attributes:nil
 														error:&error];
-		
 	}
 	
 	NSString* fileName;
@@ -91,41 +131,92 @@
 	return [MEFileDownloader downloadSync:url toFile:fileName];
 }
 
-
-- (void) requestTile:(METileInfo*) tileinfo
+- (void) requestTile:(METileProviderRequest*) meTileRequest
 {
-	//Check to make sure we still need to supply the tile. If not, early exit.
-	if(![self.meMapViewController tileIsNeeded:tileinfo])
+	//Check to make sure we still need to supply the tile.
+	if(![super isNeeded:meTileRequest])
+	{
+		if(self.isAsynchronous)
+		{
+			[super tileLoadComplete:meTileRequest];
+			@synchronized(self)
+			{
+				self.tilesNotNeededCount++;
+			}
+		}
+		else
+		{
+			self.tilesNotNeededCount++;
+		}
 		return;
-	
-	NSString* fileName=[self cacheFileNameForX:tileinfo.slippyX
-											 Y:tileinfo.slippyY
-										  Zoom:tileinfo.slippyZ];
+	}
 	
 	NSFileManager* fileManager = [NSFileManager defaultManager];
-	if([fileManager fileExistsAtPath:fileName]==NO)
+	NSString* fileName;
+	
+	for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
 	{
-		if(![self downloadTileFromURL:[self tileURLForX:tileinfo.slippyX
-													  Y:tileinfo.slippyY
-												   Zoom:tileinfo.slippyZ]
-						   toFileName:fileName])
-        {
-            //For downloads that fail, show the gray grid
-            tileinfo.isOpaque = YES;
-			tileinfo.cachedImageName = @"grayGrid";
-			tileinfo.tileProviderResponse = kTileResponseRenderNamedCachedImage;
-			return;
-        }
+		//Tile is still needed so let's start downloading it.
+		fileName=[self cacheFileNameForX:tile.slippyX
+									   Y:tile.slippyY
+									Zoom:tile.slippyZ];
+		
+		if([fileManager fileExistsAtPath:fileName]==NO)
+		{
+			if(![self downloadTileFromURL:[self tileURLForX:tile.slippyX
+														  Y:tile.slippyY
+													   Zoom:tile.slippyZ]
+							   toFileName:fileName])
+			{
+				//For downloads that fail, show the gray grid
+				meTileRequest.isProxy = YES;
+				meTileRequest.isOpaque = YES;
+				meTileRequest.isDirty = YES;
+				meTileRequest.cachedImageName = @"grayGrid";
+				meTileRequest.tileProviderResponse = kTileResponseRenderNamedCachedImage;
+				if(self.isAsynchronous)
+				{
+					[super tileLoadComplete:meTileRequest];
+				}
+				return;
+			}
+		}
+		tile.fileName = fileName;
+		
+		if(self.returnUIImages)
+		{
+			tile.uiImage = [UIImage imageWithContentsOfFile:fileName];
+			tile.fileName = nil;
+		}
 	}
-	tileinfo.isOpaque = YES;
-	tileinfo.fileName = fileName;
-	tileinfo.tileProviderResponse = kTileResponseRenderFilename;
-    if(self.returnUIImages)
-    {
-        tileinfo.uiImage = [UIImage imageWithContentsOfFile:fileName];
-		tileinfo.tileProviderResponse =  kTileResponseRenderUIImage;
-		tileinfo.fileName = nil;
-    }
+	
+	meTileRequest.isOpaque = YES;
+	meTileRequest.tileProviderResponse = kTileResponseRenderFilename;
+	if(self.returnUIImages)
+	{
+		meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
+	}
+	
+	if(self.isAsynchronous)
+	{
+		[super tileLoadComplete:meTileRequest];
+	}
+}
+
+- (void) requestTileAsync:(METileProviderRequest *)meTileRequest
+{
+	int currentQueue=0;
+	@synchronized(self)
+	{
+		currentQueue = self.currentSerialQueue;
+		self.currentSerialQueue++;
+		if(self.currentSerialQueue>self.serialQueueCount-1)
+			self.currentSerialQueue=0;
+	}
+	
+	dispatch_async(_serialBackgroundQueues[currentQueue], ^{
+		[self requestTile:meTileRequest];
+	});
 }
 
 @end
@@ -179,68 +270,6 @@
 
 @end
 
-/////////////////////////////////////////////////////////////////////////////////
-@implementation MEArgyleTileProvider
-
--(MEMapBoxTileProvider*) init
-{
-	self = [super init];
-    if ( self )
-	{
-		self.mapDomain = @"temp1.argyl.es/ba3";
-		self.shortName = @"argyle";
-		self.copyrightNotice = @"Source: Argyle Tiles http://argyl.es";
-    }
-    return self;
-}
-
-- (NSString*) tileFileExtension
-{
-	return @"jpg";
-}
-
-- (NSString*) tileURLForX:(int) X Y:(int) Y Zoom:(int) Zoom
-{
-	return [NSString stringWithFormat:@"http://%@/%d/%d/%d",
-			self.mapDomain,
-			Zoom,
-			X,
-			Y];
-}
-
-- (NSString*) cacheFileNameForX:(int) X
-							  Y:(int) Y
-						   Zoom:(int) Zoom
-{
-	//Create target cache folder?
-	NSError *error;
-	NSFileManager* fileManager = [NSFileManager defaultManager];
-	NSString* cachePath = [NSString stringWithFormat:@"%@/%@/%@",
-						   [[DirectoryInfo sharedDirectoryInfo] GetCacheDirectory],
-						   self.tileCacheRoot,
-						   self.shortName];
-    
-	if([fileManager fileExistsAtPath:cachePath]==NO)
-	{
-		[[NSFileManager defaultManager] createDirectoryAtPath:cachePath
-								  withIntermediateDirectories:YES
-												   attributes:nil
-														error:&error];
-	}
-	
-	NSString* fileName;
-    fileName = [NSString stringWithFormat:@"%@/%d_%d_%d.%@",
-				cachePath,
-				Zoom,
-				X,
-				Y,
-				[self tileFileExtension]];
-	
-	return fileName;
-}
-
-
-@end
 /////////////////////////////////////////////////////////////////////////////////
 @implementation MEMapBoxLandCoverTileProvider
 -(MEMapBoxLandCoverTileProvider*) init
@@ -300,9 +329,9 @@
 	self = [super init];
     if ( self )
 	{
-		self.mapDomain = @"oatile1.mqcdn.com/naip";
+		self.mapDomain = @"otile1.mqcdn.com/tiles/1.0.0/sat";
 		self.shortName = @"mapquestaerial";
-		self.returnUIImages = YES;
+		self.returnUIImages = NO;
 		self.copyrightNotice = @"Tiles courtesy of MapQuest: http://www.mapquest.com. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency.";
     }
     return self;
@@ -348,40 +377,5 @@
     }
     return self;
 }
-@end
-
-/////////////////////////////////////////////////////////////////////////////////
-@implementation MEAsyncInternetTileProvider
-
-- (void) asyncDownloadTileFromURL:(NSString*) url toFileName:(NSString*) fileName meTileInfo:(METileInfo*) meTileInfo
-{
-    
-    
-}
-
-
-- (void) requestTileAsync:(METileInfo *)tileInfo
-{
-    NSString* fileName=[self cacheFileNameForX:tileInfo.slippyX Y:tileInfo.slippyY Zoom:tileInfo.slippyZ];
-	NSFileManager* fileManager = [NSFileManager defaultManager];
-    tileInfo.isOpaque = YES;
-    
-	if([fileManager fileExistsAtPath:fileName]==NO)
-	{
-        //Download the tile on a background thread
-		[self asyncDownloadTileFromURL:[self tileURLForX:tileInfo.slippyX Y:tileInfo.slippyY	Zoom:tileInfo.slippyZ] toFileName:fileName meTileInfo:tileInfo];
-    }
-    else
-    {
-        //We already download it so just call tile load complete
-        tileInfo.fileName = fileName;
-        if(self.returnUIImages)
-        {
-            tileInfo.uiImage = [UIImage imageWithContentsOfFile:fileName];
-        }
-        [self.meMapViewController tileLoadComplete:tileInfo];
-    }
-}
-
 @end
 
