@@ -382,13 +382,13 @@
 -(METerrainColorBar*) terrainColorBar;
 
 /**Called when a tile has been loaded through a virtual layer. Should only be called on the main thread.*/
-- (void) tileLoadComplete:(METileInfo*) tileInfo;
+- (void) tileLoadComplete:(METileProviderRequest*) meTileRequest;
 
-/**Returns whether or not the engine considers the tile represented by tileInfo to be required to satisfy the current view for any non-animated virtual map. This call will dispatched to the main queue if it is not made on the main queue. If you need to know if an animated map tile request is still valid, please call animatedTileIsNeeded which does not dispatch to the main queue.*/
--(BOOL) tileIsNeeded:(METileInfo*) tileInfo;
+/**Returns whether or not the engine considers the tile represented by meTileRequest to be required to satisfy the current view for any non-animated virtual map. This call will dispatched to the main queue if it is not made on the main queue. If you need to know if an animated map tile request is still valid, please call animatedTileIsNeeded which does not dispatch to the main queue.*/
+-(BOOL) tileIsNeeded:(METileProviderRequest*) meTileRequest;
 
 
--(BOOL) animatedTileIsNeeded:(METileInfo*) tileInfo;
+-(BOOL) animatedTileIsNeeded:(METileProviderRequest*) meTileRequest;
 
 /**Returns an array of METileRequest objects which represent the tiles currently needed by the mapping engine. You should only all this function on the main thread.*/
 -(NSArray*) currentAnimatedMapTileRequests;
