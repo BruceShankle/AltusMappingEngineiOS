@@ -191,15 +191,15 @@
 			  forControlEvents:UIControlEventTouchDown];
 	
 	//Add landsat map button
-	self.btnLandSatMap = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[self.btnLandSatMap setTitle:@"LSM - Off" forState:UIControlStateNormal];
-	[self.btnLandSatMap setTitle:@"LSM - On" forState:UIControlStateSelected];
-	[self.view addSubview:self.btnLandSatMap];
-	[self.view bringSubviewToFront:self.btnLandSatMap];
-	self.btnLandSatMap.frame=CGRectMake(self.btnStreetMap.frame.origin.x +
+	self.btnAerialMap = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnAerialMap setTitle:@"AM - Off" forState:UIControlStateNormal];
+	[self.btnAerialMap setTitle:@"AM - On" forState:UIControlStateSelected];
+	[self.view addSubview:self.btnAerialMap];
+	[self.view bringSubviewToFront:self.btnAerialMap];
+	self.btnAerialMap.frame=CGRectMake(self.btnStreetMap.frame.origin.x +
 									   self.btnStreetMap.frame.size.width, 0, 90, 30);
-	[self.btnLandSatMap addTarget:self
-						  action:@selector(landSatMapButtonTapped)
+	[self.btnAerialMap addTarget:self
+						  action:@selector(aerialMapButtonTapped)
 				forControlEvents:UIControlEventTouchDown];
 		
 }
@@ -211,11 +211,11 @@
 	self.btnStreetMap.selected = self.isStreetMapMode;
 }
 
-- (void) landSatMapButtonTapped
+- (void) aerialMapButtonTapped
 {
-	self.isLandSatMapMode = !self.isLandSatMapMode;
-	[self enableLandSatMap:self.isLandSatMapMode];
-	self.btnLandSatMap.selected = self.isLandSatMapMode;
+	self.isAerialMapMode = !self.isAerialMapMode;
+	[self enableLandSatMap:self.isAerialMapMode];
+	self.btnAerialMap.selected = self.isAerialMapMode;
 }
 
 - (void) gpsButtonTapped
@@ -254,17 +254,16 @@
 - (void) enableLandSatMap:(BOOL) enabled
 {
 	//Add a virtual map layer using a tile provider that pulls tiles down from the internet
-	if(self.landSatMap==nil)
+	if(self.aerialMap==nil)
 	{
-		self.landSatMap=[[[MEMapBoxLandSatMap alloc]init]autorelease];
-		self.landSatMap.compressTextures = YES;
-		self.landSatMap.meMapViewController = self.meMapViewController;
-		self.landSatMap.zOrder = 4;
+		self.aerialMap=[[[MEMapQuestAerialMap alloc]init]autorelease];
+		self.aerialMap.meMapViewController = self.meMapViewController;
+		self.aerialMap.zOrder = 4;
 	}
 	if(enabled)
-		[self.landSatMap show];
+		[self.aerialMap show];
 	else
-		[self.landSatMap hide];
+		[self.aerialMap hide];
 	
 }
 

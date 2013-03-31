@@ -121,19 +121,19 @@
 @end
 
 ////////////////////////////////////////////////////////////////////////
-@implementation MEMapBoxLandSatMap
+@implementation MEMapQuestAerialMap
 
 - (id) init
 {
     if(self = [super init])
     {
-        self.name=@"MapBox LandSat";
+        self.name=@"MapQuest Aerial";
     }
     return self;
 }
 
 -(MEInternetTileProvider*) createTileProvider
 {
-	return [[MEMapBoxLandSatTileProvider alloc]init];
+	return [[MEMapQuestAerialTileProvider alloc]init];
 }
 @end

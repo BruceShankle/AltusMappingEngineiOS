@@ -2,7 +2,6 @@
 
 #import "MEInternetTileProvider.h"
 #import "MEFileDownloader.h"
-#import "ASIHTTPRequest.h"
 
 @implementation MEInternetTileProvider
 {
@@ -378,62 +377,3 @@
     return self;
 }
 @end
-
-/////////////////////////////////////////////////////////////////////////////////
-@implementation MEAsyncInternetTileProvider
-
-- (void) asyncDownloadTileFromURL:(NSString*) url toFileName:(NSString*) fileName METileProviderRequest:(METileProviderRequest*) meTileProviderRequest
-{
-    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    __block METileProviderRequest* blockSafeTileRequest = meTileProviderRequest;
-    [blockSafeTileRequest retain];
-    [request setDownloadDestinationPath:fileName];
-    
-    [request setCompletionBlock:^{
-        blockSafeTileRequest.fileName = @"";
-        blockSafeTileRequest.uiImage = [UIImage imageWithContentsOfFile:request.downloadDestinationPath];
-        [self.meMapViewController tileLoadComplete:blockSafeTileRequest];
-        [blockSafeTileRequest release];
-    }];
-    [request setFailedBlock:^{
-        return;
-    }];
-    [request startAsynchronous];
-    
-}
-
-- (void) requestTileAsync:(METileProviderRequest *)meTileRequest
-{
-	for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
-	{
-		NSString* fileName=[self cacheFileNameForX:tile.slippyX
-												 Y:tile.slippyY
-											  Zoom:tile.slippyZ];
-		NSFileManager* fileManager = [NSFileManager defaultManager];
-		
-		if([fileManager fileExistsAtPath:fileName]==NO)
-		{
-			//Download the tile on a background thread
-			[self asyncDownloadTileFromURL:[self tileURLForX:tile.slippyX
-														   Y:tile.slippyY
-														Zoom:tile.slippyZ]
-								toFileName:fileName
-					 METileProviderRequest:meTileRequest];
-		}
-		else
-		{
-			//We already download it so just call tile load complete
-			meTileRequest.fileName = fileName;
-			if(self.returnUIImages)
-			{
-				meTileRequest.uiImage = [UIImage imageWithContentsOfFile:fileName];
-				meTileRequest.fileName = nil;
-			}
-		}
-	}
-	meTileRequest.isOpaque = YES;
-	[self.meMapViewController tileLoadComplete:meTileRequest];
-}
-
-@end
-
