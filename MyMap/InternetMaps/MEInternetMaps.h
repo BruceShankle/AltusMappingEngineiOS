@@ -34,9 +34,6 @@
 @interface MEMapQuestAerialMap : MEInternetMap
 @end
 
-@interface MEMapQuestOpenAerialMap : MEInternetMap
-@end
-
 
 
 
