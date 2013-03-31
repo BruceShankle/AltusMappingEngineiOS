@@ -3,7 +3,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/**Enumeration of data types for tile images used in the METileInfo object*/
+/**Enumeration of data types for tile images used in the METileProviderRequest object*/
 typedef enum {
     kImageDataTypeUnknown,
     kImageDataTypePNG,
@@ -23,11 +23,54 @@ typedef enum {
 	kTileResponseWasCancelled
 } METileProviderResponse;
 
+//Forward-declarations
+@class METileProviderRequest;
+
+/**Represents a single spherical mercator tile. Used when requesting map data from custom tiler providers. An array of these may be passed to a tile provider for a single tile request beyond 75N or 75S latitude.
+ */
+@interface MESphericalMercatorTile : NSObject
+
+/**The slippyX id of the tile.*/
+@property (assign, readonly) unsigned int slippyX;
+
+/**The slippyY id of the tile.*/
+@property (assign, readonly) unsigned int slippyY;
+
+/**The slippyZ id of the tile.*/
+@property (assign, readonly) unsigned int slippyZ;
+
+/**In the case of setting pImageData, the lenght in bytes of the data.*/
+@property (assign) unsigned int pImageDataLength;
+
+/**If set, a pointer to a UIImage object to use as image data.*/
+@property (retain) UIImage* uiImage;
+
+/**If set, a pointer to an NSData object whose bytes represent compressed JPG or PNG image data. If set, you should also set the imageDataType appropriately.*/
+@property (retain) NSData* nsImageData;
+
+/**If set, a pointer to memory whose bytes represent compressed JPG or PNG image data. If set, you should also set the imageDataType appropriately.*/
+@property (assign) void* pImageData;
+
+/**If set, a pointer to a jpg or png file which the engine will load and decompress. The engine has native support decompressing png and jpg images very quickly.*/
+@property (retain) NSString* fileName;
+
+/** If set, specifies the name of a cached image to use. You may cache images by using MEMapViewController addCachedImage.*/
+@property (retain) NSString* cachedImageName;
+
+/** If setting nsImageData or pImageData, you should set this to the appropriate image data type.*/
+@property (assign) MEImageDataType imageDataType;
+
+/** Initialize with slippy IDs.*/
+- (id) initWithSlippyX:(unsigned int) slippyX
+			   slippyY:(unsigned int) slippyY
+			   slippyZ:(unsigned int) slippyZ;
+@end
+
 /**
  This object is when communicating with METileProvider derived objects that manage getting tiles for virtual map layers. When a virtual layer is added, these objects will be pass to the requestTile function on the delegate in the case of syncrhonous tile providers where the tile provider will populate the uiImage, nsImageData, fileName, or pImageData members to return an image to the engine. In the case of nsImageData or pImageData, the data should point to compressed imaged data and the imageDataType should also be set so the engine can interpret the data correctly. In the case of pImageData, pImageDataLength should also be set.*/
-@interface METileInfo : NSObject
+@interface METileProviderRequest : NSObject
 
-/**Tile providers set this value based on how the mapping engine should interpret the tile METileInfo it gets back form the tile provider.
+/**Tile providers set this value based on how the mapping engine should interpret the tile METileProviderRequest it gets back form the tile provider.
  Valid responses are:
 
  */
@@ -36,17 +79,11 @@ typedef enum {
 /**The internal 64-bit ID of the tile.*/
 @property (assign, readonly) uint64_t uid;
 
+/**Contains an array of MESlippyTile objects. Your tile provider will need to furnish image data for each MESlippyTile object in this array for virtual spherical mercator maps.*/
+@property (retain) NSArray* sphericalMercatorTiles;
+
 /**The internal map ID of the map that contains this tile.*/
 @property (assign) size_t mapid;
-
-/**The slippyX id of the tile.*/
-@property (assign, readonly) unsigned int slippyX;
-
-/**The slippy Y id of the tile.*/
-@property (assign, readonly) unsigned int slippyY;
-
-/**The slippy Z id of the tile.*/
-@property (assign, readonly) unsigned int slippyZ;
 
 /**Expected width of the tile image.*/
 @property (assign, readonly) unsigned int width;
@@ -101,11 +138,8 @@ typedef enum {
 @property (assign) double maxY;
 
 
-/**Initializer for METileInfo*/
+/**Initializer for METileProviderRequest*/
 - (id) initWithUID:(uint64_t) uid
-		   slippyX:(int) slippyX
-		   slippyY:(int) slippyY
-		   slippyZ:(int) slippyZ
 			 width:(int) width
 			height:(int) height
 			 frame:(int) frame;
@@ -127,7 +161,7 @@ typedef enum {
 /**The internal map ID of the map that contains this tile.*/
 @property (assign) size_t mapid;
 
-/**The animate frame number of the tile.*/
+/**The animated frame number of the tile.*/
 @property (assign) unsigned int frame;
 
 @end
