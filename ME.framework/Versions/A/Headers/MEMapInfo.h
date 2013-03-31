@@ -225,7 +225,7 @@ typedef enum {
 @property (assign) MEMapLoadingStrategy loadingStrategy;
 
 /**Specifies that the tile source is spherical mercator (Google / Slippy style) tiles.*/
-@property (assign) BOOL isSlippyMap;
+@property (assign) BOOL isSphericalMercator;
 
 @end
 
