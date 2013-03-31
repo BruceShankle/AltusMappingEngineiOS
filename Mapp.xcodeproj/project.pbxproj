@@ -227,7 +227,6 @@
 		32D6493A1676F7F100146015 /* METemporalMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D649391676F7F100146015 /* METemporalMarkerTests.m */; };
 		32D64941167700F900146015 /* AirportMarkersEven.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32D64940167700F900146015 /* AirportMarkersEven.sqlite */; };
 		32D73ED7163A536D00F12956 /* MEShapeFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D73ED6163A536D00F12956 /* MEShapeFileTest.m */; };
-		32D966001667004D001CB167 /* grayGrid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32D965FF1667004D001CB167 /* grayGrid@2x.png */; };
 		32DB35391463F39400C24B45 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DB34AE1463E7A200C24B45 /* libTestFlight.a */; };
 		32DB44A51627C4090066D02B /* Default-Portrait~iphone-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DB44A41627C4090066D02B /* Default-Portrait~iphone-568h@2x.png */; };
 		32DB44A71627C45C0066D02B /* Default-Portrait~iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DB44A61627C45C0066D02B /* Default-Portrait~iphone@2x.png */; };
@@ -587,7 +586,6 @@
 		32D64940167700F900146015 /* AirportMarkersEven.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirportMarkersEven.sqlite; sourceTree = "<group>"; };
 		32D73ED5163A536D00F12956 /* MEShapeFileTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEShapeFileTest.h; sourceTree = "<group>"; };
 		32D73ED6163A536D00F12956 /* MEShapeFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEShapeFileTest.m; sourceTree = "<group>"; };
-		32D965FF1667004D001CB167 /* grayGrid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayGrid@2x.png"; sourceTree = "<group>"; };
 		32DB34AE1463E7A200C24B45 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		32DB34B11463E7A200C24B45 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		32DB44A41627C4090066D02B /* Default-Portrait~iphone-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~iphone-568h@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -812,7 +810,6 @@
 				3222877616EC6BDE009ED5F2 /* blueplanesmall@2x.png */,
 				32454055167881040010E1C0 /* noData.png */,
 				32454056167881040010E1C0 /* noData@2x.png */,
-				32D965FF1667004D001CB167 /* grayGrid@2x.png */,
 				324517A91666A28200B378D4 /* grayGrid.png */,
 				327ABEEB16069A9500365B3D /* pinPurple@2x.png */,
 				327ABEE616067A3D00365B3D /* bus@2x.png */,
@@ -1511,7 +1508,6 @@
 				32CC25481666646F00C23D57 /* redarrow.png in Resources */,
 				32CC25491666646F00C23D57 /* redarrow@2x.png in Resources */,
 				324517AA1666A28200B378D4 /* grayGrid.png in Resources */,
-				32D966001667004D001CB167 /* grayGrid@2x.png in Resources */,
 				323B7E7E16684385009779FD /* rednortharrow.png in Resources */,
 				323B7E7F16684385009779FD /* rednortharrow@2x.png in Resources */,
 				323B7E8316684603009779FD /* greenarroweast.png in Resources */,
