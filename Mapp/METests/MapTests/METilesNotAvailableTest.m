@@ -5,43 +5,50 @@
 //////////////////////////////////////////////////////////////////////
 @implementation MEXYZTileProvider
 
-- (void) requestTile:(METileInfo *)tileInfo
+- (void) requestTile:(METileProviderRequest *)meTileRequest
 {
-	tileInfo.tileProviderResponse = self.response;
+	meTileRequest.tileProviderResponse = self.response;
 	if(self.response == kTileResponseNotAvailable)
 	{
 		self.response = kTileResponseRenderUIImage;
 		return;
 	}
 	
-	NSString* labelText = [NSString stringWithFormat:@" %d,%d,%d ",
-						   tileInfo.slippyX,
-						   tileInfo.slippyY,
-						   tileInfo.slippyZ];
-	UIImage* uiImage;
-	uiImage = [[MEFontUtil createImageWithFontOutlined:@"Arial"
-											  fontSize:20
-											 fillColor:[UIColor whiteColor]
-										   strokeColor:[UIColor blackColor]
-										   strokeWidth:0
-												  text:labelText]autorelease];
-	
-	
-	switch(self.response)
+	for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
 	{
-		case kTileResponseRenderUIImage:
-			tileInfo.isOpaque = NO;
-			tileInfo.uiImage = uiImage;
-			break;
-			
-		case kTileResponseRenderNamedCachedImage:
-			tileInfo.cachedImageName = @"noData";
-			tileInfo.isDirty = YES;
-			break;
-			
-		default:
-			break;
+		NSString* labelText = [NSString stringWithFormat:@" %d,%d,%d ",
+							   tile.slippyX,
+							   tile.slippyY,
+							   tile.slippyZ];
+		UIImage* uiImage;
+		uiImage = [[MEFontUtil createImageWithFontOutlined:@"Arial"
+												  fontSize:20
+												 fillColor:[UIColor whiteColor]
+											   strokeColor:[UIColor blackColor]
+											   strokeWidth:0
+													  text:labelText]autorelease];
+		
+		switch(self.response)
+		{
+			case kTileResponseRenderUIImage:
+				tile.uiImage = uiImage;
+				meTileRequest.isOpaque = NO;
+				break;
+				
+			case kTileResponseRenderNamedCachedImage:
+				tile.cachedImageName = @"noData";
+				meTileRequest.isDirty = YES;
+				break;
+				
+			default:
+				break;
+		}
+		
+		
 	}
+	
+	
+	
 }
 
 @end
@@ -61,9 +68,9 @@
 	return self;
 }
 
-- (void) requestTile:(METileInfo *)tileInfo
+- (void) requestTile:(METileProviderRequest *)meTileRequest
 {
-	tileInfo.tileProviderResponse = self.response;
+	meTileRequest.tileProviderResponse = self.response;
 	
 	if(self.response == kTileResponseNotAvailable)
 		return;
@@ -74,13 +81,13 @@
 	switch(self.response)
 	{
 		case kTileResponseRenderUIImage:
-			tileInfo.isOpaque = NO;
-			tileInfo.uiImage = [UIImage imageNamed:imageName];
+			meTileRequest.isOpaque = NO;
+			meTileRequest.uiImage = [UIImage imageNamed:imageName];
 			break;
 			
 		case kTileResponseRenderNamedCachedImage:
-			tileInfo.cachedImageName = @"noData";
-			tileInfo.isDirty = YES;
+			meTileRequest.cachedImageName = @"noData";
+			meTileRequest.isDirty = YES;
 			break;
 			
 		default:
@@ -185,8 +192,8 @@
 	
 	self.btnOnOff = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[self.btnOnOff addTarget:self
-						  action:@selector(toggleOnOff)
-				forControlEvents:UIControlEventTouchDown];
+					  action:@selector(toggleOnOff)
+			forControlEvents:UIControlEventTouchDown];
 	[self.btnOnOff setTitle:[self buttonLabel] forState:UIControlStateNormal];
 	self.btnOnOff.frame = CGRectMake(10.0, 250.0, 350.0, 40.0);
 	[self.meMapViewController.meMapView addSubview:self.btnOnOff];
@@ -194,8 +201,8 @@
 	
 	self.btnRefreshDirtyTiles = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[self.btnRefreshDirtyTiles addTarget:self
-								action:@selector(politelyRefresh)
-					  forControlEvents:UIControlEventTouchDown];
+								  action:@selector(politelyRefresh)
+						forControlEvents:UIControlEventTouchDown];
 	[self.btnRefreshDirtyTiles setTitle:@"refreshDirtyTiles" forState:UIControlStateNormal];
 	self.btnRefreshDirtyTiles.frame = CGRectMake(10.0, 300.0, 160.0, 40.0);
 	[self.meMapViewController.meMapView addSubview:self.btnRefreshDirtyTiles];

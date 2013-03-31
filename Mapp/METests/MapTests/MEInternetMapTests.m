@@ -297,7 +297,7 @@
 		self.maxLevel=17;
 		self.zoomIndependent = NO;
         self.name=@"ME Internet Map Test";
-		self.zOrder = 2;
+		self.zOrder = 3;
 		self.compressTextures = NO;
 		self.loadingStrategy = kHighestDetailOnly;
     }
@@ -308,6 +308,7 @@
 {
 	return @"MEInternetMapTests";
 }
+
 -(METileProvider*) createTileProvider
 {
 	NSLog(@"MEInternetMapTest:createTileProvider:You should override this");
@@ -330,6 +331,16 @@
 	tileProvider.tileCacheRoot = [MEInternetMapTest tileCacheRoot];
     tileProvider.meMapViewController = self.meMapViewController;
 	tileProvider.isAsynchronous = YES;
+	
+	//Add a non-spherical mercator grid below.
+	MEVirtualMapInfo* gridMapInfo = [[[MEVirtualMapInfo alloc]init]autorelease];
+	gridMapInfo.name = @"basegrid";
+	gridMapInfo.isSphericalMercator = NO;
+	gridMapInfo.zOrder = 2;
+	gridMapInfo.maxLevel = 12;
+	gridMapInfo.defaultTileName = @"grayGrid";
+	gridMapInfo.meTileProvider = [[[MEBaseMapTileProvider alloc]initWithCachedImageName:@"grayGrid"]autorelease];
+	[self.meMapViewController addMapUsingMapInfo:gridMapInfo];
 	
 	//Add a virtual map using the tile provider
 	MEVirtualMapInfo* vMapInfo = [[[MEVirtualMapInfo alloc]init]autorelease];
@@ -369,28 +380,14 @@
 {
     [self.meMapViewController removeMap:self.name
                                     clearCache:NO];
+	
+	[self.meMapViewController removeMap:@"basegrid"
+							 clearCache:NO];
+	
 	[self.meTestManager setCopyrightNotice:@""];
     self.isRunning = NO;
 }
 
-@end
-
-////////////////////////////////////////////////////////////////////////
-@implementation MEMapBoxMapTest
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"MapBox";
-    }
-    return self;
-}
-
--(MEInternetTileProvider*) createTileProvider
-{
-	return [[MEMapBoxTileProvider alloc]init];
-}
 @end
 
 ////////////////////////////////////////////////////////////////////////
@@ -441,25 +438,6 @@
 @end
 
 ////////////////////////////////////////////////////////////////////////
-@implementation MEArgyleMapTest
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Argyle Tiles";
-		self.zoomIndependent=YES;
-    }
-    return self;
-}
-
--(MEInternetTileProvider*) createTileProvider
-{
-	return [[MEArgyleTileProvider alloc]init];
-}
-@end
-
-////////////////////////////////////////////////////////////////////////
 @implementation MEMapBoxLandCoverMapTest
 
 - (id) init
@@ -475,6 +453,7 @@
 {
 	return [[MEMapBoxLandCoverTileProvider alloc]init];
 }
+
 @end
 
 ////////////////////////////////////////////////////////////////////////
@@ -503,7 +482,7 @@
     if(self = [super init])
     {
         self.name=@"MapQuest Aerial";
-		self.maxLevel = 14;
+		self.maxLevel = 18;
     }
     return self;
 }
@@ -576,35 +555,6 @@
 /////////////////////////////////////////////////////////////////////////
 //Compressed texture version of above tests...
 ////////////////////////////////////////////////////////////////////////
-@implementation cMEMapBoxMapTest
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"MapBox - 2 Byte";
-		self.compressTextures=YES;
-		self.zOrder = 3;
-    }
-    return self;
-}
-
-@end
-
-////////////////////////////////////////////////////////////////////////
-@implementation cMEArgyleMapTest
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Argyle Tiles - 2 Byte";
-		self.compressTextures=YES;
-		self.zOrder = 3;
-    }
-    return self;
-}
-@end
 
 ////////////////////////////////////////////////////////////////////////
 @implementation cMEMapBoxLandCoverMapTest
@@ -615,7 +565,7 @@
     {
         self.name=@"MapBox LandCover - 2 Byte";
 		self.compressTextures = YES;
-		self.zOrder = 3;
+		self.zOrder = 4;
     }
     return self;
 }
@@ -630,7 +580,7 @@
     {
         self.name=@"MapQuest - 2 Byte";
 		self.compressTextures=YES;
-		self.zOrder = 3;
+		self.zOrder = 4;
     }
     return self;
 }
@@ -646,7 +596,7 @@
     {
         self.name=@"MapQuest Aerial - 2 Byte";
 		self.compressTextures=YES;
-		self.zOrder = 3;
+		self.zOrder = 4;
     }
     return self;
 }
@@ -661,7 +611,7 @@
     {
         self.name=@"Open Street Maps - 2 Byte";
 		self.compressTextures=YES;
-		self.zOrder = 3;
+		self.zOrder = 4;
     }
     return self;
 }
@@ -677,7 +627,7 @@
     {
         self.name=@"Stamen Terrain - 2 Byte";
 		self.compressTextures=YES;
-		self.zOrder = 3;
+		self.zOrder = 4;
     }
     return self;
 }

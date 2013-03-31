@@ -203,6 +203,7 @@
 	[testCategory addTestClass:[MEPanVelocityScaleTest class]];
 }
 
+
 - (void) createPerfTests
 {
 	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
@@ -263,13 +264,11 @@
 	[testCategory addTestClass:[MEInternetMapClearCacheTest class]];
 	[testCategory addTestClass:[MEMapBoxMarsMapTest class]];
 	[testCategory addTestClass:[MERefreshMarsTest class]];
-	[testCategory addTestClass:[MEMapBoxMapTest class]];
 	[testCategory addTestClass:[MEMapBoxLandCoverMapTest class]];
 	[testCategory addTestClass:[MEMapQuestMapTest class]];
 	[testCategory addTestClass:[MEMapQuestAerialMapTest class]];
 	[testCategory addTestClass:[MEMapQuestAerialMapTest2 class]];
 	[testCategory addTestClass:[MEOpenStreetMapsMapTest class]];
-	[testCategory addTestClass:[MEArgyleMapTest class]];
 	[testCategory addTestClass:[MEStamenTerrainMapTest class]];
 	
 	//Add compressed internet maps
@@ -279,12 +278,10 @@
 	[testCategory addTestClass:[MEInternetMapLoadInvisible class]];
 	[testCategory addTestClass:[MEInternetMapAnalyzeCacheTest class]];
 	[testCategory addTestClass:[MEInternetMapClearCacheTest class]];
-	[testCategory addTestClass:[cMEMapBoxMapTest class]];
 	[testCategory addTestClass:[cMEMapBoxLandCoverMapTest class]];
 	[testCategory addTestClass:[cMEMapQuestMapTest class]];
 	[testCategory addTestClass:[cMEMapQuestAerialMapTest class]];
 	[testCategory addTestClass:[cMEOpenStreetMapsMapTest class]];
-	[testCategory addTestClass:[cMEArgyleMapTest class]];
 	[testCategory addTestClass:[cMEStamenTerrainMapTest class]];
 }
 

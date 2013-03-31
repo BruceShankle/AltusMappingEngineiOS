@@ -19,7 +19,7 @@
 		self.mapDomain = @"";
 		self.shortName = @"shortname";
 		self.tileCacheRoot = @"tilecache";
-        self.returnUIImages = NO;
+        self.returnUIImages = YES;
 		self.copyrightNotice = @"No copyright notice";
 		self.tilesNotNeededCount = 0;
 		self.serialQueueCount = 4;
@@ -131,15 +131,14 @@
 	return [MEFileDownloader downloadSync:url toFile:fileName];
 }
 
-- (void) requestTile:(METileInfo*) tileinfo
+- (void) requestTile:(METileProviderRequest*) meTileRequest
 {
 	//Check to make sure we still need to supply the tile.
-	if(![super isNeeded:tileinfo])
+	if(![super isNeeded:meTileRequest])
 	{
-		
 		if(self.isAsynchronous)
 		{
-			[super tileLoadComplete:tileinfo];
+			[super tileLoadComplete:meTileRequest];
 			@synchronized(self)
 			{
 				self.tilesNotNeededCount++;
@@ -149,54 +148,62 @@
 		{
 			self.tilesNotNeededCount++;
 		}
-		//NSLog(@"Tiles not needed so far:%d", self.tilesNotNeededCount);
-		
 		return;
 	}
 	
-	//Tile is still needed so let's start downloading it.
-	NSString* fileName=[self cacheFileNameForX:tileinfo.slippyX
-											 Y:tileinfo.slippyY
-										  Zoom:tileinfo.slippyZ];
-	
 	NSFileManager* fileManager = [NSFileManager defaultManager];
-	if([fileManager fileExistsAtPath:fileName]==NO)
+	NSString* fileName;
+	
+	for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
 	{
-		if(![self downloadTileFromURL:[self tileURLForX:tileinfo.slippyX
-													  Y:tileinfo.slippyY
-												   Zoom:tileinfo.slippyZ]
-						   toFileName:fileName])
-        {
-            //For downloads that fail, show the gray grid
-			tileinfo.isProxy = YES;
-            tileinfo.isOpaque = YES;
-			tileinfo.isDirty = YES;
-			tileinfo.cachedImageName = @"grayGrid";
-			tileinfo.tileProviderResponse = kTileResponseRenderNamedCachedImage;
-			if(self.isAsynchronous)
+		//Tile is still needed so let's start downloading it.
+		fileName=[self cacheFileNameForX:tile.slippyX
+									   Y:tile.slippyY
+									Zoom:tile.slippyZ];
+		
+		if([fileManager fileExistsAtPath:fileName]==NO)
+		{
+			if(![self downloadTileFromURL:[self tileURLForX:tile.slippyX
+														  Y:tile.slippyY
+													   Zoom:tile.slippyZ]
+							   toFileName:fileName])
 			{
-				[super tileLoadComplete:tileinfo];
+				//For downloads that fail, show the gray grid
+				meTileRequest.isProxy = YES;
+				meTileRequest.isOpaque = YES;
+				meTileRequest.isDirty = YES;
+				meTileRequest.cachedImageName = @"grayGrid";
+				meTileRequest.tileProviderResponse = kTileResponseRenderNamedCachedImage;
+				if(self.isAsynchronous)
+				{
+					[super tileLoadComplete:meTileRequest];
+				}
+				return;
 			}
-			return;
-        }
+		}
+		tile.fileName = fileName;
+		
+		if(self.returnUIImages)
+		{
+			tile.uiImage = [UIImage imageWithContentsOfFile:fileName];
+			tile.fileName = nil;
+		}
 	}
-	tileinfo.isOpaque = YES;
-	tileinfo.fileName = fileName;
-	tileinfo.tileProviderResponse = kTileResponseRenderFilename;
-    if(self.returnUIImages)
-    {
-        tileinfo.uiImage = [UIImage imageWithContentsOfFile:fileName];
-		tileinfo.tileProviderResponse = kTileResponseRenderUIImage;
-		tileinfo.fileName = nil;
-    }
+	
+	meTileRequest.isOpaque = YES;
+	meTileRequest.tileProviderResponse = kTileResponseRenderFilename;
+	if(self.returnUIImages)
+	{
+		meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
+	}
 	
 	if(self.isAsynchronous)
 	{
-		[super tileLoadComplete:tileinfo];
+		[super tileLoadComplete:meTileRequest];
 	}
 }
 
-- (void) requestTileAsync:(METileInfo *)tileInfo
+- (void) requestTileAsync:(METileProviderRequest *)meTileRequest
 {
 	int currentQueue=0;
 	@synchronized(self)
@@ -208,7 +215,7 @@
 	}
 	
 	dispatch_async(_serialBackgroundQueues[currentQueue], ^{
-		[self requestTile:tileInfo];
+		[self requestTile:meTileRequest];
 	});
 }
 
@@ -263,68 +270,6 @@
 
 @end
 
-/////////////////////////////////////////////////////////////////////////////////
-@implementation MEArgyleTileProvider
-
--(MEMapBoxTileProvider*) init
-{
-	self = [super init];
-    if ( self )
-	{
-		self.mapDomain = @"temp1.argyl.es/ba3";
-		self.shortName = @"argyle";
-		self.copyrightNotice = @"Source: Argyle Tiles http://argyl.es";
-    }
-    return self;
-}
-
-- (NSString*) tileFileExtension
-{
-	return @"jpg";
-}
-
-- (NSString*) tileURLForX:(int) X Y:(int) Y Zoom:(int) Zoom
-{
-	return [NSString stringWithFormat:@"http://%@/%d/%d/%d",
-			self.mapDomain,
-			Zoom,
-			X,
-			Y];
-}
-
-- (NSString*) cacheFileNameForX:(int) X
-							  Y:(int) Y
-						   Zoom:(int) Zoom
-{
-	//Create target cache folder?
-	NSError *error;
-	NSFileManager* fileManager = [NSFileManager defaultManager];
-	NSString* cachePath = [NSString stringWithFormat:@"%@/%@/%@",
-						   [[DirectoryInfo sharedDirectoryInfo] GetCacheDirectory],
-						   self.tileCacheRoot,
-						   self.shortName];
-    
-	if([fileManager fileExistsAtPath:cachePath]==NO)
-	{
-		[[NSFileManager defaultManager] createDirectoryAtPath:cachePath
-								  withIntermediateDirectories:YES
-												   attributes:nil
-														error:&error];
-	}
-	
-	NSString* fileName;
-    fileName = [NSString stringWithFormat:@"%@/%d_%d_%d.%@",
-				cachePath,
-				Zoom,
-				X,
-				Y,
-				[self tileFileExtension]];
-	
-	return fileName;
-}
-
-
-@end
 /////////////////////////////////////////////////////////////////////////////////
 @implementation MEMapBoxLandCoverTileProvider
 -(MEMapBoxLandCoverTileProvider*) init
@@ -386,7 +331,7 @@
 	{
 		self.mapDomain = @"otile1.mqcdn.com/tiles/1.0.0/sat";
 		self.shortName = @"mapquestaerial";
-		self.returnUIImages = YES;
+		self.returnUIImages = NO;
 		self.copyrightNotice = @"Tiles courtesy of MapQuest: http://www.mapquest.com. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency.";
     }
     return self;
@@ -437,18 +382,18 @@
 /////////////////////////////////////////////////////////////////////////////////
 @implementation MEAsyncInternetTileProvider
 
-- (void) asyncDownloadTileFromURL:(NSString*) url toFileName:(NSString*) fileName meTileInfo:(METileInfo*) meTileInfo
+- (void) asyncDownloadTileFromURL:(NSString*) url toFileName:(NSString*) fileName METileProviderRequest:(METileProviderRequest*) meTileProviderRequest
 {
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
-    __block METileInfo* tileInfo = meTileInfo;
-    [tileInfo retain];
+    __block METileProviderRequest* blockSafeTileRequest = meTileProviderRequest;
+    [blockSafeTileRequest retain];
     [request setDownloadDestinationPath:fileName];
     
     [request setCompletionBlock:^{
-        tileInfo.fileName = @"";
-        tileInfo.uiImage = [UIImage imageWithContentsOfFile:request.downloadDestinationPath];
-        [self.meMapViewController tileLoadComplete:tileInfo];
-        [tileInfo release];
+        blockSafeTileRequest.fileName = @"";
+        blockSafeTileRequest.uiImage = [UIImage imageWithContentsOfFile:request.downloadDestinationPath];
+        [self.meMapViewController tileLoadComplete:blockSafeTileRequest];
+        [blockSafeTileRequest release];
     }];
     [request setFailedBlock:^{
         return;
@@ -457,28 +402,37 @@
     
 }
 
-
-- (void) requestTileAsync:(METileInfo *)tileInfo
+- (void) requestTileAsync:(METileProviderRequest *)meTileRequest
 {
-    NSString* fileName=[self cacheFileNameForX:tileInfo.slippyX Y:tileInfo.slippyY Zoom:tileInfo.slippyZ];
-	NSFileManager* fileManager = [NSFileManager defaultManager];
-    tileInfo.isOpaque = YES;
-    
-	if([fileManager fileExistsAtPath:fileName]==NO)
+	for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
 	{
-        //Download the tile on a background thread
-		[self asyncDownloadTileFromURL:[self tileURLForX:tileInfo.slippyX Y:tileInfo.slippyY	Zoom:tileInfo.slippyZ] toFileName:fileName meTileInfo:tileInfo];
-    }
-    else
-    {
-        //We already download it so just call tile load complete
-        tileInfo.fileName = fileName;
-        if(self.returnUIImages)
-        {
-            tileInfo.uiImage = [UIImage imageWithContentsOfFile:fileName];
-        }
-        [self.meMapViewController tileLoadComplete:tileInfo];
-    }
+		NSString* fileName=[self cacheFileNameForX:tile.slippyX
+												 Y:tile.slippyY
+											  Zoom:tile.slippyZ];
+		NSFileManager* fileManager = [NSFileManager defaultManager];
+		
+		if([fileManager fileExistsAtPath:fileName]==NO)
+		{
+			//Download the tile on a background thread
+			[self asyncDownloadTileFromURL:[self tileURLForX:tile.slippyX
+														   Y:tile.slippyY
+														Zoom:tile.slippyZ]
+								toFileName:fileName
+					 METileProviderRequest:meTileRequest];
+		}
+		else
+		{
+			//We already download it so just call tile load complete
+			meTileRequest.fileName = fileName;
+			if(self.returnUIImages)
+			{
+				meTileRequest.uiImage = [UIImage imageWithContentsOfFile:fileName];
+				meTileRequest.fileName = nil;
+			}
+		}
+	}
+	meTileRequest.isOpaque = YES;
+	[self.meMapViewController tileLoadComplete:meTileRequest];
 }
 
 @end

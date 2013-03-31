@@ -8,26 +8,34 @@
 
 @implementation MESparseMapTileProvider
 
-- (void) requestTile:(METileInfo *)tileInfo
+- (void) requestTile:(METileProviderRequest *)meTileRequest
 {
 	//Select a tile based on level
-	int tileNumber = tileInfo.slippyZ % 5;
+	MESphericalMercatorTile* firstTile = [meTileRequest.sphericalMercatorTiles objectAtIndex:0];
+	
+	int tileNumber = firstTile.slippyZ % 5;
 	NSString* imageFileName = [NSString stringWithFormat:@"lettertile%d", tileNumber];
 	NSString* imagePath = [[NSBundle mainBundle] pathForResource:imageFileName ofType:@"png"];
 	
 	int i = arc4random_uniform(5);
 	if(i==0)
 	{
-		tileInfo.nsImageData = [NSData dataWithContentsOfFile:imagePath];
-		tileInfo.tileProviderResponse = kTileResponseRenderNSData;
-		tileInfo.imageDataType = kImageDataTypePNG;
-		tileInfo.isDirty = NO;
+		for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
+		{
+			tile.nsImageData = [NSData dataWithContentsOfFile:imagePath];
+			tile.imageDataType = kImageDataTypePNG;
+			meTileRequest.tileProviderResponse = kTileResponseRenderNSData;
+			meTileRequest.isDirty = NO;
+		}
 	}
 	else
 	{
-		tileInfo.tileProviderResponse = kTileResponseRenderNamedCachedImage;
-		tileInfo.isProxy = YES;
-		tileInfo.cachedImageName = @"noData";
+		for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
+		{
+			meTileRequest.tileProviderResponse = kTileResponseRenderNamedCachedImage;
+			meTileRequest.isProxy = YES;
+			meTileRequest.cachedImageName = @"noData";
+		}
 	}
 }
 

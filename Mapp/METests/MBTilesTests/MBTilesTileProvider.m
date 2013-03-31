@@ -42,50 +42,50 @@
 
 //This is an example of an asyncrhonous tile provider, note how
 //access to the database is serialized via a queue
-- (void) requestTileAsync:(METileInfo*) tileinfo
+- (void) requestTileAsync:(METileProviderRequest*) meTileRequest
 {
 	if(self.database == nil)
 	{
-		tileinfo.tileProviderResponse = kTileResponseNotAvailable;
-		[self.meMapViewController tileLoadComplete:tileinfo];
+		meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
+		[self.meMapViewController tileLoadComplete:meTileRequest];
 	}
 	else
 	{
-		__block MBTilesTileProvider* blockSelf = self;
-		[blockSelf retain];
-		
+
+		//Assume isOpaque and we'll have NSData
+		meTileRequest.isOpaque = NO;
+		meTileRequest.tileProviderResponse = kTileResponseRenderNSData;
 		
 		dispatch_async(_workQueue, ^{
 			
-			tileinfo.isOpaque = NO;
-			uint flippedY = pow(2, tileinfo.slippyZ) - tileinfo.slippyY - 1;
-			
-			NSString* sql = [NSString stringWithFormat:@"SELECT tile_data FROM tiles WHERE zoom_level=%d AND tile_column=%d and tile_row=%d",
-							 tileinfo.slippyZ,
-							 tileinfo.slippyX,
-							 flippedY];
-			
-			FMResultSet *s = [blockSelf.database executeQuery:sql];
-			if([s next])
+			for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
 			{
-				tileinfo.nsImageData = [s dataForColumn:@"tile_data"];
-				tileinfo.imageDataType= kImageDataTypePNG;
-				tileinfo.tileProviderResponse = kTileResponseRenderImageData;
-			}
-			else
-			{
-				tileinfo.tileProviderResponse = kTileResponseNotAvailable;
+				uint flippedY = pow(2, tile.slippyZ) - tile.slippyY - 1;
+				
+				NSString* sql = [NSString stringWithFormat:@"SELECT tile_data FROM tiles WHERE zoom_level=%d AND tile_column=%d and tile_row=%d",
+								 tile.slippyZ,
+								 tile.slippyX,
+								 flippedY];
+				
+				FMResultSet *s = [self.database executeQuery:sql];
+				if([s next])
+				{
+					tile.nsImageData = [s dataForColumn:@"tile_data"];
+					tile.imageDataType= kImageDataTypePNG;
+				}
+				else
+				{
+					NSLog(@"Tile not found: X:%d, Y:%d (flippedY:%d) Z:%d",
+						  tile.slippyX, tile.slippyY, flippedY, tile.slippyZ);
+					//meTileRequest.tileProviderResponse = kTileResponseTransparentWithChildren;
+					meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
+					break;
+				}
 			}
 			
-			//Get reference to main queue
-			__block dispatch_queue_t mainQueue;
-			mainQueue=dispatch_get_main_queue();
-			dispatch_retain(mainQueue);
-			
-			dispatch_async(mainQueue, ^{
-				[blockSelf.meMapViewController tileLoadComplete:tileinfo];
-				[blockSelf release];
-				dispatch_release(mainQueue);
+			//Load complete
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self.meMapViewController tileLoadComplete:meTileRequest];
 			});
 		});
 		
@@ -95,35 +95,40 @@
 
 //This is an example of a syncrhonous tile provider, note how
 //access to the database is synchronized
--(void) requestTile:(METileInfo *)tileInfo
+-(void) requestTile:(METileProviderRequest *)meTileRequest
 {
 	if(self.database == nil)
 	{
-		tileInfo.tileProviderResponse = kTileResponseNotAvailable;
+		meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
 	}
 	else
 	{
 		@synchronized(self.database)
 		{
-			tileInfo.isOpaque = NO;
-			uint flippedY = pow(2, tileInfo.slippyZ) - tileInfo.slippyY - 1;
-			
-			NSString* sql = [NSString stringWithFormat:@"SELECT tile_data FROM tiles WHERE zoom_level=%d AND tile_column=%d and tile_row=%d",
-							 tileInfo.slippyZ,
-							 tileInfo.slippyX,
-							 flippedY];
-			
-			FMResultSet *s = [self.database executeQuery:sql];
-			if([s next])
+			meTileRequest.isOpaque = NO;
+			meTileRequest.tileProviderResponse = kTileResponseRenderNSData;
+			for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
 			{
-				tileInfo.nsImageData = [s dataForColumn:@"tile_data"];
-				tileInfo.imageDataType= kImageDataTypePNG;
-				tileInfo.tileProviderResponse = kTileResponseRenderNSData;
+				uint flippedY = pow(2, tile.slippyZ) - tile.slippyY - 1;
+				
+				NSString* sql = [NSString stringWithFormat:@"SELECT tile_data FROM tiles WHERE zoom_level=%d AND tile_column=%d and tile_row=%d",
+								 tile.slippyZ,
+								 tile.slippyX,
+								 flippedY];
+				
+				FMResultSet *s = [self.database executeQuery:sql];
+				if([s next])
+				{
+					tile.nsImageData = [s dataForColumn:@"tile_data"];
+					tile.imageDataType= kImageDataTypePNG;
+				}
+				else
+				{
+					meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
+					return;
+				}
 			}
-			else
-			{
-				tileInfo.tileProviderResponse = kTileResponseNotAvailable;
-			}
+			
 		}
 	}
 }

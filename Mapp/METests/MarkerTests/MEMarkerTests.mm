@@ -1043,7 +1043,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     [self.meMapViewController addMarkerToMap:self.name
 							markerAnnotation:markerAnnotation];
     
-    self.interval = 0.2;
+    self.interval = 1.0;
     
     //Start timer
     [super start];
@@ -1067,7 +1067,8 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     //Update marker location
     [self.meMapViewController updateMarkerLocationInMap:self.name
                                               metaData:@"Bus 1"
-                                            newLocation:[self getRoutePointCoordinate:self.routeIndex]];
+                                            newLocation:[self getRoutePointCoordinate:self.routeIndex]
+									  animationDuration:1.0];
 }
 
 // Implement MEMarkerMapDelegate methods

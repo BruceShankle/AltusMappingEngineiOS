@@ -84,19 +84,19 @@
 	return fileName;
 }
 
-- (void) getTileFromServer:(METileInfo*)tileinfo
+- (void) getTileFromServer:(METileProviderRequest*)meTileRequest
 {	
-	NSString* urlString = [NSString stringWithFormat:@"http://%@?tileId=%@", self.mapDomain, [self cacheFileNameFor:tileinfo.uid]];
+	NSString* urlString = [NSString stringWithFormat:@"http://%@?tileId=%@", self.mapDomain, [self cacheFileNameFor:meTileRequest.uid]];
 	
 	NSURL* url = [NSURL URLWithString:urlString];
 
 	ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
-    NSString* requestId = [self cacheFileNameFor:tileinfo.uid];
+    NSString* requestId = [self cacheFileNameFor:meTileRequest.uid];
 	
     [request setTimeOutSeconds:5];
     [request setNumberOfTimesToRetryOnTimeout:3];
     [request setShouldAttemptPersistentConnection:YES];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:tileinfo forKey:@"tileinfo"]];
+    [request setUserInfo:[NSDictionary dictionaryWithObject:meTileRequest forKey:@"meTileRequest"]];
     [request setDelegate:self];
     
 #ifdef DEBUG_TILE_PROVIDERS
@@ -112,8 +112,8 @@
     // A request may still finish even after being cancelled,
     // so we check here just to be sure
     
-    METileInfo* tileinfo = [request.userInfo objectForKey:@"tileinfo"];
-    NSString* requestId = [self cacheFileNameFor:tileinfo.uid];
+    METileProviderRequest* meTileRequest = [request.userInfo objectForKey:@"meTileRequest"];
+    NSString* requestId = [self cacheFileNameFor:meTileRequest.uid];
     
     [self removeActiveRequestWithId:requestId];
     
@@ -123,9 +123,9 @@
     
     if( request.isCancelled )
     {
-        tileinfo.fileName = @"";
-        tileinfo.isOpaque = NO;
-        [super tileLoadComplete:tileinfo];
+        meTileRequest.fileName = @"";
+        meTileRequest.isOpaque = NO;
+        [super tileLoadComplete:meTileRequest];
         return;
     }
     
@@ -133,12 +133,12 @@
     {
         if(request.responseStatusCode == 404)
         {
-			tileinfo.tileProviderResponse = kTileResponseNotAvailable;
+			meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
         }
         
-        tileinfo.fileName = @"";
-        tileinfo.isOpaque = NO;
-        [super tileLoadComplete:tileinfo];
+        meTileRequest.fileName = @"";
+        meTileRequest.isOpaque = NO;
+        [super tileLoadComplete:meTileRequest];
         return;
     }
     
@@ -150,18 +150,18 @@
     NSString* imageType = [responseHeaders objectForKey:@"Content-Type"];
     if([imageType isEqualToString:@"image/jpeg"])
     {
-        tileinfo.imageDataType = kImageDataTypeJPG;
-        tileinfo.fileName = [self cacheFilePathFor:tileinfo.uid extension:@"jpg"];
-        tileinfo.isOpaque = YES;
+        meTileRequest.imageDataType = kImageDataTypeJPG;
+        meTileRequest.fileName = [self cacheFilePathFor:meTileRequest.uid extension:@"jpg"];
+        meTileRequest.isOpaque = YES;
     }
     if([imageType isEqualToString:@"image/png"])
     {
-        tileinfo.imageDataType = kImageDataTypeJPG;
-        tileinfo.fileName = [self cacheFilePathFor:tileinfo.uid extension:@"png"];
-        tileinfo.isOpaque = NO;
+        meTileRequest.imageDataType = kImageDataTypeJPG;
+        meTileRequest.fileName = [self cacheFilePathFor:meTileRequest.uid extension:@"png"];
+        meTileRequest.isOpaque = NO;
     }
     
-    [responseData writeToFile:tileinfo.fileName atomically:YES];
+    [responseData writeToFile:meTileRequest.fileName atomically:YES];
     [responseData release];
     
     //Get the borders from the response headers
@@ -169,14 +169,14 @@
     NSString* sminY = [responseHeaders objectForKey:@"X-Tile-MinY"];
     NSString* smaxX = [responseHeaders objectForKey:@"X-Tile-MaxX"];
     NSString* smaxY = [responseHeaders objectForKey:@"X-Tile-MaxY"];
-    tileinfo.minX = [sminX doubleValue];
-    tileinfo.minY = [sminY doubleValue];
-    tileinfo.maxX = [smaxX doubleValue];
-    tileinfo.maxY = [smaxY doubleValue];
+    meTileRequest.minX = [sminX doubleValue];
+    meTileRequest.minY = [sminY doubleValue];
+    meTileRequest.maxX = [smaxX doubleValue];
+    meTileRequest.maxY = [smaxY doubleValue];
     
-    [self writeMetaData:tileinfo];
+    [self writeMetaData:meTileRequest];
     
-    [super tileLoadComplete:tileinfo];
+    [super tileLoadComplete:meTileRequest];
 }
 
 - (void) requestFailed:(ASIHTTPRequest *)request
@@ -184,8 +184,8 @@
     // A request may fail either due to a network error or
     // due to being cancelled before it finished loading
     
-    METileInfo* tileinfo = [request.userInfo objectForKey:@"tileinfo"];
-    NSString* requestId = [self cacheFileNameFor:tileinfo.uid];
+    METileProviderRequest* meTileRequest = [request.userInfo objectForKey:@"meTileRequest"];
+    NSString* requestId = [self cacheFileNameFor:meTileRequest.uid];
     
 #ifdef DEBUG_TILE_PROVIDERS
     NSLog(@"Failed: %@", requestId);
@@ -193,84 +193,84 @@
     
     [self removeActiveRequestWithId:requestId];
     
-    tileinfo.fileName = @"";
-    tileinfo.isOpaque = NO;
-    [super tileLoadComplete:tileinfo];
+    meTileRequest.fileName = @"";
+    meTileRequest.isOpaque = NO;
+    [super tileLoadComplete:meTileRequest];
 }
 
-- (void) writeMetaData:(METileInfo*) tileinfo
+- (void) writeMetaData:(METileProviderRequest*) meTileRequest
 {
 	//Write out the meta-data
-	NSString* datFileName = [self datFilePathFor:tileinfo.uid];
+	NSString* datFileName = [self datFilePathFor:meTileRequest.uid];
 	FILE* outfile = fopen([datFileName UTF8String], "wb");
 	double d;
-	d = tileinfo.minX; fwrite(&d, sizeof(double), 1, outfile);
-	d = tileinfo.minY; fwrite(&d, sizeof(double), 1, outfile);
-	d = tileinfo.maxX; fwrite(&d, sizeof(double), 1, outfile);
-	d = tileinfo.maxY; fwrite(&d, sizeof(double), 1, outfile);
+	d = meTileRequest.minX; fwrite(&d, sizeof(double), 1, outfile);
+	d = meTileRequest.minY; fwrite(&d, sizeof(double), 1, outfile);
+	d = meTileRequest.maxX; fwrite(&d, sizeof(double), 1, outfile);
+	d = meTileRequest.maxY; fwrite(&d, sizeof(double), 1, outfile);
 	fclose(outfile);
 }
 
-- (BOOL) readMetaData:(METileInfo*) tileinfo
+- (BOOL) readMetaData:(METileProviderRequest*) meTileRequest
 {
-	NSString* datFileName = [self datFilePathFor:tileinfo.uid];
+	NSString* datFileName = [self datFilePathFor:meTileRequest.uid];
 	FILE* infile = fopen([datFileName UTF8String], "rb");
 	if(infile==NULL)
 		return NO;
 	double d;
-	fread(&d, sizeof(double), 1, infile); tileinfo.minX = d;
-	fread(&d, sizeof(double), 1, infile); tileinfo.minY = d;
-	fread(&d, sizeof(double), 1, infile); tileinfo.maxX = d;
-	fread(&d, sizeof(double), 1, infile); tileinfo.maxY = d;
+	fread(&d, sizeof(double), 1, infile); meTileRequest.minX = d;
+	fread(&d, sizeof(double), 1, infile); meTileRequest.minY = d;
+	fread(&d, sizeof(double), 1, infile); meTileRequest.maxX = d;
+	fread(&d, sizeof(double), 1, infile); meTileRequest.maxY = d;
 	fclose(infile);
 	return YES;
 }
 
-- (BOOL) getTileFromLocalCache:(METileInfo*)tileinfo
+- (BOOL) getTileFromLocalCache:(METileProviderRequest*)meTileRequest
 {
 	NSFileManager* fileManager = [NSFileManager defaultManager];
-	NSString* fileName = [self cacheFilePathFor:tileinfo.uid extension:@"png"];
+	NSString* fileName = [self cacheFilePathFor:meTileRequest.uid extension:@"png"];
     
 	if([fileManager fileExistsAtPath:fileName])
 	{
-		tileinfo.isOpaque = NO;
-		tileinfo.fileName = fileName;
+		meTileRequest.isOpaque = NO;
+		meTileRequest.fileName = fileName;
 	}
 	else
 	{
-		fileName = [self cacheFilePathFor:tileinfo.uid extension:@"jpg"];
+		fileName = [self cacheFilePathFor:meTileRequest.uid extension:@"jpg"];
 		if([fileManager fileExistsAtPath:fileName])
 		{
-			tileinfo.isOpaque = YES;
-			tileinfo.fileName = fileName;
+			meTileRequest.isOpaque = YES;
+			meTileRequest.fileName = fileName;
 		}
 	}
 	
-	if( tileinfo.fileName.length != 0 )
+	if( meTileRequest.fileName.length != 0 )
 	{
 		// We have a tile file, so load meta data for it and return
-		if([self readMetaData:tileinfo])
+		if([self readMetaData:meTileRequest])
 			return YES;
 	}
 	
 	return NO;
 }
 
-- (void) requestTileAsync:(METileInfo*)tileinfo
+- (void) requestTileAsync:(METileProviderRequest*)meTileRequest
 {
-	if([self getTileFromLocalCache:tileinfo])
+	if([self getTileFromLocalCache:meTileRequest])
 	{
-		[super tileLoadComplete:tileinfo];
+		[super tileLoadComplete:meTileRequest];
 		return;
 	}
 	
 	// Otherwise queue up a download request
-	[self getTileFromServer:tileinfo];
+	[self getTileFromServer:meTileRequest];
 }
 
-- (void) cancelTileRequest:(METileInfo*)tileInfo
+- (void) cancelTileRequest:(METileProviderRequest*)meTileRequest
 {
-    NSString* requestId = [self cacheFileNameFor:tileInfo.uid];
+    NSString* requestId = [self cacheFileNameFor:meTileRequest.uid];
     
 #ifdef DEBUG_TILE_PROVIDERS
     NSLog(@"Cancel Requested: %@", requestId);
@@ -279,8 +279,8 @@
     ASIHTTPRequest* request = [self getActiveRequestWithId:requestId];
     
     // Make sure that the engine has actually initiated this request already
-    // (it's possible that the cancelTileRequest:tileinfo gets called before
-    // requestTile:tileinfo or requestTileAsync:tileinfo)
+    // (it's possible that the cancelTileRequest:meTileRequest gets called before
+    // requestTile:meTileRequest or requestTileAsync:meTileRequest)
     
     if( !request )
     {
@@ -295,7 +295,7 @@
     }
     
     // It is possible that the engine will ask us to cancel the same request
-    // multiple times until that request calls tileLoadComplete:tileinfo, so
+    // multiple times until that request calls tileLoadComplete:meTileRequest, so
     // we make sure to issue the cancellation only once
     
     if( !request.isCancelled )

@@ -13,9 +13,9 @@
 ///////////////////////////////////////////////////////////////////
 //Test Invisible available tiles
 @implementation MEInvisibleTileProvider
--(void) requestTile:(METileInfo *)tileInfo
+-(void) requestTile:(METileProviderRequest *)meTileRequest
 {
-	tileInfo.tileProviderResponse = kTileResponseNotAvailable;
+	meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
     return;
 }
 @end;
@@ -70,13 +70,13 @@
     return self;
 }
 
--(void) requestTile:(METileInfo *)tileInfo
+-(void) requestTile:(METileProviderRequest *)meTileRequest
 {
     self.returnTiles = !self.returnTiles;
     
     if(self.returnTiles)
     {
-        [super requestTile:tileInfo];
+        [super requestTile:meTileRequest];
         return;
     }
     
@@ -91,18 +91,18 @@
 //return an image and sometimes indicate a tile is not availble.
 //The engine should not request it again.
 @implementation MEUnavailableTileProvider
--(void) requestTile:(METileInfo *)tileInfo
+-(void) requestTile:(METileProviderRequest *)meTileRequest
 {
     self.returnTiles = !self.returnTiles;
     
     if(self.returnTiles)
     {
-        [super requestTile:tileInfo];
+        [super requestTile:meTileRequest];
         return;
     }
     else
     {
-		tileInfo.tileProviderResponse = kTileResponseNotAvailable;
+		meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
     }
     return;
 }

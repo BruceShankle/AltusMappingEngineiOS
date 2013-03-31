@@ -39,14 +39,17 @@ static int earlyExitCount;
 		self.currentTileSet=0;
 }
 
-- (void) loadTile:(METileInfo*) tileInfo simulateFailure:(BOOL) simulateFailure
+- (void) loadTile:(METileProviderRequest*) meTileRequest
+  simulateFailure:(BOOL) simulateFailure
 {
-	NSLog(@"Level %d", tileInfo.slippyZ);
+	MESphericalMercatorTile* tile = [meTileRequest.sphericalMercatorTiles objectAtIndex:0];
+	
+	NSLog(@"Level %d", tile.slippyZ);
 	
     //Early exit if tile is no longer needed.
-    if(![super isNeededAnimated:tileInfo])
+    if(![super isNeededAnimated:meTileRequest])
     {
-        [super tileLoadComplete:tileInfo];
+        [super tileLoadComplete:meTileRequest];
         @synchronized(self)
         {
             earlyExitCount++;
@@ -61,58 +64,58 @@ static int earlyExitCount;
 	{
 		if(self.failWithUIImage)
 		{
-			tileInfo.uiImage = [UIImage imageNamed:@"pinRed"];
-			tileInfo.tileProviderResponse = kTileResponseRenderUIImage;
+			meTileRequest.uiImage = [UIImage imageNamed:@"pinRed"];
+			meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
 		}
 		else
 		{
-			tileInfo.cachedImageName=@"noData";
-			tileInfo.tileProviderResponse = kTileResponseRenderNamedCachedImage;
+			meTileRequest.cachedImageName=@"noData";
+			meTileRequest.tileProviderResponse = kTileResponseRenderNamedCachedImage;
 		}
-		tileInfo.isDirty = YES;
+		meTileRequest.isDirty = YES;
 	}
 	else
 	{
 		NSString* tileName;
 		tileName = [NSString stringWithFormat:@"tile_%d.%d",
-					tileInfo.frame,
+					meTileRequest.frame,
 					self.currentTileSet];
 		
 		if(self.useNSData)
 		{
 			NSString* imagePath = [[NSBundle mainBundle] pathForResource:tileName ofType:@"png"];
 			NSLog(imagePath);
-			tileInfo.nsImageData = [NSData dataWithContentsOfFile:imagePath];
-			tileInfo.tileProviderResponse = kTileResponseRenderNSData;
-			tileInfo.imageDataType = kImageDataTypePNG;
+			meTileRequest.nsImageData = [NSData dataWithContentsOfFile:imagePath];
+			meTileRequest.tileProviderResponse = kTileResponseRenderNSData;
+			meTileRequest.imageDataType = kImageDataTypePNG;
 		}
 		else
 		{
-			tileInfo.uiImage = [UIImage imageNamed:tileName];
-			tileInfo.tileProviderResponse = kTileResponseRenderUIImage;
+			meTileRequest.uiImage = [UIImage imageNamed:tileName];
+			meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
 		}
-		tileInfo.isDirty = NO;
+		meTileRequest.isDirty = NO;
 	}
     
     //Notify engine tile is loaded
-    [super tileLoadComplete:tileInfo];
+    [super tileLoadComplete:meTileRequest];
 }
 
-- (void) requestTileAsync:(METileInfo *)tileInfo
+- (void) requestTileAsync:(METileProviderRequest *)meTileRequest
 {
-	NSArray* tiles = [NSArray arrayWithObject:tileInfo];
+	NSArray* tiles = [NSArray arrayWithObject:meTileRequest];
 	[self requestTilesAsync:tiles];
 }
 
-- (void) requestTilesAsync:(NSArray *)tileInfos
+- (void) requestTilesAsync:(NSArray *)meTileRequests
 {
-	if(tileInfos.count==0)
+	if(meTileRequests.count==0)
 		return;
 	
-    METileInfo *firstTile = [tileInfos lastObject];
-    //NSLog(@"Queueing %i tiles for level %i", tileInfos.count, firstTile.slippyZ);
+    METileProviderRequest *firstTile = [meTileRequests lastObject];
     
-    __block NSArray *batchOfTiles = [[NSArray arrayWithArray:tileInfos] retain];
+    
+    __block NSArray *batchOfTiles = [[NSArray arrayWithArray:meTileRequests] retain];
     dispatch_async(serialQueue, ^{
 		int currentExitCount = 0;
 		@synchronized(self)
@@ -120,17 +123,14 @@ static int earlyExitCount;
 			currentExitCount = earlyExitCount;
 		}
         [NSThread sleepForTimeInterval:self.sleepTime];
-		int zoomLevel = -1;
-        METileInfo *firstTile = [tileInfos lastObject];
-		zoomLevel = firstTile.slippyZ;
-        
-        for(METileInfo* tileInfo in batchOfTiles)
+		
+        for(METileProviderRequest* meTileRequest in batchOfTiles)
 		{
 			//Randomly fail the download?
 			if(self.failRandomly && (arc4random_uniform(4)==2))
-				[self loadTile:tileInfo simulateFailure:YES];
+				[self loadTile:meTileRequest simulateFailure:YES];
 			else
-				[self loadTile:tileInfo simulateFailure:NO];
+				[self loadTile:meTileRequest simulateFailure:NO];
 		}
 		
 		@synchronized(self)

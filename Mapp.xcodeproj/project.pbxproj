@@ -1749,6 +1749,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COMPRESS_PNG_FILES = NO;
@@ -1756,11 +1758,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mapp/Mapp-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "Mapp/Mapp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MappWorkspace-ezndjppzcgoyqlbedvfbcugvwmrj/Build/Products/Debug-iphoneos\"",
@@ -1778,6 +1782,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COMPRESS_PNG_FILES = NO;
@@ -1786,13 +1792,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mapp/Mapp-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				"GCC_VERSION[arch=armv6]" = com.apple.compilers.llvmgcc42;
-				"GCC_VERSION[arch=armv7]" = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
+				"GCC_VERSION[arch=armv6]" = "";
+				"GCC_VERSION[arch=armv7]" = "";
 				INFOPLIST_FILE = "Mapp/Mapp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MappWorkspace-ezndjppzcgoyqlbedvfbcugvwmrj/Build/Products/Debug-iphoneos\"",
@@ -1833,6 +1841,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COMPRESS_PNG_FILES = NO;
@@ -1840,13 +1850,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Mapp/Mapp-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				"GCC_VERSION[arch=armv6]" = com.apple.compilers.llvmgcc42;
-				"GCC_VERSION[arch=armv7]" = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
+				"GCC_VERSION[arch=armv6]" = "";
+				"GCC_VERSION[arch=armv7]" = "";
 				INFOPLIST_FILE = "Mapp/Mapp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MappWorkspace-ezndjppzcgoyqlbedvfbcugvwmrj/Build/Products/Debug-iphoneos\"",

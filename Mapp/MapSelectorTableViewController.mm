@@ -54,7 +54,7 @@
 {
 	int totalCount;
 	totalCount = self.mapManager.mapCategories.count;
-	//totalCount++; //For streamed maps
+	totalCount++; //For streamed maps
 	return totalCount;
 }
 
@@ -159,7 +159,7 @@
 		vMapInfo.maxX = mapInfo.maxX;
 		vMapInfo.maxY = mapInfo.maxY;
 		vMapInfo.borderPixelCount = mapInfo.borderSize;
-		vMapInfo.isSlippyMap = NO;
+		vMapInfo.isSphericalMercator = NO;
 		tileProvider.isAsynchronous = YES;
 		if(self.mapViewController.loadLowestDetailFirst)
 			vMapInfo.loadingStrategy = kLowestDetailFirst;
