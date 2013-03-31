@@ -50,7 +50,7 @@
 	MEVirtualMapInfo* vMapInfo = [[[MEVirtualMapInfo alloc]init]autorelease];
 	vMapInfo.name = self.name;
 	vMapInfo.meTileProvider = tileProvider;
-	vMapInfo.isSlippyMap = YES;
+	vMapInfo.isSphericalMercator = YES;
 	vMapInfo.zOrder = self.zOrder;
 	vMapInfo.maxLevel = self.maxLevel;
 	vMapInfo.defaultTileName = @"grayGrid";
@@ -121,19 +121,19 @@
 @end
 
 ////////////////////////////////////////////////////////////////////////
-@implementation MEMapBoxLandSatMap
+@implementation MEMapQuestAerialMap
 
 - (id) init
 {
     if(self = [super init])
     {
-        self.name=@"MapBox LandSat";
+        self.name=@"MapQuest Aerial";
     }
     return self;
 }
 
 -(MEInternetTileProvider*) createTileProvider
 {
-	return [[MEMapBoxLandSatTileProvider alloc]init];
+	return [[MEMapQuestAerialTileProvider alloc]init];
 }
 @end
