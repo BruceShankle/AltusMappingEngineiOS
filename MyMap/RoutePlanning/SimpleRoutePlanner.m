@@ -118,37 +118,33 @@ are pre-cached in the mapping engine for fastest possible display.
 	//Remove previous marker layer
 	[self.meMapViewController removeMap:self.markerLayerName clearCache:YES];
 	
-	//Create a marker map object and populate it with relevant settings
-	MEMarkerMapInfo* markerMapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	markerMapInfo.mapType = kMapTypeDynamicMarkerFast;
+	//Create a dynamic marker map object and populate it with relevant settings
+	MEDynamicMarkerMapInfo* markerMapInfo = [[[MEDynamicMarkerMapInfo alloc]init]autorelease];
 	markerMapInfo.zOrder = 101;
 	markerMapInfo.name = self.markerLayerName;
 	markerMapInfo.hitTestingEnabled = YES;
-	markerMapInfo.meMarkerMapDelegate = self;
-	markerMapInfo.markerImageLoadingStrategy = kMarkerImageLoadingPrecached;
+	markerMapInfo.meDynamicMarkerMapDelegate = self;
+	
+	//Add the marker map
+	[self.meMapViewController addMapUsingMapInfo:markerMapInfo];
 	
 	//Create an array of MEFastMarkerInfo objects
 	//Each marker object must be properly configured
-	NSMutableArray* markers = [[[NSMutableArray alloc]init]autorelease];
+	MEDynamicMarker* marker = [[[MEDynamicMarker alloc]init]autorelease];
 	for(int i=0; i<self.routePoints.count; i++)
     {
         NSValue* v = (NSValue*)[self.routePoints objectAtIndex:i];
         CGPoint point = [v CGPointValue];
-		MEFastMarkerInfo* marker = [[MEFastMarkerInfo alloc]init];
+		
 		marker.location = CLLocationCoordinate2DMake(point.y, point.x);
 		marker.cachedImageName = @"route_endpoint";
 		marker.anchorPoint = self.routeMarkerAnchorPoint;
 		marker.nearestNeighborTextureSampling = NO;
-		marker.metaData = [NSString stringWithFormat:@"%d", i];
-		[markers addObject:marker];
-		[marker release];
+		marker.name = [NSString stringWithFormat:@"%d", i];
+		[self.meMapViewController addDynamicMarkerToMap:self.markerLayerName
+										  dynamicMarker:marker];
 	}
 	
-	//Set the array of markers on the map info object
-	markerMapInfo.markers = markers;
-	
-	//Add the marker map
-	[self.meMapViewController addMapUsingMapInfo:markerMapInfo];
 }
 
 - (void) updateRoute
@@ -171,11 +167,13 @@ are pre-cached in the mapping engine for fastest possible display.
 /**
  Called when a marker is tapped on.
  */
-- (void) tapOnMarker:(NSString*)metaData
-		   onMapView:(MEMapView*)mapView
-	   atScreenPoint:(CGPoint)point
+- (void) tapOnDynamicMarker:(NSString *)markerName
+				  onMapView:(MEMapView *)mapView
+					mapName:(NSString *)mapName
+			  atScreenPoint:(CGPoint)screenPoint
+			  atMarkerPoint:(CGPoint)markerPoint
 {
-	NSLog(@"Marker tapped.");
+	NSLog(@"Route marker was tapped on.");
 }
 
 /** Handle the long-press gesture recognizer.*/
