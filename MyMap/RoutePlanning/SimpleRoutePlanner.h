@@ -9,7 +9,7 @@
 #import <ME/ME.h>
 
 /** A simple route planning system.*/
-@interface SimpleRoutePlanner : NSObject <MEVectorMapDelegate, MEMarkerMapDelegate>
+@interface SimpleRoutePlanner : NSObject <MEVectorMapDelegate, MEDynamicMarkerMapDelegate>
 
 //Properties
 @property (retain) MEMapViewController* meMapViewController;
