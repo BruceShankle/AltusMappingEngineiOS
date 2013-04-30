@@ -75,6 +75,7 @@
 
 
 @class MEMarkerInfo;
+
 /**
  The MEMarkerMapDelegate protocol defines a set of methods that you can use to receive marker map related update messages. Implement this protocol when you add marker maps.
  */
@@ -100,6 +101,11 @@
 
 /**
  Called when a marker is tapped on.
+ @param markerInfo Information about the marker that was tapped.
+ @param mapView The MEMapView on which the tap occurred.
+ @param mapName The name of the map.
+ @param screenPoint The point on the screen on where the tap occurred.
+ @param markerPoint The relative point within the marker where the tap occurred. Useful for markers that have button UI on them.
  */
 - (void) tapOnMarker:(MEMarkerInfo*) markerInfo
 		   onMapView:(MEMapView*) mapView
@@ -108,6 +114,30 @@
 	   atMarkerPoint:(CGPoint) markerPoint;
 
 @end
+
+/**
+ The MEDynamicMarkerMapDelegate protocol defines a set of methods that you can use to receive dynamic marker map related update messages. Implement this protocol when you add dynamic marker maps.
+ */
+@protocol MEDynamicMarkerMapDelegate<NSObject>
+
+@optional
+
+/**
+ Called when a dynamic marker is tapped on.
+ @param markerName The unique name of the marker within the dynamic marker layer.
+ @param mapView The MEMapView on which the tap occurred.
+ @param mapName The name of the map.
+ @param screenPoint The point on the screen on where the tap occurred.
+ @param markerPoint The relative point within the marker where the tap occurred. Useful for markers that have button UI on them.
+ */
+- (void) tapOnDynamicMarker:(NSString*) markerName
+				  onMapView:(MEMapView*) mapView
+					mapName:(NSString*) mapName
+			  atScreenPoint:(CGPoint) screenPoint
+			  atMarkerPoint:(CGPoint) markerPoint;
+
+@end
+
 
 /**The MEVectorMapDelegate protocol defines a set of methods that you can use to receive vector map related update messages. Implement this protocol when you add dynamic vector maps and you need to receive vector map related notifications*/
 @protocol MEVectorMapDelegate <NSObject>
