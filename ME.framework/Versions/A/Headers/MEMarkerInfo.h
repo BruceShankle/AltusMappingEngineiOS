@@ -10,7 +10,51 @@ typedef enum {
 	kMarkerRotationTrueNorthAligned
 } MEMarkerRotationType;
 
-/**
+/**Specifies the attributes for a marker to be added to a dynamic marker map.
+ */
+@interface MEDynamicMarker : NSObject
+
+/**Contains meta data provided when the marker was generated.*/
+@property (retain) NSString* name;
+
+/**Weight of the marker. If a height color bar is applied for the dynamic marker map, this weight is treated as the parameter (altitude) for computing the color.*/
+@property (assign) double weight;
+
+/**Rotation of the marker in degrees.*/
+@property (assign) double rotation;
+
+/**Specifies how the engine will render rotation of the marker. The default is kMarkerRotationScreenEdgeAligned.*/
+@property (assign) MEMarkerRotationType rotationType;
+
+/**Geographic location of the marker.*/
+@property (assign) CLLocationCoordinate2D location;
+
+/**The name of a previously cached image to use for the marker. If uiImage is nil, the property is checked.*/
+@property (retain) NSString* cachedImageName;
+
+/**The image point that acts as the center of rotation and geographic anchor.*/
+@property (assign) CGPoint anchorPoint;
+
+/**Amount to offset marker from projected location on screen (in points) from anchorPoint.*/
+@property (assign) CGPoint offset;
+
+/**Dimensions of the hit-test box for the marker in points. When set to anything other than width=0, height=0 (the default), this property overrides the normal hitTesting logic for the marker which is based on the anchor point and size of the marker image. This property should only be set when the marker image size is small enough that targeting it with a finger-tap would be difficult due to it being too small. When set, this size is automatically scaled to physical coordinates to take into account retina displays. The hit testing logic considers a box of this size around the anchor point of the marker.*/
+@property (assign) CGSize hitTestSize;
+
+/**When a marker texture is drawn, the default sampling of it's texture is bilinear. For some markers, for example those with text that you wish to be as crisp as possible on-screen, this can appear less readable when a marker image pixel falls between screen pixels. Setting this to YES will force nearest-neighbor sampling of the texture. The down-side, is that when the marker is being animated or panned around the map it's image may appear to 'snap' to pixel alignment.*/
+@property (assign) BOOL nearestNeighborTextureSampling;
+
+/**UIImage that represents the marker. You should set this property if you do not set a cachedImageName.*/
+@property (retain) UIImage* uiImage;
+
+/**Whether or not to convert the provided uiImage to RGB565 or RGBA4444 2-byte format. This cuts texture memory size in half compared to 4-byte per pixel formats.*/
+@property (assign) BOOL compressTexture;
+
+@end
+
+
+/**Specifies the attributes for a marker to be added to marker map type kMapTypeDynamicMarkerFast.
+  @warning This object has been deprecated and will be removed in a future release. Use MEDynamicMarkerInfo instead.
  */
 @interface MEFastMarkerInfo : NSObject
 
@@ -63,7 +107,7 @@ typedef enum {
 /**Dimensions of the hit-test box for the marker in points. When set to anything other than width=0, height=0 (the default), this property overrides the normal hitTesting logic for the marker which is based on the anchor point and size of the marker image. This property should only be set when the marker image size is small enough that targeting it with a finger-tap would be difficult due to it being too small. When set, this size is automatically scaled to physical coordinates to take into account retina displays. The hit testing logic considers a box of this size around the anchor point of the marker.*/
 @property (nonatomic, assign) CGSize hitTestSize;
 
-/**Defauls to YES, but may be set to NO by the marker delegate if this marker is not to be drawn.*/
+/**Defaults to YES, but may be set to NO by the marker delegate if this marker is not to be drawn.*/
 @property (nonatomic, assign) BOOL isVisible;
 
 /**Create an MEMarkerInfo object.*/
