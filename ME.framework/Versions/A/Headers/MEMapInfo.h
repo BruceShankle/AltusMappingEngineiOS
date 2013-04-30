@@ -173,6 +173,28 @@ typedef enum {
 
 @end
 
+////////////////////////////////////////////////////////////////////////
+/**Describes a dynamic marker map. Use dynamic marker maps when you need to frequently update a marker image, rotation, and/or position.
+ */
+@interface MEDynamicMarkerMapInfo : MEMapInfo
+
+/**For marker maps, the marker map delegate that will provide marker images.*/
+@property (retain) id<MEDynamicMarkerMapDelegate> meDynamicMarkerMapDelegate;
+
+/**Controls whether the engine performs touch-point hit testing against the markers. Defaults to YES.*/
+@property (assign) BOOL hitTestingEnabled;
+
+/**Specifies whether markers fade in.*/
+@property (assign) BOOL fadeEnabled;
+
+/**Amount of time in seconds that markers fade in.*/
+@property (assign) double fadeInTime;
+
+/**Amount of time in seconds that markers fade out.*/
+@property (assign) double fadeOutTime;
+
+@end
+
 //////////////////////////////////////////////////
 /**Describes a marker map.*/
 @interface MEMarkerMapInfo : MEMapInfo

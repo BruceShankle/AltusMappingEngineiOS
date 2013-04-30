@@ -206,12 +206,113 @@
 					frameNumber:(unsigned int) frameNumber;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 //Marker map management
 
-/** For dynamic and memory marker maps, adds a new marker to the marker map.
+//Dynamic markers
+/**
+ Add a dynamic marker to a dynamic marker map.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param dynamicMarker Object that fully describes the dynamic marker. Either uiImage or cachedImageName MUST be set.
+ */
+- (void) addDynamicMarkerToMap:(NSString*) mapName
+				 dynamicMarker:(MEDynamicMarker*) dynamicMarker;
+
+
+/**
+ Remove a dynamic marker from a dynamic marker map.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param dynamicMarkerName Unique name of dynamic marker to remove.
+ */
+- (void) removeDynamicMarkerFromMap:(NSString*) mapName
+						 markerName:(NSString*) markerName;
+
+
+/**
+ Update a dynamic marker image with a UIImage.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param markerName Unique name of the marker to be udpated.
+ @param uiImage A UIImage that will replace the marker's current image.
+ @param anchorPoint The image point that acts as the center of rotation and geographic anchor.
+ @param offset Amount to offset marker from projected location on screen (in points) from anchorPoint.
+ @param compressTexure If YES, compresses final texture to 2-byte format.
+ */
+- (void) updateDynamicMarkerImage:(NSString*) mapName
+					   markerName:(NSString*) markerName
+						  uiImage:(UIImage*) uiImage
+					  anchorPoint:(CGPoint) anchorPoint
+						   offset:(CGPoint) offset
+				  compressTexture:(BOOL) compressTexture;
+
+
+/**
+ Update a dynamic marker image to be a named cached image that has been cached with addCachedMarkerImage.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param markerNam Unique name of the marker to be udpated.
+ @param cachedImageName Name of a cached marker image.
+ @param anchorPoint The image point that acts as the center of rotation and geographic anchor.
+ @param offset Amount to offset marker from projected location on screen (in points) from anchorPoint.
+
+ */
+- (void) updateDynamicMarkerImage:(NSString *) mapName
+					   markerName:(NSString *) markerName
+				  cachedImageName:(NSString*) cachedImageName
+					  anchorPoint:(CGPoint) anchorPoint
+						   offset:(CGPoint) offset;
+
+/**
+ Update a dynamic marker image.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param markerNam Unique name of the marker to be udpated.
+ @param location New location for the marker.
+ @param animationDuration Amount of time to animate marker to new location.
+ */
+- (void) updateDynamicMarkerLocation:(NSString*) mapName
+						  markerName:(NSString*) markerName
+							location:(CLLocationCoordinate2D) location
+				   animationDuration:(double) animationDuration;
+
+/**
+ Update a dynamic marker rotation.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param markerNam Unique name of the marker to be udpated.
+ @param rotation Heading in degrees.
+ @param animationDuration Length of time in seconds to animate the rotation.
+ */
+- (void) updateDynamicMarkerRotation:(NSString*) mapName
+						  markerName:(NSString*) markerName
+							rotation:(double) rotation
+				   animationDuration:(double) animationDuration;
+
+
+/** 
+ Sets a height color bar for the specified dynamic marker map to be used for all markers in the map
+ @param mapName Unique name of the dynamic marker map layer.
+ @param colorBar Color bar used by all markers in the map. 
+ */
+- (void) setDynamicMarkerMapColorBar:(NSString*)mapName
+                     colorBar:(MEHeightColorBar*) colorBar;
+
+/**Hides a dynamic marker
+ @param mapName Unique name of dynamic marker map layer.
+ @param markerName Unique name of marker to hide.
+ */
+- (void) hideDynamicMarker:(NSString*) mapName
+				markerName:(NSString*) markerName;
+
+/**Un-hides a dynamic marker
+ @param mapName Unique name of dynamic marker map layer.
+ @param markerName Unique name of marker to hide.
+ */
+- (void) showDynamicMarker:(NSString*) mapName
+				markerName:(NSString*) markerName;
+
+
+/**
+ For dynamic and memory marker maps, adds a new marker to the marker map.
  @param mapName Unique name of the marker map layer.
  @param markerAnnotation Marker annotation that describes the marker.
+ @warning This API has been deprecated and will be removed in a future release.
  */
 - (void) addMarkerToMap:(NSString*)mapName
 	   markerAnnotation:(MEMarkerAnnotation*)markerAnnotation;
@@ -219,6 +320,7 @@
 /** For dynamic and memory marker maps, removes a marker from the map.
  @param mapName Unique name of the marker map layer.
  @param markerMetaData The meta data supplied with the marker when it was added.
+ @warning This API has been deprecated and will be removed in a future release.
  */
 - (void) removeMarkerFromMap:(NSString*) mapName
 			  markerMetaData:(NSString*) markerMetaData;
@@ -236,6 +338,7 @@
  @param mapName Unique name of the marker map.
  @param metaData Unique ID of the marker to update.
  @param newLocation New geographic location of the marker.
+ @warning This API has been deprecated and will be removed in a future release.
  */
 - (void) updateMarkerLocationInMap:(NSString*) mapName
                          metaData:(NSString*) metaData
@@ -246,24 +349,23 @@
  @param metaData Unique ID of the marker to update.
  @param newLocation New geographic location of the marker.
  @param animationDuration The animation duration in seconds.
+ @warning This API has been deprecated and will be removed in a future release.
  */
 - (void) updateMarkerLocationInMap:(NSString*) mapName
 						  metaData:(NSString*) metaData
                        newLocation:(CLLocationCoordinate2D) newLocation
 				 animationDuration:(double) animationDuration;
 
-/** For dynamic marker maps, update multiple attributes of a marker.*/
+/** For dynamic marker maps, update multiple attributes of a marker.
+ @warning This API has been deprecated and will be removed in a future release.*/
 - (void) updateMarkerInMap:(NSString*) mapName
 				  metaData:(NSString*) metaData
 			   newLocation:(CLLocationCoordinate2D) newLocation
 			   newRotation:(double) newRotation
 		 animationDuration:(double) animationDuration;
 
-/** For marker maps, tell the mapping engine that you want the marker image to be re-requested.*/
-- (void) refreshMarkerInMap:(NSString*) mapName
-				   metaData:(NSString*) metaData;
-
 /** For dynamic marker maps, updates the rotation of the marker.
+ @warning This API has been deprecated and will be removed in a future release.
  */
 - (void) updateMarkerRotationInMap:(NSString*) mapName
 						  metaData:(NSString*) metaData
@@ -271,6 +373,7 @@
 
 /**
  For dynamic marker maps, updates the rotation of the marker.
+ @warning This API has been deprecated and will be removed in a future release.
  */
 - (void) updateMarkerRotationInMap:(NSString*) mapName
 						  metaData:(NSString*) metaData
@@ -279,6 +382,7 @@
 
 /**
  Tells the rendering engine to stop drawing a marker. The marker will fade out. Presently, this is a one-way operation.
+ @warning This API has been deprecated and will be removed in a future release.
  */
 - (void) hideMarkerInMap:(NSString*) mapName
 				metaData:(NSString*) metaData;
@@ -460,7 +564,7 @@
 			   withName:(NSString*) imageName
 		compressTexture:(BOOL) compressTexture;
 
-/** Adds an image that will stay cached until it is removed using removeCachedImage. The intent is for the image to be used as a marker image. Cached marker images are identified by their name and may be specified as the image to be used for a marker when a marker is added.*/
+/** Adds a marker image that will stay cached until it is removed using removeCachedImage. The intent is for the image to be used as a marker image. Cached marker images are identified by their name and may be specified as the image to be used for a marker when a marker is added. To changed the cached image, call the function again with the same image name, but a different image.*/
 - (void) addCachedMarkerImage:(UIImage*) uiImage
 					 withName:(NSString*) imageName
 			  compressTexture:(BOOL) compressTexture
