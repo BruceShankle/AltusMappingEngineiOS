@@ -43,41 +43,37 @@
 }
 
 //Handle single taps on the map view
-- (void) mapView:(MEMapView *)mapView singleTapAt:(CGPoint) screenPoint withLocationCoordinate:(CLLocationCoordinate2D) locationCoordinate
+- (void) mapView:(MEMapView *)mapView
+	 singleTapAt:(CGPoint) screenPoint
+withLocationCoordinate:(CLLocationCoordinate2D) locationCoordinate
 {
 	NSLog(@"User tapped at lat:%f lon:%f", locationCoordinate.latitude, locationCoordinate.longitude);
 	
-	//Add a marker where the user tapped
+	//Increment marker id counter
 	self.markerCounter++;
-	MEMarkerAnnotation* marker = [[[MEMarkerAnnotation alloc]init]autorelease];
-	marker.coordinate = locationCoordinate;
-	marker.metaData = [NSString stringWithFormat:@"%d", self.markerCounter];
 	
-	[self.meMapViewController addMarkerToMap:@"Red Pin Markers"
-							markerAnnotation:marker];
+	//Create a dynamic marker
+	MEDynamicMarker* marker = [[[MEDynamicMarker alloc]init]autorelease];
+	marker.uiImage = [UIImage imageNamed:@"pinRed"];
+	marker.anchorPoint = CGPointMake(7,35);
+	marker.location = locationCoordinate;
+	marker.name = [NSString stringWithFormat:@"%d", self.markerCounter];
+	
+	//Add it to the map.
+	[self.meMapViewController addDynamicMarkerToMap:@"Red Pin Markers"
+									  dynamicMarker:marker];
+	
 }
 
 - (void) addMarkerLayer
 {
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name=@"Red Pin Markers";
-	mapInfo.mapType = kMapTypeDynamicMarker;
-	mapInfo.meMapViewController = self.meMapViewController;
-	mapInfo.meMarkerMapDelegate = self;
-	mapInfo.zOrder = 5;
-	mapInfo.markerImageLoadingStrategy = kMarkerImageLoadingSynchronous;
-	
+	MEDynamicMarkerMapInfo* mapInfo = [[[MEDynamicMarkerMapInfo alloc]init]autorelease];
+	mapInfo.name = @"Red Pin Markers";
+	mapInfo.zOrder = 5;	
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 }
 
-- (void) mapView:(MEMapView*)mapView
-updateMarkerInfo:(MEMarkerInfo*) markerInfo
-		 mapName:(NSString*) mapName
-{
-	//Set marker image and anchor point
-	markerInfo.uiImage = [UIImage imageNamed:@"pinRed"];
-	markerInfo.anchorPoint = CGPointMake(7,35);
-}
+
 
 - (void) turnOnBaseMap
 {
