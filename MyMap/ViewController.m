@@ -297,11 +297,6 @@
 	if(enabled)
 	{
 		[self.routePlanner enable];
-		[self.routePlanner clearRoute];
-		
-		//Add two points
-		[self.routePlanner addWayPoint:RDU_COORD];
-		[self.routePlanner addWayPoint:SFO_COORD];
 	}
 	else
 		[self.routePlanner disable];
