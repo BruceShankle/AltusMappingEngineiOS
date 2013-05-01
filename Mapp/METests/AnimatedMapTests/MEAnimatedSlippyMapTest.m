@@ -64,13 +64,16 @@ static int earlyExitCount;
 	{
 		if(self.failWithUIImage)
 		{
-			meTileRequest.uiImage = [UIImage imageNamed:@"pinRed"];
 			meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
+			for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
+			{
+				tile.uiImage = [UIImage imageNamed:@"pinRed"];
+			}
 		}
 		else
 		{
-			meTileRequest.cachedImageName=@"noData";
 			meTileRequest.tileProviderResponse = kTileResponseRenderNamedCachedImage;
+			meTileRequest.cachedImageName=@"noData";
 		}
 		meTileRequest.isDirty = YES;
 	}
@@ -81,18 +84,38 @@ static int earlyExitCount;
 					meTileRequest.frame,
 					self.currentTileSet];
 		
+		NSString* imagePath = [[NSBundle mainBundle] pathForResource:tileName ofType:@"png"];
+		NSData* imageData = [NSData dataWithContentsOfFile:imagePath];
+		if(imageData==nil)
+		{
+			NSLog(@"Can't load %@. Check bundle.", imagePath);
+			exit(0);
+		}
 		if(self.useNSData)
 		{
-			NSString* imagePath = [[NSBundle mainBundle] pathForResource:tileName ofType:@"png"];
-			NSLog(imagePath);
-			meTileRequest.nsImageData = [NSData dataWithContentsOfFile:imagePath];
+			NSLog(@"%@",imagePath);
 			meTileRequest.tileProviderResponse = kTileResponseRenderNSData;
-			meTileRequest.imageDataType = kImageDataTypePNG;
+			for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
+			{
+				tile.nsImageData = imageData;
+				tile.imageDataType = kImageDataTypePNG;
+			}
+
 		}
 		else
 		{
-			meTileRequest.uiImage = [UIImage imageNamed:tileName];
 			meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
+			UIImage* uiImage = [UIImage imageWithData:imageData];
+			if(uiImage==nil)
+			{
+				NSLog(@"Can't load image.");
+				exit(0);
+			}
+			for(MESphericalMercatorTile* tile in meTileRequest.sphericalMercatorTiles)
+			{
+				tile.uiImage = uiImage;
+			}
+			
 		}
 		meTileRequest.isDirty = NO;
 	}
@@ -112,10 +135,9 @@ static int earlyExitCount;
 	if(meTileRequests.count==0)
 		return;
 	
-    METileProviderRequest *firstTile = [meTileRequests lastObject];
-    
-    
     __block NSArray *batchOfTiles = [[NSArray arrayWithArray:meTileRequests] retain];
+	
+
     dispatch_async(serialQueue, ^{
 		int currentExitCount = 0;
 		@synchronized(self)
@@ -147,7 +169,6 @@ static int earlyExitCount;
 
 @end
 
-
 /////////////////////////////////////////////////////
 @implementation MEAnimatedMapTest
 - (id) init
@@ -172,7 +193,7 @@ static int earlyExitCount;
 	vmapInfo.maxLevel = 18;
     vmapInfo.loadingStrategy = kHighestDetailOnly;
 	vmapInfo.defaultTileName = @"grayGrid";
-	vmapInfo.compressTextures = YES;
+	vmapInfo.compressTextures = NO;
 	vmapInfo.zOrder = 5;
 	
 	[self.meMapViewController addMapUsingMapInfo:vmapInfo];
@@ -181,6 +202,17 @@ static int earlyExitCount;
 
 - (void) addAnimatedMap
 {
+	
+	//Add a non-spherical mercator grid below.
+	MEVirtualMapInfo* gridMapInfo = [[[MEVirtualMapInfo alloc]init]autorelease];
+	gridMapInfo.name = @"basegrid";
+	gridMapInfo.isSphericalMercator = NO;
+	gridMapInfo.zOrder = 2;
+	gridMapInfo.maxLevel = 12;
+	gridMapInfo.defaultTileName = @"grayGrid";
+	gridMapInfo.meTileProvider = [[[MEBaseMapTileProvider alloc]initWithCachedImageName:@"grayGrid"]autorelease];
+	[self.meMapViewController addMapUsingMapInfo:gridMapInfo];
+	
 	//Add 5 frame virtual map
 	MEAnimatedVirtualMapInfo* mapInfo = [[[MEAnimatedVirtualMapInfo alloc]init]autorelease];
 	
@@ -193,7 +225,7 @@ static int earlyExitCount;
 	mapInfo.maxLevel = 18;
     mapInfo.loadingStrategy = kHighestDetailOnly;
 	mapInfo.defaultTileName = @"grayGrid";
-	mapInfo.compressTextures = YES;
+	mapInfo.compressTextures = NO;
 	mapInfo.zOrder = 5;
 	mapInfo.automaticTileRequestMode = self.automaticTileRequestMode;
 	
@@ -208,6 +240,7 @@ static int earlyExitCount;
 	{
 		self.tileProvider = [[[MEStaticAsyncTileProviderBatch alloc]init]autorelease];
 		self.tileProvider.meMapViewController = self.meMapViewController;
+		self.tileProvider.useNSData = NO;
 	}
 	
 	//Create map
@@ -368,6 +401,7 @@ static int earlyExitCount;
 	
 	[super stop];
 	[self.meMapViewController removeMap:self.name clearCache:NO];
+	[self.meMapViewController removeMap:@"basegrid" clearCache:NO];
 	
 	self.isRunning = NO;
 }
@@ -780,7 +814,176 @@ static int earlyExitCount;
 
 @end
 
+///////////////////////////////////////////////////////////
+@implementation MEAnimatedStreetMapsTileProvider
 
+- (id) init
+{
+	if(self=[super init])
+	{
+		self.internetTileProviders = [[[NSMutableArray alloc]init]autorelease];
+		[self.internetTileProviders addObject:[[[MEMapBoxLandCoverTileProvider alloc]init]autorelease]];
+		[self.internetTileProviders addObject:[[[MEMapQuestTileProvider alloc]init]autorelease]];
+		[self.internetTileProviders addObject:[[[MEOpenStreetMapsTileProvider alloc]init]autorelease]];
+		for(MEInternetTileProvider* tileProvider in self.internetTileProviders)
+		{
+			tileProvider.isAsynchronous = YES;
+			tileProvider.isServingAnimatedMap = YES;
+		}
+		self.isAsynchronous = YES;
+		
+	}
+	return self;
+}
+
+- (void) setMeMapViewController:(MEMapViewController *)meMapViewController
+{
+	for(METileProvider* tileProvider in self.internetTileProviders)
+	{
+		tileProvider.meMapViewController = meMapViewController;
+	}
+	[super setMeMapViewController:meMapViewController];
+}
+
+- (void) requestTiles:(NSArray *)meTileRequests
+{
+	for(METileProviderRequest* tileRequest in meTileRequests)
+	{
+		METileProvider* tileProvider = [self.internetTileProviders objectAtIndex:tileRequest.frame];
+		[tileProvider requestTile: tileRequest];
+	}
+}
+
+- (void) requestTilesAsync:(NSArray *)meTileRequests
+{
+	for(METileProviderRequest* tileRequest in meTileRequests)
+	{
+		METileProvider* tileProvider = [self.internetTileProviders objectAtIndex:tileRequest.frame];
+		[tileProvider requestTileAsync: tileRequest];
+	}
+}
+
+- (void) dealloc
+{
+	[super dealloc];
+	[_internetTileProviders release];
+}
+
+@end
+
+@implementation MEAnimatedStreetMaps
+
+-(id) init
+{
+	if(self=[super init])
+	{
+		self.name = @"Animated Street Maps";
+	}
+	return self;
+}
+
+- (void) addMaps
+{
+	//Add a non-spherical mercator grid below.
+	MEVirtualMapInfo* gridMapInfo = [[[MEVirtualMapInfo alloc]init]autorelease];
+	gridMapInfo.name = @"basegrid";
+	gridMapInfo.isSphericalMercator = NO;
+	gridMapInfo.zOrder = 2;
+	gridMapInfo.maxLevel = 12;
+	gridMapInfo.defaultTileName = @"grayGrid";
+	gridMapInfo.meTileProvider = [[[MEBaseMapTileProvider alloc]initWithCachedImageName:@"grayGrid"]autorelease];
+	[self.meMapViewController addMapUsingMapInfo:gridMapInfo];
+	
+	//Create tile provider.
+	MEAnimatedStreetMapsTileProvider* tileProvider = [[[MEAnimatedStreetMapsTileProvider alloc]init]autorelease];
+	tileProvider.meMapViewController = self.meMapViewController;
+	
+	MEAnimatedVirtualMapInfo* mapInfo = [[[MEAnimatedVirtualMapInfo alloc]init]autorelease];
+	
+	mapInfo.name = self.name;
+	mapInfo.meTileProvider = tileProvider;
+	mapInfo.zOrder = 5;
+	mapInfo.frameCount = 3;
+	mapInfo.frameRate = 1.0;
+	mapInfo.repeatDelay = 1.0;
+	mapInfo.maxLevel = 18;
+    mapInfo.loadingStrategy = kHighestDetailOnly;
+	mapInfo.defaultTileName = @"grayGrid";
+	mapInfo.compressTextures = NO;
+	mapInfo.zOrder = 5;
+	mapInfo.automaticTileRequestMode = YES;
+	
+	[self.meMapViewController addMapUsingMapInfo:mapInfo];
+}
+
+- (void) removeMaps
+{
+	[self.meMapViewController removeMap:@"basegrid" clearCache:NO];
+	[self.meMapViewController removeMap:self.name clearCache:NO];
+}
+
+- (void) start
+{
+	if(self.isRunning)
+		return;
+	self.isPlaying = NO;
+	[self addMaps];
+	[self pauseMap];
+	//Add play pause button
+	self.btnPlayPause = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[self.btnPlayPause addTarget:self
+						  action:@selector(togglePlay)
+				forControlEvents:UIControlEventTouchDown];
+	[self.btnPlayPause setTitle:@"Play" forState:UIControlStateNormal];
+	self.btnPlayPause.frame = CGRectMake(10.0, 250.0, 160.0, 40.0);
+	[self.meMapViewController.meMapView addSubview:self.btnPlayPause];
+	[self.meMapViewController.meMapView bringSubviewToFront:self.btnPlayPause];
+	
+	self.isRunning = YES;
+}
+
+- (void) pauseMap
+{
+	[self.meMapViewController pauseAnimatedVirtualMap:self.name];
+	[self.meMapViewController setAnimatedVirtualMapFrame:self.name frame:0];	
+}
+
+- (void) unpauseMap
+{
+	[self.meMapViewController playAnimatedVirtualMap:self.name];
+}
+
+- (void) togglePlay
+{
+	NSLog(@"Toggle play");
+	self.isPlaying = !self.isPlaying;
+	
+	if(self.isPlaying)
+	{
+		[self.btnPlayPause setTitle:@"Pause" forState:UIControlStateNormal];
+		[self unpauseMap];
+	}
+	else
+	{
+		[self.btnPlayPause setTitle:@"Play" forState:UIControlStateNormal];
+		[self pauseMap];
+	}
+}
+
+- (void) stop
+{
+	if(!self.isRunning)
+		return;
+	[self removeMaps];
+	
+	//Remove button
+	[self.btnPlayPause removeFromSuperview];
+	self.btnPlayPause = nil;
+	
+	self.isRunning = NO;
+}
+
+@end
 
 
 

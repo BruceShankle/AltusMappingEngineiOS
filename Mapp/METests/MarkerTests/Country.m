@@ -29,7 +29,6 @@
     
     if(components.count<4)
     {
-        NSLog(data);
         NSLog(@"Country data is not in correct format. Exiting.");
         exit(-1);
     }

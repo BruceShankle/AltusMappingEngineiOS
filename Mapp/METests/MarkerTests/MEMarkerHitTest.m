@@ -68,7 +68,6 @@
 
 -(void) mapView:(MEMapView *)mapView updateMarkerInfo:(MEMarkerInfo *)markerInfo mapName:(NSString *)mapName
 {
-	NSLog(mapName);
 	markerInfo.uiImage = [UIImage imageNamed:@"quotebubble"];
 	markerInfo.anchorPoint = CGPointMake(43,279);
 }

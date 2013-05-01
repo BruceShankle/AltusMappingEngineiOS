@@ -10,6 +10,7 @@
 		32062A5316CDCE7700E6D862 /* refreshregionstress.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32062A5216CDCE7700E6D862 /* refreshregionstress.txt */; };
 		32062A5616CDCEBC00E6D862 /* BoundingBoxReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32062A5516CDCEBC00E6D862 /* BoundingBoxReader.mm */; };
 		320A50BB15C00C6600D1063F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A50BA15C00C6600D1063F /* MapKit.framework */; };
+		320CC783172995AC00199195 /* TowersWithHeightColorBarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 320CC782172995AC00199195 /* TowersWithHeightColorBarTest.m */; };
 		3210ACED15DEF31B000E5D7A /* MEMarkerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3210ACEC15DEF31B000E5D7A /* MEMarkerTests.mm */; };
 		3210ACF215DEF993000E5D7A /* ba3_annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 3210ACF115DEF993000E5D7A /* ba3_annotation.png */; };
 		3210AD3115E2B0F8000E5D7A /* MEInMemoryVectorPolygonsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210AD2F15E2B0F8000E5D7A /* MEInMemoryVectorPolygonsTest.m */; };
@@ -38,9 +39,9 @@
 		32212F601464E6720080380D /* Help_Help.png in Resources */ = {isa = PBXBuildFile; fileRef = 32212F5B1464E6720080380D /* Help_Help.png */; };
 		32212F611464E6720080380D /* Help_Maps.png in Resources */ = {isa = PBXBuildFile; fileRef = 32212F5C1464E6720080380D /* Help_Maps.png */; };
 		32212F621464E6720080380D /* Help_Tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = 32212F5D1464E6720080380D /* Help_Tracking.png */; };
-		3222877216EC4EE4009ED5F2 /* AirTrafficTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3222877116EC4EE4009ED5F2 /* AirTrafficTest.m */; };
 		3222877716EC6BDE009ED5F2 /* blueplanesmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 3222877516EC6BDE009ED5F2 /* blueplanesmall.png */; };
 		3222877816EC6BDE009ED5F2 /* blueplanesmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3222877616EC6BDE009ED5F2 /* blueplanesmall@2x.png */; };
+		3224C08F17286FE5004099F4 /* AirTrafficScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224C08E17286FE5004099F4 /* AirTrafficScenario.m */; };
 		32258A40164C230900B5460E /* CameraTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32258A3F164C230900B5460E /* CameraTests.m */; };
 		3228C67C15DD27A7005159C8 /* METest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228C67B15DD27A7005159C8 /* METest.m */; };
 		3228C68515DD3AC4005159C8 /* METestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228C68415DD3AC3005159C8 /* METestManager.m */; };
@@ -67,6 +68,16 @@
 		32428054163CEAF000D14EC2 /* tgr48171lkA.dbf in Resources */ = {isa = PBXBuildFile; fileRef = 32428051163CEAF000D14EC2 /* tgr48171lkA.dbf */; };
 		32428055163CEAF000D14EC2 /* tgr48171lkA.shp in Resources */ = {isa = PBXBuildFile; fileRef = 32428052163CEAF000D14EC2 /* tgr48171lkA.shp */; };
 		32428056163CEAF000D14EC2 /* tgr48171lkA.shx in Resources */ = {isa = PBXBuildFile; fileRef = 32428053163CEAF000D14EC2 /* tgr48171lkA.shx */; };
+		324298AA1729490600B30CD4 /* orangeplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298A41729490600B30CD4 /* orangeplane.png */; };
+		324298AB1729490600B30CD4 /* orangeplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298A51729490600B30CD4 /* orangeplane@2x.png */; };
+		324298AC1729490600B30CD4 /* redplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298A61729490600B30CD4 /* redplane.png */; };
+		324298AD1729490600B30CD4 /* redplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298A71729490600B30CD4 /* redplane@2x.png */; };
+		324298AE1729490600B30CD4 /* yellowplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298A81729490600B30CD4 /* yellowplane.png */; };
+		324298AF1729490600B30CD4 /* yellowplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298A91729490600B30CD4 /* yellowplane@2x.png */; };
+		324298B217295C2D00B30CD4 /* purpleplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298B017295C2D00B30CD4 /* purpleplane.png */; };
+		324298B317295C2D00B30CD4 /* purpleplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298B117295C2D00B30CD4 /* purpleplane@2x.png */; };
+		324298B61729619500B30CD4 /* whiteplaneredoutline.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298B41729619500B30CD4 /* whiteplaneredoutline.png */; };
+		324298B71729619500B30CD4 /* whiteplaneredoutline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324298B51729619500B30CD4 /* whiteplaneredoutline@2x.png */; };
 		3243DC761671E65500453750 /* METoolJTowers.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3243DC751671E65500453750 /* METoolJTowers.sqlite */; };
 		324517AA1666A28200B378D4 /* grayGrid.png in Resources */ = {isa = PBXBuildFile; fileRef = 324517A91666A28200B378D4 /* grayGrid.png */; };
 		32454057167881040010E1C0 /* noData.png in Resources */ = {isa = PBXBuildFile; fileRef = 32454055167881040010E1C0 /* noData.png */; };
@@ -197,7 +208,9 @@
 		32B1918216439B5B008A714A /* blueCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B1917D16439B5B008A714A /* blueCircle.png */; };
 		32B191881644AB5B008A714A /* weatherfromserver.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32B191871644AB5B008A714A /* weatherfromserver.sqlite */; };
 		32B2D90F15D5852C007EAE4B /* libGEOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B2D90E15D5852C007EAE4B /* libGEOS.a */; };
+		32B3AA90172E35DF00CE9C0C /* AirTrafficTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3222877116EC4EE4009ED5F2 /* AirTrafficTest.m */; };
 		32B5532215B0053F004E78CA /* RemoteMapCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B5532115B0053E004E78CA /* RemoteMapCatalog.m */; };
+		32B75A2E17271672006CDFC6 /* BlinkingMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B75A2D17271672006CDFC6 /* BlinkingMarkerTests.m */; };
 		32B8E1C11465887900AF7908 /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B8E1C01465887900AF7908 /* plane.png */; };
 		32BB69DF1623AB80000D778D /* MBTilesTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BB69DB1623AB80000D778D /* MBTilesTileProvider.m */; };
 		32BB69E01623AB80000D778D /* MBTIlesTileProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BB69DD1623AB80000D778D /* MBTIlesTileProviderTest.m */; };
@@ -224,7 +237,6 @@
 		32CC25491666646F00C23D57 /* redarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC25471666646E00C23D57 /* redarrow@2x.png */; };
 		32D03B8716C31FA300AF2508 /* california.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32D03B8616C31FA300AF2508 /* california.txt */; };
 		32D03B8A16C31FDF00AF2508 /* MESimpleKMLReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32D03B8916C31FDF00AF2508 /* MESimpleKMLReader.mm */; };
-		32D6493A1676F7F100146015 /* METemporalMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D649391676F7F100146015 /* METemporalMarkerTests.m */; };
 		32D64941167700F900146015 /* AirportMarkersEven.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32D64940167700F900146015 /* AirportMarkersEven.sqlite */; };
 		32D73ED7163A536D00F12956 /* MEShapeFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D73ED6163A536D00F12956 /* MEShapeFileTest.m */; };
 		32DB35391463F39400C24B45 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DB34AE1463E7A200C24B45 /* libTestFlight.a */; };
@@ -263,6 +275,8 @@
 		32062A5416CDCEBC00E6D862 /* BoundingBoxReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoundingBoxReader.h; sourceTree = "<group>"; };
 		32062A5516CDCEBC00E6D862 /* BoundingBoxReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BoundingBoxReader.mm; sourceTree = "<group>"; };
 		320A50BA15C00C6600D1063F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		320CC781172995AB00199195 /* TowersWithHeightColorBarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowersWithHeightColorBarTest.h; sourceTree = "<group>"; };
+		320CC782172995AC00199195 /* TowersWithHeightColorBarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TowersWithHeightColorBarTest.m; sourceTree = "<group>"; };
 		3210ACEB15DEF31B000E5D7A /* MEMarkerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMarkerTests.h; sourceTree = "<group>"; };
 		3210ACEC15DEF31B000E5D7A /* MEMarkerTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MEMarkerTests.mm; sourceTree = "<group>"; };
 		3210ACF115DEF993000E5D7A /* ba3_annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ba3_annotation.png; sourceTree = "<group>"; };
@@ -318,6 +332,8 @@
 		3222877116EC4EE4009ED5F2 /* AirTrafficTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirTrafficTest.m; sourceTree = "<group>"; };
 		3222877516EC6BDE009ED5F2 /* blueplanesmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueplanesmall.png; sourceTree = "<group>"; };
 		3222877616EC6BDE009ED5F2 /* blueplanesmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueplanesmall@2x.png"; sourceTree = "<group>"; };
+		3224C08D17286FE5004099F4 /* AirTrafficScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirTrafficScenario.h; sourceTree = "<group>"; };
+		3224C08E17286FE5004099F4 /* AirTrafficScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirTrafficScenario.m; sourceTree = "<group>"; };
 		32258A3E164C230900B5460E /* CameraTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraTests.h; sourceTree = "<group>"; };
 		32258A3F164C230900B5460E /* CameraTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraTests.m; sourceTree = "<group>"; };
 		3228C67A15DD27A7005159C8 /* METest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METest.h; sourceTree = "<group>"; };
@@ -359,6 +375,16 @@
 		32428051163CEAF000D14EC2 /* tgr48171lkA.dbf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tgr48171lkA.dbf; sourceTree = "<group>"; };
 		32428052163CEAF000D14EC2 /* tgr48171lkA.shp */ = {isa = PBXFileReference; lastKnownFileType = file; path = tgr48171lkA.shp; sourceTree = "<group>"; };
 		32428053163CEAF000D14EC2 /* tgr48171lkA.shx */ = {isa = PBXFileReference; lastKnownFileType = file; path = tgr48171lkA.shx; sourceTree = "<group>"; };
+		324298A41729490600B30CD4 /* orangeplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeplane.png; sourceTree = "<group>"; };
+		324298A51729490600B30CD4 /* orangeplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orangeplane@2x.png"; sourceTree = "<group>"; };
+		324298A61729490600B30CD4 /* redplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redplane.png; sourceTree = "<group>"; };
+		324298A71729490600B30CD4 /* redplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redplane@2x.png"; sourceTree = "<group>"; };
+		324298A81729490600B30CD4 /* yellowplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowplane.png; sourceTree = "<group>"; };
+		324298A91729490600B30CD4 /* yellowplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowplane@2x.png"; sourceTree = "<group>"; };
+		324298B017295C2D00B30CD4 /* purpleplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleplane.png; sourceTree = "<group>"; };
+		324298B117295C2D00B30CD4 /* purpleplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purpleplane@2x.png"; sourceTree = "<group>"; };
+		324298B41729619500B30CD4 /* whiteplaneredoutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteplaneredoutline.png; sourceTree = "<group>"; };
+		324298B51729619500B30CD4 /* whiteplaneredoutline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteplaneredoutline@2x.png"; sourceTree = "<group>"; };
 		3243DC751671E65500453750 /* METoolJTowers.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = METoolJTowers.sqlite; sourceTree = "<group>"; };
 		324517A91666A28200B378D4 /* grayGrid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayGrid.png; sourceTree = "<group>"; };
 		32454055167881040010E1C0 /* noData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noData.png; sourceTree = "<group>"; };
@@ -546,6 +572,8 @@
 		32B2D90E15D5852C007EAE4B /* libGEOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGEOS.a; sourceTree = "<group>"; };
 		32B5532015B0053E004E78CA /* RemoteMapCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteMapCatalog.h; sourceTree = "<group>"; };
 		32B5532115B0053E004E78CA /* RemoteMapCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteMapCatalog.m; sourceTree = "<group>"; };
+		32B75A2C17271672006CDFC6 /* BlinkingMarkerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlinkingMarkerTests.h; sourceTree = "<group>"; };
+		32B75A2D17271672006CDFC6 /* BlinkingMarkerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlinkingMarkerTests.m; sourceTree = "<group>"; };
 		32B8E1C01465887900AF7908 /* plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane.png; sourceTree = "<group>"; };
 		32BB69DA1623AB80000D778D /* MBTilesTileProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBTilesTileProvider.h; sourceTree = "<group>"; };
 		32BB69DB1623AB80000D778D /* MBTilesTileProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBTilesTileProvider.m; sourceTree = "<group>"; };
@@ -581,8 +609,6 @@
 		32D03B8616C31FA300AF2508 /* california.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = california.txt; sourceTree = "<group>"; };
 		32D03B8816C31FDF00AF2508 /* MESimpleKMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESimpleKMLReader.h; sourceTree = "<group>"; };
 		32D03B8916C31FDF00AF2508 /* MESimpleKMLReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MESimpleKMLReader.mm; sourceTree = "<group>"; };
-		32D649381676F7F100146015 /* METemporalMarkerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METemporalMarkerTests.h; sourceTree = "<group>"; };
-		32D649391676F7F100146015 /* METemporalMarkerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METemporalMarkerTests.m; sourceTree = "<group>"; };
 		32D64940167700F900146015 /* AirportMarkersEven.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AirportMarkersEven.sqlite; sourceTree = "<group>"; };
 		32D73ED5163A536D00F12956 /* MEShapeFileTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEShapeFileTest.h; sourceTree = "<group>"; };
 		32D73ED6163A536D00F12956 /* MEShapeFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEShapeFileTest.m; sourceTree = "<group>"; };
@@ -675,8 +701,6 @@
 				32507EE616651DCD0099844E /* MEMarkerHitTest.m */,
 				324960B515EEDC1300DB8E48 /* MarkerTestData.h */,
 				324960B615EEDC1300DB8E48 /* MarkerTestData.mm */,
-				32D649381676F7F100146015 /* METemporalMarkerTests.h */,
-				32D649391676F7F100146015 /* METemporalMarkerTests.m */,
 				32F9BACA16824F04001F39EB /* MEHideMarkerTest.h */,
 				32F9BACB16824F04001F39EB /* MEHideMarkerTest.m */,
 				3274A9FC1693CDEE00A98AEA /* MEMarkerDatabaseCacheTest.h */,
@@ -808,6 +832,16 @@
 			children = (
 				3222877516EC6BDE009ED5F2 /* blueplanesmall.png */,
 				3222877616EC6BDE009ED5F2 /* blueplanesmall@2x.png */,
+				324298B41729619500B30CD4 /* whiteplaneredoutline.png */,
+				324298B51729619500B30CD4 /* whiteplaneredoutline@2x.png */,
+				324298B017295C2D00B30CD4 /* purpleplane.png */,
+				324298B117295C2D00B30CD4 /* purpleplane@2x.png */,
+				324298A41729490600B30CD4 /* orangeplane.png */,
+				324298A51729490600B30CD4 /* orangeplane@2x.png */,
+				324298A61729490600B30CD4 /* redplane.png */,
+				324298A71729490600B30CD4 /* redplane@2x.png */,
+				324298A81729490600B30CD4 /* yellowplane.png */,
+				324298A91729490600B30CD4 /* yellowplane@2x.png */,
 				32454055167881040010E1C0 /* noData.png */,
 				32454056167881040010E1C0 /* noData@2x.png */,
 				324517A91666A28200B378D4 /* grayGrid.png */,
@@ -859,6 +893,7 @@
 		3228C67915DD2790005159C8 /* METests */ = {
 			isa = PBXGroup;
 			children = (
+				32B75A2B17271626006CDFC6 /* DynamicMarkers */,
 				32C6BFA216605B9A00D0BB99 /* RefreshMapTests */,
 				32258A3D164C22E100B5460E /* CameraTests */,
 				3271FEB9162FBA1E00E5D6AE /* PerfTests */,
@@ -1250,6 +1285,19 @@
 			path = TileProviderTests;
 			sourceTree = "<group>";
 		};
+		32B75A2B17271626006CDFC6 /* DynamicMarkers */ = {
+			isa = PBXGroup;
+			children = (
+				32B75A2C17271672006CDFC6 /* BlinkingMarkerTests.h */,
+				32B75A2D17271672006CDFC6 /* BlinkingMarkerTests.m */,
+				3224C08D17286FE5004099F4 /* AirTrafficScenario.h */,
+				3224C08E17286FE5004099F4 /* AirTrafficScenario.m */,
+				320CC781172995AB00199195 /* TowersWithHeightColorBarTest.h */,
+				320CC782172995AC00199195 /* TowersWithHeightColorBarTest.m */,
+			);
+			path = DynamicMarkers;
+			sourceTree = "<group>";
+		};
 		32B8E1BF1465887900AF7908 /* ButtonImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1545,6 +1593,16 @@
 				32062A5316CDCE7700E6D862 /* refreshregionstress.txt in Resources */,
 				3222877716EC6BDE009ED5F2 /* blueplanesmall.png in Resources */,
 				3222877816EC6BDE009ED5F2 /* blueplanesmall@2x.png in Resources */,
+				324298AA1729490600B30CD4 /* orangeplane.png in Resources */,
+				324298AB1729490600B30CD4 /* orangeplane@2x.png in Resources */,
+				324298AC1729490600B30CD4 /* redplane.png in Resources */,
+				324298AD1729490600B30CD4 /* redplane@2x.png in Resources */,
+				324298AE1729490600B30CD4 /* yellowplane.png in Resources */,
+				324298AF1729490600B30CD4 /* yellowplane@2x.png in Resources */,
+				324298B217295C2D00B30CD4 /* purpleplane.png in Resources */,
+				324298B317295C2D00B30CD4 /* purpleplane@2x.png in Resources */,
+				324298B61729619500B30CD4 /* whiteplaneredoutline.png in Resources */,
+				324298B71729619500B30CD4 /* whiteplaneredoutline@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1648,7 +1706,6 @@
 				325B1F3C1661FA0A00A3CADF /* MEAnimatedVectorCircleTests.m in Sources */,
 				32507EE716651DCD0099844E /* MEMarkerHitTest.m in Sources */,
 				32CC2544166661BC00C23D57 /* METrueNorthAlignedMarkerTest.m in Sources */,
-				32D6493A1676F7F100146015 /* METemporalMarkerTests.m in Sources */,
 				32F9BACC16824F04001F39EB /* MEHideMarkerTest.m in Sources */,
 				3274A9FE1693CDEF00A98AEA /* MEMarkerDatabaseCacheTest.m in Sources */,
 				3294804716ADA69F00214537 /* MECacheTests.m in Sources */,
@@ -1661,7 +1718,10 @@
 				32D03B8A16C31FDF00AF2508 /* MESimpleKMLReader.mm in Sources */,
 				322F52ED16C3637300B91B68 /* MEKMLShapes.m in Sources */,
 				32062A5616CDCEBC00E6D862 /* BoundingBoxReader.mm in Sources */,
-				3222877216EC4EE4009ED5F2 /* AirTrafficTest.m in Sources */,
+				32B75A2E17271672006CDFC6 /* BlinkingMarkerTests.m in Sources */,
+				3224C08F17286FE5004099F4 /* AirTrafficScenario.m in Sources */,
+				320CC783172995AC00199195 /* TowersWithHeightColorBarTest.m in Sources */,
+				32B3AA90172E35DF00CE9C0C /* AirTrafficTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1766,10 +1826,7 @@
 				INFOPLIST_FILE = "Mapp/Mapp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MappWorkspace-ezndjppzcgoyqlbedvfbcugvwmrj/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/Mapp/TestFlight\"",
-					"\"$(SRCROOT)/../libs\"",
 					"\"$(SRCROOT)/Mapp/libs\"",
 				);
 				PRODUCT_NAME = mapp;
@@ -1802,10 +1859,7 @@
 				INFOPLIST_FILE = "Mapp/Mapp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MappWorkspace-ezndjppzcgoyqlbedvfbcugvwmrj/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/Mapp/TestFlight\"",
-					"\"$(SRCROOT)/../libs\"",
 					"\"$(SRCROOT)/Mapp/libs\"",
 				);
 				PRODUCT_NAME = mapp;
@@ -1860,10 +1914,7 @@
 				INFOPLIST_FILE = "Mapp/Mapp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/MappWorkspace-ezndjppzcgoyqlbedvfbcugvwmrj/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/Mapp/TestFlight\"",
-					"\"$(SRCROOT)/../libs\"",
 					"\"$(SRCROOT)/Mapp/libs\"",
 				);
 				OTHER_CFLAGS = (

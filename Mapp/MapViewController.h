@@ -63,36 +63,23 @@
 
 //Events
 - (void) didClickMaps:(id)sender;
-- (void) didClick3D:(id)sender;
 - (void) didClickTests:(id)sender;
-- (void) didClickTests2:(id)sender;
 - (void) didClickPlay:(id)sender;
 - (void) didClickTrackUp:(id)sender;
-- (void) didClickSplit:(id)sender;
-- (void) didClickTopMap:(id)sender;
 - (void) didClickDownloads:(id)sender;
 - (void) didClickLocationTracking:(id)sender;
 - (IBAction) didClickProvideFeedback:(id)sender;
-- (IBAction) didClickToggleHelp:(id)sender;
 
-- (void) addAnimatedVirtualLayer:(NSString*) mapName animationFrameCount:(int)animationFrameCount fadeEnabled:(BOOL)fadeEnabled;
-- (void) removeVirtualLayer:(NSString*) mapName;
 
 //Functions
 - (void) initialize;
 - (void) initializeMappingEngine;
 - (void) shutdownMappingEngine;
-- (void) setHelpImageAlphas:(CGFloat) newAlpha;
 - (void) enableLocationSystem:(bool) enabled;
-- (void) enableSplitScreen:(bool) enabled;
-- (void) handleLongPress:(UILongPressGestureRecognizer *)gesture;
 
 //Support for recorded flight playback
 - (void) nextFlightPlaybackSample;
 - (void) loadRecordedFlightFromCSVFile:(NSString*) filePath;
-
-- (void) startStressTest;
-- (void) createAirportMarkersMapAtPath:(NSString*)path;
 
 //Support for location services
 - (void)locationManager:(CLLocationManager *)manager
@@ -108,7 +95,7 @@
 - (void) animateImageViewAlpha:(UIImageView*) image toNewAlpha:(CGFloat) newAlpha overTime:(CGFloat) time;
 - (void) animateImageViewRotation:(UIImageView*) image toNewRotation:(CGFloat) rotation overTime:(CGFloat) time;
 - (void) rotateImageView:(UIImageView*) image toNewRotation:(CGFloat) rotation;
-- (void) perfCountersUpdated: (NSNotification*) notification;
+
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application;
 - (void)applicationWillResignActive:(UIApplication *)application;
@@ -117,9 +104,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application;
 - (void)applicationWillTerminate:(UIApplication *)application;
 
-- (void) disableAirportMarkers;
-- (void) createAirportMarkers;
 
-- (UIImage*) renderViewToImage: (UIView*) view;
 
 @end

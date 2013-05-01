@@ -32,7 +32,6 @@
 #import "MarkerTests/MEMarkerTests.h"
 #import "MarkerTests/MEMarkerFastLoad.h"
 #import "MarkerTests/MEMarkerHitTest.h"
-#import "MarkerTests/METemporalMarkerTests.h"
 #import "MarkerTests/MEHideMarkerTest.h"
 #import "MarkerTests/MEMarkerDatabaseCacheTest.h"
 #import "MarkerTests/AirTrafficTest.h"
@@ -56,6 +55,9 @@
 #import "MapTests/MERefreshMapTests.h"
 #import "MapTests/MERefreshAllMapsTest.h"
 #import "MapTests/MESparseTileMapTest.h"
+#import "DynamicMarkers/BlinkingMarkerTests.h"
+#import "DynamicMarkers/AirTrafficScenario.h"
+#import "DynamicMarkers/TowersWithHeightColorBarTest.h"
 
 @implementation METestManager
 
@@ -353,10 +355,6 @@
 	
 //	[testCategory addTestClass:[MEMarkerDatabaseCacheTest class]];
 //	[testCategory addTestClass:[MEHideMarkerTest class]];
-//	[testCategory addTestClass:[METemporalMarkerTestA class]];
-//	[testCategory addTestClass:[METemporalMarkerTestB class]];
-//	[testCategory addTestClass:[METemporalMarkerTestC class]];
-//	[testCategory addTestClass:[METemporalMarkerTestD class]];
 	
 }
 
@@ -432,6 +430,7 @@
     METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
     testCategory.name = @"Animated Maps";
     [self addCategory:testCategory];
+	[testCategory addTestClass:[MEAnimatedStreetMaps class]];
 	[testCategory addTestClass:[MEAnimatedMapTest class]];
 	[testCategory addTestClass:[MEAnimatedMapTest2 class]];
 	[testCategory addTestClass:[MEAnimatedMapTest3 class]];
@@ -482,6 +481,20 @@
 	[testCategory addTestClass:[PlanetWatchVector class]];
 }
 
+- (void) createDynamicMarkerTests
+{
+	METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
+    testCategory.name = @"Dynamic Markers";
+    [self addCategory:testCategory];
+	[testCategory addTestClass:[AirTrafficScenario class]];
+	[testCategory addTestClass:[TowersWithHeightColorBarTest class]];
+    [testCategory addTestClass:[BlinkingMarkerTest class]];
+	[testCategory addTestClass:[BlinkingMarkerCachedTest class]];
+	[testCategory addTestClass:[BlinkingMarkerHybridTest class]];
+	[testCategory addTestClass:[BlinkingMovingMarkerTest class]];
+	[testCategory addTestClass:[BlinkingRotatingMarkerTest class]];
+}
+
 - (void) createLocalTerrainTests
 {
 	METestCategory* testCategory = [[[LocalTerrainMapTestsCategory alloc]init]autorelease];
@@ -496,6 +509,7 @@
 }
 - (void) createAllTests
 {
+	[self createDynamicMarkerTests];
 	[self createLocalTerrainTests];
 	[self createDemos];
 	[self createCameraTests];

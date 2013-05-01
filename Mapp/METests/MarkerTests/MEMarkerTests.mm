@@ -1556,40 +1556,6 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 }
 @end
 
-@implementation MEMTLinuxCountriesStatesCitiesFromDisk
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Countries, Cities, States: From Bundle";
-    }
-    return self;
-}
-
-- (void) start
-{
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.name;
-	mapInfo.mapType = kMapTypeFileMarker;
-	mapInfo.sqliteFileName = [MarkerTestData linuxCountriesCitiesStatesMarkerBundlePath];
-	mapInfo.zOrder = 21;
-	mapInfo.meMarkerMapDelegate = self;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-	
-	[self lookAtUnitedStates];
-    self.isRunning = YES;
-}
-
-- (void) stop
-{
-    [self.meMapViewController removeMap:self.name
-                                   clearCache:YES];
-    self.isRunning = NO;
-}
-@end
-
-
-
 /////////////////////////////////////////////////////////////////////
 //Aviation markers
 //Tower height markers

@@ -134,7 +134,13 @@
 - (void) requestTile:(METileProviderRequest*) meTileRequest
 {
 	//Check to make sure we still need to supply the tile.
-	if(![super isNeeded:meTileRequest])
+	BOOL isNeeded;
+	if(self.isServingAnimatedMap)
+		isNeeded = [super isNeededAnimated:meTileRequest];
+	else
+		isNeeded = [super isNeeded:meTileRequest];
+	
+	if(!isNeeded)
 	{
 		if(self.isAsynchronous)
 		{

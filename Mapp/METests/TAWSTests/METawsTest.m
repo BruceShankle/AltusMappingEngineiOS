@@ -83,7 +83,6 @@
 
 - (IBAction) sliderValueChanged:(UISlider *)sender
 {
-	NSLog(@"%f", sender.value);
 	float tawsAltitude = 40000 * 0.3048 * sender.value;
 	[self.meMapViewController updateTawsAltitude:tawsAltitude];
 	[self.lblAltitude setText:[NSString stringWithFormat:@"Altitude = %0.0f feet",

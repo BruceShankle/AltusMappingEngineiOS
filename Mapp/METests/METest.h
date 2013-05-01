@@ -45,4 +45,6 @@
 - (void) addStatusLabel;
 - (void) removeStatusLabel;
 - (void) setStatusLabelText:(NSString*) newText;
+- (double) randomDouble:(double)min max:(double)max;
+
 @end

@@ -33,7 +33,6 @@
 + (NSString*) metoolMarkerBundlePath;
 + (NSString*) towerMarkerBundlePath;
 + (NSString*) towerJMarkerBundlePath;
-+ (NSString*) towerMarkerBundlePath2;
 + (NSString*) stateMarkerBundlePath;
 + (NSString*) countryAndStateMarkerBundlePath;
 + (NSString*) citiesMarkerBundlePath;
