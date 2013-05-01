@@ -158,6 +158,17 @@
 													 points:self.routePoints
 													  style:self.lineStyle];
 	}
+	
+	//Show and move th touch-point marker.
+	if(self.routePoints.count>=3)
+	{
+		[self.meMapViewController showDynamicMarker:self.markerLayerName
+										 markerName:@"TOUCHPOINT"];
+		[self.meMapViewController updateDynamicMarkerLocation:self.markerLayerName
+												   markerName:@"TOUCHPOINT"
+													 location:self.touchPointLocation
+											animationDuration:0];
+	}
 }
 
 /**
@@ -178,16 +189,17 @@
 	//Get the view point where the user is touching
     CGPoint viewPoint=[gesture locationInView:self.meMapViewController.meMapView];
     
-	//Convert the view point to a coordinate
-    CLLocationCoordinate2D coordinate=[self.meMapViewController.meMapView convertPoint:viewPoint];
+	//Convert the view point to a coordinate and store it
+	self.touchPointLocation = [self.meMapViewController.meMapView convertPoint:viewPoint];
     
 	//If the coordinante is valid update the route
-	if(coordinate.longitude!=0 && coordinate.latitude != 0)
+	if(self.touchPointLocation.longitude!=0 && self.touchPointLocation.latitude != 0)
 	{
 		[self clearRoute];
 		[self addWayPoint:RDU_COORD];
-		[self addWayPoint:coordinate];
+		[self addWayPoint:self.touchPointLocation];
 		[self addWayPoint:SFO_COORD];
+		[self updateRoute];
 	}
 }
 

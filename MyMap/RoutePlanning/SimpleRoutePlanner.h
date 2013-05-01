@@ -19,6 +19,7 @@
 @property (retain) MELineStyle* lineStyle;
 @property (assign) CGPoint routeMarkerAnchorPoint;
 @property (retain) UILongPressGestureRecognizer *longPress;
+@property (assign) CLLocationCoordinate2D touchPointLocation;
 
 //Functions
 -(void) enable;
