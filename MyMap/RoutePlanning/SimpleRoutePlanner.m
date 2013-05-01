@@ -63,6 +63,50 @@
 									withName:@"route_endpoint"
 							 compressTexture:NO];
 	
+	//Create a dynamic marker map object and populate it with relevant settings
+	MEDynamicMarkerMapInfo* markerMapInfo = [[[MEDynamicMarkerMapInfo alloc]init]autorelease];
+	markerMapInfo.zOrder = 101;
+	markerMapInfo.name = self.markerLayerName;
+	markerMapInfo.hitTestingEnabled = YES;
+	markerMapInfo.meDynamicMarkerMapDelegate = self;
+	
+	//Add the marker map
+	[self.meMapViewController addMapUsingMapInfo:markerMapInfo];
+	
+	//Clear and update the line geometry for the route.
+	[self clearRoute];
+	[self addWayPoint:SFO_COORD];
+	[self addWayPoint:RDU_COORD];
+	[self updateRoute];
+	
+	//Add markers for the route end-points.
+	MEDynamicMarker* marker = [[[MEDynamicMarker alloc]init]autorelease];
+	
+	//SFO
+	marker.name=@"SFO";
+	marker.location = SFO_COORD;
+	marker.uiImage = [UIImage imageNamed:@"route_endpoint"];
+	marker.anchorPoint = CGPointMake(marker.uiImage.size.width/2.0, marker.uiImage.size.height/2.0);
+	[self.meMapViewController addDynamicMarkerToMap:self.markerLayerName
+									  dynamicMarker:marker];
+	
+	//RDU
+	marker.name = @"RDU";
+	marker.location = RDU_COORD;
+	[self.meMapViewController addDynamicMarkerToMap:self.markerLayerName
+									  dynamicMarker:marker];
+	
+	//Add and hide a marker for where the user will be touching.
+	//We'll show and move this one around when the user does a long-press
+	marker.name = @"TOUCHPOINT";
+	marker.location = RDU_COORD;
+	[self.meMapViewController addDynamicMarkerToMap:self.markerLayerName
+									  dynamicMarker:marker];
+	[self.meMapViewController hideDynamicMarker:self.markerLayerName
+									 markerName:@"TOUCHPOINT"];
+	
+	
+	
 }
 
 - (void) removeMaps
@@ -75,29 +119,19 @@
 {
 	[self addMaps];
 	
-	[self clearRoute];
-	
-	//Add two points
-	[self addWayPoint:RDU_COORD];
-	[self addWayPoint:SFO_COORD];
-	
 	//Register gesture recognizer
 	[self.meMapViewController.meMapView addGestureRecognizer:self.longPress];
+
 }
 
 -(void) addWayPoint:(CLLocationCoordinate2D) wayPoint
 {
 	[self.routePoints addObject:[NSValue valueWithCGPoint:CGPointMake(wayPoint.longitude, wayPoint.latitude)]];
-	if(self.routePoints.count >= 2)
-	{
-		[self updateRoute];
-	}
 }
 
 -(void) clearRoute
 {
 	[self.routePoints removeAllObjects];
-	[self updateRoute];
 }
 
 - (void) disable
@@ -108,47 +142,11 @@
     [self.meMapViewController.meMapView removeGestureRecognizer:self.longPress];
 }
 
-/**
-Add a dynamic marker layer for route end points and intersections.
-Here we use a fast dynamic marker map where all marker images
-are pre-cached in the mapping engine for fastest possible display.
-*/
-- (void) updateRouteMarkers
-{
-	//Remove previous marker layer
-	[self.meMapViewController removeMap:self.markerLayerName clearCache:YES];
-	
-	//Create a dynamic marker map object and populate it with relevant settings
-	MEDynamicMarkerMapInfo* markerMapInfo = [[[MEDynamicMarkerMapInfo alloc]init]autorelease];
-	markerMapInfo.zOrder = 101;
-	markerMapInfo.name = self.markerLayerName;
-	markerMapInfo.hitTestingEnabled = YES;
-	markerMapInfo.meDynamicMarkerMapDelegate = self;
-	
-	//Add the marker map
-	[self.meMapViewController addMapUsingMapInfo:markerMapInfo];
-	
-	//Create an array of MEFastMarkerInfo objects
-	//Each marker object must be properly configured
-	MEDynamicMarker* marker = [[[MEDynamicMarker alloc]init]autorelease];
-	for(int i=0; i<self.routePoints.count; i++)
-    {
-        NSValue* v = (NSValue*)[self.routePoints objectAtIndex:i];
-        CGPoint point = [v CGPointValue];
-		
-		marker.location = CLLocationCoordinate2DMake(point.y, point.x);
-		marker.cachedImageName = @"route_endpoint";
-		marker.anchorPoint = self.routeMarkerAnchorPoint;
-		marker.nearestNeighborTextureSampling = NO;
-		marker.name = [NSString stringWithFormat:@"%d", i];
-		[self.meMapViewController addDynamicMarkerToMap:self.markerLayerName
-										  dynamicMarker:marker];
-	}
-	
-}
 
 - (void) updateRoute
 {
+	//Update the dynamic vector map that represents the route lines.
+	
 	//Remove any previous line geometry for the route
 	[self.meMapViewController clearDynamicGeometryFromMap:self.vectorLayerName];
 	
@@ -160,8 +158,6 @@ are pre-cached in the mapping engine for fastest possible display.
 													 points:self.routePoints
 													  style:self.lineStyle];
 	}
-	
-	[self updateRouteMarkers];
 }
 
 /**
