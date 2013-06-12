@@ -58,6 +58,7 @@
 #import "DynamicMarkers/BlinkingMarkerTests.h"
 #import "DynamicMarkers/AirTrafficScenario.h"
 #import "DynamicMarkers/TowersWithHeightColorBarTest.h"
+#import "WMSTests/MEWMSTests.h"
 
 @implementation METestManager
 
@@ -163,6 +164,16 @@
         }
     }
     return nil;
+}
+
+- (void) createWMSTests {
+	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
+    testCategory.name = @"WMS";
+    [self addCategory:testCategory];
+	[testCategory addTestClass:[MEWMSBlueMarbleTest class]];
+	[testCategory addTestClass:[MEWMSDCTest class]];
+	[testCategory addTestClass:[MEWMSSeattleTest class]];
+	[testCategory addTestClass:[MEWMSOregonTest class]];
 }
 
 - (void) createCameraTests
@@ -509,6 +520,7 @@
 }
 - (void) createAllTests
 {
+	[self createWMSTests];
 	[self createDynamicMarkerTests];
 	[self createLocalTerrainTests];
 	[self createDemos];

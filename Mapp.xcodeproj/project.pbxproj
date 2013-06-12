@@ -46,6 +46,8 @@
 		3228C67C15DD27A7005159C8 /* METest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228C67B15DD27A7005159C8 /* METest.m */; };
 		3228C68515DD3AC4005159C8 /* METestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228C68415DD3AC3005159C8 /* METestManager.m */; };
 		3228C68815DD3B4D005159C8 /* METestCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228C68715DD3B4D005159C8 /* METestCategory.m */; };
+		3228DB4B1769164400135AAB /* MEWMSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228DB481769164400135AAB /* MEWMSTests.m */; };
+		3228DB4C1769164400135AAB /* MEWMSTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3228DB4A1769164400135AAB /* MEWMSTileProvider.m */; };
 		3229A0491529CD6200EF4CD6 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 3229A03F1529CD6200EF4CD6 /* ioapi.c */; };
 		3229A04A1529CD6200EF4CD6 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 3229A0411529CD6200EF4CD6 /* mztools.c */; };
 		3229A04B1529CD6200EF4CD6 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3229A0431529CD6200EF4CD6 /* unzip.c */; };
@@ -342,6 +344,10 @@
 		3228C68415DD3AC3005159C8 /* METestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METestManager.m; sourceTree = "<group>"; };
 		3228C68615DD3B4D005159C8 /* METestCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METestCategory.h; sourceTree = "<group>"; };
 		3228C68715DD3B4D005159C8 /* METestCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METestCategory.m; sourceTree = "<group>"; };
+		3228DB471769164400135AAB /* MEWMSTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEWMSTests.h; sourceTree = "<group>"; };
+		3228DB481769164400135AAB /* MEWMSTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEWMSTests.m; sourceTree = "<group>"; };
+		3228DB491769164400135AAB /* MEWMSTileProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEWMSTileProvider.h; sourceTree = "<group>"; };
+		3228DB4A1769164400135AAB /* MEWMSTileProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEWMSTileProvider.m; sourceTree = "<group>"; };
 		3229A03E1529CD6200EF4CD6 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		3229A03F1529CD6200EF4CD6 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		3229A0401529CD6200EF4CD6 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -893,6 +899,7 @@
 		3228C67915DD2790005159C8 /* METests */ = {
 			isa = PBXGroup;
 			children = (
+				3228DB461769164400135AAB /* WMSTests */,
 				32B75A2B17271626006CDFC6 /* DynamicMarkers */,
 				32C6BFA216605B9A00D0BB99 /* RefreshMapTests */,
 				32258A3D164C22E100B5460E /* CameraTests */,
@@ -922,6 +929,17 @@
 				32BCF22F164DA9610073062B /* METestConsts.h */,
 			);
 			path = METests;
+			sourceTree = "<group>";
+		};
+		3228DB461769164400135AAB /* WMSTests */ = {
+			isa = PBXGroup;
+			children = (
+				3228DB471769164400135AAB /* MEWMSTests.h */,
+				3228DB481769164400135AAB /* MEWMSTests.m */,
+				3228DB491769164400135AAB /* MEWMSTileProvider.h */,
+				3228DB4A1769164400135AAB /* MEWMSTileProvider.m */,
+			);
+			path = WMSTests;
 			sourceTree = "<group>";
 		};
 		3229A03C1529CD6200EF4CD6 /* ZipArchive */ = {
@@ -1722,6 +1740,8 @@
 				3224C08F17286FE5004099F4 /* AirTrafficScenario.m in Sources */,
 				320CC783172995AC00199195 /* TowersWithHeightColorBarTest.m in Sources */,
 				32B3AA90172E35DF00CE9C0C /* AirTrafficTest.m in Sources */,
+				3228DB4B1769164400135AAB /* MEWMSTests.m in Sources */,
+				3228DB4C1769164400135AAB /* MEWMSTileProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
