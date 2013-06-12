@@ -27,7 +27,8 @@ typedef enum {
 	kMapTypeMemoryMarkerFast,
 	kMapTypeDynamicMarker,
 	kMapTypeDynamicMarkerFast,
-	kMapTypeFileMBTiles
+	kMapTypeFileMBTiles,
+	kMapTypeVirtualVector
 } MEMapType;
 
 //////////////////////////////////////////////////
@@ -178,7 +179,7 @@ typedef enum {
  */
 @interface MEDynamicMarkerMapInfo : MEMapInfo
 
-/**For marker maps, the marker map delegate that will provide marker images.*/
+/**Delegate to receive hit testing notifications.*/
 @property (retain) id<MEDynamicMarkerMapDelegate> meDynamicMarkerMapDelegate;
 
 /**Controls whether the engine performs touch-point hit testing against the markers. Defaults to YES.*/
