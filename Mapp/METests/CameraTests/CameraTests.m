@@ -59,9 +59,9 @@ static int currentSampleIndex=-1;
 										 green:144.0/255.0
 										  blue:255.0/255.0
 										 alpha:1.0];
-	
-	beacon.outlineStyle = [[[MELineStyle alloc]initWithStrokeColor:lightBlue
-													   strokeWidth:8]autorelease];
+	beacon.lineStyle.outlineWidth = 4;
+	beacon.lineStyle.outlineColor = lightBlue;
+
 	beacon.minRadius = 5;
 	beacon.maxRadius = 75;
 	beacon.animationDuration = 2.5;

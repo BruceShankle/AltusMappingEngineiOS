@@ -212,3 +212,47 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////
+@implementation MEWMSNationalAtlasStates
+
+- (id) init {
+	if(self=[super init]){
+		self.name = @"National Atlas - States";
+	}
+	return self;
+}
+
+-(MEVirtualMapInfo*) createMapInfo {
+	MEVirtualMapInfo* mapInfo = [super createMapInfo];
+	mapInfo.minX = -179.147;
+	mapInfo.minY = 17.6744;
+	mapInfo.maxX = 179.778;
+	mapInfo.maxY = 71.3892;
+	mapInfo.zOrder = 4;
+	mapInfo.maxLevel = 19;
+	
+	[self.meMapViewController.meMapView
+	 lookAtCoordinate:CLLocationCoordinate2DMake(mapInfo.minY, mapInfo.minX)
+	 andCoordinate:CLLocationCoordinate2DMake(mapInfo.maxY, mapInfo.maxX)
+	 withHorizontalBuffer:0
+	 withVerticalBuffer:0
+	 animationDuration:1.0];
+	
+	return mapInfo;
+}
+
+- (METileProvider*) createTileProvider {
+	//Create and configure tile provider
+	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
+	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/1million";
+	tileProvider.wmsLayers = @"states1m";
+	tileProvider.wmsSRS = @"EPSG:4326";
+	tileProvider.wmsVersion = @"1.1.1";
+	tileProvider.meMapViewController = self.meMapViewController;
+	tileProvider.shortName = @"WMS_NationalAtlasStates";
+	tileProvider.wmsStyleString = @"default";
+	return tileProvider;
+}
+
+@end
+

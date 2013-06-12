@@ -20,3 +20,6 @@
 @interface MEWMSOregonTest : MEWMSTest
 @end
 
+@interface MEWMSNationalAtlasStates : MEWMSTest
+@end
+

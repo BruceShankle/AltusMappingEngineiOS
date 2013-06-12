@@ -170,6 +170,7 @@
 	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"WMS";
     [self addCategory:testCategory];
+	[testCategory addTestClass:[MEWMSNationalAtlasStates class]];
 	[testCategory addTestClass:[MEWMSBlueMarbleTest class]];
 	[testCategory addTestClass:[MEWMSDCTest class]];
 	[testCategory addTestClass:[MEWMSSeattleTest class]];

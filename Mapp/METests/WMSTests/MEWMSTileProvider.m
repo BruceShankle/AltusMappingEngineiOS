@@ -15,6 +15,7 @@
 		self.tileFileExtension = @"png";
 		self.isAsynchronous = NO;
 		self.tileCacheRoot = @"tilecache";
+		self.wmsStyleString = @"0";
 	}
 	return self;
 }
@@ -72,7 +73,11 @@
 							  self.wmsFormat]];
 	[requestParams addObject:@"SERVICE=WMS"];
 	[requestParams addObject:@"REQUEST=GetMap"];
-	[requestParams addObject:@"STYLES=0"];
+	if(self.useWMSStyle){
+		NSString* styleString = [NSString stringWithFormat:@"STYLES=%@",
+								 self.wmsStyleString];
+		[requestParams addObject:styleString];
+	}
 	[requestParams addObject:@"WIDTH=256"];
 	[requestParams addObject:@"HEIGHT=256"];
 	[requestParams addObject:@"FORMAT=image/png"];

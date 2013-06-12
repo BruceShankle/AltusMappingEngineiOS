@@ -12,6 +12,8 @@
 @property (retain) NSString* wmsLayers;
 @property (retain) NSString* wmsSRS;
 @property (retain) NSString* wmsFormat;
+@property (assign) BOOL useWMSStyle;
+@property (assign) NSString* wmsStyleString;
 
 //Functions
 - (NSString*) cacheFileNameForRequest:(METileProviderRequest*) meTileProviderRequest;
