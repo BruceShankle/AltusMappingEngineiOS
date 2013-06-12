@@ -27,3 +27,4 @@
 #import <ME/MEFontUtil.h>
 #import <ME/MEMapInfo.h>
 #import <ME/MEHitTesting.h>
+#import <ME/MEGeometryGroup.h>
