@@ -15,10 +15,7 @@
 /**The layering order relevant to other map and marker layers.*/
 @property (assign) int zOrder;
 
-/**Style with which the draw the outline of the circle's path.*/
-@property (retain) MELineStyle* outlineStyle;
-
-/**Style with which to draw the interior line of the circle's path. Generally this should have have a lesser stroke width than the outlineStyle stroke width.*/
+/**Style with which to draw circle's path.*/
 @property (retain) MELineStyle* lineStyle;
 
 /**The starting radius of the circle in screen points.*/
@@ -38,5 +35,11 @@
 
 /**If set to true, the circle will fade (alpha 1->0) linearly to invisible over the course of the animation.*/
 @property (assign) BOOL fade;
+
+/**The number of segments that make up the circle. The default is 36 (10 degrees per segment).*/
+@property (assign) unsigned int segmentCount;
+
+/**If set to YES, the circle radius is treated as nautical miles on the sphere. Otherwise, the radius is converted to screen-space. In screen space, the radius will be consistent across all zoom levels, in world space, the radius will 'stick' to a geographic distance. The default is NO.*/
+@property (assign) bool useWorldSpace;
 
 @end
