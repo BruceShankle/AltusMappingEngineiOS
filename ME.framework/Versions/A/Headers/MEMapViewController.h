@@ -20,6 +20,8 @@
 #import "MEMapInfo.h"
 #import "MEHitTesting.h"
 
+@class MEGeometryGroup;
+
 @interface MEMapViewController : GLKViewController <UIAlertViewDelegate, MEMarkerMapDelegate>
 
 /** Forces linker to link this file via NIB-only interfaces.*/
@@ -417,6 +419,16 @@
                                  style:(MEPolygonStyle*)style
                      animationDuration:(CGFloat)animationDuration;
 
+/**Adds a scale-dependent style to a feature in a vector map.
+ @param mapName The name of the vector map.
+ @param featureID The polygon feature of the map to apply the style to.
+ @param scale the target scale for the style
+ @param style The style to apply.*/
+- (void) addPolygonStyleToVectorMap:(NSString*) mapName
+                              scale:(double) scale
+                          featureId:(unsigned int) featureID
+                              style:(MEPolygonStyle*)style;
+
 /**Adds a line to a vector map.
  @param mapName The name of the vector map.
  @param points An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude for each point in the line.
@@ -487,6 +499,10 @@
 
 /**Called when a tile has been loaded through a virtual layer. Should only be called on the main thread.*/
 - (void) tileLoadComplete:(METileProviderRequest*) meTileRequest;
+
+/**Called by vector tile providers to supply geometry for a requested tile.*/
+- (void) vectorTileLoadComplete:(METileProviderRequest*) meTileRequest
+				  meGeometryGroup:(MEGeometryGroup*) meGeometryGroup;
 
 /**Returns whether or not the engine considers the tile represented by meTileRequest to be required to satisfy the current view for any non-animated virtual map. This call will dispatched to the main queue if it is not made on the main queue. If you need to know if an animated map tile request is still valid, please call animatedTileIsNeeded which does not dispatch to the main queue.*/
 -(BOOL) tileIsNeeded:(METileProviderRequest*) meTileRequest;
