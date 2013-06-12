@@ -23,3 +23,9 @@
 @interface MEWMSNationalAtlasStates : MEWMSTest
 @end
 
+@interface MEWMSNationalAtlasTreeCanopy : MEWMSTest
+@end
+
+@interface MEWMSNationalAtlasPorts : MEWMSTest
+@end
+

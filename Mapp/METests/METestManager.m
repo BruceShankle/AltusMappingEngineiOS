@@ -171,6 +171,8 @@
     testCategory.name = @"WMS";
     [self addCategory:testCategory];
 	[testCategory addTestClass:[MEWMSNationalAtlasStates class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasTreeCanopy class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasPorts class]];
 	[testCategory addTestClass:[MEWMSBlueMarbleTest class]];
 	[testCategory addTestClass:[MEWMSDCTest class]];
 	[testCategory addTestClass:[MEWMSSeattleTest class]];

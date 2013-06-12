@@ -231,12 +231,7 @@
 	mapInfo.zOrder = 4;
 	mapInfo.maxLevel = 19;
 	
-	[self.meMapViewController.meMapView
-	 lookAtCoordinate:CLLocationCoordinate2DMake(mapInfo.minY, mapInfo.minX)
-	 andCoordinate:CLLocationCoordinate2DMake(mapInfo.maxY, mapInfo.maxX)
-	 withHorizontalBuffer:0
-	 withVerticalBuffer:0
-	 animationDuration:1.0];
+	[self lookAtUnitedStates];
 	
 	return mapInfo;
 }
@@ -250,6 +245,87 @@
 	tileProvider.wmsVersion = @"1.1.1";
 	tileProvider.meMapViewController = self.meMapViewController;
 	tileProvider.shortName = @"WMS_NationalAtlasStates";
+	tileProvider.wmsStyleString = @"default";
+	return tileProvider;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////
+@implementation MEWMSNationalAtlasTreeCanopy
+
+- (id) init {
+	if(self=[super init]){
+		self.name = @"National Atlas - Tree Canopy";
+	}
+	return self;
+}
+
+-(MEVirtualMapInfo*) createMapInfo {
+	MEVirtualMapInfo* mapInfo = [super createMapInfo];
+		
+	mapInfo.minX = -179.998;
+	mapInfo.minY = 17.06;
+	mapInfo.maxX = -62.6641;
+	mapInfo.maxY = 71.954;
+	mapInfo.zOrder = 4;
+	mapInfo.maxLevel = 19;
+	
+	[self lookAtUnitedStates];
+	
+	return mapInfo;
+}
+
+- (METileProvider*) createTileProvider {
+	//Create and configure tile provider
+	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
+	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/1million";
+	tileProvider.wmsLayers = @"treecanopy";
+	tileProvider.wmsSRS = @"EPSG:4326";
+	tileProvider.wmsVersion = @"1.1.1";
+	tileProvider.meMapViewController = self.meMapViewController;
+	tileProvider.shortName = @"WMS_NationalAtlasTreeCanopy";
+	tileProvider.wmsStyleString = @"default";
+	return tileProvider;
+}
+
+@end
+
+
+///////////////////////////////////////////////////////////////////
+@implementation MEWMSNationalAtlasPorts
+
+- (id) init {
+	if(self=[super init]){
+		self.name = @"National Atlas - Ports";
+	}
+	return self;
+}
+
+-(MEVirtualMapInfo*) createMapInfo {
+	MEVirtualMapInfo* mapInfo = [super createMapInfo];
+		
+	mapInfo.minX = -166.532;
+	mapInfo.minY = 17.706;
+	mapInfo.maxX = -64.7707;
+	mapInfo.maxY = 66.8998;
+	mapInfo.zOrder = 4;
+	mapInfo.maxLevel = 19;
+	
+	[self lookAtUnitedStates];
+	
+	return mapInfo;
+}
+
+- (METileProvider*) createTileProvider {
+	//Create and configure tile provider
+	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
+	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/1million";
+	tileProvider.wmsLayers = @"ports1m";
+	tileProvider.wmsSRS = @"EPSG:4326";
+	tileProvider.wmsVersion = @"1.1.1";
+	tileProvider.meMapViewController = self.meMapViewController;
+	tileProvider.shortName = @"WMS_NationalAtlasPorts";
 	tileProvider.wmsStyleString = @"default";
 	return tileProvider;
 }
