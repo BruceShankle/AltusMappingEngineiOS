@@ -11,6 +11,9 @@
 
 +(CGPoint) transformCoordinate:(CGFloat) longitude latitude:(CGFloat) latitude bounds:(MEGeographicBounds*) bounds size:(CGSize) size;
 
+/**Given a CGPoint where x represents longitude, and y represents latitude, returns a new CGPoint in EPSG:3857 coordinates where x represents longitude and y represents latitude.*/
++(CGPoint) transformCoordinateToSphericalMercator:(CGPoint) sourceCoordinate;
+
 /**Convert degrees to radians.*/
 +(double) toRadians:(double)degrees;
 
