@@ -10,7 +10,7 @@
 		self.wmsURL = @"";
 		self.wmsVersion = @"1.3.0";
 		self.wmsLayers =  @"";
-		self.wmsSRS = @"EPSG:4326";
+		self.wmsSRS = @"EPSG:3857";
 		self.wmsFormat = @"image/png";
 		self.tileFileExtension = @"png";
 		self.isAsynchronous = NO;
@@ -92,13 +92,21 @@
 		[urlString appendString:@"&"];
 	}
 	
+	//Convert coordinates to EPSG:3857
+	CGPoint mercatorMin = [MEMath transformCoordinateToSphericalMercator:
+						   CGPointMake(meTileProviderRequest.minX,
+									   meTileProviderRequest.minY)];
+	
+	CGPoint mercatorMax = [MEMath transformCoordinateToSphericalMercator:
+						   CGPointMake(meTileProviderRequest.maxX,
+									   meTileProviderRequest.maxY)];
+	
 	[urlString appendString:@"BBOX="];
 	[urlString appendFormat:@"%f,%f,%f,%f",
-	 meTileProviderRequest.minX,
-	 meTileProviderRequest.minY,
-	 meTileProviderRequest.maxX,
-	 meTileProviderRequest.maxY];
-
+	 mercatorMin.x,
+	 mercatorMin.y,
+	 mercatorMax.x,
+	 mercatorMax.y];
 	return urlString;
 }
 
@@ -120,7 +128,7 @@
 	
 	if([fileManager fileExistsAtPath:fileName]==NO) {
 		if(![self downloadTileFromURL:[self tileURLForRequest:meTileRequest]
-							   toFileName:fileName]){
+						   toFileName:fileName]){
 			//For downloads that fail, show the gray grid
 			meTileRequest.isProxy = YES;
 			meTileRequest.isOpaque = YES;

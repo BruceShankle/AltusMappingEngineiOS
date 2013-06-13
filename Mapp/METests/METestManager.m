@@ -170,13 +170,20 @@
 	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"WMS";
     [self addCategory:testCategory];
+	[testCategory addTestClass:[MEWMSNationalAtlas2008Election class]];
 	[testCategory addTestClass:[MEWMSNationalAtlasStates class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasCitiesTowns class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasUrbanAreas class]];
 	[testCategory addTestClass:[MEWMSNationalAtlasTreeCanopy class]];
 	[testCategory addTestClass:[MEWMSNationalAtlasPorts class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasPrecipitation class]];
+	
 	[testCategory addTestClass:[MEWMSBlueMarbleTest class]];
 	[testCategory addTestClass:[MEWMSDCTest class]];
 	[testCategory addTestClass:[MEWMSSeattleTest class]];
 	[testCategory addTestClass:[MEWMSOregonTest class]];
+	
+	
 }
 
 - (void) createCameraTests

@@ -1,6 +1,7 @@
 //  Copyright (c) 2013 BA3, LLC. All rights reserved.
 #import "MEWMSTests.h"
 #import "MEWMSTileProvider.h"
+#import "../METestManager.h"
 
 @implementation MEWMSTest
 
@@ -27,7 +28,7 @@
 	MEVirtualMapInfo* mapInfo = [[[MEVirtualMapInfo alloc]init]autorelease];
 	mapInfo.name = self.name;
 	mapInfo.maxLevel = 12;
-	mapInfo.defaultTileName = @"grayGrid";
+	mapInfo.defaultTileName = @"grayGridTransparent";
 	mapInfo.meMapViewController = self.meMapViewController;
 	mapInfo.meTileProvider = [self createTileProvider];
 	mapInfo.isSphericalMercator = NO;
@@ -40,8 +41,13 @@
 	//Add default tile.
 	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"grayGrid"] withName:@"grayGrid" compressTexture:NO];
 	
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"grayGridTransparent"] withName:@"grayGridTransparent" compressTexture:NO];
+	
 	//Create and add map.
-	[self.meMapViewController addMapUsingMapInfo:[self createMapInfo]];
+	
+	MEVirtualMapInfo* mapInfo = [self createMapInfo];
+	[self.meMapViewController addMapUsingMapInfo:mapInfo];
+	[self.meMapViewController setMapAlpha:mapInfo.name alpha:0.99];
 	
 }
 
@@ -66,6 +72,12 @@
 		self.name = @"Blue Marble";
 	}
 	return self;
+}
+
+
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"Blue Marble (MODIS) - Source: LizardTech http://demo.lizardtech.com"];
 }
 
 - (METileProvider*) createTileProvider {
@@ -93,6 +105,11 @@
 	return self;
 }
 
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"Washington D.C. - Source: LizardTech http://demo.lizardtech.com"];
+}
+
 -(MEVirtualMapInfo*) createMapInfo {
 	MEVirtualMapInfo* mapInfo = [super createMapInfo];
 	mapInfo.minX = -77.643627;
@@ -117,7 +134,7 @@
 	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
 	tileProvider.wmsURL = @"http://demo.lizardtech.com/lizardtech/iserv/ows";
 	tileProvider.wmsLayers = @"DC";
-	tileProvider.wmsSRS = @"EPSG:4326";
+	tileProvider.wmsSRS = @"EPSG:3857";
 	tileProvider.wmsVersion = @"1.1.1";
 	tileProvider.meMapViewController = self.meMapViewController;
 	tileProvider.shortName = @"WMS_DC";
@@ -134,6 +151,11 @@
 		self.name = @"Seattle, WA";
 	}
 	return self;
+}
+
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"Seattle, WA - Source: LizardTech http://demo.lizardtech.com"];
 }
 
 -(MEVirtualMapInfo*) createMapInfo {
@@ -160,7 +182,6 @@
 	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
 	tileProvider.wmsURL = @"http://demo.lizardtech.com/lizardtech/iserv/ows";
 	tileProvider.wmsLayers = @"Seattle";
-	tileProvider.wmsSRS = @"EPSG:4326";
 	tileProvider.wmsVersion = @"1.1.1";
 	tileProvider.meMapViewController = self.meMapViewController;
 	tileProvider.shortName = @"WMS_Seattle";
@@ -177,6 +198,11 @@
 		self.name = @"Oregon";
 	}
 	return self;
+}
+
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"Oregon - Source: LizardTech http://demo.lizardtech.com"];
 }
 
 -(MEVirtualMapInfo*) createMapInfo {
@@ -203,7 +229,6 @@
 	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
 	tileProvider.wmsURL = @"http://demo.lizardtech.com/lizardtech/iserv/ows";
 	tileProvider.wmsLayers = @"Oregon";
-	tileProvider.wmsSRS = @"EPSG:4326";
 	tileProvider.wmsVersion = @"1.1.1";
 	tileProvider.meMapViewController = self.meMapViewController;
 	tileProvider.shortName = @"WMS_Oregon";
@@ -220,6 +245,12 @@
 		self.name = @"National Atlas - States";
 	}
 	return self;
+}
+
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"State Boundaries - Source: National Atlas http://www.nationalatlas.gov"];
+	
 }
 
 -(MEVirtualMapInfo*) createMapInfo {
@@ -241,10 +272,9 @@
 	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
 	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/1million";
 	tileProvider.wmsLayers = @"states1m";
-	tileProvider.wmsSRS = @"EPSG:4326";
 	tileProvider.wmsVersion = @"1.1.1";
 	tileProvider.meMapViewController = self.meMapViewController;
-	tileProvider.shortName = @"WMS_NationalAtlasStates";
+	tileProvider.shortName = @"WMSNationalAtlasStates";
 	tileProvider.wmsStyleString = @"default";
 	return tileProvider;
 }
@@ -261,9 +291,15 @@
 	return self;
 }
 
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"U.S. Tree Canopy - Source: National Atlas http://www.nationalatlas.gov"];
+	
+}
+
 -(MEVirtualMapInfo*) createMapInfo {
 	MEVirtualMapInfo* mapInfo = [super createMapInfo];
-		
+	
 	mapInfo.minX = -179.998;
 	mapInfo.minY = 17.06;
 	mapInfo.maxX = -62.6641;
@@ -281,10 +317,9 @@
 	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
 	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/1million";
 	tileProvider.wmsLayers = @"treecanopy";
-	tileProvider.wmsSRS = @"EPSG:4326";
 	tileProvider.wmsVersion = @"1.1.1";
 	tileProvider.meMapViewController = self.meMapViewController;
-	tileProvider.shortName = @"WMS_NationalAtlasTreeCanopy";
+	tileProvider.shortName = @"WMSNationalAtlasTreeCanopy";
 	tileProvider.wmsStyleString = @"default";
 	return tileProvider;
 }
@@ -302,9 +337,16 @@
 	return self;
 }
 
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"U.S. Ports - Source: National Atlas http://www.nationalatlas.gov"];
+	
+}
+
+
 -(MEVirtualMapInfo*) createMapInfo {
 	MEVirtualMapInfo* mapInfo = [super createMapInfo];
-		
+	
 	mapInfo.minX = -166.532;
 	mapInfo.minY = 17.706;
 	mapInfo.maxX = -64.7707;
@@ -322,10 +364,193 @@
 	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
 	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/1million";
 	tileProvider.wmsLayers = @"ports1m";
-	tileProvider.wmsSRS = @"EPSG:4326";
 	tileProvider.wmsVersion = @"1.1.1";
 	tileProvider.meMapViewController = self.meMapViewController;
-	tileProvider.shortName = @"WMS_NationalAtlasPorts";
+	tileProvider.shortName = @"WMSNationalAtlasPorts";
+	tileProvider.wmsStyleString = @"default";
+	return tileProvider;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////
+@implementation MEWMSNationalAtlasCitiesTowns
+
+- (id) init {
+	if(self=[super init]){
+		self.name = @"National Atlas - Cities & Towns";
+	}
+	return self;
+}
+
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"U.S. Cities & Towns - Source: National Atlas http://www.nationalatlas.gov"];
+	
+}
+
+
+-(MEVirtualMapInfo*) createMapInfo {
+	MEVirtualMapInfo* mapInfo = [super createMapInfo];
+	
+	mapInfo.minX = -166.532;
+	mapInfo.minY = 17.706;
+	mapInfo.maxX = -64.7707;
+	mapInfo.maxY = 66.8998;
+	mapInfo.zOrder = 5;
+	mapInfo.maxLevel = 19;
+	
+	[self lookAtUnitedStates];
+	
+	return mapInfo;
+}
+
+- (METileProvider*) createTileProvider {
+	//Create and configure tile provider
+	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
+	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/map_reference";
+	tileProvider.wmsLayers = @"citiestowns";
+	tileProvider.wmsVersion = @"1.1.1";
+	tileProvider.meMapViewController = self.meMapViewController;
+	tileProvider.shortName = @"WMSNationalAtlasCitiesTowns";
+	tileProvider.wmsStyleString = @"default";
+	return tileProvider;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////
+@implementation MEWMSNationalAtlasUrbanAreas
+
+- (id) init {
+	if(self=[super init]){
+		self.name = @"National Atlas - Urban Areas";
+	}
+	return self;
+}
+
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"U.S. Urban Areas - Source: National Atlas http://www.nationalatlas.gov"];
+	
+}
+
+
+-(MEVirtualMapInfo*) createMapInfo {
+	MEVirtualMapInfo* mapInfo = [super createMapInfo];
+	
+	mapInfo.minX = -166.532;
+	mapInfo.minY = 17.706;
+	mapInfo.maxX = -64.7707;
+	mapInfo.maxY = 66.8998;
+	mapInfo.zOrder = 4;
+	mapInfo.maxLevel = 19;
+	
+	[self lookAtUnitedStates];
+	
+	return mapInfo;
+}
+
+- (METileProvider*) createTileProvider {
+	//Create and configure tile provider
+	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
+	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/map_reference";
+	tileProvider.wmsLayers = @"usurban";
+	tileProvider.wmsVersion = @"1.1.1";
+	tileProvider.meMapViewController = self.meMapViewController;
+	tileProvider.shortName = @"WMSNationalAtlasUrbanAreas";
+	tileProvider.wmsStyleString = @"default";
+	return tileProvider;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////
+@implementation MEWMSNationalAtlas2008Election
+
+- (id) init {
+	if(self=[super init]){
+		self.name = @"National Atlas - 2008 Election";
+	}
+	return self;
+}
+
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"U.S. 2008 Presidential Election - Source: National Atlas http://www.nationalatlas.gov"];
+	
+}
+
+
+-(MEVirtualMapInfo*) createMapInfo {
+	MEVirtualMapInfo* mapInfo = [super createMapInfo];
+	
+	mapInfo.minX = -179.133;
+	mapInfo.minY = 18.9155;
+	mapInfo.maxX = 179.788;
+	mapInfo.maxY = 71.398;
+	mapInfo.zOrder = 3;
+	mapInfo.maxLevel = 19;
+	
+	[self lookAtUnitedStates];
+	
+	return mapInfo;
+}
+
+- (METileProvider*) createTileProvider {
+	//Create and configure tile provider
+	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
+	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/history";
+	tileProvider.wmsLayers = @"elcty08";
+	tileProvider.wmsVersion = @"1.1.1";
+	tileProvider.meMapViewController = self.meMapViewController;
+	tileProvider.shortName = @"WMSNationalAtlas2008Election";
+	tileProvider.wmsStyleString = @"default";
+	return tileProvider;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////
+@implementation MEWMSNationalAtlasPrecipitation
+
+- (id) init {
+	if(self=[super init]){
+		self.name = @"National Atlas - Precipitation";
+	}
+	return self;
+}
+
+- (void) start{
+	[super start];
+	[self.meTestManager setCopyrightNotice:@"U.S. Precipitation 2009 to 2012 - Source: National Atlas http://www.nationalatlas.gov"];
+	
+}
+
+
+-(MEVirtualMapInfo*) createMapInfo {
+	MEVirtualMapInfo* mapInfo = [super createMapInfo];
+	
+	mapInfo.minX = -179.133;
+	mapInfo.minY = 18.9155;
+	mapInfo.maxX = 179.788;
+	mapInfo.maxY = 71.398;
+	mapInfo.zOrder = 3;
+	mapInfo.maxLevel = 19;
+	
+	[self lookAtUnitedStates];
+	
+	return mapInfo;
+}
+
+- (METileProvider*) createTileProvider {
+	//Create and configure tile provider
+	MEWMSTileProvider* tileProvider = [[[MEWMSTileProvider alloc]init]autorelease];
+	tileProvider.wmsURL = @"http://webservices.nationalatlas.gov/wms/history";
+	tileProvider.wmsLayers = @"pr0509";
+	tileProvider.wmsVersion = @"1.1.1";
+	tileProvider.meMapViewController = self.meMapViewController;
+	tileProvider.shortName = @"WMSNationalAtlasPrecip";
 	tileProvider.wmsStyleString = @"default";
 	return tileProvider;
 }

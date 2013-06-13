@@ -29,3 +29,15 @@
 @interface MEWMSNationalAtlasPorts : MEWMSTest
 @end
 
+@interface MEWMSNationalAtlasCitiesTowns : MEWMSTest
+@end
+
+@interface MEWMSNationalAtlasUrbanAreas : MEWMSTest
+@end
+
+@interface MEWMSNationalAtlas2008Election : MEWMSTest
+@end
+
+@interface MEWMSNationalAtlasPrecipitation : MEWMSTest
+@end
+
