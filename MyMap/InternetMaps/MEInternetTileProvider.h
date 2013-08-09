@@ -13,6 +13,7 @@
 @property (nonatomic, retain) NSString* shortName;
 @property (nonatomic, retain) NSString* tileCacheRoot;
 @property (assign) BOOL returnUIImages;
+@property (assign) BOOL isServingAnimatedMap;
 @property (nonatomic, retain) NSString* copyrightNotice;
 @property (assign) int tilesNotNeededCount;
 @property (assign) int serialQueueCount;
@@ -32,6 +33,9 @@
 @interface MEMapBoxLandCoverTileProvider : MEMapBoxTileProvider
 @end
 
+@interface MEMapBoxSatelliteTileProvider : MEMapBoxTileProvider
+@end
+
 @interface MEOpenStreetMapsTileProvider : MEMapBoxTileProvider
 @end
 
@@ -44,11 +48,12 @@
 @interface MEStamenTerrainTileProvider : MEMapBoxTileProvider
 @end
 
-@interface MEArgyleTileProvider : MEMapBoxTileProvider
+@interface MEStamenWaterColorTileProvider : MEMapBoxTileProvider
 @end
 
-@interface MEMapBoxLandSatTileProvider : MEMapBoxTileProvider
+@interface MEIOMHaitiTileProvider : MEMapBoxTileProvider
 @end
+
 
 
 
