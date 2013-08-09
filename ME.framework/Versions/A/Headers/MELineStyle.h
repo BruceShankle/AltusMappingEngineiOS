@@ -3,19 +3,20 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+/**Describes the style of a line.*/
 @interface MELineStyle : NSObject
 
 /**Color to stroke object with.*/
-@property (atomic, retain) UIColor* strokeColor;
+@property (retain) UIColor* strokeColor;
 
 /**Width in pixels of stroke.*/
-@property (nonatomic, assign) CGFloat strokeWidth;
+@property (assign) CGFloat strokeWidth;
 
 /**Color to outline stroke object with.*/
-@property (atomic, retain) UIColor* outlineColor;
+@property (retain) UIColor* outlineColor;
 
 /**Width in pixels of outline on each side of the line.*/
-@property (nonatomic, assign) CGFloat outlineWidth;
+@property (assign) CGFloat outlineWidth;
 
 /**Initialize with stroke color and stroke width.*/
 - (id) initWithStrokeColor:(UIColor*) sColor

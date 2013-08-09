@@ -12,7 +12,7 @@
  Generates a UIImage with a transparent background with the specified string
  rendered using the specified font.
  */
-+ (UIImage *) createImageWithFont:(NSString*) fontName
++ (UIImage *) newImageWithFont:(NSString*) fontName
                    fontSize:(float) fontSize
                   fillColor:(UIColor*) fillColor
                 strokeColor:(UIColor*) strokeColor
@@ -24,7 +24,7 @@
  rendered using the specified font. Creates an outlne for the font using
  a multipass rendering technique.
  */
-+ (UIImage *) createImageWithFontOutlined:(NSString*) fontName
++ (UIImage *) newImageWithFontOutlined:(NSString*) fontName
                    fontSize:(float) fontSize
                   fillColor:(UIColor*) fillColor
                 strokeColor:(UIColor*) strokeColor
