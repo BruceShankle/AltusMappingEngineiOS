@@ -152,7 +152,7 @@
 
 @optional
 
-/**Called when a hit is dected on a vector line segment.*/
+/**Called when a hit is detected on a vector line segment.*/
 - (void) lineSegmentHitDetected:(MEMapView*) mapView
 						mapName:(NSString*) mapName
 						shapeId:(NSString*) shapeId
