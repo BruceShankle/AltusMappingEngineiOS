@@ -329,7 +329,7 @@
 - (NSString*) label
 {
 	return [NSString stringWithFormat:@"%.02f",
-			self.meMapViewController.meMapView.panDeceleration];
+			self.meMapViewController.meMapView.panAcceleration];
 }
 
 - (void) userTapped
@@ -361,7 +361,7 @@
 			_currentTest = -1;
 			break;
 	}
-	self.meMapViewController.meMapView.panDeceleration = newDecelValue;
+	self.meMapViewController.meMapView.panAcceleration = newDecelValue;
 }
 
 - (void) start {}
