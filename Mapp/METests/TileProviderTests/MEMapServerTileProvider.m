@@ -55,16 +55,16 @@
 	return fileName;
 }
 
-- (void) getTileFromServer:(METileInfo*) tileinfo
+- (void) getTileFromServer:(METileProviderRequest*) meTileRequest
 {
-	NSString* tileIdString = [NSString stringWithFormat:@"%"PRId64"", tileinfo.uid];
+	NSString* tileIdString = [NSString stringWithFormat:@"%"PRId64"", meTileRequest.uid];
 	
 	NSString* urlString = [NSString stringWithFormat:@"http://%@?tileId=%@", self.mapDomain, tileIdString];
 	
 	NSURL* url = [NSURL URLWithString:urlString];
 	
-    __block METileInfo* meTileInfo = tileinfo;
-    [meTileInfo retain];
+    __block METileProviderRequest* METileProviderRequest = meTileRequest;
+    [METileProviderRequest retain];
 	__block ASIHTTPRequest* request = [ASIHTTPRequest requestWithURL:url];
     
     [request setTimeOutSeconds:5];
@@ -83,36 +83,36 @@
             NSString* imageType = [responseHeaders objectForKey:@"Content-Type"];
             if([imageType isEqualToString:@"image/jpeg"])
             {
-                meTileInfo.fileName = [self cacheFileNameFor:meTileInfo.uid extension:@"jpg"];
-                meTileInfo.isOpaque = YES;
-                meTileInfo.imageDataType = kImageDataTypeJPG;
+                METileProviderRequest.fileName = [self cacheFileNameFor:METileProviderRequest.uid extension:@"jpg"];
+                METileProviderRequest.isOpaque = YES;
+                METileProviderRequest.imageDataType = kImageDataTypeJPG;
             }
             
             if([imageType isEqualToString:@"image/png"])
             {
-                meTileInfo.fileName = [self cacheFileNameFor:meTileInfo.uid extension:@"png"];
-                meTileInfo.isOpaque = NO;
-                meTileInfo.imageDataType = kImageDataTypePNG;
+                METileProviderRequest.fileName = [self cacheFileNameFor:METileProviderRequest.uid extension:@"png"];
+                METileProviderRequest.isOpaque = NO;
+                METileProviderRequest.imageDataType = kImageDataTypePNG;
             }
             
-            [responseData writeToFile:meTileInfo.fileName atomically:YES];
+            [responseData writeToFile:METileProviderRequest.fileName atomically:YES];
             [responseData release];
             
             if(self.returnUIImages)
             {
-                if(meTileInfo.fileName)
+                if(METileProviderRequest.fileName)
                 {
-                    meTileInfo.uiImage = [UIImage imageWithContentsOfFile:meTileInfo.fileName];
-                    meTileInfo.fileName = nil;
+                    METileProviderRequest.uiImage = [UIImage imageWithContentsOfFile:METileProviderRequest.fileName];
+                    METileProviderRequest.fileName = nil;
                 }
             }
             
             if(self.returnNSData)
             {
-                if(meTileInfo.fileName)
+                if(METileProviderRequest.fileName)
                 {
-                    meTileInfo.nsImageData = [NSData dataWithContentsOfFile:meTileInfo.fileName];
-                    meTileInfo.fileName = nil;
+                    METileProviderRequest.nsImageData = [NSData dataWithContentsOfFile:METileProviderRequest.fileName];
+                    METileProviderRequest.fileName = nil;
                 }
             }
             
@@ -123,110 +123,110 @@
             NSString* smaxY = [responseHeaders objectForKey:@"X-Tile-MaxY"];
           
             
-            meTileInfo.minX = [sminX doubleValue];
-            meTileInfo.minY = [sminY doubleValue];
-            meTileInfo.maxX = [smaxX doubleValue];
-            meTileInfo.maxY = [smaxY doubleValue];
+            METileProviderRequest.minX = [sminX doubleValue];
+            METileProviderRequest.minY = [sminY doubleValue];
+            METileProviderRequest.maxX = [smaxX doubleValue];
+            METileProviderRequest.maxY = [smaxY doubleValue];
             
             //Write out the meta-data
-            [self writeMetaData:meTileInfo];
+            [self writeMetaData:METileProviderRequest];
         }
 		
 		//Notify the load is complete.
-		[self tileLoadComplete:meTileInfo];
-        [meTileInfo release];
+		[self tileLoadComplete:METileProviderRequest];
+        [METileProviderRequest release];
 		
 	}];
 	
 	[request setFailedBlock:^{
-		[self tileLoadComplete:meTileInfo];
-        [meTileInfo release];
+		[self tileLoadComplete:METileProviderRequest];
+        [METileProviderRequest release];
 	}];
 	
 	[request startAsynchronous];
 	
 }
 
-- (void) writeMetaData:(METileInfo*) tileinfo
+- (void) writeMetaData:(METileProviderRequest*) meTileRequest
 {
 	//Write out the meta-data
-	NSString* datFileName = [self datFileNameFor:tileinfo.uid];
+	NSString* datFileName = [self datFileNameFor:meTileRequest.uid];
 	FILE* outfile = fopen([datFileName UTF8String], "wb");
 	double d;
-	d = tileinfo.minX; fwrite(&d, sizeof(double), 1, outfile);
-	d = tileinfo.minY; fwrite(&d, sizeof(double), 1, outfile);
-	d = tileinfo.maxX; fwrite(&d, sizeof(double), 1, outfile);
-	d = tileinfo.maxY; fwrite(&d, sizeof(double), 1, outfile);
+	d = meTileRequest.minX; fwrite(&d, sizeof(double), 1, outfile);
+	d = meTileRequest.minY; fwrite(&d, sizeof(double), 1, outfile);
+	d = meTileRequest.maxX; fwrite(&d, sizeof(double), 1, outfile);
+	d = meTileRequest.maxY; fwrite(&d, sizeof(double), 1, outfile);
 	fclose(outfile);
 }
 
-- (BOOL) readMetaData:(METileInfo*) tileinfo
+- (BOOL) readMetaData:(METileProviderRequest*) meTileRequest
 {
-	NSString* datFileName = [self datFileNameFor:tileinfo.uid];
+	NSString* datFileName = [self datFileNameFor:meTileRequest.uid];
 	FILE* infile = fopen([datFileName UTF8String], "rb");
 	if(infile==NULL)
 		return NO;
 	double d;
-	fread(&d, sizeof(double), 1, infile); tileinfo.minX = d;
-	fread(&d, sizeof(double), 1, infile); tileinfo.minY = d;
-	fread(&d, sizeof(double), 1, infile); tileinfo.maxX = d;
-	fread(&d, sizeof(double), 1, infile); tileinfo.maxY = d;
+	fread(&d, sizeof(double), 1, infile); meTileRequest.minX = d;
+	fread(&d, sizeof(double), 1, infile); meTileRequest.minY = d;
+	fread(&d, sizeof(double), 1, infile); meTileRequest.maxX = d;
+	fread(&d, sizeof(double), 1, infile); meTileRequest.maxY = d;
 	fclose(infile);
 	return YES;
 }
 
 
-- (BOOL) getTileFromLocalCache:(METileInfo*) tileinfo
+- (BOOL) getTileFromLocalCache:(METileProviderRequest*) meTileRequest
 {
 	NSFileManager* fileManager = [NSFileManager defaultManager];
     
     //Is PNG in cache?
-	NSString* fileName = [self cacheFileNameFor:tileinfo.uid extension:@"png"];
+	NSString* fileName = [self cacheFileNameFor:meTileRequest.uid extension:@"png"];
 	if([fileManager fileExistsAtPath:fileName]==YES)
 	{
-		tileinfo.isOpaque = NO;
-		tileinfo.fileName = fileName;
-		tileinfo.tileProviderResponse = kTileResponseRenderFilename;
-        tileinfo.imageDataType = kImageDataTypePNG;
+		meTileRequest.isOpaque = NO;
+		meTileRequest.fileName = fileName;
+		meTileRequest.tileProviderResponse = kTileResponseRenderFilename;
+        meTileRequest.imageDataType = kImageDataTypePNG;
         if(self.returnUIImages)
 		{
-			tileinfo.tileProviderResponse = kTileResponseRenderUIImage;
-            tileinfo.uiImage = [UIImage imageWithContentsOfFile:fileName];
+			meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
+            meTileRequest.uiImage = [UIImage imageWithContentsOfFile:fileName];
 		}
         if(self.returnNSData)
 		{
-			tileinfo.tileProviderResponse = kTileResponseRenderNSData;
-            tileinfo.nsImageData = [NSData dataWithContentsOfFile:fileName];
+			meTileRequest.tileProviderResponse = kTileResponseRenderNSData;
+            meTileRequest.nsImageData = [NSData dataWithContentsOfFile:fileName];
 		}
 	}
 	else
 	{
-		fileName = [self cacheFileNameFor:tileinfo.uid extension:@"jpg"];
+		fileName = [self cacheFileNameFor:meTileRequest.uid extension:@"jpg"];
 		if([fileManager fileExistsAtPath:fileName]==YES)
 		{
-			tileinfo.isOpaque = YES;
-			tileinfo.fileName = fileName;
-            tileinfo.imageDataType = kImageDataTypeJPG;
+			meTileRequest.isOpaque = YES;
+			meTileRequest.fileName = fileName;
+            meTileRequest.imageDataType = kImageDataTypeJPG;
             if(self.returnUIImages)
 			{
-				tileinfo.tileProviderResponse = kTileResponseRenderUIImage;
-                tileinfo.uiImage = [UIImage imageWithContentsOfFile:fileName];
+				meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
+                meTileRequest.uiImage = [UIImage imageWithContentsOfFile:fileName];
 			}
             if(self.returnNSData)
 			{
-				tileinfo.tileProviderResponse = kTileResponseRenderNSData;
-                tileinfo.nsImageData = [NSData dataWithContentsOfFile:fileName];
+				meTileRequest.tileProviderResponse = kTileResponseRenderNSData;
+                meTileRequest.nsImageData = [NSData dataWithContentsOfFile:fileName];
 			}
 		}
 	}
 	
-	if(tileinfo.fileName.length!=0)
+	if(meTileRequest.fileName.length!=0)
 	{
 		//We have a tile file, so load meta data for it.
-		if([self readMetaData:tileinfo])
+		if([self readMetaData:meTileRequest])
         {
             if(self.returnNSData || self.returnUIImages)
-                tileinfo.fileName = nil;
+                meTileRequest.fileName = nil;
 			return YES;
         }
 	}
@@ -234,16 +234,16 @@
 	return NO;
 }
 
-- (void) requestTileAsync:(METileInfo*) tileinfo
+- (void) requestTileAsync:(METileProviderRequest*) meTileRequest
 {
-	if([self getTileFromLocalCache:tileinfo])
+	if([self getTileFromLocalCache:meTileRequest])
 	{
-		[super tileLoadComplete:tileinfo];
+		[super tileLoadComplete:meTileRequest];
 		return;
 	}
 	
 	//Otherwise queue up a download request
-	[self getTileFromServer:tileinfo];
+	[self getTileFromServer:meTileRequest];
 }
 
 

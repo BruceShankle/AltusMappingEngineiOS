@@ -37,6 +37,14 @@
 @property (retain) IBOutlet UIButton* btnRefreshRegion;
 @end
 
+@interface MEAnimatedStreetMapsTileProvider : METileProvider
+@property (retain) NSMutableArray* internetTileProviders;
+@end
+
+@interface MEAnimatedStreetMaps : METest
+@property (assign) BOOL isPlaying;
+@property (retain) UIButton* btnPlayPause;
+@end
 
 
 

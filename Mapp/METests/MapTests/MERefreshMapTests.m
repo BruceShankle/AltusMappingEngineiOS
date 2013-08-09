@@ -4,10 +4,10 @@
 #import "BoundingBoxReader.h"
 
 @implementation MERefreshMapTileProvider
-- (void) requestTile:(METileInfo *)tileInfo
+- (void) requestTile:(METileProviderRequest *)meTileRequest
 {
-	tileInfo.uiImage = [UIImage imageNamed:[NSString stringWithFormat:@"tile_%d",self.currentTile]];
-	tileInfo.tileProviderResponse = kTileResponseRenderUIImage;
+	meTileRequest.uiImage = [UIImage imageNamed:[NSString stringWithFormat:@"tile_%d",self.currentTile]];
+	meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
 }
 
 -(void) nextTile
@@ -219,37 +219,37 @@
 	return self;
 }
 
-- (void) requestTile:(METileInfo *)tileInfo
+- (void) requestTile:(METileProviderRequest *)meTileRequest
 {
 	NSLog(@"not supported");
 	exit(0);
 }
 
-- (void) requestTilesAsync:(NSArray *)tileInfos
+- (void) requestTilesAsync:(NSArray *)meTileRequests
 {
 	@synchronized(self)
 	{
 		[self nextTile];
 	}
 	
-	for(METileInfo* tileInfo in tileInfos)
+	for(METileProviderRequest* meTileRequest in meTileRequests)
 	{
 		//Sleep here to simulate a tile provider
 		//[NSThread sleepForTimeInterval:0.1];
 		
 		//Early exit if not needed, note we still call
 		//tileLoadComplete here to the engine can clean up resources
-		if(![self.meMapViewController animatedTileIsNeeded:tileInfo])
+		if(![self.meMapViewController animatedTileIsNeeded:meTileRequest])
 		{
-			tileInfo.tileProviderResponse = kTileResponseWasCancelled;
-			[self.meMapViewController tileLoadComplete:tileInfo];
+			meTileRequest.tileProviderResponse = kTileResponseWasCancelled;
+			[self.meMapViewController tileLoadComplete:meTileRequest];
 		}
 		//Otherwise, service the request with an image
 		else
 		{
-			tileInfo.uiImage = [UIImage imageNamed:[NSString stringWithFormat:@"tile_%d",self.currentTile]];
-			tileInfo.tileProviderResponse = kTileResponseRenderUIImage;
-			[self.meMapViewController tileLoadComplete:tileInfo];
+			meTileRequest.uiImage = [UIImage imageNamed:[NSString stringWithFormat:@"tile_%d",self.currentTile]];
+			meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
+			[self.meMapViewController tileLoadComplete:meTileRequest];
 		}
 	}
 }

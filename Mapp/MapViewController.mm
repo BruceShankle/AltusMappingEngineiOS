@@ -395,6 +395,10 @@ using namespace std;
 
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
+	//Remove the next 2 lines if you want to see stats
+	self.lblDebugInfo.text=@"";
+	return;
+	
 #ifdef TESTFLIGHT
 	self.lblDebugInfo.text=@"";
 	return;

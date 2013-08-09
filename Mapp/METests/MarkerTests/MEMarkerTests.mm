@@ -1043,7 +1043,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     [self.meMapViewController addMarkerToMap:self.name
 							markerAnnotation:markerAnnotation];
     
-    self.interval = 0.2;
+    self.interval = 1.0;
     
     //Start timer
     [super start];
@@ -1067,7 +1067,8 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     //Update marker location
     [self.meMapViewController updateMarkerLocationInMap:self.name
                                               metaData:@"Bus 1"
-                                            newLocation:[self getRoutePointCoordinate:self.routeIndex]];
+                                            newLocation:[self getRoutePointCoordinate:self.routeIndex]
+									  animationDuration:1.0];
 }
 
 // Implement MEMarkerMapDelegate methods
@@ -1210,7 +1211,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
         fontSize = 30.0f;
 
     //Have the mapping engine create a label for us
-    UIImage* textImage=[MEFontUtil createImageWithFontOutlined:@"Helvetica-Bold"
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
                                         fontSize:fontSize
                                        fillColor:fillColor
                                      strokeColor:strokeColor
@@ -1420,7 +1421,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
         fontSize = 30.0f;
 	
     //Have the mapping engine create a label for us
-    UIImage* textImage=[MEFontUtil createImageWithFontOutlined:@"Helvetica-Bold"
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
 												fontSize:fontSize
 											   fillColor:fillColor
 											 strokeColor:strokeColor
@@ -1555,40 +1556,6 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 }
 @end
 
-@implementation MEMTLinuxCountriesStatesCitiesFromDisk
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Countries, Cities, States: From Bundle";
-    }
-    return self;
-}
-
-- (void) start
-{
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.name;
-	mapInfo.mapType = kMapTypeFileMarker;
-	mapInfo.sqliteFileName = [MarkerTestData linuxCountriesCitiesStatesMarkerBundlePath];
-	mapInfo.zOrder = 21;
-	mapInfo.meMarkerMapDelegate = self;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-	
-	[self lookAtUnitedStates];
-    self.isRunning = YES;
-}
-
-- (void) stop
-{
-    [self.meMapViewController removeMap:self.name
-                                   clearCache:YES];
-    self.isRunning = NO;
-}
-@end
-
-
-
 /////////////////////////////////////////////////////////////////////
 //Aviation markers
 //Tower height markers
@@ -1649,7 +1616,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     UIColor* strokeColor = [UIColor blackColor];
     
     //Have the mapping engine create a label for us
-    UIImage* textImage=[MEFontUtil createImageWithFontOutlined:@"Helvetica-Bold"
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
 												fontSize:fontSize
 											   fillColor:fillColor
 											 strokeColor:strokeColor
@@ -1691,7 +1658,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     UIColor* strokeColor = [UIColor blackColor];
     
     //Have the mapping engine create a label for us
-    UIImage* textImage=[MEFontUtil createImageWithFontOutlined:@"Helvetica-Bold"
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
 													  fontSize:self.fontSize
 													 fillColor:fillColor
 												   strokeColor:strokeColor

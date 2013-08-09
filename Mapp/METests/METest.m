@@ -191,6 +191,14 @@
 	}
 }
 
+-(double)randomDouble:(double)min
+				  max:(double)max
+{
+    
+    double drange = (double)arc4random()/((double)4294967296);
+	return min + drange*(max-min);
+}
+
 -(void) lookAtUnitedStates
 {
     [self.meMapViewController.meMapView lookAtCoordinate:CLLocationCoordinate2DMake(37.246798, -126.554263)

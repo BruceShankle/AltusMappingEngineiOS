@@ -488,7 +488,6 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 		for(int y=-80; y<=80; y+=10)
 		{
 			NSString* metaData = [NSString stringWithFormat:@"x=%d y=%d",x,y];
-			NSLog(metaData);
 			[markers addObject:[self createMarkerAnnotation:CLLocationCoordinate2DMake(x, y)
 													   name:metaData]];
 		}
@@ -514,11 +513,9 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	NSString* labelText= [NSString stringWithFormat:@"(%.0f,%.0f)",
 						  markerInfo.location.longitude,
 						  markerInfo.location.latitude];
-	
-	NSLog(labelText);
-	
+		
 	UIImage* uiImage;
-	uiImage = [MEFontUtil createImageWithFontOutlined:@"Arial"
+	uiImage = [MEFontUtil newImageWithFontOutlined:@"Arial"
 											 fontSize:12
 											fillColor:[UIColor whiteColor]
 										  strokeColor:[UIColor blackColor]

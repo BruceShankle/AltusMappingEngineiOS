@@ -32,7 +32,6 @@
 #import "MarkerTests/MEMarkerTests.h"
 #import "MarkerTests/MEMarkerFastLoad.h"
 #import "MarkerTests/MEMarkerHitTest.h"
-#import "MarkerTests/METemporalMarkerTests.h"
 #import "MarkerTests/MEHideMarkerTest.h"
 #import "MarkerTests/MEMarkerDatabaseCacheTest.h"
 #import "MarkerTests/AirTrafficTest.h"
@@ -56,6 +55,10 @@
 #import "MapTests/MERefreshMapTests.h"
 #import "MapTests/MERefreshAllMapsTest.h"
 #import "MapTests/MESparseTileMapTest.h"
+#import "DynamicMarkers/BlinkingMarkerTests.h"
+#import "DynamicMarkers/AirTrafficScenario.h"
+#import "DynamicMarkers/TowersWithHeightColorBarTest.h"
+#import "WMSTests/MEWMSTests.h"
 
 @implementation METestManager
 
@@ -163,6 +166,26 @@
     return nil;
 }
 
+- (void) createWMSTests {
+	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
+    testCategory.name = @"WMS";
+    [self addCategory:testCategory];
+	[testCategory addTestClass:[MEWMSNationalAtlas2008Election class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasStates class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasCitiesTowns class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasUrbanAreas class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasTreeCanopy class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasPorts class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasPrecipitation class]];
+	
+	[testCategory addTestClass:[MEWMSBlueMarbleTest class]];
+	[testCategory addTestClass:[MEWMSDCTest class]];
+	[testCategory addTestClass:[MEWMSSeattleTest class]];
+	[testCategory addTestClass:[MEWMSOregonTest class]];
+	
+	
+}
+
 - (void) createCameraTests
 {
     METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
@@ -202,6 +225,7 @@
 	[testCategory addTestClass:[MESetPanDecelerationTest class]];
 	[testCategory addTestClass:[MEPanVelocityScaleTest class]];
 }
+
 
 - (void) createPerfTests
 {
@@ -263,13 +287,11 @@
 	[testCategory addTestClass:[MEInternetMapClearCacheTest class]];
 	[testCategory addTestClass:[MEMapBoxMarsMapTest class]];
 	[testCategory addTestClass:[MERefreshMarsTest class]];
-	[testCategory addTestClass:[MEMapBoxMapTest class]];
 	[testCategory addTestClass:[MEMapBoxLandCoverMapTest class]];
 	[testCategory addTestClass:[MEMapQuestMapTest class]];
 	[testCategory addTestClass:[MEMapQuestAerialMapTest class]];
 	[testCategory addTestClass:[MEMapQuestAerialMapTest2 class]];
 	[testCategory addTestClass:[MEOpenStreetMapsMapTest class]];
-	[testCategory addTestClass:[MEArgyleMapTest class]];
 	[testCategory addTestClass:[MEStamenTerrainMapTest class]];
 	
 	//Add compressed internet maps
@@ -279,12 +301,10 @@
 	[testCategory addTestClass:[MEInternetMapLoadInvisible class]];
 	[testCategory addTestClass:[MEInternetMapAnalyzeCacheTest class]];
 	[testCategory addTestClass:[MEInternetMapClearCacheTest class]];
-	[testCategory addTestClass:[cMEMapBoxMapTest class]];
 	[testCategory addTestClass:[cMEMapBoxLandCoverMapTest class]];
 	[testCategory addTestClass:[cMEMapQuestMapTest class]];
 	[testCategory addTestClass:[cMEMapQuestAerialMapTest class]];
 	[testCategory addTestClass:[cMEOpenStreetMapsMapTest class]];
-	[testCategory addTestClass:[cMEArgyleMapTest class]];
 	[testCategory addTestClass:[cMEStamenTerrainMapTest class]];
 }
 
@@ -356,10 +376,6 @@
 	
 //	[testCategory addTestClass:[MEMarkerDatabaseCacheTest class]];
 //	[testCategory addTestClass:[MEHideMarkerTest class]];
-//	[testCategory addTestClass:[METemporalMarkerTestA class]];
-//	[testCategory addTestClass:[METemporalMarkerTestB class]];
-//	[testCategory addTestClass:[METemporalMarkerTestC class]];
-//	[testCategory addTestClass:[METemporalMarkerTestD class]];
 	
 }
 
@@ -435,6 +451,7 @@
     METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
     testCategory.name = @"Animated Maps";
     [self addCategory:testCategory];
+	[testCategory addTestClass:[MEAnimatedStreetMaps class]];
 	[testCategory addTestClass:[MEAnimatedMapTest class]];
 	[testCategory addTestClass:[MEAnimatedMapTest2 class]];
 	[testCategory addTestClass:[MEAnimatedMapTest3 class]];
@@ -485,6 +502,20 @@
 	[testCategory addTestClass:[PlanetWatchVector class]];
 }
 
+- (void) createDynamicMarkerTests
+{
+	METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
+    testCategory.name = @"Dynamic Markers";
+    [self addCategory:testCategory];
+	[testCategory addTestClass:[AirTrafficScenario class]];
+	[testCategory addTestClass:[TowersWithHeightColorBarTest class]];
+    [testCategory addTestClass:[BlinkingMarkerTest class]];
+	[testCategory addTestClass:[BlinkingMarkerCachedTest class]];
+	[testCategory addTestClass:[BlinkingMarkerHybridTest class]];
+	[testCategory addTestClass:[BlinkingMovingMarkerTest class]];
+	[testCategory addTestClass:[BlinkingRotatingMarkerTest class]];
+}
+
 - (void) createLocalTerrainTests
 {
 	METestCategory* testCategory = [[[LocalTerrainMapTestsCategory alloc]init]autorelease];
@@ -499,6 +530,8 @@
 }
 - (void) createAllTests
 {
+	[self createWMSTests];
+	[self createDynamicMarkerTests];
 	[self createLocalTerrainTests];
 	[self createDemos];
 	[self createCameraTests];

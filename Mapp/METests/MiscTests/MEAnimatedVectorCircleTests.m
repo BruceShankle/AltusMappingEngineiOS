@@ -20,20 +20,17 @@
 	if(self.isRunning)
 		return;
 	
-	//Outline style
-	MELineStyle* outlineStyle = [[[MELineStyle alloc]init]autorelease];
-	outlineStyle.strokeColor = [UIColor whiteColor];
-	outlineStyle.strokeWidth = 8;
 	
 	MELineStyle* lineStyle = [[[MELineStyle alloc]init]autorelease];
 	lineStyle.strokeColor = [UIColor redColor];
+	lineStyle.outlineColor = [UIColor whiteColor];
+	lineStyle.outlineWidth = 8;
 	lineStyle.strokeWidth = 4;
 	
 	MEAnimatedVectorCircle* circle = [[[MEAnimatedVectorCircle alloc]init]autorelease];
 	circle.name = @"RDUCircle";
 	circle.location = RDU_COORD;
 	circle.lineStyle = lineStyle;
-	circle.outlineStyle = outlineStyle;
 	circle.zOrder = 999;
 	circle.minRadius = 5;
 	circle.maxRadius = 10000;

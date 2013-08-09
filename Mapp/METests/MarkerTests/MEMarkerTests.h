@@ -109,9 +109,6 @@
 @interface MEMTCitiesFromDisk : MEMTCountryMarkersFromDisk
 @end
 
-@interface MEMTLinuxCountriesStatesCitiesFromDisk : MEMTCountryMarkersFromDisk
-@end
-
 @interface MECountryMarkersInMemory : MEMarkerTest <MEMarkerMapDelegate>
 @property (retain) NSMutableArray* countries;
 @end

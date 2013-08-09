@@ -19,7 +19,7 @@
 @property (assign) int maxLevel;
 @property (assign) BOOL zoomIndependent;
 @property (assign) BOOL compressTextures;
-@property (assign) int zOrder;
+@property (assign) unsigned int zOrder;
 @property (assign) BOOL loadInvisible;
 @property (assign) MEMapLoadingStrategy loadingStrategy;
 @end
@@ -33,16 +33,10 @@
 @property (assign) long byteCount;
 @end
 
-@interface MEMapBoxMapTest : MEInternetMapTest
-@end
-
-@interface MEMapBoxMarsMapTest : MEMapBoxMapTest
+@interface MEMapBoxMarsMapTest : MEInternetMapTest
 @end
 
 @interface MERefreshMarsTest : METest
-@end
-
-@interface MEArgyleMapTest : MEInternetMapTest
 @end
 
 @interface MEMapBoxLandCoverMapTest : MEInternetMapTest
@@ -61,13 +55,6 @@
 @end
 
 @interface MEStamenTerrainMapTest : MEInternetMapTest
-@end
-
-
-@interface cMEMapBoxMapTest : MEMapBoxMapTest
-@end
-
-@interface cMEArgyleMapTest : MEArgyleMapTest
 @end
 
 @interface cMEMapBoxLandCoverMapTest : MEMapBoxLandCoverMapTest

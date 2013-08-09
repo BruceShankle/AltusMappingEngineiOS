@@ -63,13 +63,13 @@
 	[self.meTestCategory stopAllTests];
 	
 	//Create tile provider
-    MBTilesTileProvider* mbTilesTilesProvider = [[[MBTilesTileProvider alloc]initWithDatabaseName:self.name]autorelease];
+    MBTilesTileProvider* mbTilesTilesProvider = [[[MBTilesTileProvider alloc]initWithDatabaseName:@"Earthquakes"]autorelease];
     mbTilesTilesProvider.meMapViewController = self.meMapViewController;
 	
 	//Create map info
 	MEVirtualMapInfo* mapInfo = [[[MEVirtualMapInfo alloc]init]autorelease];
 	mapInfo.name = self.name;
-	mapInfo.isSlippyMap = YES;
+	mapInfo.isSphericalMercator = YES;
 	mapInfo.zOrder = 5;
 	mapInfo.maxLevel = 7;
 	mapInfo.contentType = kZoomIndependent;
@@ -78,8 +78,6 @@
 	
 	//Add map
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-	
-	
     self.isRunning = YES;
 }
 
