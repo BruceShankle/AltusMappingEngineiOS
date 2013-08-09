@@ -244,7 +244,7 @@
 										 otherObject.heading,
 										 otherObject.velocity];
 				UIImage* uiImage;
-				uiImage = [MEFontUtil createImageWithFontOutlined:@"ArialMT"
+				uiImage = [MEFontUtil newImageWithFontOutlined:@"ArialMT"
 														 fontSize:15
 														fillColor:[UIColor whiteColor]
 													  strokeColor:[UIColor blackColor]

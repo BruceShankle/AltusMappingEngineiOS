@@ -515,7 +515,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 						  markerInfo.location.latitude];
 		
 	UIImage* uiImage;
-	uiImage = [MEFontUtil createImageWithFontOutlined:@"Arial"
+	uiImage = [MEFontUtil newImageWithFontOutlined:@"Arial"
 											 fontSize:12
 											fillColor:[UIColor whiteColor]
 										  strokeColor:[UIColor blackColor]

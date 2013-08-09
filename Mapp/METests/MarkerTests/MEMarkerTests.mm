@@ -1211,7 +1211,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
         fontSize = 30.0f;
 
     //Have the mapping engine create a label for us
-    UIImage* textImage=[MEFontUtil createImageWithFontOutlined:@"Helvetica-Bold"
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
                                         fontSize:fontSize
                                        fillColor:fillColor
                                      strokeColor:strokeColor
@@ -1421,7 +1421,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
         fontSize = 30.0f;
 	
     //Have the mapping engine create a label for us
-    UIImage* textImage=[MEFontUtil createImageWithFontOutlined:@"Helvetica-Bold"
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
 												fontSize:fontSize
 											   fillColor:fillColor
 											 strokeColor:strokeColor
@@ -1616,7 +1616,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     UIColor* strokeColor = [UIColor blackColor];
     
     //Have the mapping engine create a label for us
-    UIImage* textImage=[MEFontUtil createImageWithFontOutlined:@"Helvetica-Bold"
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
 												fontSize:fontSize
 											   fillColor:fillColor
 											 strokeColor:strokeColor
@@ -1658,7 +1658,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     UIColor* strokeColor = [UIColor blackColor];
     
     //Have the mapping engine create a label for us
-    UIImage* textImage=[MEFontUtil createImageWithFontOutlined:@"Helvetica-Bold"
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
 													  fontSize:self.fontSize
 													 fillColor:fillColor
 												   strokeColor:strokeColor

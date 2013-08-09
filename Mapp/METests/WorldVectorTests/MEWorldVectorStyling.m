@@ -428,7 +428,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	
 	if(self.useOutlinedFont)
 	{
-		textImage=[MEFontUtil createImageWithFontOutlined:fontName
+		textImage=[MEFontUtil newImageWithFontOutlined:fontName
 										   fontSize:fontSize
 										  fillColor:fillColor
 										strokeColor:strokeColor
@@ -437,7 +437,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	}
 	else
 	{
-		textImage=[MEFontUtil createImageWithFont:fontName
+		textImage=[MEFontUtil newImageWithFont:fontName
 								   fontSize:fontSize
 								  fillColor:fillColor
 								strokeColor:strokeColor

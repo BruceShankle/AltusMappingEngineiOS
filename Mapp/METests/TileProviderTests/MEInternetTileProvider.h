@@ -36,6 +36,9 @@
 @interface MEMapBoxLandCoverTileProvider : MEMapBoxTileProvider
 @end
 
+@interface MEMapBoxSatelliteTileProvider : MEMapBoxTileProvider
+@end
+
 @interface MEOpenStreetMapsTileProvider : MEMapBoxTileProvider
 @end
 
@@ -46,6 +49,14 @@
 @end
 
 @interface MEStamenTerrainTileProvider : MEMapBoxTileProvider
+@end
+
+
+@interface MEStamenWaterColorTileProvider : MEMapBoxTileProvider
+@end
+
+
+@interface MEIOMHaitiTileProvider : MEMapBoxTileProvider
 @end
 
 
