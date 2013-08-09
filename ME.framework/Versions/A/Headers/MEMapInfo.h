@@ -54,22 +54,7 @@ typedef enum {
 	kMarkerImageLoadingPrecached
 } MEMarkerImageLoadingStrategy;
 
-//////////////////////////////////////////////////
-/**Describes the file and table prefixes associated with a map.
- Serves as base class for specific map info objects.
- */
-@interface MEMapFileInfo : NSObject
 
-/**Physical path of index sqlite file for the map.*/
-@property (retain) NSString* sqliteFileName;
-
-/**Table name prefix in cases where sqlite file contains data for multiple maps.*/
-@property (retain) NSString* tableNamePrefix;
-
-/**Physical path of data file for the map.*/
-@property (retain) NSString* dataFileName;
-
-@end
 
 //////////////////////////////////////////////////
 /**Describes a map layer and options for it. Used when adding a map or inquiring about map. There are several sub-classes of MEMapInfo. When adding a map, you create an MEMapInfo object of the appropriate type, populate its properties and then call MEMapViewController addMapUsingMapInfo passing in the MEMapInfo object.
@@ -122,7 +107,7 @@ typedef enum {
  - kMarkerImageLoadingPrecached: Marker images are pre-cached with the mapping engine. There is no separate loading step. This is good for limited use when you need the fastest possible display. 
  
  */
-@interface MEMapInfo : MEMapFileInfo
+@interface MEMapInfo : NSObject
 
 /**Map type.*/
 @property (assign) MEMapType mapType;
@@ -132,6 +117,15 @@ typedef enum {
 
 /**Unique name of map.*/
 @property (retain) NSString* name;
+
+/**Physical path of index sqlite file for the map.*/
+@property (retain) NSString* sqliteFileName;
+
+/**Table name prefix in cases where sqlite file contains data for multiple maps.*/
+@property (retain) NSString* tableNamePrefix;
+
+/**Physical path of data file for the map.*/
+@property (retain) NSString* dataFileName;
 
 /**The view controller that is managing this map.*/
 @property (retain) MEMapViewController* meMapViewController;

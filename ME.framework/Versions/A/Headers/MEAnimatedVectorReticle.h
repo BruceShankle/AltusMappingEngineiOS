@@ -2,7 +2,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "MEPolygonStyle.h"
-#import "Enums.h"
+#import "MEAnimatedVectorReticleStyles.h"
 
 /**Describes an animated reticle of 4 triangles that can be used to highlight a point on a map.*/
 @interface MEAnimatedVectorReticle : NSObject

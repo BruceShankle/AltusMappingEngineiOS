@@ -22,10 +22,10 @@
 
 @class MEGeometryGroup;
 
-@interface MEMapViewController : GLKViewController <UIAlertViewDelegate>
+@interface MEMapViewController : GLKViewController <UIAlertViewDelegate, MEMarkerMapDelegate>
 
 /** Forces linker to link this file via NIB-only interfaces.*/
-+ (void) forceLink;
++ (void) forceLink; 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Properties
@@ -110,33 +110,6 @@
 /** Add a map layer to the current view. The map must have been a map produced by the BA3 metool.
  */
 - (void) addMap:(NSString*) mapName mapSqliteFileName:(NSString*) mapSqliteFileName mapDataFileName:(NSString*) mapDataFileName compressTextures:(BOOL) compressTextures;
-
-/** Sets the base map (zOrder of 0) layer to be a tiled map of the specified image.
- @param tiledImage A 256x256 image that will be tiled for the entire map.*/
-- (void) setBaseMapImage:(UIImage*) tiledImage;
-
-
-/** Sets the base map (zOrder of 0) layer to be an tiled map of the specified cached image.
- @param cachedImageName. The name of the cached image.*/
-- (void) setBaseMapCachedImage:(NSString*) cachedImageName;
-
-
-/**
- Adds an MBTiles raster map. Generally, these maps are produced with TileMill from MapBox. The map is added using an internal native tile provider path. Map bounds and maximum zoom level are read from the MBTiles database. Internally, the mapping engine will use a completely native tile provider to load tiles from the MBTiles database and no extra image memory copies are ever created. This is the fastest way possible to load an MBTiles map using the mapping engine.
- 
- @param mapName Unique name of the map layer
- @param fileName Fully qualified path to the mbtiles filename
- @param defaultTileName The name of a cached image to use if waiting for tiles to load.
- @param imageDataType Inidicates whether the raster tiles are JPG or PNG
- @param compressTextures YES to compress tile textures to a 2 byte format
- @param zOrder Layer order for this map
- */
-- (void) addMBTilesMap:(NSString*) mapName
-			  fileName:(NSString*) fileName
-	   defaultTileName:(NSString*) defaultTileName
-		 imageDataType:(MEImageDataType) imageDataType
-	   compessTextures:(BOOL) compressTextures
-				zOrder:(uint) zOrder;
 
 /** Removes all maps currently displayed and optionally flushes the cache.*/
 - (void) removeAllMaps:(BOOL) clearCache;
@@ -232,7 +205,7 @@
 
 /** Sets the frame that marks the beginning frame of the animation sequence. This frame will be displayed while other frames are being loaded. Frame numbers are index based starting with 0. The first frame wouldbe index 0, the nth frame would be index n-1, etc.*/
 - (void) setAnimatedMapStartFrame:(NSString*) name
-					  frameNumber:(unsigned int) frameNumber;
+					frameNumber:(unsigned int) frameNumber;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -244,15 +217,97 @@
  @param mapName Unique name of the dynamic marker map layer.
  @param dynamicMarker Object that fully describes the dynamic marker. Either uiImage or cachedImageName MUST be set.
  */
-- (void) addDynamicMarkerToMap:(NSString*) mapName dynamicMarker:(MEDynamicMarker*) dynamicMarker;
-- (void) removeDynamicMarkerFromMap:(NSString*) mapName markerName:(NSString*) markerName;
-- (void) updateDynamicMarkerImage:(NSString*) mapName markerName:(NSString*) markerName uiImage:(UIImage*) uiImage anchorPoint:(CGPoint) anchorPoint offset:(CGPoint) offset compressTexture:(BOOL) compressTexture;
-- (void) updateDynamicMarkerImage:(NSString *) mapName markerName:(NSString *) markerName cachedImageName:(NSString*) cachedImageName anchorPoint:(CGPoint) anchorPoint offset:(CGPoint) offset;
-- (void) updateDynamicMarkerLocation:(NSString*) mapName markerName:(NSString*) markerName location:(CLLocationCoordinate2D) location animationDuration:(double) animationDuration;
-- (void) updateDynamicMarkerRotation:(NSString*) mapName markerName:(NSString*) markerName rotation:(double) rotation animationDuration:(double) animationDuration;
-- (void) setDynamicMarkerMapColorBar:(NSString*)mapName colorBar:(MEHeightColorBar*) colorBar;
-- (void) hideDynamicMarker:(NSString*) mapName markerName:(NSString*) markerName;
-- (void) showDynamicMarker:(NSString*) mapName markerName:(NSString*) markerName;
+- (void) addDynamicMarkerToMap:(NSString*) mapName
+				 dynamicMarker:(MEDynamicMarker*) dynamicMarker;
+
+
+/**
+ Remove a dynamic marker from a dynamic marker map.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param dynamicMarkerName Unique name of dynamic marker to remove.
+ */
+- (void) removeDynamicMarkerFromMap:(NSString*) mapName
+						 markerName:(NSString*) markerName;
+
+
+/**
+ Update a dynamic marker image with a UIImage.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param markerName Unique name of the marker to be udpated.
+ @param uiImage A UIImage that will replace the marker's current image.
+ @param anchorPoint The image point that acts as the center of rotation and geographic anchor.
+ @param offset Amount to offset marker from projected location on screen (in points) from anchorPoint.
+ @param compressTexure If YES, compresses final texture to 2-byte format.
+ */
+- (void) updateDynamicMarkerImage:(NSString*) mapName
+					   markerName:(NSString*) markerName
+						  uiImage:(UIImage*) uiImage
+					  anchorPoint:(CGPoint) anchorPoint
+						   offset:(CGPoint) offset
+				  compressTexture:(BOOL) compressTexture;
+
+
+/**
+ Update a dynamic marker image to be a named cached image that has been cached with addCachedMarkerImage.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param markerNam Unique name of the marker to be udpated.
+ @param cachedImageName Name of a cached marker image.
+ @param anchorPoint The image point that acts as the center of rotation and geographic anchor.
+ @param offset Amount to offset marker from projected location on screen (in points) from anchorPoint.
+
+ */
+- (void) updateDynamicMarkerImage:(NSString *) mapName
+					   markerName:(NSString *) markerName
+				  cachedImageName:(NSString*) cachedImageName
+					  anchorPoint:(CGPoint) anchorPoint
+						   offset:(CGPoint) offset;
+
+/**
+ Update a dynamic marker image.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param markerNam Unique name of the marker to be udpated.
+ @param location New location for the marker.
+ @param animationDuration Amount of time to animate marker to new location.
+ */
+- (void) updateDynamicMarkerLocation:(NSString*) mapName
+						  markerName:(NSString*) markerName
+							location:(CLLocationCoordinate2D) location
+				   animationDuration:(double) animationDuration;
+
+/**
+ Update a dynamic marker rotation.
+ @param mapName Unique name of the dynamic marker map layer.
+ @param markerNam Unique name of the marker to be udpated.
+ @param rotation Heading in degrees.
+ @param animationDuration Length of time in seconds to animate the rotation.
+ */
+- (void) updateDynamicMarkerRotation:(NSString*) mapName
+						  markerName:(NSString*) markerName
+							rotation:(double) rotation
+				   animationDuration:(double) animationDuration;
+
+
+/** 
+ Sets a height color bar for the specified dynamic marker map to be used for all markers in the map
+ @param mapName Unique name of the dynamic marker map layer.
+ @param colorBar Color bar used by all markers in the map. 
+ */
+- (void) setDynamicMarkerMapColorBar:(NSString*)mapName
+                     colorBar:(MEHeightColorBar*) colorBar;
+
+/**Hides a dynamic marker
+ @param mapName Unique name of dynamic marker map layer.
+ @param markerName Unique name of marker to hide.
+ */
+- (void) hideDynamicMarker:(NSString*) mapName
+				markerName:(NSString*) markerName;
+
+/**Un-hides a dynamic marker
+ @param mapName Unique name of dynamic marker map layer.
+ @param markerName Unique name of marker to hide.
+ */
+- (void) showDynamicMarker:(NSString*) mapName
+				markerName:(NSString*) markerName;
 
 
 /**
@@ -275,7 +330,7 @@
 
 /** Sets a height color bar for the specified marker map. Once set you can call setMarkerMapColorBarEnabled to turn use of the color bar on and off.*/
 - (void) setMarkerMapColorBar:(NSString*)mapName
-					 colorBar:(MEHeightColorBar*) colorBar;
+			   colorBar:(MEHeightColorBar*) colorBar;
 
 /** Sets where or not a color bar is applied when rendering markers.*/
 - (void) setMarkerMapColorBarEnabled:(NSString*)mapName
@@ -288,7 +343,7 @@
  @warning This API has been deprecated and will be removed in a future release.
  */
 - (void) updateMarkerLocationInMap:(NSString*) mapName
-						  metaData:(NSString*) metaData
+                         metaData:(NSString*) metaData
                        newLocation:(CLLocationCoordinate2D) newLocation;
 
 /** For dynamic marker maps, updates the geographic position of the specified marker, optionally with animation.
@@ -351,8 +406,8 @@
  @param featureID The polygon feature of the map to apply the style to.
  @param style The style to apply.*/
 - (void) addPolygonStyleToVectorMap:(NSString*) mapName
-						  featureId:(unsigned int) featureID
-							  style:(MEPolygonStyle*)style;
+                         featureId:(unsigned int) featureID
+                             style:(MEPolygonStyle*)style;
 
 /**Updates a style previously set for a feature in a vector map.
  @param mapName The name of the vector map.
@@ -369,7 +424,10 @@
  @param featureID The polygon feature of the map to apply the style to.
  @param scale the target scale for the style
  @param style The style to apply.*/
-- (void) addPolygonStyleToVectorMap:(NSString*) mapName scale:(double) scale featureId:(unsigned int) featureID style:(MEPolygonStyle*)style;
+- (void) addPolygonStyleToVectorMap:(NSString*) mapName
+                              scale:(double) scale
+                          featureId:(unsigned int) featureID
+                              style:(MEPolygonStyle*)style;
 
 /**Adds a line to a vector map.
  @param mapName The name of the vector map.
@@ -397,7 +455,7 @@
 						  style:(MELineStyle*)style;
 
 
-/**Clears all dynamic lines and polygons from a vector map.
+/**Clears all dynamic lines and polygosn from a vector map.
  @param mapName The name of the vector map.*/
 - (void) clearDynamicGeometryFromMap:(NSString*) mapName;
 
@@ -443,7 +501,8 @@
 - (void) tileLoadComplete:(METileProviderRequest*) meTileRequest;
 
 /**Called by vector tile providers to supply geometry for a requested tile.*/
-- (void) vectorTileLoadComplete:(METileProviderRequest*) meTileRequest meGeometryGroup:(MEGeometryGroup*) meGeometryGroup;
+- (void) vectorTileLoadComplete:(METileProviderRequest*) meTileRequest
+				  meGeometryGroup:(MEGeometryGroup*) meGeometryGroup;
 
 /**Returns whether or not the engine considers the tile represented by meTileRequest to be required to satisfy the current view for any non-animated virtual map. This call will dispatched to the main queue if it is not made on the main queue. If you need to know if an animated map tile request is still valid, please call animatedTileIsNeeded which does not dispatch to the main queue.*/
 -(BOOL) tileIsNeeded:(METileProviderRequest*) meTileRequest;
@@ -497,7 +556,7 @@
 /**Removes an animated reticle.*/
 - (void) removeAnimatedVectorReticle:(NSString*) name;
 
-/** Adds a map layer whose type and properties are specified by a MEMapInfo object.*/
+/**Adds a map using a map info object.*/
 - (void) addMapUsingMapInfo:(MEMapInfo*) meMapInfo;
 
 /**Instructs the mapping engine to reload a map.
@@ -514,9 +573,9 @@
 			   upperRight:(CLLocationCoordinate2D) upperRight;
 
 /** Adds an image that will stay cached until it is removed using removeCachedImage. Cached images are identified by their name and may be specified as the default tile for certain maps types or returned by tile providers that have no specific tile to return for a given tile request. Generally this should be a fully opaque 256x256 or 512x512 pixel image.
- @param uiImage A UIImage containing the image data.
- @param tileName The unique name of the tile.
- @param compressTexture Whether or not the image should be compressed to RGB565 format.*/
+@param uiImage A UIImage containing the image data.
+@param tileName The unique name of the tile.
+@param compressTexture Whether or not the image should be compressed to RGB565 format.*/
 - (void) addCachedImage:(UIImage*) uiImage
 			   withName:(NSString*) imageName
 		compressTexture:(BOOL) compressTexture;
@@ -534,126 +593,10 @@ nearestNeighborTextureSampling:(BOOL) nearestNeighborTextureSampling;
 
 /** Returns an angle relative to the verticle edge of the view that represents the rotation you would apply to a screen-aligned object so that it points to the given heading. You would use this function, for example, if you wanted to display an 2D arrow that points in at heading. If you desire for an object to do this and always be up to date and smoothly animated, you should use a marker layer with a marker whose rotation type is kMarkerRotationTrueNorthAligned, then the mapping engine will manage the rotation of the object.*/
 -(CGFloat) screenRotationForLocation:(CLLocationCoordinate2D) location
-						 withHeading:(CGFloat) heading;
+						withHeading:(CGFloat) heading;
 
 
 /** Returns an angle relative to the verticle edge of the view that represents the rotation you would apply to a screen-aligned object so that it points to the given heading releative to the current geographic point at the center of the view. You would use this function, for example, if you wanted to display an 2D arrow that points in at heading. If you desire for an object to do this and always be up to date and smoothly animated, you should use a marker layer with a marker whose rotation type is kMarkerRotationTrueNorthAligned, then the mapping engine will manage the rotation of the object.*/
-
 -(CGFloat) screenRotationForMapCenterWithHeading:(double) heading;
-
-/** Returns an array of height samples (NSNumber objects that wrap a short value) along a given route. This function may be run on a background thread.
- @param terrianMaps An array of MEMapFileInfo objects for each terrain map to sample from.
- @param wayPoints An array of NSValue wrapped CGPoints (minimum of two) that represent waypoints for the route.
- @param samplePointCount The number of samples to generate.
- @param bufferRadius The nautical mile buffer radius around the route formed by the way points.
- */
-- (NSArray*) getTerrainProfile:(NSArray*) terrainMaps
-					 wayPoints:(NSArray*) wayPoints
-			  samplePointCount:(uint) samplePointCount
-				  bufferRadius:(double) bufferRadius;
-
-
-/** Returns the minimum (.x value) and maximum (.y value) terrain heights within the geographic bounds of a rectangle defined by the specified SW and NE points. This function may be called from a background thread.
- @param terrianMaps An array of MEMapFileInfo objects for each terrain map to sample from.
- @param southWestLocation The 'lower left' corner of the bounds.
- @param northEastLocation THe 'upper right' cornder of the bounds.
- */
-- (CGPoint) getMinMaxTerrainHeightsInBoundingBox:(NSArray*) terrainMaps
-							   southWestLocation:(CLLocationCoordinate2D) southWestLocation
-							   northEastLocation:(CLLocationCoordinate2D) northEastLocation;
-
-/** Returns the minimum (.x value) and maximum (.y value) terrain heights within the specified radius (in nautical miles) of the specified location. This function may be called from a background thread.
- @param terrianMaps An array of MEMapFileInfo objects for each terrain map to sample from.
- @param location The geographic point around which to search for markers.
- @param radius The nautical mile radius around the point to search for markers.
- */
-- (CGPoint) getMinMaxTerrainHeightsAroundLocation:(NSArray*) terrainMaps
-										 location:(CLLocationCoordinate2D) location
-										   radius:(double) radius;
-
-/** Returns an array of maximum marker weights in a route corridor mapped to a fixed sample point count.The intention of this function is to enable you to draw a graph of samplePointCount width such that a maximum marker weight can be plotted on the graph. For example: plotting the tallest obstacle along a route. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param wayPoints An array of NSValue wrapped CGPoints (minimum of two) that represent waypoints for the route where in each point x = longitude and y = latitude.
- @param samplePointCount The number of samples to generate.
- @param bufferRadius The nautical mile buffer radius around the route formed by the way points..
- */
-- (NSArray*) getMaxMarkerWeightsAlongRoute:(NSString*) markerSqliteFile
-						   tableNamePrefix:(NSString*) tableNamePrefix
-								 wayPoints:(NSArray*) wayPoints
-						  samplePointCount:(uint) samplePointCount
-							 bufferRadius:(double) bufferRadius;
-
-/** Returns an array of MEMarker objects that lie along a given route. The route is tesselated to at least samplePointCount and a corridor around this tesselated route is used to search for markers that intersect the corridor. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param wayPoints An array of NSValue wrapped CGPoints (minimum of two) that represent waypoints for the route where in each point x = longitude and y = latitude.
- @param samplePointCount The number of sample points the route will be tesselated to.
- @param bufferRadius The nautical mile buffer radius around the route formed by the way points.
- */
-- (NSArray*) getMarkersAlongRoute:(NSString*) markerSqliteFile
-				  tableNamePrefix:(NSString*) tableNamePrefix
-						wayPoints:(NSArray*) wayPoints
-					bufferRadius:(double) bufferRadius;
-
-/** Returns an array of MEMarker objects from the specified marker database within a given nautical mile radius of the specified location. This function may called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param location The geographic point around which to search for markers.
- @param radius The nautical mile radius around the point to search for markers.
- */
-- (NSArray*) getMarkersAroundLocation:(NSString*) markerSqliteFile
-					  tableNamePrefix:(NSString*) tableNamePrefix
-							 location:(CLLocationCoordinate2D) location
-							   radius:(double) radius;
-
-/** Returns an MEMarker object with the highest weight from the specified marker database within a given nautical mile radius of the specified location. If there is no marker, returns nil. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param location The geographic point around which to search for markers.
- @param radius The nautical mile radius around the point to search for markers.
- */
-- (MEMarker*) getHighestMarkerAroundLocation:(NSString*) markerSqliteFile
-							 tableNamePrefix:(NSString*) tableNamePrefix
-									location:(CLLocationCoordinate2D) location
-									  radius:(double) radius;
-
-/** Returns an array of MEMarker objects from the specified marker database that lie within the geographic bounds of a rectangle defined by the specified SW and NE points. This function takes into account meridian and antimeridian crossing of the given bounds. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param southWestLocation The 'lower left' corner of the bounds.
- @param northEastLocation THe 'upper right' cornder of the bounds.
- */
-- (NSArray*) getMarkersInBoundingBox:(NSString*) markerSqliteFile
-					 tableNamePrefix:(NSString*) tableNamePrefix
-				   southWestLocation:(CLLocationCoordinate2D) southWestLocation
-				   northEastLocation:(CLLocationCoordinate2D) northEastLocation;
-
-/** Returns an MEMarker object with the highest weight that lies within the geographic bounds of a rectangle defined by the specified SW and NE points. If there is no marker, returns nil. This function takes into account meridian and antimeridian crossing of the given bounds. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param southWestLocation The 'lower left' corner of the bounds.
- @param northEastLocation THe 'upper right' cornder of the bounds.
- */
-- (MEMarker*) getHighestMarkerInBoundingBox:(NSString*) markerSqliteFile
-							tableNamePrefix:(NSString*) tableNamePrefix
-						  southWestLocation:(CLLocationCoordinate2D) southWestLocation
-						  northEastLocation:(CLLocationCoordinate2D) northEastLocation;
-
-
-/** Returns an array of MEMarker objects for markers that lie on a radial (from true North) from a given point. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param location  The location from which the radial lies.
- @param radial The radial in degrees.
- @param distance The nautical mile distance of the radial.
- @param bufferRadius The nautical mile width of the corridor along the radial.*/
-- (NSArray*) getMarkersOnRadial:(NSString*) markerSqliteFile
-				 tableNamePrefix:(NSString*) tableNamePrefix
-			   location:(CLLocationCoordinate2D) location
-						  radial:(double) radial
-						distance:(double) distance
-				   bufferRadius:(double) bufferRadius;
-
 
 @end

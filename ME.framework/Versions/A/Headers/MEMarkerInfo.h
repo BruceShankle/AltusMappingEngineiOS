@@ -138,9 +138,6 @@ typedef enum {
  geographic coordinate the marker represents. You should set this property when the mapping engine makes a request to the marker delegate to update the marker info.*/
 @property (nonatomic, assign) CGPoint anchorPoint;
 
-/**Amount to offset marker from projected location on screen (in points) from anchorPoint.*/
-@property (assign) CGPoint offset;
-
 /**
  Minimum level the marker should appear. Defaults to 0. Set to higher if you want the marker to only appear at higher zoom levels.
  */
@@ -151,12 +148,3 @@ typedef enum {
 
 
 @end
-
-/**Represents a marker. Used as return values from MEMapViewController getMarkersAroundLocation function.*/
-@interface MEMarker : NSObject 
-@property (assign) unsigned int uid;
-@property (retain) NSString* metaData;
-@property (assign) CLLocationCoordinate2D location;
-@property (assign) double weight;
-@end
-
