@@ -3,7 +3,6 @@
 #import "MEInternetTileProvider.h"
 #import "MEFileDownloader.h"
 
-
 @implementation MEInternetTileProvider
 {
 	dispatch_queue_t* _serialBackgroundQueues;
@@ -134,7 +133,13 @@
 - (void) requestTile:(METileProviderRequest*) meTileRequest
 {
 	//Check to make sure we still need to supply the tile.
-	if(![super isNeeded:meTileRequest])
+	BOOL isNeeded;
+	if(self.isServingAnimatedMap)
+		isNeeded = [super isNeededAnimated:meTileRequest];
+	else
+		isNeeded = [super isNeeded:meTileRequest];
+	
+	if(!isNeeded)
 	{
 		if(self.isAsynchronous)
 		{
@@ -272,12 +277,11 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 @implementation MEMapBoxLandCoverTileProvider
--(MEMapBoxLandCoverTileProvider*) init
-{
+-(id) init{
 	self = [super init];
     if ( self )
 	{
-		self.mapDomain = @"a.tiles.mapbox.com/v3/examples.map-4l7djmvo";
+		self.mapDomain = @"c.tiles.mapbox.com/v3/examples.map-uci7ul8p";
 		self.shortName = @"mapboxlandcover";
 		self.returnUIImages = YES;
 		self.copyrightNotice = @"Source: MapBox, LLC http://www.mapbox.com";
@@ -285,13 +289,11 @@
     return self;
 }
 
-- (NSString*) tileFileExtension
-{
+- (NSString*) tileFileExtension{
 	return @"png";
 }
 
-- (NSString*) tileURLForX:(int) X Y:(int) Y Zoom:(int) Zoom
-{
+- (NSString*) tileURLForX:(int) X Y:(int) Y Zoom:(int) Zoom{
 	
 	return [NSString stringWithFormat:@"http://%@/%d/%d/%d.%@",
 			self.mapDomain,
@@ -301,7 +303,35 @@
 			[self tileFileExtension]];
 	
 }
+@end
 
+/////////////////////////////////////////////////////////////////////////////////
+@implementation MEMapBoxSatelliteTileProvider
+-(id) init{
+	self = [super init];
+    if ( self ){
+		self.mapDomain = @"d.tiles.mapbox.com/v3/examples.map-qfyrx5r8";
+		self.shortName = @"mapboxsatellite";
+		self.returnUIImages = YES;
+		self.copyrightNotice = @"Source: MapBox, LLC http://www.mapbox.com";
+    }
+    return self;
+}
+
+- (NSString*) tileFileExtension{
+	return @"png";
+}
+
+- (NSString*) tileURLForX:(int) X Y:(int) Y Zoom:(int) Zoom{
+	
+	return [NSString stringWithFormat:@"http://%@/%d/%d/%d.%@",
+			self.mapDomain,
+			Zoom,
+			X,
+			Y,
+			[self tileFileExtension]];
+	
+}
 @end
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -348,7 +378,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 @implementation MEStamenTerrainTileProvider
 
--(MEStamenTerrainTileProvider*) init
+-(id) init
 {
 	self = [super init];
     if ( self )
@@ -357,6 +387,42 @@
 		self.shortName = @"stamenterrain";
 		self.returnUIImages = YES;
 		self.copyrightNotice = @"Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.";
+    }
+    return self;
+}
+
+@end
+
+/////////////////////////////////////////////////////////////////////////////////
+@implementation MEStamenWaterColorTileProvider
+
+-(id) init
+{
+	self = [super init];
+    if ( self )
+	{
+		self.mapDomain = @"b.tile.stamen.com/watercolor";
+		self.shortName = @"stamenwatercolor";
+		self.returnUIImages = YES;
+		self.copyrightNotice = @"Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.";
+    }
+    return self;
+}
+
+@end
+
+/////////////////////////////////////////////////////////////////////////////////
+@implementation MEIOMHaitiTileProvider
+
+-(id) init
+{
+	self = [super init];
+    if ( self )
+	{
+		self.mapDomain = @"wms.openstreetmap.fr/tms/1.0.0/iomhaiti";
+		self.shortName = @"iomhaiti";
+		self.returnUIImages = YES;
+		self.copyrightNotice = @"IOM Haiti";
     }
     return self;
 }
