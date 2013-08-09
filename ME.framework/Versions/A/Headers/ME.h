@@ -10,11 +10,9 @@
 #import <ME/MEPolygonStyle.h>
 #import <ME/MEAnimatedVectorCircle.h>
 #import <ME/MEAnimatedVectorReticle.h>
-#import <ME/MEAnimatedVectorReticleStyles.h>
 #import <ME/MEGeographicBounds.h>
 #import <ME/METileInfo.h>
 #import <ME/METileProvider.h>
-#import <ME/MEMBTileProvider.h>
 #import <ME/MEMath.h>
 #import <ME/MEColorBar.h>
 #import <ME/MEMapView.h>
@@ -28,3 +26,4 @@
 #import <ME/MEMapInfo.h>
 #import <ME/MEHitTesting.h>
 #import <ME/MEGeometryGroup.h>
+#import <ME/Enums.h>
