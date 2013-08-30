@@ -1,13 +1,10 @@
-//
-//  MECoreTests.h
-//  Mapp
-//
-//  Created by Bruce Shankle III on 9/21/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 #import "../METest.h"
+
+//@interface MEDatabaseStressTest : METest
+//@end
 
 @interface METileLevelBiasTest : METest
 @end

@@ -11,12 +11,95 @@
 #import "../METestCategory.h"
 #import "../METestManager.h"
 
-@implementation MBTilesNativeTest
+
+@implementation MBTilesNativeTestDC
 - (id) init
 {
     if(self = [super init])
     {
-        self.name=@"Earthquakes - Native";
+        self.name=@"Washington D.C.";
+    }
+    return self;
+}
+
+- (void) start
+{
+	[self.meTestCategory stopAllTests];
+	NSString* databaseFile = [ [NSBundle mainBundle] pathForResource:@"open-streets-dc-15"
+															  ofType:@"mbtiles"];
+	
+	[self.meMapViewController addMBTilesMap:self.name
+								   fileName:databaseFile
+							defaultTileName:@"grayGrid"
+							  imageDataType:kImageDataTypePNG
+							compessTextures:NO
+									 zOrder:2];
+	
+	//Zoom in on washington dc
+	[self.meMapViewController.meMapView lookAtCoordinate:
+	 CLLocationCoordinate2DMake(38.848,-77.1127)
+										   andCoordinate:
+	 CLLocationCoordinate2DMake(38.933,-76.9665)
+									withHorizontalBuffer:20
+									  withVerticalBuffer:20
+									   animationDuration:1.0];
+	
+	
+	self.isRunning = YES;
+}
+
+- (void) stop
+{
+	[self.meMapViewController removeMap:self.name
+							 clearCache:YES];
+	self.isRunning = NO;
+}
+
+@end
+
+
+@implementation MBTilesNativeTest1
+- (id) init
+{
+    if(self = [super init])
+    {
+        self.name=@"Earthquakes - Native 1";
+    }
+    return self;
+}
+
+- (void) start
+{
+	[self.meTestCategory stopAllTests];
+	NSString* databaseFile = [[NSBundle mainBundle] pathForResource:@"Earthquakes"
+															 ofType:@"mbtiles"];
+	
+	[self.meMapViewController addMBTilesMap:self.name
+								   fileName:databaseFile
+							defaultTileName:@"grayGrid"
+							  imageDataType:kImageDataTypePNG
+							compessTextures:NO
+									 zOrder:2];
+	
+	self.isRunning = YES;
+}
+
+- (void) stop
+{
+	[self.meMapViewController removeMap:self.name
+							 clearCache:YES];
+	self.isRunning = NO;
+}
+
+@end
+
+
+@implementation MBTilesNativeTest2
+- (id) init
+{
+    if(self = [super init])
+    {
+        self.name=@"Earthquakes - Native 2";
     }
     return self;
 }
@@ -31,8 +114,6 @@
 	mapInfo.name = self.name;
 	mapInfo.sqliteFileName = databaseFile;
 	mapInfo.imageDataType = kImageDataTypePNG;
-	mapInfo.zOrder = 2;
-	mapInfo.maxLevel = 7;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
 	self.isRunning = YES;
@@ -41,7 +122,7 @@
 - (void) stop
 {
 	[self.meMapViewController removeMap:self.name
-									clearCache:YES];
+							 clearCache:YES];
 	self.isRunning = NO;
 }
 

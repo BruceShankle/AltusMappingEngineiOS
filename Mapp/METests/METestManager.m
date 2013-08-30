@@ -33,7 +33,6 @@
 #import "MarkerTests/MEMarkerFastLoad.h"
 #import "MarkerTests/MEMarkerHitTest.h"
 #import "MarkerTests/MEHideMarkerTest.h"
-#import "MarkerTests/MEMarkerDatabaseCacheTest.h"
 #import "MarkerTests/AirTrafficTest.h"
 #import "SymbioteTests/MESymbioteTests.h"
 #import "TAWSTests/METawsTest.h"
@@ -58,7 +57,12 @@
 #import "DynamicMarkers/BlinkingMarkerTests.h"
 #import "DynamicMarkers/AirTrafficScenario.h"
 #import "DynamicMarkers/TowersWithHeightColorBarTest.h"
+#import "VectorTileProvider/MEVectorTileProviderTests.h"
 #import "WMSTests/MEWMSTests.h"
+#import "WorldLabels/MEWorldLabels.h"
+#import "TerrainProfileTests/TerrainProfileTests.h"
+#import "TerrainProfileTests/TerrainGridTests.h"
+#import "TerrainProfileTests/TerrainInRadiusTests.h"
 
 @implementation METestManager
 
@@ -166,6 +170,13 @@
     return nil;
 }
 
+- (void) createLabelTests {
+	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
+    testCategory.name = @"Labels";
+    [self addCategory:testCategory];
+	[testCategory addTestClass:[MEWorldLabels class]];
+}
+
 - (void) createWMSTests {
 	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"WMS";
@@ -176,14 +187,54 @@
 	[testCategory addTestClass:[MEWMSNationalAtlasUrbanAreas class]];
 	[testCategory addTestClass:[MEWMSNationalAtlasTreeCanopy class]];
 	[testCategory addTestClass:[MEWMSNationalAtlasPorts class]];
-	[testCategory addTestClass:[MEWMSNationalAtlasPrecipitation class]];
-	
+	[testCategory addTestClass:[MEWMSNationalAtlasPrecipitation class]];	
 	[testCategory addTestClass:[MEWMSBlueMarbleTest class]];
 	[testCategory addTestClass:[MEWMSDCTest class]];
 	[testCategory addTestClass:[MEWMSSeattleTest class]];
 	[testCategory addTestClass:[MEWMSOregonTest class]];
-	
-	
+}
+
+- (void) createVectorTileProviderTests {
+	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
+    testCategory.name = @"Vector Tile Providers";
+    [self addCategory:testCategory];
+	[testCategory addTestClass:[MEVectorTPSimpleLines class]];
+}
+
+- (void) createTerrainProfileTests{
+    METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
+    testCategory.name = @"Terrain Profile";
+    [self addCategory:testCategory];
+	[testCategory addTestClass:[TerrainInRadiusTest class]];
+	[testCategory addTestClass:[TerrainGridTest class]];
+	[testCategory addTestClass:[TerrainGridTest2 class]];
+	[testCategory addTestClass:[TerrainMinMaxInBounds2 class]];
+	[testCategory addTestClass:[TerrainMinMaxInBounds3 class]];
+	[testCategory addTestClass:[TerrainMinMaxInBoundsA class]];
+    [testCategory addTestClass:[TerrainMinMaxInBoundsB class]];
+    [testCategory addTestClass:[TerrainMinMaxInBoundsC class]];
+	[testCategory addTestClass:[TerrainProfileBasicTest class]];
+	[testCategory addTestClass:[TerrainProfileHighToLow class]];
+	[testCategory addTestClass:[TerrainProfileLowToHigh class]];
+	[testCategory addTestClass:[TerrainProfileDeathValley class]];
+	[testCategory addTestClass:[TerrainProfileAntiMeridian class]];
+	[testCategory addTestClass:[TerrainProfileMtRanier class]];
+	[testCategory addTestClass:[TerrainProfileMtRanierSpiral class]];
+	[testCategory addTestClass:[TerrainProfileMtRanierZigZag class]];
+	[testCategory addTestClass:[TerrainProfileArctic class]];
+	[testCategory addTestClass:[TerrainProfileGrandCanyon class]];
+	[testCategory addTestClass:[TerrainProfileAtlanticOcean class]];
+	[testCategory addTestClass:[TerrainProfileEastBoundFlight class]];
+	[testCategory addTestClass:[TerrainProfileMtRanierScan class]];
+	[testCategory addTestClass:[TerrainProfileSeattleScan class]];
+	[testCategory addTestClass:[ShowObstacles class]];
+	[testCategory addTestClass:[ShowObstacles2 class]];
+	[testCategory addTestClass:[ShowObstacles3 class]];
+	[testCategory addTestClass:[ShowObstacles4 class]];
+	[testCategory addTestClass:[ShowObstacles5 class]];
+	[testCategory addTestClass:[ShowObstacles6 class]];
+	[testCategory addTestClass:[TerrainMinMaxInBounds class]];
+	[testCategory addTestClass:[TerrainMinMaxAroundLocation class]];
 }
 
 - (void) createCameraTests
@@ -213,6 +264,7 @@
     METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"Core";
     [self addCategory:testCategory];
+	//[testCategory addTestClass:[MEDatabaseStressTest class]];
 	[testCategory addTestClass:[MEInitializationTest class]];
 	[testCategory addTestClass:[METileLevelBiasTest class]];
 	[testCategory addTestClass:[METileLevelBiasSmoothingTest class]];
@@ -286,13 +338,14 @@
 	[testCategory addTestClass:[MEInternetMapAnalyzeCacheTest class]];
 	[testCategory addTestClass:[MEInternetMapClearCacheTest class]];
 	[testCategory addTestClass:[MEMapBoxMarsMapTest class]];
-	[testCategory addTestClass:[MERefreshMarsTest class]];
 	[testCategory addTestClass:[MEMapBoxLandCoverMapTest class]];
+	[testCategory addTestClass:[MEMapBoxSatelliteMapTest class]];
 	[testCategory addTestClass:[MEMapQuestMapTest class]];
 	[testCategory addTestClass:[MEMapQuestAerialMapTest class]];
 	[testCategory addTestClass:[MEMapQuestAerialMapTest2 class]];
 	[testCategory addTestClass:[MEOpenStreetMapsMapTest class]];
-	[testCategory addTestClass:[MEStamenTerrainMapTest class]];
+	[testCategory addTestClass:[MEIOMHaitiMapTest class]];
+	[testCategory addTestClass:[MEStamenWaerColorMapTest class]];
 	
 	//Add compressed internet maps
 	testCategory = [[[METestCategory alloc]init]autorelease];
@@ -340,26 +393,15 @@
 	[testCategory addTestClass:[MEMarkerAsynchronousLoad class]];
 	
 	//Metool generated markers
-	[testCategory addTestClass:[MEWeatherMarkerTest class]];
-	[testCategory addTestClass:[MEWeatherMarkerCachedTest class]];
-	[testCategory addTestClass:[MEWeatherMarkerBadPrefixTest class]];
 	[testCategory addTestClass:[MEMarkerPerfTest class]];
 	[testCategory addTestClass:[MEMTCountriesAndStateMarkersFromDisk class]];
 	[testCategory addTestClass:[MEMTCitiesFromDisk class]];
 	[testCategory addTestClass:[METowersHeightsMarkersTest class]];
 	[testCategory addTestClass:[METowersHeightsMarkersTestRandomFontSize class]];
 	[testCategory addTestClass:[METowersHeightsMarkersTestHalfHidden class]];
-	[testCategory addTestClass:[METowersJHeightsMarkersTest class]];
 
 	[testCategory addTestClass:[METAWSTowersNonCached class]];
 	[testCategory addTestClass:[METAWSTowersCached class]];
-	[testCategory addTestClass:[MEAirportMarkersFromBundle class]];
-	[testCategory addTestClass:[MEAirportMarkersFromBundleRotated class]];
-	
-	[testCategory addTestClass:[MEAirportMarkersInMemory class]];
-	[testCategory addTestClass:[MEAirportMarkersToDiskCache class]];
-	[testCategory addTestClass:[MEAirportMarkersFromDiskCache class]];
-
     [testCategory addTestClass:[MESFOBusAddInMemoryClusteredMarkerTest class]];
 	[testCategory addTestClass:[BusStopsClusteredInMemoryFast class]];
 	[testCategory addTestClass:[BusStopsNonClusteredInMemorySync class]];
@@ -401,6 +443,7 @@
     METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"Misc";
     [self addCategory:testCategory];
+	[testCategory addTestClass:[MECacheImageOnBackgroundThreadTest class]];
 	[testCategory addTestClass:[MESparseTileMapTest class]];
 	[testCategory addTestClass:[MERefreshAllMapsTest class]];
 	[testCategory addTestClass:[MERefreshDirtyAllMapsTest class]];
@@ -412,6 +455,7 @@
 	[testCategory addTestClass:[MESmallCacheTest class]];
 	[testCategory addTestClass:[METrueNorthAlgnedMarkerTest class]];
 	[testCategory addTestClass:[MEAnimatedVectorCircleTests class]];
+	[testCategory addTestClass:[MEAnimatedVectorCircleWorldSpace class]];
 	[testCategory addTestClass:[RefreshMemoryMarkerMapTest class]];
 	[testCategory addTestClass:[ClippingPlaneTest class]];
 	[testCategory addTestClass:[MEClearColorTest class]];
@@ -466,6 +510,7 @@
     testCategory.name = @"Scenarios";
     [self addCategory:testCategory];
     [testCategory addTestClass:[RouteRubberBandingTest class]];
+	[testCategory addTestClass:[TerrainProfileTest class]];
 	[testCategory addTestClass:[ComplexRoute class]];
 	[testCategory addTestClass:[ParallelsAndMeridians class]];
 }
@@ -481,6 +526,7 @@
     [testCategory addTestClass:[MEWorldVectorPurpleStyle class]];
 	[testCategory addTestClass:[MEWorldVectorGeologyDotComStyle class]];
 	[testCategory addTestClass:[MEWorldVectorInvisibleStyle class]];
+    [testCategory addTestClass:[MEWorldVectorTextureStyle class]];
 }
 
 - (void) createMBTilesTests
@@ -488,8 +534,10 @@
     METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
     testCategory.name = @"MB Tiles";
     [self addCategory:testCategory];
+	[testCategory addTestClass:[MBTilesNativeTestDC class]];
     [testCategory addTestClass:[MBTIlesTileProviderTest class]];
-	[testCategory addTestClass:[MBTilesNativeTest class]];
+	[testCategory addTestClass:[MBTilesNativeTest1 class]];
+	[testCategory addTestClass:[MBTilesNativeTest2 class]];
 }
 
 - (void) createDemos
@@ -530,7 +578,10 @@
 }
 - (void) createAllTests
 {
+	[self createTerrainProfileTests];
+	[self createLabelTests];
 	[self createWMSTests];
+	[self createVectorTileProviderTests];
 	[self createDynamicMarkerTests];
 	[self createLocalTerrainTests];
 	[self createDemos];

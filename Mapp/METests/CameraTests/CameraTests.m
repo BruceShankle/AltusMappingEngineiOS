@@ -59,9 +59,10 @@ static int currentSampleIndex=-1;
 										 green:144.0/255.0
 										  blue:255.0/255.0
 										 alpha:1.0];
-	beacon.lineStyle.outlineWidth = 4;
+	
 	beacon.lineStyle.outlineColor = lightBlue;
-
+	beacon.lineStyle.outlineWidth = 4;
+	
 	beacon.minRadius = 5;
 	beacon.maxRadius = 75;
 	beacon.animationDuration = 2.5;
@@ -74,34 +75,88 @@ static int currentSampleIndex=-1;
 	[self.meMapViewController addAnimatedVectorCircle:beacon];
 }
 
+//////////////////////////////////////////////////////////////////////
+//This demonstrates  how to add a fixed 'range-ring' around the ship.
+//Here we'll use an animated vector circle with no fade,
+//and the same min and max radius.
+-(void) addRangeRings
+{
+	FlightPlaybackSample* sample = [self currentPlaybackSample];
+	
+	//Create an animated vector circle object and set up all of its properties
+	MEAnimatedVectorCircle* rangeRing = [[[MEAnimatedVectorCircle alloc]init]autorelease];
+	rangeRing.location = CLLocationCoordinate2DMake(sample.latitude,
+												 sample.longitude);
+	
+	rangeRing.lineStyle = [[[MELineStyle alloc]initWithStrokeColor:[UIColor redColor]
+													strokeWidth:4]autorelease];
+	rangeRing.lineStyle.outlineColor = [UIColor whiteColor];
+	rangeRing.lineStyle.outlineWidth = 1;
+	
+	
+	rangeRing.useWorldSpace = YES; //<--- this is key
+	rangeRing.animationDuration = 1; //<-- This needs to be non-zero
+    rangeRing.repeatDelay = 0;
+	rangeRing.fade = NO;
+	rangeRing.fadeDelay = 0;
+	rangeRing.zOrder= 998;
+	
+	//Add the animated vector circle
+	rangeRing.name=@"range_ring1";
+	rangeRing.segmentCount = 18; //<--Make as small as you can
+	rangeRing.minRadius = 100;
+	rangeRing.maxRadius = 100;
+	[self.meMapViewController addAnimatedVectorCircle:rangeRing];
+	
+	rangeRing.name=@"range_ring2";
+	rangeRing.minRadius = 250;
+	rangeRing.maxRadius = 250;
+	rangeRing.segmentCount = 36;
+	rangeRing.lineStyle.strokeColor = [UIColor yellowColor];
+	[self.meMapViewController addAnimatedVectorCircle:rangeRing];
+	
+	rangeRing.name=@"range_ring3";
+	rangeRing.minRadius = 500;
+	rangeRing.maxRadius = 500;
+	rangeRing.segmentCount = 72;
+	rangeRing.lineStyle.strokeColor = [UIColor greenColor];
+	[self.meMapViewController addAnimatedVectorCircle:rangeRing];
+}
+
 //This function: a) Creates a dynamic marker layer and adds 1 marker to it, then b) calls the addOwnshipBeacon function to add an animated circle that pulses around that marker
 - (void) addOwnshipMarker
 {
 	FlightPlaybackSample* sample = [self currentPlaybackSample];
 	
-	//Create an array of markers (with one marker in it)
-	NSMutableArray* markers= [[[NSMutableArray alloc]init]autorelease];
-	MEMarkerAnnotation* ownShipMarker = [[[MEMarkerAnnotation alloc]init]autorelease];
-	ownShipMarker.metaData = @"ownship";
-	ownShipMarker.coordinate=CLLocationCoordinate2DMake(sample.latitude,
-													sample.longitude);
-	ownShipMarker.weight=0;
+	//Add dynamic marker map
+	MEDynamicMarkerMapInfo* markerMapInfo = [[[MEDynamicMarkerMapInfo alloc]init]autorelease];
+	markerMapInfo.name = self.name;
+	markerMapInfo.zOrder = 999;
+	markerMapInfo.meDynamicMarkerMapDelegate = self;
+	markerMapInfo.meMapViewController = self.meMapViewController;
+	[self.meMapViewController addMapUsingMapInfo:markerMapInfo];
 	
-	[markers addObject:ownShipMarker];
+	UIImage* uiImageBluePlane = [UIImage imageNamed:@"blueplane"];
 	
-	//Create a marker info object.
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.name;
-	mapInfo.mapType = kMapTypeDynamicMarker;
-	mapInfo.markerImageLoadingStrategy = kMarkerImageLoadingSynchronous;
-	mapInfo.zOrder = 999;
-	mapInfo.meMarkerMapDelegate = self;
-	mapInfo.markers = markers;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-	[self.meMapViewController setMapIsVisible:self.name isVisible:YES];
-
+	//Add dynamic marker
+	MEDynamicMarker* ownShipMarker = [[[MEDynamicMarker alloc]init]autorelease];
+	ownShipMarker.name = @"ownship";
+	ownShipMarker.location = CLLocationCoordinate2DMake(sample.latitude, sample.longitude);
+	ownShipMarker.rotationType = kMarkerRotationTrueNorthAligned;
+	ownShipMarker.uiImage = uiImageBluePlane;
+	ownShipMarker.cachedImageName=@"blueplane";
+	ownShipMarker.anchorPoint = CGPointMake(
+					uiImageBluePlane.size.width/2,
+					uiImageBluePlane.size.height/2);
+	ownShipMarker.nearestNeighborTextureSampling = NO;
+	
+	[self.meMapViewController addDynamicMarkerToMap:self.name dynamicMarker:ownShipMarker];
+	
 	//Add a beacon
 	[self addOwnshipBeacon];
+	
+	//Add range ring
+	//[self addRangeRings];
 }
 
 
@@ -111,17 +166,38 @@ static int currentSampleIndex=-1;
 				  animationDuration:(CGFloat) animationDuration
 
 {
-		
-	[self.meMapViewController updateMarkerInMap:self.name
-									   metaData:@"ownship"
-									newLocation:location
-									newRotation:heading
-							  animationDuration:animationDuration];
 	
+	//Update the blue plane location
+	[self.meMapViewController updateDynamicMarkerLocation:self.name markerName:@"ownship" location:location animationDuration:animationDuration];
+	
+	//Update the blue plane rotation
+	[self.meMapViewController updateDynamicMarkerRotation:self.name markerName:@"ownship" rotation:heading animationDuration:animationDuration];
+	
+	
+	//Update the pulsing becaon location
 	[self.meMapViewController updateAnimatedVectorCircleLocation:@"ownship_beacon"
 													 newLocation:location
 											   animationDuration:animationDuration];
 	
+	//Update range ring locations
+	[self.meMapViewController updateAnimatedVectorCircleLocation:@"range_ring1"
+													 newLocation:location
+											   animationDuration:animationDuration];
+	
+	[self.meMapViewController updateAnimatedVectorCircleLocation:@"range_ring2"
+													 newLocation:location
+											   animationDuration:animationDuration];
+	
+	[self.meMapViewController updateAnimatedVectorCircleLocation:@"range_ring3"
+													 newLocation:location
+											   animationDuration:animationDuration];
+	
+}
+
+- (void) removeRings{
+	[self.meMapViewController removeAnimatedVectorCircle:@"range_ring1"];
+	[self.meMapViewController removeAnimatedVectorCircle:@"range_ring2"];
+	[self.meMapViewController removeAnimatedVectorCircle:@"range_ring3"];
 }
 
 - (void) removeOwnshipMarker
@@ -130,21 +206,9 @@ static int currentSampleIndex=-1;
 								   clearCache:YES];
 	
 	[self.meMapViewController removeAnimatedVectorCircle:@"ownship_beacon"];
+	//[self removeRings];
 }
 
-//Return the marker image when the engine requests it (this behavior is inconvenient for this scenario, and is derived from our 100,000+ marker scenarios. We may change how images are supplied in the future.
--(void)mapView:(MEMapView *)mapView updateMarkerInfo:(MEMarkerInfo *)markerInfo
-	   mapName:(NSString *)mapName
-{
-	if([markerInfo.metaData isEqualToString:@"ownship"])
-	{
-		markerInfo.rotationType = kMarkerRotationTrueNorthAligned;
-		markerInfo.uiImage=[UIImage imageNamed:@"blueplane"];
-		markerInfo.anchorPoint=CGPointMake(markerInfo.uiImage.size.width/2,
-										   markerInfo.uiImage.size.height/2);
-		markerInfo.nearestNeighborTextureSampling = NO;
-	}
-}
 
 - (void) preStart
 {
@@ -179,6 +243,12 @@ static int currentSampleIndex=-1;
 	
 	//Remove own-ship marker
 	[self removeOwnshipMarker];
+	
+	//Reset camera
+	[self.meMapViewController.meMapView setCameraOrientation:0
+														roll:0
+													   pitch:0
+										   animationDuration:0];
 	
 	[self postStop];
 }

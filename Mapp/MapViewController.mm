@@ -255,6 +255,41 @@ using namespace std;
 					compressTextures:YES];
 }
 
+- (void) cacheVectorMapTextures {
+	
+	//Mapbox style
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"waterTexture"]
+									withName:@"waterTexture@2x.png"
+							 compressTexture:NO];
+	
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"landTexture"]
+									withName:@"landTexture@2x.png"
+							 compressTexture:NO];
+	
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"park"]
+									withName:@"park@2x.png"
+							 compressTexture:NO];
+	
+	//Apple style
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"apple_golf"]
+									withName:@"apple_golf@2x.png"
+							 compressTexture:NO];
+
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"apple_land"]
+									withName:@"apple_land@2x.png"
+							 compressTexture:NO];
+
+
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"apple_park"]
+									withName:@"apple_park@2x.png"
+							 compressTexture:NO];
+
+
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"apple_water"]
+									withName:@"apple_water@2x.png"
+							 compressTexture:NO];
+}
+
 - (void) initializeMappingEngine
 {
 	self.meMapViewController.verboseMessagesEnabled = YES;
@@ -274,6 +309,10 @@ using namespace std;
 									withName:@"grayGrid"
 							 compressTexture:YES];
 	
+	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"grayGridTransparent"]
+									withName:@"grayGridTransparent"
+							 compressTexture:NO];
+	
 	[self.meMapViewController addCachedImage:[UIImage imageNamed:@"noData"]
 									withName:@"noData"
 							 compressTexture:YES];
@@ -283,6 +322,8 @@ using namespace std;
 	
 	//Set tile bias level
 	self.meMapViewController.meMapView.tileLevelBias = 1.0;
+	
+	[self cacheVectorMapTextures];
 	
 }
 
@@ -395,9 +436,9 @@ using namespace std;
 
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
-	//Remove the next 2 lines if you want to see stats
-	self.lblDebugInfo.text=@"";
-	return;
+//Turn off debug spew
+self.lblDebugInfo.text=@"";
+return;
 	
 #ifdef TESTFLIGHT
 	self.lblDebugInfo.text=@"";

@@ -8,9 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "../METest.h"
+
 @interface MBTIlesTileProviderTest : METest
 @property (retain) NSString* (dbName);
 @end
 
-@interface MBTilesNativeTest : METest
+@interface MBTilesNativeTestDC : METest
+@end
+
+@interface MBTilesNativeTest1 : METest
+@end
+
+@interface MBTilesNativeTest2 : METest
 @end

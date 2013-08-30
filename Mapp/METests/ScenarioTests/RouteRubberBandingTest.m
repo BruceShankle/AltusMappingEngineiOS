@@ -1,28 +1,15 @@
-//
-//  RouteRubberBandingTest.m
-//  Mapp
-//
-//  Created by Bruce Shankle III on 8/29/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
-//
-
 #import "RouteRubberBandingTest.h"
+#include "../METestManager.h"
+#import "../../MapManager/MEMap.h"
+#import "../../MapManager/MEMapCategory.h"
+#import "../../MapManager/MapManager.h"
 
+///////////////////////////////////////////////////////////////////////
 @implementation RouteRubberBandingTest
-@synthesize  routeMarkerViewController;
-@synthesize markerMapName;
-@synthesize longPress;
-@synthesize fillStyle;
-@synthesize JFK;
-@synthesize SFO;
-@synthesize HOU;
-@synthesize MIA;
-@synthesize RDU;
 
-- (id) init
-{
-    if(self = [super init])
-    {
+- (id) init{
+    if(self = [super init]){
         self.name=@"Route Rubber-banding";
         self.markerMapName = [NSString stringWithFormat:@"%@ Markers",
                               self.name];
@@ -46,7 +33,7 @@
 		
 		self.JFK = CGPointMake(-73.78208504094064,40.64365972925757);
 		self.SFO = CGPointMake(-122.3736948394537,37.61931125933241);
-		self.HOU = CGPointMake(-95.27900971583961,29.6465098129107);
+		self.HOU = CGPointMake(-86.5538765, 34.6435065);
 		self.MIA = CGPointMake(-80.27914615027547,25.79475488150219);
 		self.RDU = CGPointMake(-78.790864, 35.882872);
         
@@ -54,8 +41,7 @@
     return self;
 }
 
-- (void) dealloc
-{
+- (void) dealloc{
     self.longPress = nil;
     self.fillStyle = nil;
     self.routeMarkerViewController = nil;
@@ -64,20 +50,26 @@
 }
 
 
-- (void) start
-{
+- (void) addMarkerMap{
+	MEDynamicMarkerMapInfo* mapInfo = [[[MEDynamicMarkerMapInfo alloc]init]autorelease];
+	mapInfo.name = self.markerMapName;
+	mapInfo.zOrder = 101;
+	mapInfo.meDynamicMarkerMapDelegate = self;
+	[self.meMapViewController addMapUsingMapInfo:mapInfo];
+}
+
+- (void) start{
+	if(self.isRunning)
+		return;
+	[self.meTestManager stopEntireCategory:self.meTestCategory];
+	
     //Register view to handle long presse gesture
     //with the MEMapView
 	[self.meMapViewController.meMapView addGestureRecognizer:self.longPress];
     
-	//Create dynamic marker map for route endpoints
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.markerMapName;
-	mapInfo.mapType = kMapTypeDynamicMarker;
-	mapInfo.zOrder = 101;
-	mapInfo.meMarkerMapDelegate = self;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-
+	
+	[self addMarkerMap];
+	
     //Add markers to route endpoint
     [self addEndpointMarkers];
     
@@ -90,16 +82,22 @@
     [self.meMapViewController setTesselationThresholdForMap:vectorMapInfo.name withThreshold:40];
 	
     //Add some mid-point between Raleigh and Houston
+    
+    
     CLLocationCoordinate2D coord;
-    coord.longitude = -87.379481;
-    coord.latitude = 33.184773;
-    [self updateRoute:coord clearRoute:NO];
+    coord.longitude = (self.HOU.x + self.RDU.x)/2.0;
+    coord.latitude = (self.HOU.y + self.RDU.y)/2.0;
+    [self updateRoute:coord];
     
     self.isRunning = YES;
+	
 }
 
 - (void) stop
 {
+	if(!self.isRunning)
+		return;
+	
     //Unregister the gesture recognizer
     [self.meMapViewController.meMapView removeGestureRecognizer:self.longPress];
     
@@ -114,106 +112,243 @@
     self.isRunning = NO;
 }
 
-- (void) addEndpointMarkers
-{
-    //Add marker for Houston
-	MEMarkerAnnotation* houstonMarker = [[[MEMarkerAnnotation alloc]init]autorelease];
-    houstonMarker.coordinate = CLLocationCoordinate2DMake(HOU.y, HOU.x);
-    houstonMarker.metaData=@"HOU";
-    [self.meMapViewController addMarkerToMap:self.markerMapName
-							markerAnnotation:houstonMarker];
-    
-    //Add marker for Raleigh
-    MEMarkerAnnotation* raleighMarker = [[[MEMarkerAnnotation alloc]init]autorelease];
-    raleighMarker.coordinate = CLLocationCoordinate2DMake(RDU.y, RDU.x);
-    raleighMarker.metaData=@"RDU";
-    [self.meMapViewController addMarkerToMap:self.markerMapName
-							markerAnnotation:raleighMarker];
+
+-(UIImage*) createMarkerImage:(NSString*) label{
+	@synchronized(self.routeMarkerViewController){
+		
+		UIImage* markerImage;
+		
+		//Update text on the view
+		[self.routeMarkerViewController updateRouteLabelText:label];
+		
+		//Render the marker to image and return the data
+		markerImage = [MEImageUtil createImageFromView:self.routeMarkerViewController.view];
+		
+		return markerImage;
+	}
 }
 
-- (void) updateRoute:(CLLocationCoordinate2D) midPointCoord clearRoute:(BOOL) clearRoute
-{
+
+- (void) addEndpointMarkers{
+	//Add a marker for Houston
+	MEDynamicMarker* marker = [[[MEDynamicMarker alloc]init]autorelease];
+    marker.location = CLLocationCoordinate2DMake(self.HOU.y, self.HOU.x);
+    marker.name=@"HOU";
+	marker.uiImage=[self createMarkerImage:@"HOU"];
+	marker.anchorPoint = CGPointMake(marker.uiImage.size.width/2, marker.uiImage.size.height/2);
+	[self.meMapViewController addDynamicMarkerToMap:self.markerMapName dynamicMarker:marker];
+	
+	//Add a marker for Raleigh
+	marker.location = CLLocationCoordinate2DMake(self.RDU.y, self.RDU.x);
+	marker.name = @"RDU";
+	marker.uiImage = [self createMarkerImage:@"RDU"];
+	marker.anchorPoint = CGPointMake(marker.uiImage.size.width/2, marker.uiImage.size.height/2);
+	[self.meMapViewController addDynamicMarkerToMap:self.markerMapName dynamicMarker:marker];
+	
+}
+
+- (void) updateRoute:(CLLocationCoordinate2D) midPointCoord{
     
 	CGPoint midPoint = CGPointMake(midPointCoord.longitude, midPointCoord.latitude);
 	
-	NSMutableArray* routePoints = [[[NSMutableArray alloc]init]autorelease];
+	self.routePoints = [[[NSMutableArray alloc]init]autorelease];
     
-    // stressing dynamic lines
-    const int pointCount = 10;
-    for (int i = 0; i < pointCount; ++i)
-    {
-        CGFloat x = self.HOU.x - (pointCount - i)/2;
-        CGFloat y = self.HOU.y + 5 * i%2;
-        [routePoints addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
-    }
-    
-    [routePoints addObject:[NSValue valueWithCGPoint:self.HOU]];
-    [routePoints addObject:[NSValue valueWithCGPoint:midPoint]];
-    [routePoints addObject:[NSValue valueWithCGPoint:self.RDU]];
+    [self.routePoints addObject:[NSValue valueWithCGPoint:self.HOU]];
+    [self.routePoints addObject:[NSValue valueWithCGPoint:midPoint]];
+    [self.routePoints addObject:[NSValue valueWithCGPoint:self.RDU]];
 	
 	[self.meMapViewController clearDynamicGeometryFromMap:self.name];
 	
     [self.meMapViewController addDynamicLineToVectorMap:self.name
 												 lineId:@"route"
-												 points:routePoints
+												 points:self.routePoints
 												  style:self.fillStyle];
+	
+	//Update distance label
+	double distance = [MEMath nauticalMilesInRoute:self.routePoints];
+	NSString* label = [NSString stringWithFormat:@"Distance = %f", distance];
+	[self.lblDistance setText:label];
 }
 
-- (void)handleLongPress:(UILongPressGestureRecognizer *)gesture
-{
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gesture{
     CGPoint viewPoint=[gesture locationInView:self.meMapViewController.meMapView];
     
     CLLocationCoordinate2D coordinate=[self.meMapViewController.meMapView convertPoint:viewPoint];
     
     //Here you would add a new point to your path
-    if(UIGestureRecognizerStateBegan == gesture.state)
-    {
+    if(UIGestureRecognizerStateBegan == gesture.state){
         //Add a new point where the user tapped.
-        //NSLog(@"Long press: began: %f, %f", coordinate.longitude, coordinate.latitude);
-        [self updateRoute:coordinate clearRoute:YES];
+        [self updateRoute:coordinate];
     }
     
     //Here the new point is moved around
-    if(UIGestureRecognizerStateChanged == gesture.state)
-    {
-        //NSLog(@"Long press: changed: %f, %f", coordinate.longitude, coordinate.latitude);
-        [self updateRoute:coordinate clearRoute:YES];
+    if(UIGestureRecognizerStateChanged == gesture.state){
+        [self updateRoute:coordinate];
     }
 	
     //Here you might integrate the point into your path
-    if(UIGestureRecognizerStateEnded == gesture.state)
-    {
-        //NSLog(@"Long press: ended: %f, %f", coordinate.longitude, coordinate.latitude);
-        [self updateRoute:coordinate clearRoute:NO];
+    if(UIGestureRecognizerStateEnded == gesture.state){
+        [self updateRoute:coordinate];
     }
 }
 
--(void) mapView:(MEMapView *)mapView updateMarkerInfo:(MEMarkerInfo *)markerInfo
-		mapName:(NSString *)mapName
+@end
 
-{
-    //Choose an marker image based this being a retina display or not
-    UIImage* markerImage;
-    CGPoint anchorPoint;
-    @synchronized(self.routeMarkerViewController)
-    {
-        //Update text on the view
-        [self.routeMarkerViewController updateRouteLabelText:markerInfo.metaData];
-        
-        //Render the marker to image and return the data
-        markerImage = [MEImageUtil createImageFromView:self.routeMarkerViewController.view];
-        
-        NSLog(@"%f", markerImage.size.height);
-        
-        anchorPoint = CGPointMake(markerImage.size.width/2,
-                                  markerImage.size.height/2);
-		
-		markerInfo.uiImage = markerImage;
-		markerInfo.anchorPoint = anchorPoint;
-		
-		[markerImage release];
+
+///////////////////////////////////////////////////////////////////////
+@implementation TerrainProfileTest
+
+- (id) init{
+    if(self = [super init]){
+        self.name=@"Terrain Profile";
     }
+    return self;
 }
 
+- (void) dealloc{
+    [super dealloc];
+	self.terrainMaps = nil;
+}
+
+
+- (void) addTerrainProfileView{
+	CGRect frame = CGRectMake(0,0,
+							  self.meMapViewController.meMapView.bounds.size.width,
+							  150);
+	self.terrainProfileView = [[[TerrainProfileView alloc]initWithFrame:frame]autorelease];
+	[self.meMapViewController.meMapView addSubview:self.terrainProfileView];
+}
+
+- (void) removeTerrainProfileView{
+	[self.terrainProfileView removeFromSuperview];
+	self.terrainProfileView = nil;
+}
+
+- (void) addTerrainMaps:(MEMapCategory*) mapCategory{
+	for(MEMap* map in mapCategory.Maps){
+		MEMapFileInfo* mapFileInfo = [[[MEMapFileInfo alloc]init]autorelease];
+		mapFileInfo.sqliteFileName = map.MapIndexFileName;
+		mapFileInfo.dataFileName = map.MapFileName;
+		[self.terrainMaps addObject:mapFileInfo];
+	}
+}
+
+- (void) findTerrainMaps{
+	self.terrainMaps = [[[NSMutableArray alloc]init]autorelease];
+	MapManager* mapManager = [[[MapManager alloc]init]autorelease];
+	[self addTerrainMaps:[mapManager categoryWithName:@"BaseMaps"]];
+	[self addTerrainMaps:[mapManager categoryWithName:@"Terrain_Subsets"]];
+}
+
+- (void) addLabel{
+	CGRect lblFrame = CGRectMake(0,300,300,50);
+	self.lblDistance = [[[UILabel alloc]initWithFrame:lblFrame]autorelease];
+	[self.meMapViewController.meMapView addSubview:self.lblDistance];
+	[self.lblDistance setText:@""];
+}
+
+- (void) removeLabel{
+	[self.lblDistance removeFromSuperview];
+	self.lblDistance = nil;
+}
+
+- (void) start{
+	if(self.isRunning)
+		return;
+	
+	[self findTerrainMaps];
+	[self addLabel];
+	[self addTerrainProfileView];
+	
+	//Cache a marker image.
+	UIImage* markerImage = [UIImage imageNamed:@"blueCircleSolid"];
+	self.markerAnchorPoint = CGPointMake(markerImage.size.width/2,
+										 markerImage.size.height/2);
+	[self.meMapViewController addCachedMarkerImage:markerImage
+										  withName:@"bluedot"
+								   compressTexture:NO
+					nearestNeighborTextureSampling:NO];
+	
+	[super start];
+	
+	
+}
+
+- (void) addPointMarkerMap{
+	MEDynamicMarkerMapInfo* mapInfo = [[[MEDynamicMarkerMapInfo alloc]init]autorelease];
+	mapInfo.name = @"dots";
+	mapInfo.zOrder = 102;
+	mapInfo.meDynamicMarkerMapDelegate = self;
+	[self.meMapViewController addMapUsingMapInfo:mapInfo];
+}
+
+- (void) removePointMarkerMap{
+	[self.meMapViewController removeMap:@"dots" clearCache:YES];
+}
+
+- (void) updateTerrainProfile{
+	
+	uint sampleCount = self.terrainProfileView.frame.size.width;
+	__block NSMutableArray* wayPoints = [[NSMutableArray alloc]init];
+	for(NSObject* point in self.routePoints){
+		[wayPoints addObject:point];
+	}
+	//Ask mapping engine for terrain height and marker weights on another thread.
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		
+		//Update terrain height samples along route
+		self.terrainProfileView.heightSamples =
+		[self.meMapViewController getTerrainProfile:self.terrainMaps
+										  wayPoints:wayPoints
+								   samplePointCount:sampleCount
+									   bufferRadius:0.1];
+		
+		
+		//Update view on main thread.
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self.terrainProfileView setNeedsDisplay];
+		});
+		
+	});
+}
+
+
+- (void) updateRoute:(CLLocationCoordinate2D) midPointCoord{
+    [super updateRoute:midPointCoord];
+	
+	[self removePointMarkerMap];
+	[self addPointMarkerMap];
+	
+	MEDynamicMarker* marker = [[[MEDynamicMarker alloc]init]autorelease];
+    
+    marker.cachedImageName = @"bluedot";
+	marker.anchorPoint = self.markerAnchorPoint;
+	
+	//Tesselate the route
+	NSArray* tesselatedPoints = [MEMath tesselateRoute:self.routePoints pointCount:15];
+	
+	//Show the tesselated points for the route as marker dots
+	int i = 0;
+	for(NSValue* v in tesselatedPoints){
+		CGPoint cgp = [v CGPointValue];
+		marker.location = CLLocationCoordinate2DMake(cgp.y, cgp.x);
+		marker.name = [NSString stringWithFormat:@"%d",i];
+		i++;
+		[self.meMapViewController addDynamicMarkerToMap:@"dots"
+										  dynamicMarker:marker];
+	}
+	
+	[self updateTerrainProfile];
+}
+
+
+- (void) stop{
+	if(!self.isRunning)
+		return;
+    [super stop];
+	[self removeLabel];
+	[self removeTerrainProfileView];
+	[self removePointMarkerMap];
+}
 
 @end

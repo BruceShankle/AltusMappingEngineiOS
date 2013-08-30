@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "../METest.h"
 #import "RouteMarkerViewController.h"
+#include "../TerrainProfileTests/TerrainProfileView.h"
 
-@interface RouteRubberBandingTest : METest <MEMarkerMapDelegate>
+@interface RouteRubberBandingTest : METest <MEDynamicMarkerMapDelegate>
 @property (retain) NSString* markerMapName;
 @property (retain) UILongPressGestureRecognizer *longPress;
 @property (retain) MELineStyle* fillStyle;
@@ -20,4 +21,13 @@
 @property (assign) CGPoint HOU;
 @property (assign) CGPoint MIA;
 @property (assign) CGPoint RDU;
+@property (retain) IBOutlet UILabel* lblDistance;
+@property (retain) NSMutableArray* routePoints;
+@end
+
+@interface TerrainProfileTest : RouteRubberBandingTest
+@property (retain) IBOutlet UILabel* lblDistance;
+@property (assign) CGPoint markerAnchorPoint;
+@property (retain) TerrainProfileView* terrainProfileView;
+@property (retain) NSMutableArray* terrainMaps;
 @end

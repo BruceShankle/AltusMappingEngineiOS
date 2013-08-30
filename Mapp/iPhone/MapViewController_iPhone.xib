@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<int key="IBDocument.SystemTarget">1552</int>
+		<string key="IBDocument.SystemVersion">12E55</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1930</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -57,7 +57,8 @@
 								</object>
 								<string key="NSFrame">{{128.5, 219.5}, {64, 64}}</string>
 								<reference key="NSSuperview" ref="746010658"/>
-								<reference key="NSNextKeyView" ref="609403015"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="522644177"/>
 								<string key="NSReuseIdentifierKey">_NS:196</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -70,6 +71,7 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{128, 220}, {64, 64}}</string>
 								<reference key="NSSuperview" ref="746010658"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="669242870"/>
 								<string key="NSReuseIdentifierKey">_NS:567</string>
 								<float key="IBUIAlpha">0.0</float>
@@ -86,7 +88,8 @@
 								<int key="NSvFlags">264</int>
 								<string key="NSFrame">{{0, 491}, {320, 13}}</string>
 								<reference key="NSSuperview" ref="746010658"/>
-								<reference key="NSNextKeyView" ref="522644177"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="295648577"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -121,9 +124,11 @@
 							</object>
 							<object class="IBUIButton" id="522644177">
 								<reference key="NSNextResponder" ref="746010658"/>
-								<int key="NSvFlags">265</int>
+								<int key="NSvFlags">-2147483383</int>
 								<string key="NSFrame">{{249, 464}, {71, 20}}</string>
 								<reference key="NSSuperview" ref="746010658"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="609403015"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<float key="IBUIAlpha">0.5</float>
@@ -156,6 +161,7 @@
 						</object>
 						<string key="NSFrame">{{0, 44}, {320, 504}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="953323730"/>
 						<string key="NSReuseIdentifierKey">_NS:180</string>
 						<string key="NSHuggingPriority">{250, 250}</string>
@@ -167,6 +173,7 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="746010658"/>
 						<string key="NSReuseIdentifierKey">_NS:345</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -231,6 +238,8 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 51}, {291, 314}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -259,6 +268,7 @@
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="482237953"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -613,7 +623,209 @@
 			<nil key="sourceID"/>
 			<int key="maxID">216</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">MEMapView</string>
+					<string key="superclassName">GLKView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>panGestureHandler:</string>
+							<string>pinchGestureHandler:</string>
+							<string>tapGestureHandler:</string>
+							<string>tapZoomInGestureHandler:</string>
+							<string>tapZoomOutGestureHandler:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIGestureRecognizer</string>
+							<string>UIGestureRecognizer</string>
+							<string>UIGestureRecognizer</string>
+							<string>UIGestureRecognizer</string>
+							<string>UIGestureRecognizer</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>panGestureHandler:</string>
+							<string>pinchGestureHandler:</string>
+							<string>tapGestureHandler:</string>
+							<string>tapZoomInGestureHandler:</string>
+							<string>tapZoomOutGestureHandler:</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">panGestureHandler:</string>
+								<string key="candidateClassName">UIGestureRecognizer</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">pinchGestureHandler:</string>
+								<string key="candidateClassName">UIGestureRecognizer</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">tapGestureHandler:</string>
+								<string key="candidateClassName">UIGestureRecognizer</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">tapZoomInGestureHandler:</string>
+								<string key="candidateClassName">UIGestureRecognizer</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">tapZoomOutGestureHandler:</string>
+								<string key="candidateClassName">UIGestureRecognizer</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MEMapView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MEMapViewController</string>
+					<string key="superclassName">GLKViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MEMapViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MapViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">didClickProvideFeedback:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">didClickProvideFeedback:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">didClickProvideFeedback:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>btnDownloads</string>
+							<string>btnFeedback</string>
+							<string>btnLocationTracking</string>
+							<string>btnMaps</string>
+							<string>btnPlay</string>
+							<string>btnTests</string>
+							<string>btnTrackUp</string>
+							<string>imgBluePlane</string>
+							<string>lblCopyrightNotice</string>
+							<string>lblDebugInfo</string>
+							<string>meMapView</string>
+							<string>meMapViewController</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIBarButtonItem</string>
+							<string>UIButton</string>
+							<string>UIBarButtonItem</string>
+							<string>UIBarButtonItem</string>
+							<string>UIBarButtonItem</string>
+							<string>UIBarButtonItem</string>
+							<string>UIBarButtonItem</string>
+							<string>UIImageView</string>
+							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>MEMapView</string>
+							<string>MEMapViewController</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>btnDownloads</string>
+							<string>btnFeedback</string>
+							<string>btnLocationTracking</string>
+							<string>btnMaps</string>
+							<string>btnPlay</string>
+							<string>btnTests</string>
+							<string>btnTrackUp</string>
+							<string>imgBluePlane</string>
+							<string>lblCopyrightNotice</string>
+							<string>lblDebugInfo</string>
+							<string>meMapView</string>
+							<string>meMapViewController</string>
+						</object>
+						<object class="NSArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btnDownloads</string>
+								<string key="candidateClassName">UIBarButtonItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btnFeedback</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btnLocationTracking</string>
+								<string key="candidateClassName">UIBarButtonItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btnMaps</string>
+								<string key="candidateClassName">UIBarButtonItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btnPlay</string>
+								<string key="candidateClassName">UIBarButtonItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btnTests</string>
+								<string key="candidateClassName">UIBarButtonItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btnTrackUp</string>
+								<string key="candidateClassName">UIBarButtonItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">imgBluePlane</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblCopyrightNotice</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">lblDebugInfo</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">meMapView</string>
+								<string key="candidateClassName">MEMapView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">meMapViewController</string>
+								<string key="candidateClassName">MEMapViewController</string>
+							</object>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MapViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MapViewController_iPhone</string>
+					<string key="superclassName">MapViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MapViewController_iPhone.h</string>
+					</object>
+				</object>
+			</object>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
@@ -635,6 +847,6 @@
 				<string>{59, 64}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1930</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

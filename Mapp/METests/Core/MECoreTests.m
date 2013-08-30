@@ -1,13 +1,77 @@
-//
-//  MECoreTests.m
-//  Mapp
-//
-//  Created by Bruce Shankle III on 9/21/12.
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
-//
-
 #import "MECoreTests.h"
 #import "../METestManager.h"
+
+///////////////////////////////////////////////////////
+//@implementation MEDatabaseStressTest
+//
+//- (id) init{
+//    if(self = [super init])
+//    {
+//        self.name=@"Database Stress Test";
+//	}
+//    return self;
+//}
+//
+//- (NSString*) getDatabaseName{
+//	NSString* cachePath = [METest getCachePath];
+//	NSString* fileName = [NSString stringWithFormat:@"%@/stress.sqlite", cachePath];
+//	return fileName;
+//}
+//
+//- (void) start{
+//	if(self.isRunning){
+//		return;
+//	}
+//	self.isRunning = YES;
+//	[self.meMapViewController prepareDatabaseStressTest:[self getDatabaseName]];
+//	[self startTimer];
+//}
+//
+//- (void) timerTick {
+//	
+//	int threadSubmissions = 5;
+//	int queryCount = 100;
+//	
+//	for(int i=0; i<threadSubmissions; i++){
+//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+//			double foo =[self.meMapViewController queryDatabaseStressTest:[self getDatabaseName] queryCount:queryCount];
+//			NSLog(@"BACKGROUND_PRI = %f", foo);
+//		});
+//	}
+//	
+//	for(int i=0; i<threadSubmissions; i++){
+//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//			double foo =[self.meMapViewController queryDatabaseStressTest:[self getDatabaseName] queryCount:queryCount];
+//			NSLog(@"LOW_PRI = %f", foo);
+//		});
+//	}
+//	
+//	for(int i=0; i<threadSubmissions; i++){
+//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//			double foo =[self.meMapViewController queryDatabaseStressTest:[self getDatabaseName] queryCount:queryCount];
+//			NSLog(@"DEFAULT_PRI = %f", foo);
+//		});
+//	}
+//	
+//	for(int i=0; i<threadSubmissions; i++){
+//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//			double foo =[self.meMapViewController queryDatabaseStressTest:[self getDatabaseName] queryCount:queryCount];
+//			NSLog(@"HIGH_PRI = %f", foo);
+//		});
+//	}
+//	
+//}
+//
+//- (void) stop{
+//	if(!self.isRunning){
+//		return;
+//	}
+//	[self stopTimer];
+//	self.isRunning = NO;
+//}
+//
+//@end
 
 
 ///////////////////////////////////////////////////////
@@ -207,7 +271,7 @@
 }
 
 - (void) userTapped
-{	
+{
 	self.meMapViewController.multiThreaded = !self.meMapViewController.multiThreaded;
 }
 
@@ -356,7 +420,7 @@
 		case 5:
 			newDecelValue = -0.1;
 			break;
-
+			
 		default:
 			_currentTest = -1;
 			break;

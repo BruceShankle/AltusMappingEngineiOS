@@ -85,6 +85,13 @@
 		  mapName,
 		  markerPoint.x,
 		  markerPoint.y);
+	
+	//Query which markers are visible
+	NSArray* visibleMarkers = [self.meMapViewController getVisibleMarkers:mapName];
+	for(MEMarker* marker in visibleMarkers){
+		NSLog(@"Marker with uid=%d is visible.",
+			  marker.uid);
+	}
 }
 
 - (void) stop

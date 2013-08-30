@@ -161,29 +161,29 @@
 /*Adds a dynamic marker map with all the air traffic markers. Only called once, when map is first added.*/
 - (void) addMap
 {
-	MEMarkerMapInfo* mapInfo=[[[MEMarkerMapInfo alloc]init]autorelease];
+	MEDynamicMarkerMapInfo* mapInfo=[[[MEDynamicMarkerMapInfo alloc]init]autorelease];
 	mapInfo.name = self.name;
-	mapInfo.meMarkerMapDelegate = self;
-	mapInfo.mapType = kMapTypeDynamicMarkerFast;
-	mapInfo.markerImageLoadingStrategy = kMarkerImageLoadingPrecached;
-	NSMutableArray* fastMarkers = [[[NSMutableArray alloc]init]autorelease];
+	mapInfo.meDynamicMarkerMapDelegate = self;
+	mapInfo.zOrder = 100;
+	[self.meMapViewController addMapUsingMapInfo:mapInfo];
+	
+	
 	for( NSString *aKey in [self.airPlanes allKeys] )
 	{
 		AirPlane* airPlane = [self.airPlanes objectForKey:aKey];
 		airPlane.addedToMap = YES;
-		MEFastMarkerInfo* fastMarker = [[[MEFastMarkerInfo alloc]init]autorelease];
-		fastMarker.metaData = airPlane.metaData;
-		fastMarker.location = airPlane.location;
-		fastMarker.cachedImageName = @"blueplane";
-		fastMarker.rotation = airPlane.heading;
-		fastMarker.rotationType = kMarkerRotationTrueNorthAligned;
-		fastMarker.anchorPoint = self.bluePlaneAnchorPoint;
-		[fastMarkers addObject:fastMarker];
+		
+		MEDynamicMarker* planeMarker = [[[MEDynamicMarker alloc]init]autorelease];
+		planeMarker.name = airPlane.metaData;
+		planeMarker.location = airPlane.location;
+		planeMarker.cachedImageName = @"blueplane";
+		planeMarker.rotation = airPlane.heading;
+		planeMarker.rotationType = kMarkerRotationTrueNorthAligned;
+		planeMarker.anchorPoint = self.bluePlaneAnchorPoint;
+		[self.meMapViewController addDynamicMarkerToMap:self.name dynamicMarker:planeMarker];
 	}
 	
-	mapInfo.markers = fastMarkers;
-	mapInfo.zOrder = 100;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
+	
 }
 
 /*Updates markers in the air traffic marker layer.*/
@@ -200,22 +200,25 @@
 		//update the absolute position of the airplane on the map
 		if(airPlane.addedToMap && airPlane.updated && airPlane.visible)
 		{
-			[self.meMapViewController updateMarkerInMap:self.name
-											   metaData:airPlane.metaData
-											newLocation:airPlane.location
-											newRotation:airPlane.heading
-									  animationDuration:0];
+			[self.meMapViewController updateDynamicMarkerLocation:self.name
+													   markerName:airPlane.metaData
+														 location:airPlane.location
+												animationDuration:0];
 			airPlane.updated = NO;
 		}
 		
 		//If the plan has never been added to the map, add it.
 		if(!airPlane.addedToMap)
 		{
-			MEMarkerAnnotation* markerAnnotation = [[[MEMarkerAnnotation alloc]init]autorelease];
-			markerAnnotation.metaData = airPlane.metaData;
-			markerAnnotation.coordinate = airPlane.location;
-			[self.meMapViewController addMarkerToMap:self.name
-									markerAnnotation:markerAnnotation];
+			MEDynamicMarker* planeMarker = [[[MEDynamicMarker alloc]init]autorelease];
+			planeMarker.name = airPlane.metaData;
+			planeMarker.location = airPlane.location;
+			planeMarker.cachedImageName = @"blueplane";
+			planeMarker.rotation = airPlane.heading;
+			planeMarker.rotationType = kMarkerRotationTrueNorthAligned;
+			planeMarker.anchorPoint = self.bluePlaneAnchorPoint;
+			[self.meMapViewController addDynamicMarkerToMap:self.name dynamicMarker:planeMarker];
+			
 			airPlane.addedToMap = YES;
 			airPlane.updated = NO;
 		}
@@ -227,9 +230,10 @@
 		else
 		{
 			//Update heading
-			[self.meMapViewController updateMarkerRotationInMap:self.name
-													   metaData:airPlane.metaData
-													newRotation:airPlane.heading];
+			[self.meMapViewController updateDynamicMarkerRotation:self.name
+													   markerName:airPlane.metaData
+														 rotation:airPlane.heading
+												animationDuration:self.interval/3];
 			
 			//Compute where the plane should be over the next interval
 			double distanceTravelled = (airPlane.speed * (self.interval-1.0)) / 3600.0;
@@ -241,32 +245,15 @@
 			airPlane.location = CLLocationCoordinate2DMake(newLocation.y, newLocation.x);
 			
 			//Animate the airplane to where it should be
-			[self.meMapViewController updateMarkerInMap:self.name
-											   metaData:airPlane.metaData
-											newLocation:airPlane.location
-											newRotation:airPlane.heading
-									  animationDuration:self.interval];
+			[self.meMapViewController updateDynamicMarkerLocation:self.name
+													   markerName:airPlane.metaData
+														 location:airPlane.location
+												animationDuration:self.interval];
+			
+			
 		}
-		
-		
-		
-		
 	}
 	[self startTimer];
-}
-
-- (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
-		 mapName:(NSString *)mapName
-{
-	AirPlane* airPlane = [self.airPlanes objectForKey:markerInfo.metaData];
-	if(airPlane!=nil)
-	{
-		markerInfo.cachedImageName = @"blueplane";
-		markerInfo.anchorPoint = self.bluePlaneAnchorPoint;
-		markerInfo.rotation = airPlane.heading;
-		markerInfo.rotationType = kMarkerRotationTrueNorthAligned;
-	}
 }
 
 - (void) draw

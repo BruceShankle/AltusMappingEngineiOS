@@ -10,7 +10,6 @@
 #import "MarkerTestData.h"
 #import "Country.h"
 #import <ME/ME.h>
-#import "AirportMarkerViewController.h"
 #import "../../Database/AviationDatabase.h"
 #include <vector>
 #import "../METestManager.h"
@@ -27,527 +26,6 @@
 }
 @end
 
-///////////////////////////////////////////////////////////////////////////
-//weather.sqlite
-@implementation MEWeatherMarkerTest
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Weather: From Bundle";
-		self.tableNamePrefix = @"wx";
-		self.elapsedTimes = [[[NSMutableArray alloc]init]autorelease];
-    }
-    return self;
-}
-
-- (void) addMap
-{
-	self.markerCount = 0;
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.name;
-	mapInfo.mapType = kMapTypeFileMarker;
-	mapInfo.sqliteFileName = [MarkerTestData weatherBundlePath];
-	mapInfo.tableNamePrefix = self.tableNamePrefix;
-	mapInfo.zOrder = 21;
-	mapInfo.meMarkerMapDelegate = self;
-	mapInfo.fadeEnabled = NO;
-	mapInfo.compressTextures = NO;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-}
-
-- (void) removeMap
-{
-	[self.meMapViewController removeMap:self.name
-							 clearCache:YES];
-}
-
-- (void) start
-{
-	if(self.isRunning)
-		return;
-	[self.elapsedTimes removeAllObjects];
-	[self addStatusLabel];
-	[self setStatusLabelText:@"Loading..."];
-	
-	self.oldDelegate = self.meMapViewController.meMapView.meMapViewDelegate;
-	self.meMapViewController.meMapView.meMapViewDelegate = self;
-	[self lookAtUnitedStates];
-	self.interval = 0.5;
-	[self startTimer];
-    self.isRunning = YES;
-}
-
-- (void) stop
-{
-	if(!self.isRunning)
-		return;
-	[self stopTimer];
-	[self removeStatusLabel];
-    [self removeMap];
-	self.meMapViewController.meMapView.meMapViewDelegate = self.oldDelegate;
-    self.isRunning = NO;
-}
-
-- (void) timerTick
-{
-	[self stopTimer];
-	[self removeMap];
-	[self addMap];
-}
-
-// Implement MEMarkerMapDelegate methods
-- (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
-		 mapName:(NSString *)mapName
-{
-    //Return the image
-	markerInfo.uiImage = [UIImage imageNamed:@"pinRed"];
-	markerInfo.anchorPoint = CGPointMake(7,35);
-	self.markerCount++;
-}
-
-- (double) computeAverage
-{
-	double sum=0;
-	for(NSNumber* n in self.elapsedTimes)
-		sum+=n.doubleValue;
-	return sum/self.elapsedTimes.count;
-}
-
-- (void) mapView:(MEMapView *)mapView didFinishLoadingMap:(NSString *)mapName
-{
-	if([mapName isEqualToString:self.name])
-	{
-		NSTimeInterval endTime = CACurrentMediaTime();
-		double elapsed = endTime - self.startTime;
-		[self.elapsedTimes addObject:[NSNumber numberWithDouble:elapsed]];
-		double average = [self computeAverage];
-		NSString* statusMessage = [NSString stringWithFormat:@"Count: %d Time: %0.2f Avg: %0.2f",
-								   self.markerCount,
-								   elapsed,
-								   average];
-		[self setStatusLabelText:statusMessage];
-		[self startTimer];
-	}
-}
-
-- (void) mapView:(MEMapView *)mapView willStartLoadingMap:(NSString *)mapName
-{
-	if([mapName isEqualToString:self.name])
-	{
-		[self stopTimer];
-		self.startTime = CACurrentMediaTime();
-	}
-}
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////
-//weather.sqlite
-@implementation MEWeatherMarkerCachedTest
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Weather: From Bundle Cached";
-    }
-    return self;
-}
-
-- (void) start
-{
-	[self.meMapViewController addCachedMarkerImage:[UIImage imageNamed:@"pinGreen"]
-										  withName:@"pinGreen"
-								   compressTexture:NO
-					nearestNeighborTextureSampling:NO];
-	[super start];
-}
-
-// Implement MEMarkerMapDelegate methods
-- (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
-		 mapName:(NSString *)mapName
-{
-    //Return the image
-	//markerInfo.uiImage = [UIImage imageNamed:@"pinRed"];
-	markerInfo.anchorPoint = CGPointMake(7,35);
-	markerInfo.cachedImageName=@"pinGreen";
-}
-
-@end
-
-///////////////////////////////////////////////////////////////////////////
-@implementation MEWeatherMarkerBadPrefixTest
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Weather: Bad Prefix";
-		self.tableNamePrefix = @"foo";
-    }
-    return self;
-}
-@end
-
-
-///////////////////////////////////////////////////////////////////////////
-//Airports
-@implementation MEAirportMarkersFromBundle
-@synthesize airportMarkerViewController = _airportMarkerViewController;
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Airports: From Bundle";
-		_airportMarkerViewController =
-		[[AirportMarkerViewController alloc]
-		 initWithNibName:@"AirportMarkerViewController"
-		 bundle:nil];
-
-    }
-    return self;
-}
-
-- (void) dealloc
-{
-	if(_airportMarkerViewController)
-	{
-		[_airportMarkerViewController release];
-	}
-	[super dealloc];
-}
-
-- (BOOL) isEnabled
-{
-	if([self isOtherTestRunning:
-		@"Airports: From Disk Cache"])
-		return NO;
-	
-	if([self isOtherTestRunning:
-		 @"Airports: To Disk Cache"])
-		return NO;
-	
-	return YES;
-}
-
-- (void) start
-{
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.name;
-	mapInfo.mapType = kMapTypeFileMarker;
-	mapInfo.sqliteFileName = [MarkerTestData airportMarkerBundlePath];
-	mapInfo.zOrder = 20;
-	mapInfo.meMarkerMapDelegate = self;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-
-	[self lookAtUnitedStates];
-    self.isRunning = YES;
-}
-
-- (void) stop
-{
-    [self.meMapViewController removeMap:self.name
-                                   clearCache:YES];
-    self.isRunning = NO;
-}
-
-// Implement MEMarkerMapDelegate methods
-- (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
-		 mapName:(NSString *)mapName
-{
-	if(mapName==nil)
-	{
-		NSLog(@"mapName is nil! This is a bug.");
-		exit(0);
-	}
-
-	
-	if(mapName.length==0)
-	{
-		NSLog(@"mapName is empty! This is a bug.");
-		exit(0);
-	}
-
-	//We will now create the image to represent the marker
-	//We want to synchronize this because we don't want
-	//another thread to be updating this view for marker
-	//image creation
-    @synchronized(_airportMarkerViewController)
-    {
-		//Set the identifier into the marker text label.
-		self.airportMarkerViewController.markerText = markerInfo.metaData;
-		
-		//Return the image
-		markerInfo.uiImage = [MEImageUtil createImageFromView:_airportMarkerViewController.view];
-		
-		markerInfo.anchorPoint = CGPointMake(
-										 markerInfo.uiImage.size.width / 2.0,
-										 markerInfo.uiImage.size.height);
-	}
-}
-
-- (void) tapOnMarker:(NSString*)metaData
-           onMapView:(MEMapView*)mapView
-       atScreenPoint:(CGPoint)point
-{
-    NSLog(@"Marker %@ was tapped on", metaData);
-}
-
-- (void) tapOnMarker:(MEMarkerInfo *)markerInfo
-		   onMapView:(MEMapView *)mapView
-			 mapName:(NSString *)mapName
-	   atScreenPoint:(CGPoint)point
-{
-	NSLog(@"Marker uid:%d metadata:%@ on map %@ was tapped on. Geographic location (%f, %f) ScreenPoint (%f, %f)",
-		  markerInfo.uid,
-		  markerInfo.metaData,
-		  mapName,
-		  markerInfo.location.longitude,
-		  markerInfo.location.latitude,
-		  point.x,
-		  point.y);
-}
-@end
-
-
-///////////////////////////////////////////////////////////////////////////
-//Airports
-@implementation MEAirportMarkersFromBundleRotated
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Airports: From Bundle Rotated";
-    }
-    return self;
-}
-
-
-// Implement MEMarkerMapDelegate methods
-- (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
-		 mapName:(NSString *)mapName
-{
-	[super mapView:mapView updateMarkerInfo:markerInfo mapName:mapName];
-	markerInfo.rotation = 45.0;
-}
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////
-//Airport Markers to Cache
-//Generates a marker map on the fly and saves it to the app cache
-//Note this example is what requires this file to be Objective C++
-//because it uses our C++ base database classes and std::vector
-//You could use something like FMDB if that suites your tastes.
-@implementation MEAirportMarkersToDiskCache
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Airports: To Disk Cache";
-    }
-    return self;
-}
-
-- (BOOL) isEnabled
-{
-	if([self isOtherTestRunning:
-		@"Airports: From Disk Cache"])
-		return NO;
-	
-	if([self isOtherTestRunning:
-		 @"Airports: From Bundle"])
-		return NO;
-	
-	if([self isOtherTestRunning:
-		@"Airports: In Memory Sync"])
-		return NO;
-	
-	return YES;
-}
-
-- (NSMutableArray*) airportMarkers
-{
-	AviationData::AviationDatabase aviationDatabase([MarkerTestData aviationDatabaseBundlePath].UTF8String);
-	std::vector<AviationData::Airport> airports = aviationDatabase.allAirports();
-    
-	//Create an array of MEMarkerAnnotations based on the airports.
-    NSMutableArray* markers = [[[NSMutableArray alloc]init]autorelease];
-    
-    for(int i=0; i < airports.size(); i++)
-    {
-        MEMarkerAnnotation* annotation = [[[MEMarkerAnnotation alloc] init]autorelease];
-		
-		//Set the marker metadata
-        annotation.metaData = [NSString stringWithUTF8String:
-						  airports[i].facility_id.c_str()];
-		
-		//Set the geographic coordinate
-        annotation.coordinate =
-		CLLocationCoordinate2DMake(airports[i].location.latitude,
-								   airports[i].location.longitude);
-		
-		//Set the weight based on runway length
-        annotation.weight = airports[i].maxRunwayLength;
-        
-        [markers addObject:annotation];
-    }
-	return markers;
-}
-
-- (void) start
-{
-	if(!self.isEnabled)
-		return;
-	
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.name;
-	mapInfo.mapType = kMapTypeFileMarkerCreate;
-	mapInfo.sqliteFileName = [MarkerTestData airportMarkerCachePath];
-	mapInfo.zOrder = 20;
-	mapInfo.meMarkerMapDelegate = self;
-	mapInfo.markers = [self airportMarkers];
-	mapInfo.clusterDistance = 80;
-	mapInfo.maxLevel = 12;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-	
-	[self lookAtUnitedStates];
-    self.isRunning = YES;
-}
-
-- (void) stop
-{
-    [self.meMapViewController removeMap:self.name
-                                   clearCache:YES];
-    self.isRunning = NO;
-}
-
-
-@end
-
-///////////////////////////////////////////////////////////////////////////
-//Airport Markers in Memory
-@implementation MEAirportMarkersInMemory
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Airports: In Memory Sync";
-    }
-    return self;
-}
-
-- (BOOL) isEnabled
-{
-	if([self isOtherTestRunning:
-		@"Airports: From Disk Cache"])
-		return NO;
-	
-	if([self isOtherTestRunning:
-		@"Airports: From Bundle"])
-		return NO;
-	
-	if([self isOtherTestRunning:
-		@"Airports: To Disk Cache"])
-		return NO;
-	
-	return YES;
-}
-
-- (void) start
-{
-	if(!self.isEnabled)
-		return;
-	
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.name;
-	mapInfo.mapType = kMapTypeMemoryMarker;
-	mapInfo.zOrder = 20;
-	mapInfo.meMarkerMapDelegate = self;
-	mapInfo.markers = [self airportMarkers];
-	mapInfo.clusterDistance = 40;
-	mapInfo.maxLevel = 12;
-	mapInfo.fadeEnabled = NO;
-	mapInfo.markerImageLoadingStrategy = kMarkerImageLoadingSynchronous;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-	
-	[self lookAtUnitedStates];
-    self.isRunning = YES;
-}
-
-- (void) stop
-{
-    [self.meMapViewController removeMap:self.name
-                                   clearCache:YES];
-    self.isRunning = NO;
-}
-
-
-@end
-
-
-///////////////////////////////////////////////////////////////////////////
-//Airport Markers from Disk Cache
-@implementation MEAirportMarkersFromDiskCache
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Airports: From Disk Cache";
-    }
-    return self;
-}
-
-- (BOOL) isEnabled
-{
-	return YES;
-	
-	if([self isOtherTestRunning:
-		@"Airports: To Disk Cache"])
-		return NO;
-
-	if([self isOtherTestRunning:
-		@"Airports: From Bundle"])
-		return NO;
-	
-	if([self isOtherTestRunning:
-		@"Airports: In Memory Sync"])
-		return NO;
-
-	
-	NSString* dbFileName =[MarkerTestData airportMarkerCachePath];
-    return [[NSFileManager defaultManager]fileExistsAtPath:dbFileName];
-}
-
-- (void) start
-{
-	if(!self.isEnabled)
-		return;
-	
-	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
-	mapInfo.name = self.name;
-	mapInfo.mapType = kMapTypeFileMarker;
-	mapInfo.sqliteFileName = [MarkerTestData airportMarkerCachePath];
-	mapInfo.zOrder = 20;
-	mapInfo.meMarkerMapDelegate = self;
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-	
-	
-	[self lookAtUnitedStates];
-	
-	self.isRunning = YES;
-}
-
-@end
 
 ///////////////////////////////////////////////////////////////////////////
 //Bus stops around Bay Area
@@ -622,9 +100,25 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 
 - (void) tapOnMarker:(NSString*)metaData
            onMapView:(MEMapView*)mapView
-       atScreenPoint:(CGPoint)point
-{
+       atScreenPoint:(CGPoint)point{
     NSLog(@"Marker %@ was tapped on", metaData);
+}
+
+- (void) tapOnMarker:(MEMarkerInfo *)markerInfo
+		   onMapView:(MEMapView *)mapView
+			 mapName:(NSString *)mapName
+	   atScreenPoint:(CGPoint)screenPoint
+	   atMarkerPoint:(CGPoint)markerPoint{
+	
+	//Query which markers are visible
+	NSArray* visibleMarkers = [self.meMapViewController getVisibleMarkers:mapName];
+	for(MEMarker* marker in visibleMarkers){
+		NSLog(@"Marker with metadata=%@ uid=%d is visible.",
+			  marker.metaData,
+			  marker.uid);
+	}
+	NSLog(@"%d markers are visible", visibleMarkers.count);
+	
 }
 
 @end
@@ -1561,22 +1055,18 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 //Tower height markers
 @implementation METowersHeightsMarkersTest
 
-- (id) init
-{
-    if(self = [super init])
-    {
+- (id) init{
+    if(self = [super init]){
         self.name=@"Aviation Towers: From Bundle";
     }
     return self;
 }
 
--(NSString*) dbFile
-{
+-(NSString*) dbFile{
 	return [MarkerTestData towerMarkerBundlePath];
 }
 
-- (void) start
-{
+- (void) start{
     //Add existing marker layer
 	
 	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
@@ -1585,6 +1075,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	mapInfo.sqliteFileName = [self dbFile];
 	mapInfo.zOrder = 15;
 	mapInfo.meMarkerMapDelegate = self;
+	mapInfo.maxLevel=20;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
     self.isRunning = YES;
@@ -1592,10 +1083,9 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     //[self lookAtUnitedStates];
 }
 
-- (void) stop
-{
+- (void) stop{
     [self.meMapViewController removeMap:self.name
-                                   clearCache:YES];
+                                   clearCache:NO];
     self.isRunning = NO;
 }
 
@@ -1614,14 +1104,21 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     float fontSize = 8.6f;
     UIColor* fillColor = [UIColor whiteColor];
     UIColor* strokeColor = [UIColor blackColor];
-    
+    //markerInfo.offset = CGPointMake(500,500);
+	NSString* label;
+	if(markerInfo.metaData.length==0){
+		label = @"N/A";
+	}
+	else{
+		label = markerInfo.metaData;
+	}
     //Have the mapping engine create a label for us
     UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
 												fontSize:fontSize
 											   fillColor:fillColor
 											 strokeColor:strokeColor
 											 strokeWidth:0
-													text:markerInfo.metaData];
+													text:label];
     
     //Craete an anhor point based on the image size
     CGPoint anchorPoint = CGPointMake(textImage.size.width / 2.0,
@@ -1713,28 +1210,6 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	}
 }
 
-
-@end
-
-
-
-//////////////////////////////////////////////////////////////////////
-//Tower height markers - using metool java wrapper generated markes
-@implementation METowersJHeightsMarkersTest
-
-- (id) init
-{
-    if(self = [super init])
-    {
-        self.name=@"Aviation TowersJ: From Bundle";
-    }
-    return self;
-}
-
--(NSString*) dbFile
-{
-	return [MarkerTestData towerJMarkerBundlePath];
-}
 
 @end
 

@@ -25,14 +25,11 @@
 //Bundle paths
 + (NSString*) aviationDatabaseBundlePath;
 
-+ (NSString*) weatherBundlePath;
-+ (NSString*) weatherFromServerBundlePath;
 
 + (NSString*) airportMarkerBundlePath;
 + (NSString*) airportMarkerEvenBundlePath;
 + (NSString*) metoolMarkerBundlePath;
 + (NSString*) towerMarkerBundlePath;
-+ (NSString*) towerJMarkerBundlePath;
 + (NSString*) stateMarkerBundlePath;
 + (NSString*) countryAndStateMarkerBundlePath;
 + (NSString*) citiesMarkerBundlePath;
