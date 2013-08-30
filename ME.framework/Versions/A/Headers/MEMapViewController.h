@@ -655,5 +655,8 @@ nearestNeighborTextureSampling:(BOOL) nearestNeighborTextureSampling;
 						distance:(double) distance
 				   bufferRadius:(double) bufferRadius;
 
+/** Returns an array of MEMarker objects for markers that are visible for a given marker map layer. This function should only be called form the main thread, not from a background thread.
+ @param mapName Name of currently loaded marker layer.*/
+- (NSArray*) getVisibleMarkers:(NSString*) mapName;
 
 @end
