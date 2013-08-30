@@ -186,22 +186,20 @@
 
 - (void) applyDefaultWorldVectorStyle:(BOOL) enable
 {
-   
-	METestCategory* testCategory = [self.meTestManager categoryFromName:@"World Vector"];
-	if(!enable)
-	{
+	//Get label catetory and turn off all tests.
+	METestCategory* testCategory = [self.meTestManager categoryFromName:@"Labeling"];
+	if(!enable){
 		//Disable all styling tests and exit
 		[testCategory stopAllTests];
 		return;
 	}
 	
-	//Turn on the last vector style, or default to MapBox
-	METest* vectorStyle = testCategory.lastTestStarted;
-	if(vectorStyle==nil)
-	{
-		vectorStyle = [testCategory testWithName:@"MapBox Style"];
+	//Turn on the last labelStyle style, or default to plain style
+	METest* labelStyle = testCategory.lastTestStarted;
+	if(labelStyle==nil){
+		labelStyle = [testCategory testWithName:@"Places - Plain Style"];
 	}
-    [vectorStyle start];    
+    [labelStyle start];    
 }
 
 

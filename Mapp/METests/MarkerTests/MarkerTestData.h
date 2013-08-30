@@ -33,6 +33,5 @@
 + (NSString*) stateMarkerBundlePath;
 + (NSString*) countryAndStateMarkerBundlePath;
 + (NSString*) citiesMarkerBundlePath;
-+ (NSString*) countriesCitiesStatesMarkerBundlePath;
 + (NSString*) obstacleBundlePath;
 @end

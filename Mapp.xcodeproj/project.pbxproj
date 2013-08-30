@@ -95,7 +95,6 @@
 		32509AF015F54D4B005E0369 /* METestViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 32509AEF15F54D4B005E0369 /* METestViewControllers.m */; };
 		3254EA9C15A42614001751B7 /* MapStreamingTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3254EA9B15A42614001751B7 /* MapStreamingTileProvider.m */; };
 		3257BA1716B9ADCB00C72C89 /* MERefreshAllMapsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3257BA1616B9ADCB00C72C89 /* MERefreshAllMapsTest.m */; };
-		325860CE161949E80019BC44 /* METoolCountriesStatesCities.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 325860CD161949E80019BC44 /* METoolCountriesStatesCities.sqlite */; };
 		325A09061628CB6C00FF0157 /* MapAlphaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 325A09051628CB6C00FF0157 /* MapAlphaTest.m */; };
 		325B1F3C1661FA0A00A3CADF /* MEAnimatedVectorCircleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 325B1F3B1661FA0A00A3CADF /* MEAnimatedVectorCircleTests.m */; };
 		325CF26116617C6500E67B66 /* MEMarkerFastLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 325CF26016617C6500E67B66 /* MEMarkerFastLoad.m */; };
@@ -126,7 +125,6 @@
 		327ABEE816067A3D00365B3D /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 327ABEE616067A3D00365B3D /* bus@2x.png */; };
 		327ABEE916067A3D00365B3D /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 327ABEE716067A3D00365B3D /* bus.png */; };
 		327ABEEC16069A9600365B3D /* pinPurple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 327ABEEB16069A9500365B3D /* pinPurple@2x.png */; };
-		327ABF0616072A2600365B3D /* MEWorldVectorStyling.m in Sources */ = {isa = PBXBuildFile; fileRef = 327ABF0416072A2600365B3D /* MEWorldVectorStyling.m */; };
 		32804A14162884420078B197 /* MapManagementCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 32804A13162884420078B197 /* MapManagementCategory.m */; };
 		3281628F157810BF00E29122 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3281628C157810BF00E29122 /* Default-Landscape~ipad.png */; };
 		32816291157810BF00E29122 /* Default-Portrait~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3281628E157810BF00E29122 /* Default-Portrait~iphone.png */; };
@@ -221,6 +219,8 @@
 		32B1918116439B5B008A714A /* blueStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B1917C16439B5B008A714A /* blueStar.png */; };
 		32B1918216439B5B008A714A /* blueCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B1917D16439B5B008A714A /* blueCircle.png */; };
 		32B2D90F15D5852C007EAE4B /* libGEOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B2D90E15D5852C007EAE4B /* libGEOS.a */; };
+		32B3192517D1338D00B7CF1C /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B3192417D1338D00B7CF1C /* Places.m */; };
+		32B3192717D137DC00B7CF1C /* Places.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32B3192617D137DC00B7CF1C /* Places.sqlite */; };
 		32B3AA90172E35DF00CE9C0C /* AirTrafficTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3222877116EC4EE4009ED5F2 /* AirTrafficTest.m */; };
 		32B5532215B0053F004E78CA /* RemoteMapCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B5532115B0053E004E78CA /* RemoteMapCatalog.m */; };
 		32B75A2E17271672006CDFC6 /* BlinkingMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B75A2D17271672006CDFC6 /* BlinkingMarkerTests.m */; };
@@ -248,7 +248,6 @@
 		32C6F309178CC72D00DE3724 /* open-streets-dc-15.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 32C6F308178CC72D00DE3724 /* open-streets-dc-15.mbtiles */; };
 		32C95E9B1603165A006623FC /* countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32C95E9A1603165A006623FC /* countries.txt */; };
 		32C95E9F160316CB006623FC /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C95E9E160316CB006623FC /* Country.m */; };
-		32CA9B4B175EBD1E00769F92 /* MEWorldLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CA9B4A175EBD1E00769F92 /* MEWorldLabels.m */; };
 		32CC2544166661BC00C23D57 /* METrueNorthAlignedMarkerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC2543166661BC00C23D57 /* METrueNorthAlignedMarkerTest.m */; };
 		32CC25481666646F00C23D57 /* redarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC25461666646E00C23D57 /* redarrow.png */; };
 		32CC25491666646F00C23D57 /* redarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC25471666646E00C23D57 /* redarrow@2x.png */; };
@@ -429,7 +428,6 @@
 		3254EA9B15A42614001751B7 /* MapStreamingTileProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapStreamingTileProvider.m; sourceTree = "<group>"; };
 		3257BA1516B9ADCB00C72C89 /* MERefreshAllMapsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MERefreshAllMapsTest.h; sourceTree = "<group>"; };
 		3257BA1616B9ADCB00C72C89 /* MERefreshAllMapsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MERefreshAllMapsTest.m; sourceTree = "<group>"; };
-		325860CD161949E80019BC44 /* METoolCountriesStatesCities.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = METoolCountriesStatesCities.sqlite; sourceTree = "<group>"; };
 		325A09041628CB6C00FF0157 /* MapAlphaTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAlphaTest.h; sourceTree = "<group>"; };
 		325A09051628CB6C00FF0157 /* MapAlphaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAlphaTest.m; sourceTree = "<group>"; };
 		325B1F3A1661FA0A00A3CADF /* MEAnimatedVectorCircleTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEAnimatedVectorCircleTests.h; sourceTree = "<group>"; };
@@ -468,8 +466,6 @@
 		327ABEE616067A3D00365B3D /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@2x.png"; sourceTree = "<group>"; };
 		327ABEE716067A3D00365B3D /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
 		327ABEEB16069A9500365B3D /* pinPurple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinPurple@2x.png"; sourceTree = "<group>"; };
-		327ABF0416072A2600365B3D /* MEWorldVectorStyling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEWorldVectorStyling.m; sourceTree = "<group>"; };
-		327ABF0516072A2600365B3D /* MEWorldVectorStyling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEWorldVectorStyling.h; sourceTree = "<group>"; };
 		32804A12162884420078B197 /* MapManagementCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManagementCategory.h; sourceTree = "<group>"; };
 		32804A13162884420078B197 /* MapManagementCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManagementCategory.m; sourceTree = "<group>"; };
 		328151AB157E1E850057C029 /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libturbojpeg.a; sourceTree = "<group>"; };
@@ -606,6 +602,9 @@
 		32B1917C16439B5B008A714A /* blueStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueStar.png; sourceTree = "<group>"; };
 		32B1917D16439B5B008A714A /* blueCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueCircle.png; sourceTree = "<group>"; };
 		32B2D90E15D5852C007EAE4B /* libGEOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGEOS.a; sourceTree = "<group>"; };
+		32B3192317D1338D00B7CF1C /* Places.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Places.h; sourceTree = "<group>"; };
+		32B3192417D1338D00B7CF1C /* Places.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Places.m; sourceTree = "<group>"; };
+		32B3192617D137DC00B7CF1C /* Places.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Places.sqlite; sourceTree = "<group>"; };
 		32B5532015B0053E004E78CA /* RemoteMapCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteMapCatalog.h; sourceTree = "<group>"; };
 		32B5532115B0053E004E78CA /* RemoteMapCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteMapCatalog.m; sourceTree = "<group>"; };
 		32B75A2C17271672006CDFC6 /* BlinkingMarkerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlinkingMarkerTests.h; sourceTree = "<group>"; };
@@ -643,8 +642,6 @@
 		32C95E9A1603165A006623FC /* countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countries.txt; sourceTree = "<group>"; };
 		32C95E9D160316CB006623FC /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Country.h; sourceTree = "<group>"; };
 		32C95E9E160316CB006623FC /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Country.m; sourceTree = "<group>"; };
-		32CA9B49175EBD1E00769F92 /* MEWorldLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEWorldLabels.h; sourceTree = "<group>"; };
-		32CA9B4A175EBD1E00769F92 /* MEWorldLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEWorldLabels.m; sourceTree = "<group>"; };
 		32CC2542166661BC00C23D57 /* METrueNorthAlgnedMarkerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METrueNorthAlgnedMarkerTest.h; sourceTree = "<group>"; };
 		32CC2543166661BC00C23D57 /* METrueNorthAlignedMarkerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METrueNorthAlignedMarkerTest.m; sourceTree = "<group>"; };
 		32CC25461666646E00C23D57 /* redarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redarrow.png; sourceTree = "<group>"; };
@@ -752,7 +749,6 @@
 				3288AD841618D15F007E64E9 /* Aviation.sqlite */,
 				3288AD781616C838007E64E9 /* METoolCountriesAndStates.sqlite */,
 				3288AD741616BC65007E64E9 /* METoolStates.sqlite */,
-				325860CD161949E80019BC44 /* METoolCountriesStatesCities.sqlite */,
 				3288AD87161926A8007E64E9 /* METoolCities.sqlite */,
 				32BF4AE4161411B1000354B6 /* METoolTowers.sqlite */,
 				32BF4AE21614106D000354B6 /* METoolCountries.sqlite */,
@@ -931,7 +927,7 @@
 		3228C67915DD2790005159C8 /* METests */ = {
 			isa = PBXGroup;
 			children = (
-				32CA9B48175EBD0700769F92 /* WorldLabels */,
+				32B3192217D1327800B7CF1C /* MapLabeling */,
 				32CA9B42175EABC800769F92 /* CustomerSpecificTests */,
 				32A06F8B174C4B9100CD357A /* WMSTests */,
 				32C4A71B17436A02001B32CC /* VectorTileProvider */,
@@ -944,7 +940,6 @@
 				32DB44B4162828820066D02B /* MapManagement */,
 				32663E671615267F00A3ABAC /* MapTests */,
 				3240EDF8160CE91E00A01784 /* Core */,
-				327ABEFF16071C1D00365B3D /* WorldVectorTests */,
 				324960AC15EEA78600DB8E48 /* ScenarioTests */,
 				B92BD9D915EBEE1C0020EF43 /* AnimatedMapTests */,
 				B9779C4015E6EB990092832A /* TAWSTests */,
@@ -1134,15 +1129,6 @@
 				3279C1FF14F4F03F00A2FBED /* MtRanierFlyby.csv */,
 			);
 			path = RecordedFlights;
-			sourceTree = "<group>";
-		};
-		327ABEFF16071C1D00365B3D /* WorldVectorTests */ = {
-			isa = PBXGroup;
-			children = (
-				327ABF0416072A2600365B3D /* MEWorldVectorStyling.m */,
-				327ABF0516072A2600365B3D /* MEWorldVectorStyling.h */,
-			);
-			path = WorldVectorTests;
 			sourceTree = "<group>";
 		};
 		328151AA157E1E850057C029 /* libs */ = {
@@ -1378,6 +1364,16 @@
 			path = TileProviderTests;
 			sourceTree = "<group>";
 		};
+		32B3192217D1327800B7CF1C /* MapLabeling */ = {
+			isa = PBXGroup;
+			children = (
+				32B3192617D137DC00B7CF1C /* Places.sqlite */,
+				32B3192317D1338D00B7CF1C /* Places.h */,
+				32B3192417D1338D00B7CF1C /* Places.m */,
+			);
+			path = MapLabeling;
+			sourceTree = "<group>";
+		};
 		32B75A2B17271626006CDFC6 /* DynamicMarkers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1438,15 +1434,6 @@
 			children = (
 			);
 			path = CustomerSpecificTests;
-			sourceTree = "<group>";
-		};
-		32CA9B48175EBD0700769F92 /* WorldLabels */ = {
-			isa = PBXGroup;
-			children = (
-				32CA9B49175EBD1E00769F92 /* MEWorldLabels.h */,
-				32CA9B4A175EBD1E00769F92 /* MEWorldLabels.m */,
-			);
-			path = WorldLabels;
 			sourceTree = "<group>";
 		};
 		32D73ED9163A548400F12956 /* shapefiles */ = {
@@ -1643,7 +1630,6 @@
 				3288AD791616C838007E64E9 /* METoolCountriesAndStates.sqlite in Resources */,
 				3288AD861618D15F007E64E9 /* Aviation.sqlite in Resources */,
 				3288AD88161926A8007E64E9 /* METoolCities.sqlite in Resources */,
-				325860CE161949E80019BC44 /* METoolCountriesStatesCities.sqlite in Resources */,
 				32BB69E11623AB80000D778D /* Earthquakes.mbtiles in Resources */,
 				32DB44A51627C4090066D02B /* Default-Portrait~iphone-568h@2x.png in Resources */,
 				32DB44A71627C45C0066D02B /* Default-Portrait~iphone@2x.png in Resources */,
@@ -1735,6 +1721,7 @@
 				32A5E9DD1763118900D0E136 /* apple_water@2x.png in Resources */,
 				3228DB4E1769451A00135AAB /* grayGridTransparent.png in Resources */,
 				32C6F309178CC72D00DE3724 /* open-streets-dc-15.mbtiles in Resources */,
+				32B3192717D137DC00B7CF1C /* Places.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1808,7 +1795,6 @@
 				329611DA15F082A400023587 /* RouteMarkerViewController.m in Sources */,
 				32509AF015F54D4B005E0369 /* METestViewControllers.m in Sources */,
 				32C95E9F160316CB006623FC /* Country.m in Sources */,
-				327ABF0616072A2600365B3D /* MEWorldVectorStyling.m in Sources */,
 				32BE4258160BAA130099E072 /* METerrainColorBarTest.m in Sources */,
 				3240EDFC160CE95700A01784 /* MECoreTests.m in Sources */,
 				32663E6A161526B700A3ABAC /* MEInternetMapTests.m in Sources */,
@@ -1856,12 +1842,12 @@
 				32C4A72117436F03001B32CC /* MEVectorTileProviderTests.m in Sources */,
 				32A06F8E174C4BB100CD357A /* MEWMSTileProvider.m in Sources */,
 				32A06F91174C4D2000CD357A /* MEWMSTests.m in Sources */,
-				32CA9B4B175EBD1E00769F92 /* MEWorldLabels.m in Sources */,
 				3260B0AE17717F4F00AF3605 /* TerrainProfileTests.m in Sources */,
 				3260B0B11771817500AF3605 /* TerrainProfileView.m in Sources */,
 				32AC275817BDF3FA001FF073 /* TerrainGridTests.m in Sources */,
 				32F41D9117C08B490035F602 /* TerrainInRadiusTests.m in Sources */,
 				322A51A117C2A05400E666B6 /* TerrainMapFinder.m in Sources */,
+				32B3192517D1338D00B7CF1C /* Places.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1951,8 +1937,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bruce Shankle III (W5GQ6H9P39)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bruce Shankle III (W5GQ6H9P39)";
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1970,8 +1956,8 @@
 					"\"$(SRCROOT)/Mapp/libs\"",
 				);
 				PRODUCT_NAME = mapp;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "BD0D9310-3C40-42D7-9B3A-AD3C642592D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD0D9310-3C40-42D7-9B3A-AD3C642592D9";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1983,8 +1969,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bruce Shankle III (W5GQ6H9P39)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bruce Shankle III (W5GQ6H9P39)";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2005,8 +1991,8 @@
 					"\"$(SRCROOT)/Mapp/libs\"",
 				);
 				PRODUCT_NAME = mapp;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "BD0D9310-3C40-42D7-9B3A-AD3C642592D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD0D9310-3C40-42D7-9B3A-AD3C642592D9";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2041,8 +2027,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruce Shankle III";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bruce Shankle III";
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2066,8 +2052,8 @@
 					"-DTESTFLIGHT=1",
 				);
 				PRODUCT_NAME = mapp;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "832D4B6B-6662-48D6-ADC0-461E6018590C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "832D4B6B-6662-48D6-ADC0-461E6018590C";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTED_PLATFORMS = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";

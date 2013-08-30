@@ -39,7 +39,6 @@
 #import "AnimatedMapTests/MEAnimatedSlippyMapTest.h"
 #import "ScenarioTests/RouteRubberBandingTest.h"
 #import "ScenarioTests/ComplexRoute.h"
-#import "WorldVectorTests/MEWorldVectorStyling.h"
 #import "Core/MECoreTests.h"
 #import "MapTests/MEInternetMapTests.h"
 #import "MapManagement/MapZOrderTest.h"
@@ -59,10 +58,10 @@
 #import "DynamicMarkers/TowersWithHeightColorBarTest.h"
 #import "VectorTileProvider/MEVectorTileProviderTests.h"
 #import "WMSTests/MEWMSTests.h"
-#import "WorldLabels/MEWorldLabels.h"
 #import "TerrainProfileTests/TerrainProfileTests.h"
 #import "TerrainProfileTests/TerrainGridTests.h"
 #import "TerrainProfileTests/TerrainInRadiusTests.h"
+#import "MapLabeling/Places.h"
 
 @implementation METestManager
 
@@ -172,9 +171,9 @@
 
 - (void) createLabelTests {
 	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
-    testCategory.name = @"Labels";
+    testCategory.name = @"Labeling";
     [self addCategory:testCategory];
-	[testCategory addTestClass:[MEWorldLabels class]];
+	[testCategory addTestClass:[Places class]];
 }
 
 - (void) createWMSTests {
@@ -515,20 +514,6 @@
 	[testCategory addTestClass:[ParallelsAndMeridians class]];
 }
 
-- (void) createWorldVectorTests
-{
-    METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
-    testCategory.name = @"World Vector";
-    [self addCategory:testCategory];
-    [testCategory addTestClass:[MEWorldVectorMapBoxStyle class]];
-	[testCategory addTestClass:[MEWorldVectorGoogleStyle class]];
-    [testCategory addTestClass:[MEWorldVectorHighContrastStyle class]];
-    [testCategory addTestClass:[MEWorldVectorPurpleStyle class]];
-	[testCategory addTestClass:[MEWorldVectorGeologyDotComStyle class]];
-	[testCategory addTestClass:[MEWorldVectorInvisibleStyle class]];
-    [testCategory addTestClass:[MEWorldVectorTextureStyle class]];
-}
-
 - (void) createMBTilesTests
 {
     METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
@@ -589,7 +574,6 @@
 	[self createPerfTests];
 	[self createCoreTests];
 	[self createMapTests];
-    [self createWorldVectorTests];
     [self createVectorTests];
     [self createTileProviderTests];
     [self createMiscTests];
