@@ -189,7 +189,9 @@ using namespace std;
 	}
 	
 	NSString* earthMapFile=[MEMapObjectBase mapFileNameForCategory:@"BaseMaps" map:@"Earth"];
-	if([fileManager fileExistsAtPath:earthMapFile]==NO)
+	NSString* earthSqliteFile = [MEMapObjectBase mapIndexFileNameForCategory:@"BaseMaps" map:@"Earth"];
+	if([fileManager fileExistsAtPath:earthMapFile]==NO ||
+	   [fileManager fileExistsAtPath:earthSqliteFile]==NO)
 	{
 		NSString* baseMapsPath=[MEMapCategory GetCategoryPath:@"BaseMaps"];
 		NSString *zipFilePath = [[NSBundle mainBundle] pathForResource:@"Earth" ofType:@"zip"];

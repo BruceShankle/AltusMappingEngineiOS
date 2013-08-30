@@ -129,14 +129,6 @@
 										   ofType:@"sqlite"];
 }
 
-+ (NSString*) countriesCitiesStatesMarkerBundlePath
-{
-	return [[NSBundle mainBundle] pathForResource:@"METoolCountriesStatesCities"
-										   ofType:@"sqlite"];
-
-}
-
-
 + (NSString *) readLine:(FILE *) infile
 {
     char buffer[4096];
