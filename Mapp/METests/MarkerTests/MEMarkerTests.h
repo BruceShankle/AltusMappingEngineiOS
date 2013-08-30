@@ -10,8 +10,6 @@
 #import "../METest.h"
 #import <ME/ME.h>
 #import "MarkerTestData.h"
-#import "AirportMarkerViewController.h"
-
 
 @interface MEMarkerTest: METest
 @end
@@ -55,47 +53,6 @@
 @property (assign) double rotation;
 @end
 
-//Weather stations
-@interface MEWeatherStationsMarkerTest : MEMarkerTest <MEMarkerMapDelegate>
-@end
-
-@interface MEWeatherMarkerTest : MEMarkerTest <MEMarkerMapDelegate, MEMapViewDelegate>
-@property (retain) NSString* tableNamePrefix;
-@property (retain) id oldDelegate;
-@property (assign) CFTimeInterval startTime;
-@property (retain) NSMutableArray* elapsedTimes;
-@property (assign) int markerCount;
--(double) computeAverage;
-@end
-
-@interface MEWeatherMarkerCachedTest : MEWeatherMarkerTest
-@end
-
-@interface MEWeatherMarkerBadPrefixTest : MEWeatherMarkerTest
-@end
-
-@interface MEWeatherFromServerMarkerTest : MEMarkerTest <MEMarkerMapDelegate>
-@end
-
-//Airports
-@interface MEAirportMarkersFromBundle : MEMarkerTest <MEMarkerMapDelegate>
-@property (retain) AirportMarkerViewController* airportMarkerViewController;
-@end
-
-@interface MEAirportMarkersFromBundleRotated : MEAirportMarkersFromBundle
-@end
-
-@interface MEAirportMarkersToDiskCache : MEAirportMarkersFromBundle
-- (NSMutableArray*) airportMarkers;
-@end
-
-@interface MEAirportMarkersInMemory : MEAirportMarkersToDiskCache
-@end
-
-@interface MEAirportMarkersFromDiskCache : MEAirportMarkersToDiskCache
-@end
-
-
 //METool generated markers
 @interface MEMTCountryMarkersFromDisk : MEMarkerTest <MEMarkerMapDelegate>
 @end
@@ -131,9 +88,6 @@
 
 @interface METowersHeightsMarkersTestRandomFontSize : METowersHeightsMarkersTest
 @property (assign) float fontSize;
-@end
-
-@interface METowersJHeightsMarkersTest : METowersHeightsMarkersTest
 @end
 
 @interface METAWSTowersCached : MEMarkerTest <MEMarkerMapDelegate>

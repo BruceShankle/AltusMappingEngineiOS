@@ -13,6 +13,8 @@ static const CLLocationCoordinate2D SFO_COORD = {37.61931125933241, -122.3736948
 static const CLLocationCoordinate2D HOU_COORD = {29.6465098129107, -95.27900971583961};
 static const CLLocationCoordinate2D MIA_COORD = {25.79475488150219, -80.27914615027547};
 static const CLLocationCoordinate2D RDU_COORD = {35.882872, -78.790864};
+static const CLLocationCoordinate2D MT_RANIER = {46.8533, -121.7604};
 static const CLLocationCoordinate2D US_MIN = {US_SOUTHMOST, US_WESTMOST};
 static const CLLocationCoordinate2D US_MAX = {US_NORTHMOST, US_EASTMOST};
+
 

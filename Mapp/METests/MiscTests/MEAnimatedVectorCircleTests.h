@@ -4,5 +4,8 @@
 #import "../METest.h"
 
 @interface MEAnimatedVectorCircleTests : METest
-
 @end
+
+@interface MEAnimatedVectorCircleWorldSpace : METest
+@end
+

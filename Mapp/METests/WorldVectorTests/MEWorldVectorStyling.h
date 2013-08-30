@@ -33,15 +33,17 @@
 @property (retain) UIColor* landFillColor;
 @property (retain) UIColor* landStrokeColor;
 @property (assign) CGFloat landStrokeWidth;
+@property (assign) NSString* landTexture;
 
 @property (retain) UIColor* oceanFillColor;
 @property (retain) UIColor* oceanStrokeColor;
 @property (assign) CGFloat oceanStrokeWidth;
+@property (assign) NSString* oceanTexture;
 
 @property (retain) UIColor* waterFillColor;
 @property (retain) UIColor* waterStrokeColor;
 @property (assign) CGFloat waterStrokeWidth;
-
+@property (assign) NSString* waterTexture;
 
 @property (retain) UIColor* countryFillColor;
 @property (retain) UIColor* countryStrokeColor;
@@ -82,4 +84,8 @@
 @end
 
 @interface MEWorldVectorGeologyDotComStyle : MEWorldVectorMapBoxStyle
+@end
+
+@interface MEWorldVectorTextureStyle : MEWorldVectorMapBoxStyle
+
 @end

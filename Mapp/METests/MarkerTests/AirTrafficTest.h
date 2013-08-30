@@ -17,7 +17,7 @@
 @property (assign) double timeStamp;
 @end
 
-@interface AirTrafficTest : METest <MEMarkerMapDelegate>
+@interface AirTrafficTest : METest <MEDynamicMarkerMapDelegate>
 @property (retain) NSMutableDictionary* airPlanes;
 @property (assign) CGPoint bluePlaneAnchorPoint;
 @end

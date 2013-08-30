@@ -35,6 +35,7 @@
     polygonStyle.strokeColor = [UIColor redColor];
     polygonStyle.fillColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
     polygonStyle.strokeWidth = 8;
+    polygonStyle.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
     
     //Create an array of points for a polygon
     NSMutableArray* polygonPoints=[[[NSMutableArray alloc]init]autorelease];
@@ -71,6 +72,7 @@
     polygonStyle.strokeColor = [UIColor greenColor];
     polygonStyle.fillColor = [UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:0.5];
     polygonStyle.strokeWidth = 2;
+    polygonStyle.shadowColor = [UIColor clearColor];
     [self.meMapViewController addPolygonToVectorMap:self.name points:polygonPoints style:polygonStyle];
     [polygonPoints removeAllObjects];
     

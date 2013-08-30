@@ -84,30 +84,12 @@
 			[MarkerTestData getCachePath]];
 }
 
-+ (NSString*) airportMarkerCachePath
-{
-	return [NSString stringWithFormat:@"%@/AirportMarkers.sqlite",
-			[MarkerTestData getCachePath]];
-}
-
-+ (NSString*) weatherBundlePath
-{
-	return [[NSBundle mainBundle] pathForResource:@"weather_metoolinjectmarkers"
-										   ofType:@"sqlite"];	
-}
-
 + (NSString*) obstacleBundlePath
 {
 	return [[NSBundle mainBundle] pathForResource:@"obstacles"
 										   ofType:@"sqlite"];
 }
 
-+ (NSString*) weatherFromServerBundlePath
-{
-	return [[NSBundle mainBundle] pathForResource:@"weatherfromserver"
-										   ofType:@"sqlite"];
-	
-}
 
 + (NSString*) aviationDatabaseBundlePath
 {
@@ -115,17 +97,6 @@
 			@"Aviation.sqlite"];
 }
 
-+ (NSString*) airportMarkerBundlePath
-{
-	return [[NSBundle mainBundle] pathForResource:@"AirportMarkers"
-										   ofType:@"sqlite"];
-}
-
-+ (NSString*) airportMarkerEvenBundlePath
-{
-	return [[NSBundle mainBundle] pathForResource:@"AirportMarkersEven"
-										   ofType:@"sqlite"];
-}
 
 + (NSString*) metoolMarkerBundlePath
 {
@@ -139,14 +110,6 @@
 										   ofType:@"sqlite"];
 	
 }
-
-+ (NSString*) towerJMarkerBundlePath
-{
-	return [[NSBundle mainBundle] pathForResource:@"METoolJTowers"
-										   ofType:@"sqlite"];
-	
-}
-
 
 + (NSString*) stateMarkerBundlePath
 {

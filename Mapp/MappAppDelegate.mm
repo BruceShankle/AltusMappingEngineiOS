@@ -25,8 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 #ifdef TESTFLIGHT
-	[TestFlight takeOff:@"a4501ff7b75c56b5bf4a02cd248ddb84_Mzg4MDkyMDExLTExLTA0IDA1OjU2OjEzLjMwODQ4Ng"];
-	[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+	[TestFlight takeOff:@"af80003d-6134-47f9-87bb-3c0532830c05"];
 #endif
     [MEMapView forceLink];
     [MEMapViewController forceLink];

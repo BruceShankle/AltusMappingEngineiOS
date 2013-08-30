@@ -54,7 +54,7 @@
 {
 	int totalCount;
 	totalCount = self.mapManager.mapCategories.count;
-	totalCount++; //For streamed maps
+	//totalCount++; //For streamed maps
 	return totalCount;
 }
 

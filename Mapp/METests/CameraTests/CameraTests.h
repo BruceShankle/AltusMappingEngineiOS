@@ -3,7 +3,7 @@
 #import "../METest.h"
 #import "FlightPlayback.h"
 
-@interface FlightPlaybackUnlocked : METest <MEMarkerMapDelegate>
+@interface FlightPlaybackUnlocked : METest <MEDynamicMarkerMapDelegate>
 @property (retain) NSMutableArray* flightPlaybackSamples;
 @property (assign) int sampleIndex;
 +(int) getSampleIndex;

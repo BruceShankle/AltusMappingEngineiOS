@@ -42,6 +42,9 @@
 @interface MEMapBoxLandCoverMapTest : MEInternetMapTest
 @end
 
+@interface MEMapBoxSatelliteMapTest : MEInternetMapTest
+@end
+
 @interface MEMapQuestMapTest : MEInternetMapTest
 @end
 
@@ -55,6 +58,12 @@
 @end
 
 @interface MEStamenTerrainMapTest : MEInternetMapTest
+@end
+
+@interface MEStamenWaerColorMapTest : MEInternetMapTest
+@end
+
+@interface MEIOMHaitiMapTest : MEInternetMapTest
 @end
 
 @interface cMEMapBoxLandCoverMapTest : MEMapBoxLandCoverMapTest

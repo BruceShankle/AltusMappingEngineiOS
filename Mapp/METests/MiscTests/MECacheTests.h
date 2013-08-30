@@ -4,8 +4,10 @@
 
 
 @interface MESmallCacheTest : METest
-
 @property (assign) unsigned long oldCacheSize;
 @property (assign) unsigned long smallCacheSize;
+@end
 
+////////////////////////////////////////////
+@interface MECacheImageOnBackgroundThreadTest : METest
 @end

@@ -321,7 +321,7 @@
 	self.loadInvisible = invisibleLoadTest.isRunning;
 	
 	//Stop all other tests in this category
-	[self.meTestManager stopEntireCategory:self.meTestCategory];
+	//[self.meTestManager stopEntireCategory:self.meTestCategory];
 	
 	//Create the tile provider (overridden by sub-classes)
 	MEInternetTileProvider* tileProvider = [self createTileProvider];
@@ -439,22 +439,30 @@
 
 ////////////////////////////////////////////////////////////////////////
 @implementation MEMapBoxLandCoverMapTest
-
-- (id) init
-{
-    if(self = [super init])
-    {
+- (id) init{
+    if(self = [super init]){
         self.name=@"MapBox LandCover";
     }
     return self;
 }
-
--(MEInternetTileProvider*) createTileProvider
-{
+-(MEInternetTileProvider*) createTileProvider{
 	return [[MEMapBoxLandCoverTileProvider alloc]init];
 }
-
 @end
+
+////////////////////////////////////////////////////////////////////////
+@implementation MEMapBoxSatelliteMapTest
+- (id) init{
+    if(self = [super init]){
+        self.name=@"MapBox Satellite";
+    }
+    return self;
+}
+-(MEInternetTileProvider*) createTileProvider{
+	return [[MEMapBoxSatelliteTileProvider alloc]init];
+}
+@end
+
 
 ////////////////////////////////////////////////////////////////////////
 @implementation MEMapQuestMapTest
@@ -548,6 +556,44 @@
 -(MEInternetTileProvider*) createTileProvider
 {
 	return [[MEStamenTerrainTileProvider alloc]init];
+}
+@end
+
+////////////////////////////////////////////////////////////////////////
+@implementation MEStamenWaerColorMapTest
+
+- (id) init
+{
+    if(self = [super init])
+    {
+        self.name=@"Stamen Watercolor";
+    }
+    return self;
+}
+
+-(MEInternetTileProvider*) createTileProvider
+{
+	return [[MEStamenWaterColorTileProvider alloc]init];
+}
+@end
+
+
+////////////////////////////////////////////////////////////////////////
+@implementation MEIOMHaitiMapTest
+
+- (id) init
+{
+    if(self = [super init])
+    {
+        self.name=@"IOM Haiti";
+		self.maxLevel=18;
+    }
+    return self;
+}
+
+-(MEInternetTileProvider*) createTileProvider
+{
+	return [[MEIOMHaitiTileProvider alloc]init];
 }
 @end
 

@@ -38,6 +38,9 @@
 		case 3:
 			return @"Red";
 			break;
+		case 4:
+			return @"White";
+			break;
 		default:
 			return @"";
 			break;
@@ -47,7 +50,7 @@
 - (void) userTapped
 {
 	_testIndex++;
-	if(_testIndex>3)
+	if(_testIndex>4)
 		_testIndex=0;
 	
 	UIColor* color;
@@ -64,6 +67,9 @@
 			break;
 		case 3:
 			color = [UIColor redColor];
+			break;
+		case 4:
+			color = [UIColor whiteColor];
 			break;
 		default:
 			color = [UIColor blackColor];

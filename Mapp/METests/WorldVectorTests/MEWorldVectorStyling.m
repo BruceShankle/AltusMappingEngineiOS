@@ -71,37 +71,40 @@
 		//Land
 		self.landFillColor = [MEImageUtil makeColor:232 g:224 b:216 a:255];
 		self.landStrokeColor = [MEImageUtil makeColor:232 g:224 b:216 a:255];
-		self.landStrokeWidth = 0.01;
+		self.landStrokeWidth = 1;
+        self.landTexture = @"";
 		
 		//Ocean
 		self.oceanFillColor = [MEImageUtil makeColor:115 g:182 b:229 a:255];
 		self.oceanStrokeColor = [MEImageUtil makeColor:115 g:182 b:229 a:255];
-		self.oceanStrokeWidth = 0.01;
+		self.oceanStrokeWidth = 1;
+        self.oceanTexture = @"";
 		
 		//Lakes and rivers
 		self.waterFillColor = [MEImageUtil makeColor:115 g:182 b:229 a:255];
 		self.waterStrokeColor = [MEImageUtil makeColor:115 g:182 b:229 a:100];
-		self.waterStrokeWidth = 0.03;
+		self.waterStrokeWidth = 1;
+        self.waterTexture = @"";
 		
 		//Countries
 		self.countryFillColor = [MEImageUtil makeColor:150 g:150 b:150 a:255];
 		self.countryStrokeColor = [MEImageUtil makeColor:112 g:123 b:130 a:255];
-		self.countryStrokeWidth = 0.3;
+		self.countryStrokeWidth = 1;
 		
 		//States and provinces
 		self.stateFillColor = [MEImageUtil makeColor:255 g:0 b:0 a:255];
 		self.stateStrokeColor = [MEImageUtil makeColor:112 g:123 b:130 a:80];
-		self.stateStrokeWidth = 0.5;
+		self.stateStrokeWidth = 1;
 		
 		//Roads
 		self.roadFillColor = [MEImageUtil makeColor:255 g:0 b:0 a:255];
 		self.roadStrokeColor = [MEImageUtil makeColor:255 g:255 b:255 a:150];
-		self.roadStrokeWidth = 0.5;
+		self.roadStrokeWidth = 1;
 		
 		//Secondary Roads
 		self.road2FillColor = [MEImageUtil makeColor:255 g:0 b:0 a:255];
 		self.road2StrokeColor = [MEImageUtil makeColor:255 g:255 b:255 a:75];
-		self.road2StrokeWidth = 0.5;
+		self.road2StrokeWidth = 1;
 
         
         //Labeling
@@ -120,6 +123,7 @@
 		
         self.fontStrokeColor = [MEImageUtil makeColor:255 g:255 b:255 a:255];
         self.fontStrokeWidth = 0;
+
     }
     return self;
 }
@@ -189,7 +193,14 @@
 	mapInfo.fadeOutTime = 0.1;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
-		
+
+    [self.meMapViewController addCachedImage:[UIImage imageNamed:@"landTexture"]
+                                    withName:@"land"
+                             compressTexture:NO];
+    
+    [self.meMapViewController addCachedImage:[UIImage imageNamed:@"waterTexture"]
+                                    withName:@"water"
+                             compressTexture:NO];
     self.isRunning = YES;
 }
 
@@ -292,6 +303,8 @@
     MEPolygonStyle* landStyle = [[[MEPolygonStyle alloc]initWithStrokeColor:self.landStrokeColor
 																strokeWidth:self.landStrokeWidth
 																  fillColor:self.landFillColor]autorelease];
+    landStyle.textureName = self.landTexture;
+    
 	[self.meMapViewController addPolygonStyleToVectorMap:self.worldVectorMapName
 											   featureId:0
 												   style:landStyle];
@@ -299,13 +312,34 @@
 	MEPolygonStyle* oceanStyle = [[[MEPolygonStyle alloc]initWithStrokeColor:self.oceanStrokeColor
 																 strokeWidth:self.oceanStrokeWidth
 																   fillColor:self.oceanFillColor]autorelease];
+    oceanStyle.textureName = self.oceanTexture;
 	[self.meMapViewController addPolygonStyleToVectorMap:self.worldVectorMapName
 											   featureId:1
 												   style:oceanStyle];
+    
+//    oceanStyle.fillColor = [UIColor colorWithRed:1.0 green:0 blue:0 alpha:1.0];
+//    [self.meMapViewController addPolygonStyleToVectorMap:self.worldVectorMapName
+//                                                   scale:2000000
+//                                               featureId:1
+//                                                   style:oceanStyle];
+//    oceanStyle.fillColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:1.0];
+//    [self.meMapViewController addPolygonStyleToVectorMap:self.worldVectorMapName
+//                                                   scale:1000000
+//                                               featureId:1
+//                                                   style:oceanStyle];
+//    oceanStyle.fillColor = [UIColor colorWithRed:0.0 green:1 blue:0 alpha:1.0];
+//    
+//    oceanStyle.fillColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:1.0];
+//    [self.meMapViewController addPolygonStyleToVectorMap:self.worldVectorMapName
+//                                                   scale:500000
+//                                               featureId:1
+//                                                   style:oceanStyle];
+//    oceanStyle.fillColor = [UIColor colorWithRed:0.0 green:1 blue:0 alpha:1.0];
 	
 	MEPolygonStyle* waterStyle = [[[MEPolygonStyle alloc]initWithStrokeColor:self.waterStrokeColor
 																 strokeWidth:self.waterStrokeWidth
 																   fillColor:self.waterFillColor]autorelease];
+    waterStyle.textureName = self.waterTexture;
 	[self.meMapViewController addPolygonStyleToVectorMap:self.worldVectorMapName
 											   featureId:2
 												   style:waterStyle];
@@ -904,4 +938,23 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 
 
 @end
+
+
+/////////////////////////////////////////////////////////////////////////
+//Vector texture style
+@implementation MEWorldVectorTextureStyle
+- (id) init
+{
+    if(self = [super init])
+    {
+        self.name=@"Textured Style";
+		
+        self.landTexture = @"land";
+        self.oceanTexture = @"water";
+        self.waterTexture = @"water";
+    }
+    return self;
+}
+@end
+
 

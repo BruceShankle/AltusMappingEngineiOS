@@ -282,7 +282,7 @@
 	[self.meTestCategory stopAllTests];
 	self.isRunning = YES;
 	
-	//[self addReticles];
+	[self addReticles];
 	
 	[self addRoute];
 	[self addMarkers];

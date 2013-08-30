@@ -158,6 +158,7 @@
 										 alpha:1.0];
 	beacon.lineStyle.outlineColor = lightBlue;
 	beacon.lineStyle.outlineWidth = 4;
+	
 	beacon.minRadius = 5;
 	beacon.maxRadius = 75;
 	beacon.animationDuration = 2.5;
