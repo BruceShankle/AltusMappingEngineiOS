@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MEMarkerMapDelegate Protocol Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">ME </a></h1>
+				<a id="developerHome" href="../index.html">BA3, LLC</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MEMarkerMapDelegate Protocol Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/mapView:updateMarkerInfo:mapName:">&nbsp;&nbsp;&nbsp;&nbsp;- mapView:updateMarkerInfo:mapName:</option>
+	
+	<option value="//api/name/tapOnMarker:onMapView:atScreenPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- tapOnMarker:onMapView:atScreenPoint:</option>
+	
+	<option value="//api/name/tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mapView:updateMarkerInfo:mapName:">mapView:updateMarkerInfo:mapName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tapOnMarker:onMapView:atScreenPoint:">tapOnMarker:onMapView:atScreenPoint:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:">tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MEMarkerMapDelegate Protocol Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MEMarkerMapDelegate Protocol Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MEProtocols.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>The <a href="MEMarkerMapDelegate.html">MEMarkerMapDelegate</a> protocol defines a set of methods that you can use to receive marker map related update messages. Implement this protocol when you add marker maps.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mapView:updateMarkerInfo:mapName:">&ndash;&nbsp;mapView:updateMarkerInfo:mapName:</a></code>
+		<span class="tooltip"><p>Called when the mapping engine needs information for a marker in a marker layer. When called, you should populate the provided <a href="../Classes/MEMarkerInfo.html">MEMarkerInfo</a> object. The engine will release the object, so you don&rsquo;t need to.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tapOnMarker:onMapView:atScreenPoint:">&ndash;&nbsp;tapOnMarker:onMapView:atScreenPoint:</a></code>
+		<span class="tooltip"><p>Called when a marker is tapped on.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:">&ndash;&nbsp;tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:</a></code>
+		<span class="tooltip"><p>Called when a marker is tapped on.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/mapView:updateMarkerInfo:mapName:" title="mapView:updateMarkerInfo:mapName:"></a>
+	<h3 class="subsubtitle method-title">mapView:updateMarkerInfo:mapName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when the mapping engine needs information for a marker in a marker layer. When called, you should populate the provided <a href="../Classes/MEMarkerInfo.html">MEMarkerInfo</a> object. The engine will release the object, so you don&rsquo;t need to.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)mapView:(MEMapView *)<em>mapView</em> updateMarkerInfo:(MEMarkerInfo *)<em>markerInfo</em> mapName:(NSString *)<em>mapName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapView</em></dt>
+			<dd><p>the <a href="../Classes/MEMapView.html">MEMapView</a> object that owns the marker.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerInfo</em></dt>
+			<dd><p>Object for you to populate that describes the marker.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapName</em></dt>
+			<dd><p>The name of the map.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEProtocols.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tapOnMarker:onMapView:atScreenPoint:" title="tapOnMarker:onMapView:atScreenPoint:"></a>
+	<h3 class="subsubtitle method-title">tapOnMarker:onMapView:atScreenPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when a marker is tapped on.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)tapOnMarker:(NSString *)<em>metaData</em> onMapView:(MEMapView *)<em>mapView</em> atScreenPoint:(CGPoint)<em>point</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEProtocols.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:" title="tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:"></a>
+	<h3 class="subsubtitle method-title">tapOnMarker:onMapView:mapName:atScreenPoint:atMarkerPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when a marker is tapped on.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)tapOnMarker:(MEMarkerInfo *)<em>markerInfo</em> onMapView:(MEMapView *)<em>mapView</em> mapName:(NSString *)<em>mapName</em> atScreenPoint:(CGPoint)<em>screenPoint</em> atMarkerPoint:(CGPoint)<em>markerPoint</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerInfo</em></dt>
+			<dd><p>Information about the marker that was tapped.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapView</em></dt>
+			<dd><p>The <a href="../Classes/MEMapView.html">MEMapView</a> on which the tap occurred.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapName</em></dt>
+			<dd><p>The name of the map.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>screenPoint</em></dt>
+			<dd><p>The point on the screen on where the tap occurred.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerPoint</em></dt>
+			<dd><p>The relative point within the marker where the tap occurred. Useful for markers that have button UI on them.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEProtocols.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 BA3, LLC. All rights reserved. (Last updated: 2013-08-30)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

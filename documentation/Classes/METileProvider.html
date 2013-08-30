@@ -1,0 +1,955 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>METileProvider Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">ME </a></h1>
+				<a id="developerHome" href="../index.html">BA3, LLC</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">METileProvider Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/isAsynchronous">&nbsp;&nbsp;&nbsp;&nbsp;isAsynchronous</option>
+	
+	<option value="//api/name/meMapViewController">&nbsp;&nbsp;&nbsp;&nbsp;meMapViewController</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addActiveRequest:withId:">&nbsp;&nbsp;&nbsp;&nbsp;- addActiveRequest:withId:</option>
+	
+	<option value="//api/name/getActiveRequestWithId:">&nbsp;&nbsp;&nbsp;&nbsp;- getActiveRequestWithId:</option>
+	
+	<option value="//api/name/getAllActiveRequests">&nbsp;&nbsp;&nbsp;&nbsp;- getAllActiveRequests</option>
+	
+	<option value="//api/name/isNeeded:">&nbsp;&nbsp;&nbsp;&nbsp;- isNeeded:</option>
+	
+	<option value="//api/name/isNeededAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- isNeededAnimated:</option>
+	
+	<option value="//api/name/removeActiveRequestWithId:">&nbsp;&nbsp;&nbsp;&nbsp;- removeActiveRequestWithId:</option>
+	
+	<option value="//api/name/requestTile:">&nbsp;&nbsp;&nbsp;&nbsp;- requestTile:</option>
+	
+	<option value="//api/name/requestTileAsync:">&nbsp;&nbsp;&nbsp;&nbsp;- requestTileAsync:</option>
+	
+	<option value="//api/name/requestTiles:">&nbsp;&nbsp;&nbsp;&nbsp;- requestTiles:</option>
+	
+	<option value="//api/name/requestTilesAsync:">&nbsp;&nbsp;&nbsp;&nbsp;- requestTilesAsync:</option>
+	
+	<option value="//api/name/tileLoadComplete:">&nbsp;&nbsp;&nbsp;&nbsp;- tileLoadComplete:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAsynchronous">isAsynchronous</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/meMapViewController">meMapViewController</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addActiveRequest:withId:">addActiveRequest:withId:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getActiveRequestWithId:">getActiveRequestWithId:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getAllActiveRequests">getAllActiveRequests</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isNeeded:">isNeeded:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isNeededAnimated:">isNeededAnimated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeActiveRequestWithId:">removeActiveRequestWithId:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestTile:">requestTile:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestTileAsync:">requestTileAsync:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestTiles:">requestTiles:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestTilesAsync:">requestTilesAsync:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tileLoadComplete:">tileLoadComplete:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="METileProvider Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">METileProvider Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">METileProvider.h<br />METileProvider.mm</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Provides tiles to the mapping engine at run time on an as-needed basis.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/meMapViewController">&nbsp;&nbsp;meMapViewController</a></code>
+		<span class="tooltip"><p>The MEMapViewControllerl that owns this METileProvider.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAsynchronous">&nbsp;&nbsp;isAsynchronous</a></code>
+		<span class="tooltip"><p>If set to yes, the Engine will call your requestTileAsync function and expect you to call tileLoadComplete.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isNeeded:">&ndash;&nbsp;isNeeded:</a></code>
+		<span class="tooltip"><p>Returns YES if the tile is still needed by a non-animated virtual map being displayed by the mapping engine. Warning: This call is marshalled to the main thread. Use isNeededAnimated for animated maps.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isNeededAnimated:">&ndash;&nbsp;isNeededAnimated:</a></code>
+		<span class="tooltip"><p>Returns YES if the tile is still needed by an animated virtual map being displayed by the mapping engine. Warning: This call makes synchronizes access to the <a href="../Classes/MEMapViewController.html">MEMapViewController</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestTile:">&ndash;&nbsp;requestTile:</a></code>
+		<span class="tooltip"><p>Called by the engine to request a tile from a synchronous tile provider.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestTiles:">&ndash;&nbsp;requestTiles:</a></code>
+		<span class="tooltip"><p>Called by the engine to request an array of tiles from a synchronous tile provider for an animated virtual layer. The callee should do one of the following to each <a href="../Classes/METileRequest.html">METileRequest</a> objects in the meTileRequests array:
+a)set uiImage to a valid UIImage object
+b)set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
+b)set pImageData to point to memory that is compressed PNG or JPG data, set imageDataSize, set imageDataType
+c)set fileName to a valid PNG or JPG file
+d)set isNotAvailable = YES
+The engine thread that makes this call will block until this function returns.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestTileAsync:">&ndash;&nbsp;requestTileAsync:</a></code>
+		<span class="tooltip"><p>Called by the engine to request a tile from an asynchronous tile provider. The callee should do one of the following to the meTileRequest object:
+a)set uiImage to a valid UIImage object
+b)set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
+b)set pImageData to point to memory that is compressed PNG or JPG data, set imageDataSize, set imageDataType
+c)set fileName to a valid PNG or JPG file
+d)set isNotAvailable = YES</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/requestTilesAsync:">&ndash;&nbsp;requestTilesAsync:</a></code>
+		<span class="tooltip"><p>Called by the engine to request an array of tiles from an asynchronous tile provider for an animated virtual layer. The callee should do one of the following to each meTileRequest object in the meTileRequests array:
+a)set uiImage to a valid UIImage object
+b)set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
+b)set pImageData to point to memory that is compressed PNG or JPG data, set imageDataSize, set imageDataType
+c)set fileName to a valid PNG or JPG file
+d)set isNotAvailable = YES
+The engine thread that makes this call will block until this function returns.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tileLoadComplete:">&ndash;&nbsp;tileLoadComplete:</a></code>
+		<span class="tooltip"><p>This is provided as a convenience method and simply calls the MEMapViewController&rsquo;s tileLoadComplete function.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addActiveRequest:withId:">&ndash;&nbsp;addActiveRequest:withId:</a></code>
+		<span class="tooltip"><p>Convenience method for managing an array of URL request objects.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeActiveRequestWithId:">&ndash;&nbsp;removeActiveRequestWithId:</a></code>
+		<span class="tooltip"><p>Convenience method for managing an array of URL request objects.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getActiveRequestWithId:">&ndash;&nbsp;getActiveRequestWithId:</a></code>
+		<span class="tooltip"><p>Convenience method for managing an array of URL request objects.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getAllActiveRequests">&ndash;&nbsp;getAllActiveRequests</a></code>
+		<span class="tooltip"><p>Convenience object for managing an array of URL request objects.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/isAsynchronous" title="isAsynchronous"></a>
+	<h3 class="subsubtitle method-title">isAsynchronous</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If set to yes, the Engine will call your requestTileAsync function and expect you to call tileLoadComplete.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (assign) BOOL isAsynchronous</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/meMapViewController" title="meMapViewController"></a>
+	<h3 class="subsubtitle method-title">meMapViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The MEMapViewControllerl that owns this METileProvider.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (retain) MEMapViewController *meMapViewController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addActiveRequest:withId:" title="addActiveRequest:withId:"></a>
+	<h3 class="subsubtitle method-title">addActiveRequest:withId:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method for managing an array of URL request objects.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addActiveRequest:(id)<em>request</em> withId:(id)<em>requestId</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getActiveRequestWithId:" title="getActiveRequestWithId:"></a>
+	<h3 class="subsubtitle method-title">getActiveRequestWithId:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method for managing an array of URL request objects.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)getActiveRequestWithId:(id)<em>requestId</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getAllActiveRequests" title="getAllActiveRequests"></a>
+	<h3 class="subsubtitle method-title">getAllActiveRequests</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience object for managing an array of URL request objects.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSArray *)getAllActiveRequests</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isNeeded:" title="isNeeded:"></a>
+	<h3 class="subsubtitle method-title">isNeeded:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES if the tile is still needed by a non-animated virtual map being displayed by the mapping engine. Warning: This call is marshalled to the main thread. Use isNeededAnimated for animated maps.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isNeeded:(METileProviderRequest *)<em>meTileRequest</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isNeededAnimated:" title="isNeededAnimated:"></a>
+	<h3 class="subsubtitle method-title">isNeededAnimated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES if the tile is still needed by an animated virtual map being displayed by the mapping engine. Warning: This call makes synchronizes access to the <a href="../Classes/MEMapViewController.html">MEMapViewController</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isNeededAnimated:(METileProviderRequest *)<em>meTileRequest</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeActiveRequestWithId:" title="removeActiveRequestWithId:"></a>
+	<h3 class="subsubtitle method-title">removeActiveRequestWithId:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method for managing an array of URL request objects.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)removeActiveRequestWithId:(id)<em>requestId</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestTile:" title="requestTile:"></a>
+	<h3 class="subsubtitle method-title">requestTile:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by the engine to request a tile from a synchronous tile provider.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)requestTile:(METileProviderRequest *)<em>meTileRequest</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>For non-spherical mecator maps, the callee should do one of the following to the meTileRequest object:
+a) Get an image from somewhere and either:</p>
+
+<pre><code>1) set uiImage to a valid UIImage object
+2) set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
+3) set pImageData to point to memory that is compressed PNG or JPG data, set imageDataSize, set imageDataType
+4) set fileName to a valid PNG or JPG file
+</code></pre>
+
+<p>-or-</p>
+
+<p>b) Set isNotAvailable = YES</p>
+
+<p>For spherical mercator maps, the callee should:
+a) Iterate over the array of MESphericalMercatorTiles, there may be one or more. For each one:</p>
+
+<pre><code>1) Get an image from somehwere
+2) set uiImage to a valid UIImage object
+3) set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
+4) set pImageData to point to memory that is compressed PNG or JPG data, set imageDataSize, set imageDataType
+5) set fileName to a valid PNG or JPG file
+</code></pre>
+
+<p>-or-</p>
+
+<p>b) set isNotAvailable = YES on the meTileRequest Object</p>
+
+<p>The engine thread that makes this call will block until this function returns.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestTileAsync:" title="requestTileAsync:"></a>
+	<h3 class="subsubtitle method-title">requestTileAsync:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by the engine to request a tile from an asynchronous tile provider. The callee should do one of the following to the meTileRequest object:
+a)set uiImage to a valid UIImage object
+b)set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
+b)set pImageData to point to memory that is compressed PNG or JPG data, set imageDataSize, set imageDataType
+c)set fileName to a valid PNG or JPG file
+d)set isNotAvailable = YES</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)requestTileAsync:(METileProviderRequest *)<em>meTileRequest</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The engine thread that makes this call will not block waiting on this function.</p>
+
+<p>The callee should call tileLoadComplete passing the meTileRequest back to the engine when the tile is loaded.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestTiles:" title="requestTiles:"></a>
+	<h3 class="subsubtitle method-title">requestTiles:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by the engine to request an array of tiles from a synchronous tile provider for an animated virtual layer. The callee should do one of the following to each <a href="../Classes/METileRequest.html">METileRequest</a> objects in the meTileRequests array:
+a)set uiImage to a valid UIImage object
+b)set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
+b)set pImageData to point to memory that is compressed PNG or JPG data, set imageDataSize, set imageDataType
+c)set fileName to a valid PNG or JPG file
+d)set isNotAvailable = YES
+The engine thread that makes this call will block until this function returns.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)requestTiles:(NSArray *)<em>meTileRequests</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestTilesAsync:" title="requestTilesAsync:"></a>
+	<h3 class="subsubtitle method-title">requestTilesAsync:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called by the engine to request an array of tiles from an asynchronous tile provider for an animated virtual layer. The callee should do one of the following to each meTileRequest object in the meTileRequests array:
+a)set uiImage to a valid UIImage object
+b)set nsImageData to data that is compressed PNG or JPG image data, set imageDataType appropriately
+b)set pImageData to point to memory that is compressed PNG or JPG data, set imageDataSize, set imageDataType
+c)set fileName to a valid PNG or JPG file
+d)set isNotAvailable = YES
+The engine thread that makes this call will block until this function returns.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)requestTilesAsync:(NSArray *)<em>meTileRequests</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tileLoadComplete:" title="tileLoadComplete:"></a>
+	<h3 class="subsubtitle method-title">tileLoadComplete:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This is provided as a convenience method and simply calls the MEMapViewController&rsquo;s tileLoadComplete function.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)tileLoadComplete:(METileProviderRequest *)<em>meTileRequest</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">METileProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 BA3, LLC. All rights reserved. (Last updated: 2013-08-30)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
