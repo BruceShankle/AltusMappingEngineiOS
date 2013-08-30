@@ -5,8 +5,8 @@
 //  Created by Bruce Shankle III on 2/5/13.
 //  Copyright (c) 2013 BA3, LLC. All rights reserved.
 //
-// Tutorial 10:
-//	* Builds on Tutorial 8 and adds a simple route planning system.
+// Tutorial 12:
+//	* Builds on Tutorial 11 and adds a simple route planning system.
 
 #import "ViewController.h"
 #import "LocationData.h"
