@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 BA3, LLC. All rights reserved.
 //
 // Tutorial 11:
-//	* Builds on Tutorial 8 and adds a simple route planning system.
+//	* Builds on Tutorial 10.
 
 #import "ViewController.h"
 #import "LocationData.h"
