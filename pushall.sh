@@ -15,7 +15,6 @@ git push origin blankslate \
 	tutorial10 \
 	tutorial11 \
 	tutorial12 \
-	ReferenceApplication \
 	master
 
 
