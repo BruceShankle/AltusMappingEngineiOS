@@ -8,9 +8,6 @@ git checkout tutorial$i
 git merge blankslate -m 'Propagating changes from blankslate branch.'
 done
 
-git checkout ReferenceApplication
-git merge blankslate -m 'Propagating changes from blankslate branch.'
-
 git checkout master
 git merge blankslate -m 'Propagating changes from blankslate branch.'
 
