@@ -66,6 +66,18 @@
 @interface TerrainProfileMtRanier : TerrainProfileBasicTest
 @end
 
+@interface TerrainProfileMtRanierAcuteA : TerrainProfileBasicTest
+@end
+
+@interface TerrainProfileMtRanierAcuteB : TerrainProfileBasicTest
+@end
+
+@interface TerrainProfileMtRanierObtuseA : TerrainProfileBasicTest
+@end
+
+@interface TerrainProfileMtRanierObtuseB : TerrainProfileBasicTest
+@end
+
 @interface TerrainProfileMtRanierSpiral : TerrainProfileBasicTest
 @end
 

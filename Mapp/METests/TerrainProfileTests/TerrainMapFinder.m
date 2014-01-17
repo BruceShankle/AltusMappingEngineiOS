@@ -8,10 +8,11 @@
 
 + (void) addTerrainMaps:(MEMapCategory*) mapCategory terrainMaps:(NSMutableArray*) terrainMaps{
 	for(MEMap* map in mapCategory.Maps){
-		MEMapFileInfo* mapFileInfo = [[[MEMapFileInfo alloc]init]autorelease];
-		mapFileInfo.sqliteFileName = map.MapIndexFileName;
-		mapFileInfo.dataFileName = map.MapFileName;
-		[terrainMaps addObject:mapFileInfo];
+		MEMapInfo* mapInfo = [[[MEMapInfo alloc]init]autorelease];
+		mapInfo.name = map.Name;
+		mapInfo.sqliteFileName = map.MapIndexFileName;
+		mapInfo.dataFileName = map.MapFileName;
+		[terrainMaps addObject:mapInfo];
 	}
 }
 

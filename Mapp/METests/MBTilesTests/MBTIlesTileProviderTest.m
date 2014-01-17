@@ -33,7 +33,8 @@
 							defaultTileName:@"grayGrid"
 							  imageDataType:kImageDataTypePNG
 							compessTextures:NO
-									 zOrder:2];
+									 zOrder:2
+                         mapLoadingStrategy:kHighestDetailOnly];
 	
 	//Zoom in on washington dc
 	[self.meMapViewController.meMapView lookAtCoordinate:
@@ -79,7 +80,8 @@
 							defaultTileName:@"grayGrid"
 							  imageDataType:kImageDataTypePNG
 							compessTextures:NO
-									 zOrder:2];
+									 zOrder:2
+                         mapLoadingStrategy:kHighestDetailOnly];
 	
 	self.isRunning = YES;
 }
@@ -114,6 +116,7 @@
 	mapInfo.name = self.name;
 	mapInfo.sqliteFileName = databaseFile;
 	mapInfo.imageDataType = kImageDataTypePNG;
+    mapInfo.zOrder = 20;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
 	self.isRunning = YES;

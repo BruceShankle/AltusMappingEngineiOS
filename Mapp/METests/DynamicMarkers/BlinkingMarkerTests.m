@@ -32,7 +32,6 @@
 	marker.location = RDU_COORD;
 	marker.anchorPoint = CGPointMake(7,35);
 	[self.meMapViewController addDynamicMarkerToMap:self.name dynamicMarker:marker];
-	
 }
 
 - (void) addMap
@@ -113,6 +112,7 @@
 
 @end
 
+
 /////////////////////////////////////////////////////////////////
 @implementation BlinkingMarkerCachedTest
 
@@ -140,7 +140,7 @@
 	[self.meMapViewController addDynamicMarkerToMap:self.name dynamicMarker:marker];
     
     
-
+    
 	
 }
 
@@ -151,6 +151,65 @@
 										  withName:@"blinkingMarker"
 								   compressTexture:NO
 					nearestNeighborTextureSampling:NO];
+}
+
+@end
+
+
+/////////////////////////////////////////////////////////////////
+@implementation CollisionMarkerTest
+
+- (id) init
+{
+	if(self=[super init])
+		self.name = @"Collision";
+	return self;
+}
+
+- (void) start
+{
+	if(self.isRunning)
+		return;
+	
+	[self.meTestCategory stopAllTests];
+	[self addMap];
+	[self addMarkerWithName:@"Houston" andLocation:HOUSTON_COORD];
+    [self addMarkerWithName:@"Austin" andLocation:AUSTIN_COORD];
+    [self addMarkerWithName:@"Dallas" andLocation:DALLAS_COORD];
+    [self addMarkerWithName:@"Miami" andLocation:MIAMI_COORD];
+    [self addMarkerWithName:@"Raleigh" andLocation:RALEIGH_COORD];
+    [self addMarkerWithName:@"NewYork" andLocation:NEWYORKCITY_COORD];
+    
+	//[self startTimer];
+	
+	self.isRunning = YES;
+}
+
+- (void) addMarkerWithName:(NSString*)name
+               andLocation:(CLLocationCoordinate2D)location
+{
+	//Cache an image.
+	[self.meMapViewController addCachedMarkerImage:[UIImage imageNamed:@"pinRed"]
+										  withName:@"blinkingMarker"
+								   compressTexture:NO
+					nearestNeighborTextureSampling:NO];
+	
+	MEDynamicMarker* marker = [[[MEDynamicMarker alloc]init]autorelease];
+	marker.name = name;
+	marker.cachedImageName = @"blinkingMarker";
+	marker.compressTexture = NO;
+	marker.location = location;
+	marker.anchorPoint = CGPointMake(7,35);
+	[self.meMapViewController addDynamicMarkerToMap:self.name dynamicMarker:marker];
+}
+
+- (void) updateMarker
+{
+//	//Update the cached marker
+//	[self.meMapViewController addCachedMarkerImage:[UIImage imageNamed:self.imageName]
+//										  withName:@"blinkingMarker"
+//								   compressTexture:NO
+//					nearestNeighborTextureSampling:NO];
 }
 
 @end

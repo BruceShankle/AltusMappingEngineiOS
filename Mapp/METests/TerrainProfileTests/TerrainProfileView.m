@@ -81,9 +81,9 @@
 		CGFloat x = 0;
 		UIBezierPath *path = [[[UIBezierPath alloc] init]autorelease];
 		[path moveToPoint:CGPointMake(x, [self scaleHeight:0])];
-		for(NSNumber* height in self.heightSamples){
+		for(MEHeightSample* heightSample in self.heightSamples){
 			//NSLog(@"%d", height.shortValue);
-			short heightValue = height.shortValue;
+			short heightValue = heightSample.height;
 			
 			//Corect for no-data value of 10000
 			if(heightValue==10000){

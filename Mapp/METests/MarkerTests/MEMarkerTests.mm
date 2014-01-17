@@ -1076,6 +1076,8 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	mapInfo.zOrder = 15;
 	mapInfo.meMarkerMapDelegate = self;
 	mapInfo.maxLevel=20;
+    
+    //[self.meMapViewController addVirtualMarkerMap:mapInfo];
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
     self.isRunning = YES;
@@ -1085,7 +1087,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 
 - (void) stop{
     [self.meMapViewController removeMap:self.name
-                                   clearCache:NO];
+                                   clearCache:YES];
     self.isRunning = NO;
 }
 
@@ -1129,6 +1131,35 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	markerInfo.nearestNeighborTextureSampling = YES;
 	[textImage release];
 }
+@end
+
+/////////////////////////////////////////////////////////////////////
+//Aviation markers
+//Tower height markers
+@implementation METowersHeightsMarkersVirtualTest
+
+- (id) init{
+    if(self = [super init]){
+        self.name=@"Aviation Towers: From Bundle Virtual";
+    }
+    return self;
+}
+
+- (void) start{
+    //Add existing marker layer
+	
+	MEMarkerMapInfo* mapInfo = [[[MEMarkerMapInfo alloc]init]autorelease];
+	mapInfo.name = self.name;
+	mapInfo.mapType = kMapTypeFileMarker;
+	mapInfo.sqliteFileName = [self dbFile];
+	mapInfo.zOrder = 15;
+	mapInfo.meMarkerMapDelegate = self;
+	mapInfo.maxLevel=20;
+    
+    [self.meMapViewController addVirtualMarkerMap:mapInfo];
+    self.isRunning = YES;
+}
+
 @end
 
 

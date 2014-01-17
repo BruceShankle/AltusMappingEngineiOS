@@ -7,3 +7,17 @@
 @interface MEVectorTPSimpleLines : METest
 @property (retain) MEVectorTileProvider* meVectorTileProvider;
 @end
+
+@interface MEWorldVectorVirtual : METest
+@property (retain) NSString *styleName;
+@property (retain) NSString* mapName;
+@end
+
+@interface MEWorldVectorVirtualStyle2 : MEWorldVectorVirtual
+@end
+
+@interface MEWorldVectorVirtualStyle3 : MEWorldVectorVirtual
+@end
+
+@interface MEWorldVectorVirtualRemoveMap : MEWorldVectorVirtual
+@end

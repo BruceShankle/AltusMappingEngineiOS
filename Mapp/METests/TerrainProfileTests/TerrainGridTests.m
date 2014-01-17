@@ -85,7 +85,7 @@
 	//Get terrain height around marker location.
 	CLLocationCoordinate2D swCorner = CLLocationCoordinate2DMake(latitude, longitude);
 	CLLocationCoordinate2D neCorner = CLLocationCoordinate2DMake(latitude+offset, longitude+offset);
-	CGPoint minMaxHeight = [self.meMapViewController getMinMaxTerrainHeightsInBoundingBox:self.terrainMaps
+	CGPoint minMaxHeight = [METerrainProfiler getMinMaxTerrainHeightsInBoundingBox:self.terrainMaps
 																		southWestLocation:swCorner
 																		northEastLocation:neCorner];
 	

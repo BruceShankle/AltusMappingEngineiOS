@@ -298,7 +298,7 @@
 		
 		//Update terrain height samples along route
 		self.terrainProfileView.heightSamples =
-		[self.meMapViewController getTerrainProfile:self.terrainMaps
+		[METerrainProfiler getTerrainProfile:self.terrainMaps
 										  wayPoints:wayPoints
 								   samplePointCount:sampleCount
 									   bufferRadius:0.1];

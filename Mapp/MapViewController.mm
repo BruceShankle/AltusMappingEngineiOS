@@ -438,9 +438,9 @@ using namespace std;
 
 - (void)glkViewControllerUpdate:(GLKViewController *)controller
 {
-//Turn off debug spew
-self.lblDebugInfo.text=@"";
-return;
+////Turn off debug spew
+//self.lblDebugInfo.text=@"";
+//return;
 	
 #ifdef TESTFLIGHT
 	self.lblDebugInfo.text=@"";
@@ -461,7 +461,11 @@ return;
 							"QSerialLo:%d\n"
 							"QSerialDef:%d\n"
 							"QSerialHi:%d\n"
-							"Center:%f, %f\n",
+							"Center:%f, %f\n"
+							"Visible Tiles:%d\n"
+							"Animation Count:%d\n"
+							"Updateables Count:%d\n"
+							"Camera Moving:%d\n",
 							meMapViewController.meInfo.frameRate,
 							meMapViewController.meInfo.drawCallsPerFrame,
 							meMapViewController.meInfo.appMemoryUsage,
@@ -475,7 +479,11 @@ return;
 							meMapViewController.meInfo.serialWorkerDefaultCount,
 							meMapViewController.meInfo.serialWorkerHighCount,
 							currentLocation.longitude,
-							currentLocation.latitude ];
+							currentLocation.latitude,
+							meMapViewController.meInfo.visibleTileCount,
+							meMapViewController.meInfo.animationCount,
+							meMapViewController.meInfo.updateablesCount,
+							meMapViewController.meInfo.cameraIsMoving];
 #endif
 	
 }

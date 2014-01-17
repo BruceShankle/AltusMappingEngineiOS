@@ -3,75 +3,107 @@
 #import "../METestManager.h"
 
 ///////////////////////////////////////////////////////
-//@implementation MEDatabaseStressTest
-//
-//- (id) init{
-//    if(self = [super init])
-//    {
-//        self.name=@"Database Stress Test";
-//	}
-//    return self;
-//}
-//
-//- (NSString*) getDatabaseName{
-//	NSString* cachePath = [METest getCachePath];
-//	NSString* fileName = [NSString stringWithFormat:@"%@/stress.sqlite", cachePath];
-//	return fileName;
-//}
-//
-//- (void) start{
-//	if(self.isRunning){
-//		return;
-//	}
-//	self.isRunning = YES;
-//	[self.meMapViewController prepareDatabaseStressTest:[self getDatabaseName]];
-//	[self startTimer];
-//}
-//
-//- (void) timerTick {
-//	
-//	int threadSubmissions = 5;
-//	int queryCount = 100;
-//	
-//	for(int i=0; i<threadSubmissions; i++){
-//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-//			double foo =[self.meMapViewController queryDatabaseStressTest:[self getDatabaseName] queryCount:queryCount];
-//			NSLog(@"BACKGROUND_PRI = %f", foo);
-//		});
-//	}
-//	
-//	for(int i=0; i<threadSubmissions; i++){
-//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-//			double foo =[self.meMapViewController queryDatabaseStressTest:[self getDatabaseName] queryCount:queryCount];
-//			NSLog(@"LOW_PRI = %f", foo);
-//		});
-//	}
-//	
-//	for(int i=0; i<threadSubmissions; i++){
-//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//			double foo =[self.meMapViewController queryDatabaseStressTest:[self getDatabaseName] queryCount:queryCount];
-//			NSLog(@"DEFAULT_PRI = %f", foo);
-//		});
-//	}
-//	
-//	for(int i=0; i<threadSubmissions; i++){
-//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//			double foo =[self.meMapViewController queryDatabaseStressTest:[self getDatabaseName] queryCount:queryCount];
-//			NSLog(@"HIGH_PRI = %f", foo);
-//		});
-//	}
-//	
-//}
-//
-//- (void) stop{
-//	if(!self.isRunning){
-//		return;
-//	}
-//	[self stopTimer];
-//	self.isRunning = NO;
-//}
-//
-//@end
+@implementation MEGreenModeTest
+
+- (id) init{
+    if(self = [super init]){
+        self.name=@"Green Mode";
+	}
+    return self;
+}
+
+- (void) start{
+	if(self.isRunning){
+		return;
+	}
+	self.meMapViewController.greenMode = YES;
+	self.isRunning = YES;
+}
+
+- (void) stop{
+	if(!self.isRunning){
+		return;
+	}
+	self.meMapViewController.greenMode = NO;
+	self.isRunning = NO;
+}
+
+@end
+
+///////////////////////////////////////////////////////
+@implementation MEAdjustFramerate
+
+- (id) init{
+    if(self = [super init]){
+        self.name=@"Adjust Framerate";
+	}
+    return self;
+}
+
+- (NSString*) label{
+	return [NSString stringWithFormat:@"%d", self.meMapViewController.preferredFramesPerSecond];
+}
+
+- (void) start{}
+
+- (void) stop{}
+
+- (void) userTapped {
+	if(self.meMapViewController.preferredFramesPerSecond==5){
+		self.meMapViewController.preferredFramesPerSecond = 60;
+		return;
+	}
+	self.meMapViewController.preferredFramesPerSecond-=5;
+}
+
+@end
+
+///////////////////////////////////////////////////////
+@implementation MEAppManagedTimer
+
+- (id) init{
+    if(self = [super init]){
+        self.name=@"App-Managed Timer";
+	}
+    return self;
+}
+
+- (void) start{
+	if(self.isRunning){
+		return;
+	}
+	
+	//Stop the mapping engine's display link timer
+	[self.meMapViewController stopDisplayLink];
+	
+	//Create our own display link
+	self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
+	[self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+	[self.displayLink setFrameInterval:1];
+	
+	self.isRunning = YES;
+}
+
+- (void) stop{
+	if(!self.isRunning){
+		return;
+	}
+	
+	//Stop our display link timer
+	[self.displayLink invalidate];
+	self.displayLink = nil;
+	
+	//Restart the mapping engine's display link timer
+	[self.meMapViewController startDisplayLink];
+	
+	self.isRunning = NO;
+}
+
+- (void)update{
+	[self.meMapViewController updateWithTimestamp:self.displayLink.timestamp];
+}
+
+@end
 
 
 ///////////////////////////////////////////////////////

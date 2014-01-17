@@ -1,4 +1,5 @@
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
+#pragma once
 
 //SDK Imports
 #import <UIKit/UIKit.h>
@@ -64,6 +65,17 @@
 /** Controls the target frames per second to render when current run loop is in UITrackingRunLoopMode. This occurs, for example, when a table view is being scrolled. The default is 10.*/
 @property (assign) unsigned int uiTrackingRunLoopPreferredFramesPerSecond;
 
+/** When set to YES, the mapping engine will attempt to reduce the framerate when possible.*/
+@property (assign) BOOL greenMode;
+
+/** The frame rate to render at when in green mode, resources are not loading, there are no animations, the camera is not moving, and the user is not interacting with the map. Defaults to 1 fps.*/
+@property (assign) unsigned int greenModeIdleFramerate;
+
+/** The frame rate to render at when an animation is occurring, resources are loading, or the camera is moving. Defaults to 12.*/
+@property (assign) unsigned int greenModeCruiseFramerate;
+
+/** The frame rate to render at when the user is interacting with the map. Defaults to 30 fps.*/
+@property (assign) unsigned int greenModeFullThrottleFramerate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Core rendering engine management
@@ -108,8 +120,43 @@
 //Map layer management
 
 /** Add a map layer to the current view. The map must have been a map produced by the BA3 metool.
+ @param mapName Unique name of the map for this view.
+ @param mapSqliteFileName The fully qualifed path/filename of the map's .sqlite file.
+ @param mapDataFileName The fully qualified path/filename of the map's .map data file.
+ @param compressTextures Whether or not raster data from the map should be compressed to 2-byte format internally.
  */
 - (void) addMap:(NSString*) mapName mapSqliteFileName:(NSString*) mapSqliteFileName mapDataFileName:(NSString*) mapDataFileName compressTextures:(BOOL) compressTextures;
+
+/** Add a map layer sourced from an image that is made up of mosaiced spherical mercator tiles.
+ @param mapName Unique name of the map for this view.
+ @param imageFileName A PNG or JPG image file that will be fully decompressed into memory (4 bytes per pixel, make sure you have enough memory).
+ @param minX longitdue of West-most pixel in the source image.
+ @param minY latitude of South-most pixel in the source image.
+ @param maxX longitude of East-most pixel in the source image.
+ @param maxY latitude of North-most pixel in the source image.
+ @param maxLevel maximum spherical mercator tile level to zoom to on this map (try to set equivalent to your source tiles for the mosaiced image for best efficienty)
+ @param defaultTileName name of a cached image to render as a placeholder for a tile that is being loaded
+ @param compressTextures Whether or not raster data from the map should be compressed to 2-byte format internally.
+ @param zOrder Layer order for this map.
+ @param mapLoadinStrategy Determines if only the tiles visible at the current zoom level are loaded first (kHighestDetailOnly and fastest loading) or load lower resolution tiles first (kLowestDetailFirst) which can make the zooming experience less jarring for the user.
+ */
+- (void) addSphericalMercatorMosaicRasterMap:(NSString*) mapName
+                               imageFileName:(NSString*) imageFileName
+                                        minX:(long) minX
+                                        minY:(long) minY
+                                        maxX:(long) maxX
+                                        maxY:(long) maxY
+                                    maxLevel:(uint) maxLevel
+                             defaultTileName:(NSString*) defaultTileName
+                            compressTextures:(BOOL) compressTextures
+                                      zOrder:(uint) zOrder
+                          mapLoadingStrategy:(MEMapLoadingStrategy) mapLoadingStrategy;
+
+/** Add a vector map layer to the current view. The map must have been a map produced by the BA3 metool.
+ */
+- (void) addVectorMap:(NSString*) mapName mapSqliteFileName:(NSString*) mapSqliteFileName mapDataFileName:(NSString*) mapDataFileName;
+
+- (void) addVirtualMarkerMap:(MEMarkerMapInfo*) mapInfo;
 
 /** Sets the base map (zOrder of 0) layer to be a tiled map of the specified image.
  @param tiledImage A 256x256 image that will be tiled for the entire map.*/
@@ -130,13 +177,15 @@
  @param imageDataType Inidicates whether the raster tiles are JPG or PNG
  @param compressTextures YES to compress tile textures to a 2 byte format
  @param zOrder Layer order for this map
+ @param mapLoadingStrategy Controls how tiles get loaded, kLowestDetailFirst will load tiles top down (less efficient but better user experience, kHighestDetailOnly will load only tiles at the current zoom level, faster)
  */
 - (void) addMBTilesMap:(NSString*) mapName
 			  fileName:(NSString*) fileName
 	   defaultTileName:(NSString*) defaultTileName
 		 imageDataType:(MEImageDataType) imageDataType
 	   compessTextures:(BOOL) compressTextures
-				zOrder:(uint) zOrder;
+				zOrder:(uint) zOrder
+    mapLoadingStrategy:(MEMapLoadingStrategy) mapLoadingStrategy;
 
 /** Removes all maps currently displayed and optionally flushes the cache.*/
 - (void) removeAllMaps:(BOOL) clearCache;
@@ -154,7 +203,7 @@
 - (NSArray*) loadedMaps;
 
 /** Returns whether or not the specified map is currently enabled.*/
-- (BOOL) containsMap:(NSString*) mapPath;
+- (BOOL) containsMap:(NSString*) mapName;
 
 /** Set the alpha value of a map layer.
  @param mapPath The name of the map file wihout the file extension.
@@ -346,6 +395,10 @@
                         points:(NSMutableArray*)points
                          style:(MEPolygonStyle*)style;
 
+- (void) setStyleSetOnVectorMap:(NSString*) mapName
+                  styleFileName:(NSString*) styleFileName
+                   styleSetName:(NSString*) styleSetName;
+
 /**Adds a style to a feature in a vector map.
  @param mapName The name of the vector map.
  @param featureID The polygon feature of the map to apply the style to.
@@ -443,6 +496,9 @@
 - (void) tileLoadComplete:(METileProviderRequest*) meTileRequest;
 
 /**Called by vector tile providers to supply geometry for a requested tile.*/
+- (void) markerTileLoadComplete:(METileProviderRequest*) meTileRequest markerArray:(NSArray*) markerArray;
+
+/**Called by vector tile providers to supply geometry for a requested tile.*/
 - (void) vectorTileLoadComplete:(METileProviderRequest*) meTileRequest meGeometryGroup:(MEGeometryGroup*) meGeometryGroup;
 
 /**Returns whether or not the engine considers the tile represented by meTileRequest to be required to satisfy the current view for any non-animated virtual map. This call will dispatched to the main queue if it is not made on the main queue. If you need to know if an animated map tile request is still valid, please call animatedTileIsNeeded which does not dispatch to the main queue.*/
@@ -538,125 +594,30 @@ nearestNeighborTextureSampling:(BOOL) nearestNeighborTextureSampling;
 
 
 /** Returns an angle relative to the verticle edge of the view that represents the rotation you would apply to a screen-aligned object so that it points to the given heading releative to the current geographic point at the center of the view. You would use this function, for example, if you wanted to display an 2D arrow that points in at heading. If you desire for an object to do this and always be up to date and smoothly animated, you should use a marker layer with a marker whose rotation type is kMarkerRotationTrueNorthAligned, then the mapping engine will manage the rotation of the object.*/
-
 -(CGFloat) screenRotationForMapCenterWithHeading:(double) heading;
-
-/** Returns an array of height samples (NSNumber objects that wrap a short value) along a given route. This function may be run on a background thread.
- @param terrianMaps An array of MEMapFileInfo objects for each terrain map to sample from.
- @param wayPoints An array of NSValue wrapped CGPoints (minimum of two) that represent waypoints for the route.
- @param samplePointCount The number of samples to generate.
- @param bufferRadius The nautical mile buffer radius around the route formed by the way points.
- */
-- (NSArray*) getTerrainProfile:(NSArray*) terrainMaps
-					 wayPoints:(NSArray*) wayPoints
-			  samplePointCount:(uint) samplePointCount
-				  bufferRadius:(double) bufferRadius;
-
-
-/** Returns the minimum (.x value) and maximum (.y value) terrain heights within the geographic bounds of a rectangle defined by the specified SW and NE points. This function may be called from a background thread.
- @param terrianMaps An array of MEMapFileInfo objects for each terrain map to sample from.
- @param southWestLocation The 'lower left' corner of the bounds.
- @param northEastLocation THe 'upper right' cornder of the bounds.
- */
-- (CGPoint) getMinMaxTerrainHeightsInBoundingBox:(NSArray*) terrainMaps
-							   southWestLocation:(CLLocationCoordinate2D) southWestLocation
-							   northEastLocation:(CLLocationCoordinate2D) northEastLocation;
-
-/** Returns the minimum (.x value) and maximum (.y value) terrain heights within the specified radius (in nautical miles) of the specified location. This function may be called from a background thread.
- @param terrianMaps An array of MEMapFileInfo objects for each terrain map to sample from.
- @param location The geographic point around which to search for markers.
- @param radius The nautical mile radius around the point to search for markers.
- */
-- (CGPoint) getMinMaxTerrainHeightsAroundLocation:(NSArray*) terrainMaps
-										 location:(CLLocationCoordinate2D) location
-										   radius:(double) radius;
-
-/** Returns an array of maximum marker weights in a route corridor mapped to a fixed sample point count.The intention of this function is to enable you to draw a graph of samplePointCount width such that a maximum marker weight can be plotted on the graph. For example: plotting the tallest obstacle along a route. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param wayPoints An array of NSValue wrapped CGPoints (minimum of two) that represent waypoints for the route where in each point x = longitude and y = latitude.
- @param samplePointCount The number of samples to generate.
- @param bufferRadius The nautical mile buffer radius around the route formed by the way points..
- */
-- (NSArray*) getMaxMarkerWeightsAlongRoute:(NSString*) markerSqliteFile
-						   tableNamePrefix:(NSString*) tableNamePrefix
-								 wayPoints:(NSArray*) wayPoints
-						  samplePointCount:(uint) samplePointCount
-							 bufferRadius:(double) bufferRadius;
-
-/** Returns an array of MEMarker objects that lie along a given route. The route is tesselated to at least samplePointCount and a corridor around this tesselated route is used to search for markers that intersect the corridor. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param wayPoints An array of NSValue wrapped CGPoints (minimum of two) that represent waypoints for the route where in each point x = longitude and y = latitude.
- @param samplePointCount The number of sample points the route will be tesselated to.
- @param bufferRadius The nautical mile buffer radius around the route formed by the way points.
- */
-- (NSArray*) getMarkersAlongRoute:(NSString*) markerSqliteFile
-				  tableNamePrefix:(NSString*) tableNamePrefix
-						wayPoints:(NSArray*) wayPoints
-					bufferRadius:(double) bufferRadius;
-
-/** Returns an array of MEMarker objects from the specified marker database within a given nautical mile radius of the specified location. This function may called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param location The geographic point around which to search for markers.
- @param radius The nautical mile radius around the point to search for markers.
- */
-- (NSArray*) getMarkersAroundLocation:(NSString*) markerSqliteFile
-					  tableNamePrefix:(NSString*) tableNamePrefix
-							 location:(CLLocationCoordinate2D) location
-							   radius:(double) radius;
-
-/** Returns an MEMarker object with the highest weight from the specified marker database within a given nautical mile radius of the specified location. If there is no marker, returns nil. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param location The geographic point around which to search for markers.
- @param radius The nautical mile radius around the point to search for markers.
- */
-- (MEMarker*) getHighestMarkerAroundLocation:(NSString*) markerSqliteFile
-							 tableNamePrefix:(NSString*) tableNamePrefix
-									location:(CLLocationCoordinate2D) location
-									  radius:(double) radius;
-
-/** Returns an array of MEMarker objects from the specified marker database that lie within the geographic bounds of a rectangle defined by the specified SW and NE points. This function takes into account meridian and antimeridian crossing of the given bounds. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param southWestLocation The 'lower left' corner of the bounds.
- @param northEastLocation THe 'upper right' cornder of the bounds.
- */
-- (NSArray*) getMarkersInBoundingBox:(NSString*) markerSqliteFile
-					 tableNamePrefix:(NSString*) tableNamePrefix
-				   southWestLocation:(CLLocationCoordinate2D) southWestLocation
-				   northEastLocation:(CLLocationCoordinate2D) northEastLocation;
-
-/** Returns an MEMarker object with the highest weight that lies within the geographic bounds of a rectangle defined by the specified SW and NE points. If there is no marker, returns nil. This function takes into account meridian and antimeridian crossing of the given bounds. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param southWestLocation The 'lower left' corner of the bounds.
- @param northEastLocation THe 'upper right' cornder of the bounds.
- */
-- (MEMarker*) getHighestMarkerInBoundingBox:(NSString*) markerSqliteFile
-							tableNamePrefix:(NSString*) tableNamePrefix
-						  southWestLocation:(CLLocationCoordinate2D) southWestLocation
-						  northEastLocation:(CLLocationCoordinate2D) northEastLocation;
-
-
-/** Returns an array of MEMarker objects for markers that lie on a radial (from true North) from a given point. This function may be called from a background thread.
- @param markerSqliteFile The full path of the marker sqlite database file.
- @param tableNamePrefix For databases with multiple marker tables, the prefix for the table name.
- @param location  The location from which the radial lies.
- @param radial The radial in degrees.
- @param distance The nautical mile distance of the radial.
- @param bufferRadius The nautical mile width of the corridor along the radial.*/
-- (NSArray*) getMarkersOnRadial:(NSString*) markerSqliteFile
-				 tableNamePrefix:(NSString*) tableNamePrefix
-			   location:(CLLocationCoordinate2D) location
-						  radial:(double) radial
-						distance:(double) distance
-				   bufferRadius:(double) bufferRadius;
 
 /** Returns an array of MEMarker objects for markers that are visible for a given marker map layer. This function should only be called form the main thread, not from a background thread.
  @param mapName Name of currently loaded marker layer.*/
 - (NSArray*) getVisibleMarkers:(NSString*) mapName;
+
+/** Stops and invalidates the CADisplayLink timer that is used to drive updates. Provided for applications that desire to mananage timing and updates themselves. When stopped, the mapping engine will no longer update / draw and your application will be responsible for calling the updateWithTimestamp function in order to ensure updates occur.
+ */
+- (void) stopDisplayLink;
+
+/** Creates and starts a CADisplayLink  timer that is used to drive updates. This function is provided for applications that desire to manage timing and updates themsevles. When started, you should discontinue calling updateWithTimestamp.
+ */
+- (void) startDisplayLink;
+
+/** This function is provided for applications that desire to manage timing and updates themselves. If you are not managing your own CADisplayLink timer, there is no need to ever call this function. If you desire to use this function, you should first call stopDisplayLink, then create your own CADisplayLink timer, start it, and when it fires call this function passing the CADisplayLink timestamp value each time you want the mapping engine to update and draw.
+ @param timestamp The timestamp value of the CADisplayLink timer you are managing.
+ */
+- (void) updateWithTimestamp:(CFTimeInterval) timestamp;
+
+/**Used to notify the view controller that a user interaction (panning/zoomin) or code-based panning/zooming has occured. This is primarily for green-mode support so that gesture recognizers can notify the view controller to increase the frame rate in response to user touches. This function may be made private in a future release.*/
+- (void) greenModeFulleThrottle;
+
+/**Activate your license and disable the BA3 watermark.
+ */
+- (void) setLicenseKey:(NSString*) licenseKey;
 
 @end

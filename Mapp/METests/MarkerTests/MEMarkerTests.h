@@ -82,6 +82,9 @@
 -(NSString*) dbFile;
 @end
 
+@interface METowersHeightsMarkersVirtualTest : METowersHeightsMarkersTest
+@end
+
 @interface METowersHeightsMarkersTestHalfHidden : METowersHeightsMarkersTest
 @property (assign) BOOL isVisible;
 @end

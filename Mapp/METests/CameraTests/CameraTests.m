@@ -180,6 +180,7 @@ static int currentSampleIndex=-1;
 											   animationDuration:animationDuration];
 	
 	//Update range ring locations
+	/*
 	[self.meMapViewController updateAnimatedVectorCircleLocation:@"range_ring1"
 													 newLocation:location
 											   animationDuration:animationDuration];
@@ -190,14 +191,15 @@ static int currentSampleIndex=-1;
 	
 	[self.meMapViewController updateAnimatedVectorCircleLocation:@"range_ring3"
 													 newLocation:location
-											   animationDuration:animationDuration];
+											   animationDuration:animationDuration];*/
 	
 }
 
 - (void) removeRings{
+	/*
 	[self.meMapViewController removeAnimatedVectorCircle:@"range_ring1"];
 	[self.meMapViewController removeAnimatedVectorCircle:@"range_ring2"];
-	[self.meMapViewController removeAnimatedVectorCircle:@"range_ring3"];
+	[self.meMapViewController removeAnimatedVectorCircle:@"range_ring3"];*/
 }
 
 - (void) removeOwnshipMarker

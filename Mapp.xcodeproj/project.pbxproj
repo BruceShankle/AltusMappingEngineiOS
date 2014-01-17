@@ -10,7 +10,10 @@
 		32062A5316CDCE7700E6D862 /* refreshregionstress.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32062A5216CDCE7700E6D862 /* refreshregionstress.txt */; };
 		32062A5616CDCEBC00E6D862 /* BoundingBoxReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32062A5516CDCEBC00E6D862 /* BoundingBoxReader.mm */; };
 		320A50BB15C00C6600D1063F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A50BA15C00C6600D1063F /* MapKit.framework */; };
+		320AFA7818533E4500A03F5D /* SphericalMercatorMosaic.png in Resources */ = {isa = PBXBuildFile; fileRef = 320AFA7718533E4500A03F5D /* SphericalMercatorMosaic.png */; };
+		320AFA7B18533E9300A03F5D /* MEMosiacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 320AFA7A18533E9300A03F5D /* MEMosiacTests.m */; };
 		320CC783172995AC00199195 /* TowersWithHeightColorBarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 320CC782172995AC00199195 /* TowersWithHeightColorBarTest.m */; };
+		320FD2E21819D8E700B51C64 /* TerrainExplorer.m in Sources */ = {isa = PBXBuildFile; fileRef = 320FD2E11819D8E700B51C64 /* TerrainExplorer.m */; };
 		3210ACED15DEF31B000E5D7A /* MEMarkerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3210ACEC15DEF31B000E5D7A /* MEMarkerTests.mm */; };
 		3210ACF215DEF993000E5D7A /* ba3_annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 3210ACF115DEF993000E5D7A /* ba3_annotation.png */; };
 		3210AD3115E2B0F8000E5D7A /* MEInMemoryVectorPolygonsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210AD2F15E2B0F8000E5D7A /* MEInMemoryVectorPolygonsTest.m */; };
@@ -53,7 +56,6 @@
 		3229A04D1529CD6200EF4CD6 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3229A0481529CD6200EF4CD6 /* ZipArchive.mm */; };
 		3229A0511529D4D500EF4CD6 /* Earth.zip in Resources */ = {isa = PBXBuildFile; fileRef = 3229A0501529D4D500EF4CD6 /* Earth.zip */; };
 		322A51A117C2A05400E666B6 /* TerrainMapFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 322A51A017C2A05400E666B6 /* TerrainMapFinder.m */; };
-		322F52ED16C3637300B91B68 /* MEKMLShapes.m in Sources */ = {isa = PBXBuildFile; fileRef = 322F52EC16C3637300B91B68 /* MEKMLShapes.m */; };
 		3230A02D14625A9A00D809D1 /* DownloadViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3230A02B14625A9A00D809D1 /* DownloadViewController.mm */; };
 		3230A02E14625A9A00D809D1 /* DownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3230A02C14625A9A00D809D1 /* DownloadViewController.xib */; };
 		3232C6DF15CB140500930E5B /* AviationDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3232C6DB15CB140500930E5B /* AviationDatabase.cpp */; };
@@ -126,6 +128,7 @@
 		327ABEE916067A3D00365B3D /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 327ABEE716067A3D00365B3D /* bus.png */; };
 		327ABEEC16069A9600365B3D /* pinPurple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 327ABEEB16069A9500365B3D /* pinPurple@2x.png */; };
 		32804A14162884420078B197 /* MapManagementCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 32804A13162884420078B197 /* MapManagementCategory.m */; };
+		32807BA517FFDE41008EFFFF /* ME3DTerrainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32807BA417FFDE41008EFFFF /* ME3DTerrainTests.m */; };
 		3281628F157810BF00E29122 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3281628C157810BF00E29122 /* Default-Landscape~ipad.png */; };
 		32816291157810BF00E29122 /* Default-Portrait~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3281628E157810BF00E29122 /* Default-Portrait~iphone.png */; };
 		3288AD751616BC65007E64E9 /* METoolStates.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3288AD741616BC65007E64E9 /* METoolStates.sqlite */; };
@@ -143,6 +146,7 @@
 		328D173616B8984000C460B4 /* tile_2.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 328D173116B8984000C460B4 /* tile_2.1.png */; };
 		328D173716B8984000C460B4 /* tile_1.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 328D173216B8984000C460B4 /* tile_1.1.png */; };
 		328D173816B8984000C460B4 /* tile_0.1.png in Resources */ = {isa = PBXBuildFile; fileRef = 328D173316B8984000C460B4 /* tile_0.1.png */; };
+		328E1353188909EC00825948 /* LicenseManagementTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 328E1352188909EC00825948 /* LicenseManagementTest.m */; };
 		3292449216B03C970058A335 /* MELocalTerrainMaps.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292449116B03C970058A335 /* MELocalTerrainMaps.m */; };
 		329244CE16B0A1AC0058A335 /* METilesNotAvailableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 329244CD16B0A1AC0058A335 /* METilesNotAvailableTest.m */; };
 		329244F216B45A540058A335 /* MERefreshMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 329244F116B45A540058A335 /* MERefreshMapTests.m */; };
@@ -244,6 +248,8 @@
 		32BF4AED161433E4000354B6 /* ShortTower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BF4AE9161433E4000354B6 /* ShortTower@2x.png */; };
 		32C4A71E17436A14001B32CC /* MEVectorTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C4A71D17436A14001B32CC /* MEVectorTileProvider.m */; };
 		32C4A72117436F03001B32CC /* MEVectorTileProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C4A72017436F03001B32CC /* MEVectorTileProviderTests.m */; };
+		32C500AC1855AC5800016EFD /* SphericalMercatorMosaic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C500AB1855AC5800016EFD /* SphericalMercatorMosaic2.png */; };
+		32C500AE1855ACFA00016EFD /* SphericalMercatorMosaic3.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C500AD1855ACFA00016EFD /* SphericalMercatorMosaic3.png */; };
 		32C6BFA616605BC500D0BB99 /* RefreshMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C6BFA516605BC500D0BB99 /* RefreshMapTests.m */; };
 		32C6F309178CC72D00DE3724 /* open-streets-dc-15.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 32C6F308178CC72D00DE3724 /* open-streets-dc-15.mbtiles */; };
 		32C95E9B1603165A006623FC /* countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32C95E9A1603165A006623FC /* countries.txt */; };
@@ -251,8 +257,6 @@
 		32CC2544166661BC00C23D57 /* METrueNorthAlignedMarkerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CC2543166661BC00C23D57 /* METrueNorthAlignedMarkerTest.m */; };
 		32CC25481666646F00C23D57 /* redarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC25461666646E00C23D57 /* redarrow.png */; };
 		32CC25491666646F00C23D57 /* redarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CC25471666646E00C23D57 /* redarrow@2x.png */; };
-		32D03B8716C31FA300AF2508 /* california.txt in Resources */ = {isa = PBXBuildFile; fileRef = 32D03B8616C31FA300AF2508 /* california.txt */; };
-		32D03B8A16C31FDF00AF2508 /* MESimpleKMLReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32D03B8916C31FDF00AF2508 /* MESimpleKMLReader.mm */; };
 		32D73ED7163A536D00F12956 /* MEShapeFileTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D73ED6163A536D00F12956 /* MEShapeFileTest.m */; };
 		32DB35391463F39400C24B45 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DB34AE1463E7A200C24B45 /* libTestFlight.a */; };
 		32DB44A51627C4090066D02B /* Default-Portrait~iphone-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DB44A41627C4090066D02B /* Default-Portrait~iphone-568h@2x.png */; };
@@ -263,6 +267,7 @@
 		32DB44AF162810D10066D02B /* plane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DB44AE162810D10066D02B /* plane@2x.png */; };
 		32DB44B71628289E0066D02B /* MapZOrderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB44B61628289E0066D02B /* MapZOrderTest.m */; };
 		32DDB749156CB11B008E2A89 /* ME.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DDB748156CB11B008E2A89 /* ME.framework */; };
+		32DE322D185990F30009FBE3 /* MarkerDatabaseSwap.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DE322C185990F30009FBE3 /* MarkerDatabaseSwap.m */; };
 		32E24CF216BB5CC1008EC5D3 /* MESparseTileMapTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E24CF116BB5CC1008EC5D3 /* MESparseTileMapTest.m */; };
 		32E24CF816BB6FF5008EC5D3 /* lettertile4.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E24CF316BB6FF5008EC5D3 /* lettertile4.png */; };
 		32E24CF916BB6FF5008EC5D3 /* lettertile3.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E24CF416BB6FF5008EC5D3 /* lettertile3.png */; };
@@ -273,6 +278,9 @@
 		32F41D9117C08B490035F602 /* TerrainInRadiusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F41D9017C08B490035F602 /* TerrainInRadiusTests.m */; };
 		32F5A72F162E204600784726 /* MEFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F5A72E162E204600784726 /* MEFileDownloader.m */; };
 		32F5C41915284483000F1017 /* mapmarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 32F5C41815284483000F1017 /* mapmarker.png */; };
+		32F6628317FFE61A0084ACA6 /* mtranierflight.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32F6628217FFE61A0084ACA6 /* mtranierflight.csv */; };
+		32F75669181AF1BF0097DB9C /* TerrainExplorerUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F75667181AF1BF0097DB9C /* TerrainExplorerUI.m */; };
+		32F7566A181AF1BF0097DB9C /* TerrainExplorerUI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F75668181AF1BF0097DB9C /* TerrainExplorerUI.xib */; };
 		32F8A4AC15E59FD8003FC867 /* AirplaneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F8A4A815E59FD8003FC867 /* AirplaneViewController.m */; };
 		32F8A4AD15E59FD8003FC867 /* AirplaneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F8A4A915E59FD8003FC867 /* AirplaneViewController.xib */; };
 		32F8A4AE15E59FD8003FC867 /* MESymbioteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F8A4AB15E59FD8003FC867 /* MESymbioteTests.m */; };
@@ -282,6 +290,8 @@
 		B943000F15DF0BBB00E27B27 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3200624E14E8F4DF0024DCEF /* libsqlite3.dylib */; };
 		B9779C4415E6EBF70092832A /* METawsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9779C4315E6EBF70092832A /* METawsTest.m */; };
 		B9A73C9515CA90D100F7D46F /* AirPort.png in Resources */ = {isa = PBXBuildFile; fileRef = B9A73C9415CA90D100F7D46F /* AirPort.png */; };
+		B9AF35AA17E26F640088C948 /* MEMarkerTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AF35A917E26F640088C948 /* MEMarkerTileProvider.m */; };
+		B9AF35AD17E270580088C948 /* MEMarkerTileProviderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9AF35AC17E270580088C948 /* MEMarkerTileProviderTests.m */; };
 		B9ED0B2217529FD700DEE910 /* waterTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = B9ED0B2017529FD700DEE910 /* waterTexture.png */; };
 		B9ED0B2317529FD700DEE910 /* landTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = B9ED0B2117529FD700DEE910 /* landTexture.png */; };
 		B9F36A1115EC36C00013AD19 /* MEDynamicLinesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F36A1015EC36C00013AD19 /* MEDynamicLinesTest.m */; };
@@ -293,8 +303,13 @@
 		32062A5416CDCEBC00E6D862 /* BoundingBoxReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoundingBoxReader.h; sourceTree = "<group>"; };
 		32062A5516CDCEBC00E6D862 /* BoundingBoxReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BoundingBoxReader.mm; sourceTree = "<group>"; };
 		320A50BA15C00C6600D1063F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		320AFA7718533E4500A03F5D /* SphericalMercatorMosaic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SphericalMercatorMosaic.png; sourceTree = "<group>"; };
+		320AFA7918533E9300A03F5D /* MEMosiacTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMosiacTests.h; sourceTree = "<group>"; };
+		320AFA7A18533E9300A03F5D /* MEMosiacTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEMosiacTests.m; sourceTree = "<group>"; };
 		320CC781172995AB00199195 /* TowersWithHeightColorBarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TowersWithHeightColorBarTest.h; sourceTree = "<group>"; };
 		320CC782172995AC00199195 /* TowersWithHeightColorBarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TowersWithHeightColorBarTest.m; sourceTree = "<group>"; };
+		320FD2E01819D8E700B51C64 /* TerrainExplorer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainExplorer.h; sourceTree = "<group>"; };
+		320FD2E11819D8E700B51C64 /* TerrainExplorer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainExplorer.m; sourceTree = "<group>"; };
 		3210ACEB15DEF31B000E5D7A /* MEMarkerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEMarkerTests.h; sourceTree = "<group>"; };
 		3210ACEC15DEF31B000E5D7A /* MEMarkerTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MEMarkerTests.mm; sourceTree = "<group>"; };
 		3210ACF115DEF993000E5D7A /* ba3_annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ba3_annotation.png; sourceTree = "<group>"; };
@@ -374,8 +389,6 @@
 		3229A0501529D4D500EF4CD6 /* Earth.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Earth.zip; sourceTree = "<group>"; };
 		322A519F17C2A05400E666B6 /* TerrainMapFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainMapFinder.h; sourceTree = "<group>"; };
 		322A51A017C2A05400E666B6 /* TerrainMapFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainMapFinder.m; sourceTree = "<group>"; };
-		322F52EB16C3637300B91B68 /* MEKMLShapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEKMLShapes.h; sourceTree = "<group>"; };
-		322F52EC16C3637300B91B68 /* MEKMLShapes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEKMLShapes.m; sourceTree = "<group>"; };
 		3230A02A14625A9A00D809D1 /* DownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadViewController.h; sourceTree = "<group>"; };
 		3230A02B14625A9A00D809D1 /* DownloadViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = DownloadViewController.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3230A02C14625A9A00D809D1 /* DownloadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadViewController.xib; sourceTree = "<group>"; };
@@ -468,6 +481,8 @@
 		327ABEEB16069A9500365B3D /* pinPurple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinPurple@2x.png"; sourceTree = "<group>"; };
 		32804A12162884420078B197 /* MapManagementCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManagementCategory.h; sourceTree = "<group>"; };
 		32804A13162884420078B197 /* MapManagementCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManagementCategory.m; sourceTree = "<group>"; };
+		32807BA317FFDE41008EFFFF /* ME3DTerrainTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ME3DTerrainTests.h; sourceTree = "<group>"; };
+		32807BA417FFDE41008EFFFF /* ME3DTerrainTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ME3DTerrainTests.m; sourceTree = "<group>"; };
 		328151AB157E1E850057C029 /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libturbojpeg.a; sourceTree = "<group>"; };
 		3281628C157810BF00E29122 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
 		3281628E157810BF00E29122 /* Default-Portrait~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~iphone.png"; sourceTree = SOURCE_ROOT; };
@@ -487,6 +502,8 @@
 		328D173116B8984000C460B4 /* tile_2.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_2.1.png; path = AnimatedMapTests/tile_2.1.png; sourceTree = "<group>"; };
 		328D173216B8984000C460B4 /* tile_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_1.1.png; path = AnimatedMapTests/tile_1.1.png; sourceTree = "<group>"; };
 		328D173316B8984000C460B4 /* tile_0.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_0.1.png; path = AnimatedMapTests/tile_0.1.png; sourceTree = "<group>"; };
+		328E1351188909EC00825948 /* LicenseManagementTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LicenseManagementTest.h; sourceTree = "<group>"; };
+		328E1352188909EC00825948 /* LicenseManagementTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LicenseManagementTest.m; sourceTree = "<group>"; };
 		3292449016B03C970058A335 /* MELocalTerrainMaps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MELocalTerrainMaps.h; sourceTree = "<group>"; };
 		3292449116B03C970058A335 /* MELocalTerrainMaps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MELocalTerrainMaps.m; sourceTree = "<group>"; };
 		329244CC16B0A1AC0058A335 /* METilesNotAvailableTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METilesNotAvailableTest.h; sourceTree = "<group>"; };
@@ -636,6 +653,8 @@
 		32C4A71D17436A14001B32CC /* MEVectorTileProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEVectorTileProvider.m; sourceTree = "<group>"; };
 		32C4A71F17436F03001B32CC /* MEVectorTileProviderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEVectorTileProviderTests.h; sourceTree = "<group>"; };
 		32C4A72017436F03001B32CC /* MEVectorTileProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEVectorTileProviderTests.m; sourceTree = "<group>"; };
+		32C500AB1855AC5800016EFD /* SphericalMercatorMosaic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SphericalMercatorMosaic2.png; sourceTree = "<group>"; };
+		32C500AD1855ACFA00016EFD /* SphericalMercatorMosaic3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SphericalMercatorMosaic3.png; sourceTree = "<group>"; };
 		32C6BFA416605BC500D0BB99 /* RefreshMapTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshMapTests.h; sourceTree = "<group>"; };
 		32C6BFA516605BC500D0BB99 /* RefreshMapTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshMapTests.m; sourceTree = "<group>"; };
 		32C6F308178CC72D00DE3724 /* open-streets-dc-15.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open-streets-dc-15.mbtiles"; sourceTree = "<group>"; };
@@ -646,9 +665,6 @@
 		32CC2543166661BC00C23D57 /* METrueNorthAlignedMarkerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METrueNorthAlignedMarkerTest.m; sourceTree = "<group>"; };
 		32CC25461666646E00C23D57 /* redarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redarrow.png; sourceTree = "<group>"; };
 		32CC25471666646E00C23D57 /* redarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redarrow@2x.png"; sourceTree = "<group>"; };
-		32D03B8616C31FA300AF2508 /* california.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = california.txt; sourceTree = "<group>"; };
-		32D03B8816C31FDF00AF2508 /* MESimpleKMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESimpleKMLReader.h; sourceTree = "<group>"; };
-		32D03B8916C31FDF00AF2508 /* MESimpleKMLReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MESimpleKMLReader.mm; sourceTree = "<group>"; };
 		32D73ED5163A536D00F12956 /* MEShapeFileTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEShapeFileTest.h; sourceTree = "<group>"; };
 		32D73ED6163A536D00F12956 /* MEShapeFileTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEShapeFileTest.m; sourceTree = "<group>"; };
 		32DB34AE1463E7A200C24B45 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
@@ -662,6 +678,8 @@
 		32DB44B51628289E0066D02B /* MapZOrderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapZOrderTest.h; sourceTree = "<group>"; };
 		32DB44B61628289E0066D02B /* MapZOrderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapZOrderTest.m; sourceTree = "<group>"; };
 		32DDB748156CB11B008E2A89 /* ME.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ME.framework; sourceTree = "<group>"; };
+		32DE322B185990F30009FBE3 /* MarkerDatabaseSwap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerDatabaseSwap.h; sourceTree = "<group>"; };
+		32DE322C185990F30009FBE3 /* MarkerDatabaseSwap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerDatabaseSwap.m; sourceTree = "<group>"; };
 		32E24CF016BB5CC1008EC5D3 /* MESparseTileMapTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESparseTileMapTest.h; sourceTree = "<group>"; };
 		32E24CF116BB5CC1008EC5D3 /* MESparseTileMapTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MESparseTileMapTest.m; sourceTree = "<group>"; };
 		32E24CF316BB6FF5008EC5D3 /* lettertile4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lettertile4.png; sourceTree = "<group>"; };
@@ -675,6 +693,10 @@
 		32F5A72D162E204600784726 /* MEFileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEFileDownloader.h; sourceTree = "<group>"; };
 		32F5A72E162E204600784726 /* MEFileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEFileDownloader.m; sourceTree = "<group>"; };
 		32F5C41815284483000F1017 /* mapmarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapmarker.png; sourceTree = "<group>"; };
+		32F6628217FFE61A0084ACA6 /* mtranierflight.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mtranierflight.csv; sourceTree = "<group>"; };
+		32F75666181AF1BF0097DB9C /* TerrainExplorerUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainExplorerUI.h; sourceTree = "<group>"; };
+		32F75667181AF1BF0097DB9C /* TerrainExplorerUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainExplorerUI.m; sourceTree = "<group>"; };
+		32F75668181AF1BF0097DB9C /* TerrainExplorerUI.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TerrainExplorerUI.xib; sourceTree = "<group>"; };
 		32F8A4A715E59FD8003FC867 /* AirplaneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirplaneViewController.h; sourceTree = "<group>"; };
 		32F8A4A815E59FD8003FC867 /* AirplaneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirplaneViewController.m; sourceTree = "<group>"; };
 		32F8A4A915E59FD8003FC867 /* AirplaneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AirplaneViewController.xib; sourceTree = "<group>"; };
@@ -689,6 +711,10 @@
 		B9779C4215E6EBF70092832A /* METawsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = METawsTest.h; path = TAWSTests/METawsTest.h; sourceTree = "<group>"; };
 		B9779C4315E6EBF70092832A /* METawsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = METawsTest.m; path = TAWSTests/METawsTest.m; sourceTree = "<group>"; };
 		B9A73C9415CA90D100F7D46F /* AirPort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AirPort.png; sourceTree = "<group>"; };
+		B9AF35A817E26F640088C948 /* MEMarkerTileProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MEMarkerTileProvider.h; path = MarkerTileProvider/MEMarkerTileProvider.h; sourceTree = "<group>"; };
+		B9AF35A917E26F640088C948 /* MEMarkerTileProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MEMarkerTileProvider.m; path = MarkerTileProvider/MEMarkerTileProvider.m; sourceTree = "<group>"; };
+		B9AF35AB17E270580088C948 /* MEMarkerTileProviderTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MEMarkerTileProviderTests.h; path = MarkerTileProvider/MEMarkerTileProviderTests.h; sourceTree = "<group>"; };
+		B9AF35AC17E270580088C948 /* MEMarkerTileProviderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MEMarkerTileProviderTests.m; path = MarkerTileProvider/MEMarkerTileProviderTests.m; sourceTree = "<group>"; };
 		B9ED0B2017529FD700DEE910 /* waterTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterTexture.png; sourceTree = "<group>"; };
 		B9ED0B2117529FD700DEE910 /* landTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landTexture.png; sourceTree = "<group>"; };
 		B9F36A0C15EC36760013AD19 /* MEDynamicLinesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEDynamicLinesTest.h; sourceTree = "<group>"; };
@@ -724,6 +750,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320AFA7618533E0D00A03F5D /* MosaicTests */ = {
+			isa = PBXGroup;
+			children = (
+				32C500AD1855ACFA00016EFD /* SphericalMercatorMosaic3.png */,
+				32C500AB1855AC5800016EFD /* SphericalMercatorMosaic2.png */,
+				320AFA7718533E4500A03F5D /* SphericalMercatorMosaic.png */,
+				320AFA7918533E9300A03F5D /* MEMosiacTests.h */,
+				320AFA7A18533E9300A03F5D /* MEMosiacTests.m */,
+			);
+			path = MosaicTests;
+			sourceTree = "<group>";
+		};
 		3210ACE915DEF28B000E5D7A /* MarkerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,6 +794,8 @@
 				325CF264166184E600E67B66 /* quotebubble@2x.png */,
 				3222877016EC4EE4009ED5F2 /* AirTrafficTest.h */,
 				3222877116EC4EE4009ED5F2 /* AirTrafficTest.m */,
+				32DE322B185990F30009FBE3 /* MarkerDatabaseSwap.h */,
+				32DE322C185990F30009FBE3 /* MarkerDatabaseSwap.m */,
 			);
 			path = MarkerTests;
 			sourceTree = "<group>";
@@ -763,7 +803,6 @@
 		3210AD2D15E2B0BA000E5D7A /* VectorTests */ = {
 			isa = PBXGroup;
 			children = (
-				32D03B8616C31FA300AF2508 /* california.txt */,
 				32D73ED9163A548400F12956 /* shapefiles */,
 				B9F36A1015EC36C00013AD19 /* MEDynamicLinesTest.m */,
 				B9F36A0C15EC36760013AD19 /* MEDynamicLinesTest.h */,
@@ -773,10 +812,6 @@
 				3210AD3815E2B4CD000E5D7A /* MEInMemoryVectorLinesTest.m */,
 				32D73ED5163A536D00F12956 /* MEShapeFileTest.h */,
 				32D73ED6163A536D00F12956 /* MEShapeFileTest.m */,
-				32D03B8816C31FDF00AF2508 /* MESimpleKMLReader.h */,
-				32D03B8916C31FDF00AF2508 /* MESimpleKMLReader.mm */,
-				322F52EB16C3637300B91B68 /* MEKMLShapes.h */,
-				322F52EC16C3637300B91B68 /* MEKMLShapes.m */,
 			);
 			path = VectorTests;
 			sourceTree = "<group>";
@@ -927,6 +962,10 @@
 		3228C67915DD2790005159C8 /* METests */ = {
 			isa = PBXGroup;
 			children = (
+				328E1350188909D900825948 /* LicenseManagement */,
+				320AFA7618533E0D00A03F5D /* MosaicTests */,
+				32807BA217FFDE27008EFFFF /* 3DTerrain */,
+				B9AF35A717E26F330088C948 /* MarkerTileProvider */,
 				32B3192217D1327800B7CF1C /* MapLabeling */,
 				32CA9B42175EABC800769F92 /* CustomerSpecificTests */,
 				32A06F8B174C4B9100CD357A /* WMSTests */,
@@ -1131,6 +1170,21 @@
 			path = RecordedFlights;
 			sourceTree = "<group>";
 		};
+		32807BA217FFDE27008EFFFF /* 3DTerrain */ = {
+			isa = PBXGroup;
+			children = (
+				32807BA317FFDE41008EFFFF /* ME3DTerrainTests.h */,
+				32807BA417FFDE41008EFFFF /* ME3DTerrainTests.m */,
+				32F6628217FFE61A0084ACA6 /* mtranierflight.csv */,
+				320FD2E01819D8E700B51C64 /* TerrainExplorer.h */,
+				320FD2E11819D8E700B51C64 /* TerrainExplorer.m */,
+				32F75666181AF1BF0097DB9C /* TerrainExplorerUI.h */,
+				32F75667181AF1BF0097DB9C /* TerrainExplorerUI.m */,
+				32F75668181AF1BF0097DB9C /* TerrainExplorerUI.xib */,
+			);
+			path = 3DTerrain;
+			sourceTree = "<group>";
+		};
 		328151AA157E1E850057C029 /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1138,6 +1192,15 @@
 				328151AB157E1E850057C029 /* libturbojpeg.a */,
 			);
 			path = libs;
+			sourceTree = "<group>";
+		};
+		328E1350188909D900825948 /* LicenseManagement */ = {
+			isa = PBXGroup;
+			children = (
+				328E1351188909EC00825948 /* LicenseManagementTest.h */,
+				328E1352188909EC00825948 /* LicenseManagementTest.m */,
+			);
+			path = LicenseManagement;
 			sourceTree = "<group>";
 		};
 		329530DC146A126600542A53 /* JSONKit */ = {
@@ -1527,6 +1590,17 @@
 			name = TAWSTests;
 			sourceTree = "<group>";
 		};
+		B9AF35A717E26F330088C948 /* MarkerTileProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B9AF35A817E26F640088C948 /* MEMarkerTileProvider.h */,
+				B9AF35A917E26F640088C948 /* MEMarkerTileProvider.m */,
+				B9AF35AB17E270580088C948 /* MEMarkerTileProviderTests.h */,
+				B9AF35AC17E270580088C948 /* MEMarkerTileProviderTests.m */,
+			);
+			name = MarkerTileProvider;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1555,6 +1629,11 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "BA3, LLC";
+				TargetAttributes = {
+					329F1765143A5FF50025CA61 = {
+						DevelopmentTeam = J4M6Q32YB8;
+					};
+				};
 			};
 			buildConfigurationList = 329F1760143A5FF50025CA61 /* Build configuration list for PBXProject "Mapp" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1604,6 +1683,7 @@
 				32816291157810BF00E29122 /* Default-Portrait~iphone.png in Resources */,
 				32E4C76115AC00CD00562B97 /* MapCatalog.json in Resources */,
 				32BE807A15C2C34A00240EC5 /* pinGreen.png in Resources */,
+				320AFA7818533E4500A03F5D /* SphericalMercatorMosaic.png in Resources */,
 				32BE807B15C2C34A00240EC5 /* pinGreen@2x.png in Resources */,
 				32BE807C15C2C34A00240EC5 /* pinPurple.png in Resources */,
 				32BE807E15C2C34A00240EC5 /* pinRed.png in Resources */,
@@ -1633,6 +1713,8 @@
 				32BB69E11623AB80000D778D /* Earthquakes.mbtiles in Resources */,
 				32DB44A51627C4090066D02B /* Default-Portrait~iphone-568h@2x.png in Resources */,
 				32DB44A71627C45C0066D02B /* Default-Portrait~iphone@2x.png in Resources */,
+				32F6628317FFE61A0084ACA6 /* mtranierflight.csv in Resources */,
+				32C500AC1855AC5800016EFD /* SphericalMercatorMosaic2.png in Resources */,
 				32DB44A91627D84F0066D02B /* Default-Portrait@2x~ipad.png in Resources */,
 				32DB44AB1627DB3B0066D02B /* Default-Landscape@2x~ipad.png in Resources */,
 				32DB44AD1627F8760066D02B /* blueplane@2x.png in Resources */,
@@ -1679,6 +1761,7 @@
 				328D172C16B8976F00C460B4 /* tile_2.0.png in Resources */,
 				328D172D16B8976F00C460B4 /* tile_1.0.png in Resources */,
 				328D172E16B8976F00C460B4 /* tile_0.0.png in Resources */,
+				32F7566A181AF1BF0097DB9C /* TerrainExplorerUI.xib in Resources */,
 				328D173416B8984000C460B4 /* tile_4.1.png in Resources */,
 				328D173516B8984000C460B4 /* tile_3.1.png in Resources */,
 				328D173616B8984000C460B4 /* tile_2.1.png in Resources */,
@@ -1689,7 +1772,6 @@
 				32E24CFA16BB6FF5008EC5D3 /* lettertile2.png in Resources */,
 				32E24CFB16BB6FF5008EC5D3 /* lettertile1.png in Resources */,
 				32E24CFC16BB6FF5008EC5D3 /* lettertile0.png in Resources */,
-				32D03B8716C31FA300AF2508 /* california.txt in Resources */,
 				32062A5316CDCE7700E6D862 /* refreshregionstress.txt in Resources */,
 				3222877716EC6BDE009ED5F2 /* blueplanesmall.png in Resources */,
 				3222877816EC6BDE009ED5F2 /* blueplanesmall@2x.png in Resources */,
@@ -1721,6 +1803,7 @@
 				32A5E9DD1763118900D0E136 /* apple_water@2x.png in Resources */,
 				3228DB4E1769451A00135AAB /* grayGridTransparent.png in Resources */,
 				32C6F309178CC72D00DE3724 /* open-streets-dc-15.mbtiles in Resources */,
+				32C500AE1855ACFA00016EFD /* SphericalMercatorMosaic3.png in Resources */,
 				32B3192717D137DC00B7CF1C /* Places.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1764,6 +1847,7 @@
 				3232C6E015CB140500930E5B /* SQLiteDB.cpp in Sources */,
 				3228C67C15DD27A7005159C8 /* METest.m in Sources */,
 				3228C68515DD3AC4005159C8 /* METestManager.m in Sources */,
+				32F75669181AF1BF0097DB9C /* TerrainExplorerUI.m in Sources */,
 				3228C68815DD3B4D005159C8 /* METestCategory.m in Sources */,
 				32AD546F15DEC4BF00D9C048 /* MEInternetTileProvider.m in Sources */,
 				32AD547215DEC4EE00D9C048 /* MEUIImageTileProviderTest.m in Sources */,
@@ -1809,10 +1893,13 @@
 				32F5A72F162E204600784726 /* MEFileDownloader.m in Sources */,
 				3271FEBD162FBA4500E5D6AE /* MapLoading.m in Sources */,
 				32D73ED7163A536D00F12956 /* MEShapeFileTest.m in Sources */,
+				32DE322D185990F30009FBE3 /* MarkerDatabaseSwap.m in Sources */,
 				324FF5A9164226B400551EA0 /* MEAnimatedSlippyMapTest.m in Sources */,
 				32B1916D16434715008A714A /* ComplexRoute.m in Sources */,
 				32258A40164C230900B5460E /* CameraTests.m in Sources */,
+				32807BA517FFDE41008EFFFF /* ME3DTerrainTests.m in Sources */,
 				329FD21C164CCF7B00333703 /* MapIsVisibleTest.m in Sources */,
+				328E1353188909EC00825948 /* LicenseManagementTest.m in Sources */,
 				32A5697C164F1F2900130615 /* FlightPlayback.m in Sources */,
 				32A7C28C1656FB990045E2F5 /* MapManager.m in Sources */,
 				32A7C28D1656FB990045E2F5 /* MEMap.m in Sources */,
@@ -1829,10 +1916,9 @@
 				3292449216B03C970058A335 /* MELocalTerrainMaps.m in Sources */,
 				329244CE16B0A1AC0058A335 /* METilesNotAvailableTest.m in Sources */,
 				329244F216B45A540058A335 /* MERefreshMapTests.m in Sources */,
+				320FD2E21819D8E700B51C64 /* TerrainExplorer.m in Sources */,
 				3257BA1716B9ADCB00C72C89 /* MERefreshAllMapsTest.m in Sources */,
 				32E24CF216BB5CC1008EC5D3 /* MESparseTileMapTest.m in Sources */,
-				32D03B8A16C31FDF00AF2508 /* MESimpleKMLReader.mm in Sources */,
-				322F52ED16C3637300B91B68 /* MEKMLShapes.m in Sources */,
 				32062A5616CDCEBC00E6D862 /* BoundingBoxReader.mm in Sources */,
 				32B75A2E17271672006CDFC6 /* BlinkingMarkerTests.m in Sources */,
 				3224C08F17286FE5004099F4 /* AirTrafficScenario.m in Sources */,
@@ -1848,6 +1934,9 @@
 				32F41D9117C08B490035F602 /* TerrainInRadiusTests.m in Sources */,
 				322A51A117C2A05400E666B6 /* TerrainMapFinder.m in Sources */,
 				32B3192517D1338D00B7CF1C /* Places.m in Sources */,
+				B9AF35AA17E26F640088C948 /* MEMarkerTileProvider.m in Sources */,
+				B9AF35AD17E270580088C948 /* MEMarkerTileProviderTests.m in Sources */,
+				320AFA7B18533E9300A03F5D /* MEMosiacTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1938,11 +2027,12 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bruce Shankle III (W5GQ6H9P39)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bruce Shankle III (W5GQ6H9P39)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/dxjacob/Develop/Skypack/iOS/Mapp,
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1956,8 +2046,8 @@
 					"\"$(SRCROOT)/Mapp/libs\"",
 				);
 				PRODUCT_NAME = mapp;
-				PROVISIONING_PROFILE = "BD0D9310-3C40-42D7-9B3A-AD3C642592D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD0D9310-3C40-42D7-9B3A-AD3C642592D9";
+				PROVISIONING_PROFILE = "E9BD6DF8-6F24-48AB-AC0B-9F60D78437E0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9BD6DF8-6F24-48AB-AC0B-9F60D78437E0";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1970,12 +2060,13 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bruce Shankle III (W5GQ6H9P39)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bruce Shankle III (W5GQ6H9P39)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/dxjacob/Develop/Skypack/iOS/Mapp,
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1991,8 +2082,8 @@
 					"\"$(SRCROOT)/Mapp/libs\"",
 				);
 				PRODUCT_NAME = mapp;
-				PROVISIONING_PROFILE = "BD0D9310-3C40-42D7-9B3A-AD3C642592D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BD0D9310-3C40-42D7-9B3A-AD3C642592D9";
+				PROVISIONING_PROFILE = "E9BD6DF8-6F24-48AB-AC0B-9F60D78437E0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E9BD6DF8-6F24-48AB-AC0B-9F60D78437E0";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2027,12 +2118,13 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Bruce Shankle III";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bruce Shankle III";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/dxjacob/Develop/Skypack/iOS/Mapp,
 				);
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2052,7 +2144,7 @@
 					"-DTESTFLIGHT=1",
 				);
 				PRODUCT_NAME = mapp;
-				PROVISIONING_PROFILE = "832D4B6B-6662-48D6-ADC0-461E6018590C";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "832D4B6B-6662-48D6-ADC0-461E6018590C";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SUPPORTED_PLATFORMS = iphoneos;

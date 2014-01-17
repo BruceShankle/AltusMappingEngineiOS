@@ -3,8 +3,15 @@
 #import <Foundation/Foundation.h>
 #import "../METest.h"
 
-//@interface MEDatabaseStressTest : METest
-//@end
+@interface MEGreenModeTest : METest
+@end
+
+@interface MEAdjustFramerate : METest
+@end
+
+@interface MEAppManagedTimer : METest
+@property (retain) CADisplayLink* displayLink;
+@end
 
 @interface METileLevelBiasTest : METest
 @end

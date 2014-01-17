@@ -24,7 +24,7 @@
     self.isRunning = YES;
 	NSString* shapeFilePath;
 	shapeFilePath = [[NSBundle mainBundle] pathForResource:@"tgr48171lkA"
-									ofType:@"shp"];
+                                                    ofType:@"shp"];
 	
 	//Create a style
 	MELineStyle* lineStyle=[[[MELineStyle alloc]init]autorelease];
@@ -40,13 +40,13 @@
 	//Add shape file to vector map
 	[self.meMapViewController addShapeFileToVectorMap:self.name
 										shapeFilePath:shapeFilePath
-												 style:lineStyle];
+                                                style:lineStyle];
 }
 
 - (void) stop
 {
 	[self.meMapViewController removeMap:self.name
-										   clearCache:YES];
+                             clearCache:YES];
 	self.isRunning = NO;
 }
 

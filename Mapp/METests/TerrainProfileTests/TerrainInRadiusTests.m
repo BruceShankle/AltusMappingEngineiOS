@@ -179,7 +179,7 @@
 	
 	//Ask mapping engine for terrain height and marker weights on another thread.
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		minMax = [self.meMapViewController getMinMaxTerrainHeightsAroundLocation:self.terrainMaps
+		minMax = [METerrainProfiler getMinMaxTerrainHeightsAroundLocation:self.terrainMaps
 																		location:self.centerLocation
 																		  radius:self.nauticalMileRadius];
 		

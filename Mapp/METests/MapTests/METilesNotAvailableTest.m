@@ -21,7 +21,7 @@
 							   tile.slippyY,
 							   tile.slippyZ];
 		UIImage* uiImage;
-		uiImage = [[MEFontUtil newImageWithFontOutlined:@"Arial"
+		uiImage = [[MEFontUtil newImageWithFontOutlined:@"ArialMT"
 												  fontSize:20
 												 fillColor:[UIColor whiteColor]
 											   strokeColor:[UIColor blackColor]

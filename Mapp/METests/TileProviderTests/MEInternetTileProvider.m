@@ -282,8 +282,8 @@
 	self = [super init];
     if ( self )
 	{
-		self.mapDomain = @"c.tiles.mapbox.com/v3/examples.map-uci7ul8p";
-		self.shortName = @"mapboxlandcover";
+		self.mapDomain = @"a.tiles.mapbox.com/v3/dxjacob.map-s5qr595q";
+		self.shortName = @"mapboxstreets";
 		self.returnUIImages = YES;
 		self.copyrightNotice = @"Source: MapBox, LLC http://www.mapbox.com";
     }
@@ -311,7 +311,7 @@
 -(id) init{
 	self = [super init];
     if ( self ){
-		self.mapDomain = @"d.tiles.mapbox.com/v3/examples.map-qfyrx5r8";
+		self.mapDomain = @"b.tiles.mapbox.com/v3/examples.map-qfyrx5r8";
 		self.shortName = @"mapboxsatellite";
 		self.returnUIImages = YES;
 		self.copyrightNotice = @"Source: MapBox, LLC http://www.mapbox.com";
@@ -404,6 +404,24 @@
 	{
 		self.mapDomain = @"b.tile.stamen.com/watercolor";
 		self.shortName = @"stamenwatercolor";
+		self.returnUIImages = YES;
+		self.copyrightNotice = @"Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.";
+    }
+    return self;
+}
+
+@end
+
+/////////////////////////////////////////////////////////////////////////////////
+@implementation MEStamenTonerTileProvider
+
+-(id) init
+{
+	self = [super init];
+    if ( self )
+	{
+		self.mapDomain = @"b.tile.stamen.com/toner";
+		self.shortName = @"stamentoner";
 		self.returnUIImages = YES;
 		self.copyrightNotice = @"Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under CC BY SA.";
     }

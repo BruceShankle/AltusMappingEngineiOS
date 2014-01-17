@@ -17,4 +17,12 @@ static const CLLocationCoordinate2D MT_RANIER = {46.8533, -121.7604};
 static const CLLocationCoordinate2D US_MIN = {US_SOUTHMOST, US_WESTMOST};
 static const CLLocationCoordinate2D US_MAX = {US_NORTHMOST, US_EASTMOST};
 
+static const CLLocationCoordinate2D HOUSTON_COORD = {29.76277777777778, -95.38305555555556};
+static const CLLocationCoordinate2D AUSTIN_COORD = {30.2500, -97.7500};
+static const CLLocationCoordinate2D DALLAS_COORD = {32.7758, -96.7967};
+static const CLLocationCoordinate2D MIAMI_COORD = {25.7877, -80.2241};
+static const CLLocationCoordinate2D RALEIGH_COORD = {35.8189, -78.6447};
+static const CLLocationCoordinate2D NEWYORKCITY_COORD = {40.6700, -73.9400};
+
+
 

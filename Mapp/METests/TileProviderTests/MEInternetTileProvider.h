@@ -51,8 +51,10 @@
 @interface MEStamenTerrainTileProvider : MEMapBoxTileProvider
 @end
 
-
 @interface MEStamenWaterColorTileProvider : MEMapBoxTileProvider
+@end
+
+@interface MEStamenTonerTileProvider : MEMapBoxTileProvider
 @end
 
 

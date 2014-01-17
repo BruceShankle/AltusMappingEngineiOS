@@ -39,7 +39,7 @@
 		self.routeViewVerticalBuffer = 20;
 		self.lookAtRouteAnimationDuration = 1.0;
 		self.obstacleDatabasePath = [MarkerTestData towerMarkerBundlePath];
-		self.bufferRadius = 1;
+		self.bufferRadius = 2.5;
 		self.drawTerrainProfile = YES;
 		self.terrainProfileViewHeight = 150;
 		self.maxHeightInFeet = 15000;
@@ -247,14 +247,14 @@
 		
 		//Update terrain height samples along route
 		self.terrainProfileView.heightSamples =
-		[self.meMapViewController getTerrainProfile:self.terrainMaps
+		[METerrainProfiler getTerrainProfile:self.terrainMaps
 										  wayPoints:self.wayPoints
 								   samplePointCount:sampleCount
 									  bufferRadius:self.bufferRadius];
 		
 		//Update marker weight samples along route
 		self.terrainProfileView.weightSamples =
-		[self.meMapViewController getMaxMarkerWeightsAlongRoute:self.obstacleDatabasePath
+		[MEMarkerQuery getMaxMarkerWeightsAlongRoute:self.obstacleDatabasePath
 												tableNamePrefix:@""
 													  wayPoints:self.wayPoints
 											   samplePointCount:sampleCount
@@ -262,7 +262,7 @@
 		
 		//Get markers that lie along the route
 		self.markersAlongRoute =
-		[self.meMapViewController getMarkersAlongRoute:self.obstacleDatabasePath
+		[MEMarkerQuery getMarkersAlongRoute:self.obstacleDatabasePath
 									   tableNamePrefix:@""
 											 wayPoints:self.wayPoints
 										 bufferRadius:self.bufferRadius];
@@ -445,6 +445,83 @@
 							   CGPointMake(-121.546668, 46.862655)]];
 }
 @end
+
+///////////////////////////////////////////////////////////////////
+@implementation TerrainProfileMtRanierAcuteA
+- (id) init{
+	if(self==[super init]){
+		self.name = @"Mt. Ranier AcuteA";
+	}
+	return self;
+}
+- (void) createWayPoints{
+	self.wayPoints = [[[NSMutableArray alloc]init]autorelease];
+    [self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.926567, 46.847675)]];
+	[self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.757665, 46.854913)]];
+    [self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.546668, 46.5)]];
+}
+@end
+
+///////////////////////////////////////////////////////////////////
+@implementation TerrainProfileMtRanierAcuteB
+- (id) init{
+	if(self==[super init]){
+		self.name = @"Mt. Ranier AcuteB";
+	}
+	return self;
+}
+- (void) createWayPoints{
+	self.wayPoints = [[[NSMutableArray alloc]init]autorelease];
+    [self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.926567, 46.847675)]];
+	[self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.757665, 46.854913)]];
+    [self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.546668, 47.1)]];
+}
+@end
+
+///////////////////////////////////////////////////////////////////
+@implementation TerrainProfileMtRanierObtuseA
+- (id) init{
+	if(self==[super init]){
+		self.name = @"Mt. Ranier ObtuseA";
+	}
+	return self;
+}
+- (void) createWayPoints{
+	self.wayPoints = [[[NSMutableArray alloc]init]autorelease];
+    [self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.926567, 46.847675)]];
+	[self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.757665, 46.854913)]];
+    [self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.926668, 46.5)]];
+}
+@end
+
+///////////////////////////////////////////////////////////////////
+@implementation TerrainProfileMtRanierObtuseB
+- (id) init{
+	if(self==[super init]){
+		self.name = @"Mt. Ranier ObtuseB";
+	}
+	return self;
+}
+- (void) createWayPoints{
+	self.wayPoints = [[[NSMutableArray alloc]init]autorelease];
+    [self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.926567, 46.847675)]];
+	[self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.757665, 46.854913)]];
+    [self.wayPoints addObject:[NSValue valueWithCGPoint:
+							   CGPointMake(-121.926668, 47.1)]];
+}
+@end
+
 
 ///////////////////////////////////////////////////////////////////
 @implementation TerrainProfileMtRanierSpiral
@@ -869,13 +946,13 @@
 - (NSArray*) getMarkers:(CLLocationCoordinate2D) location{
 	
 	//Test getting highest marker
-	self.highestMarker = [self.meMapViewController getHighestMarkerAroundLocation:[MarkerTestData towerMarkerBundlePath]
+	self.highestMarker = [MEMarkerQuery getHighestMarkerAroundLocation:[MarkerTestData towerMarkerBundlePath]
 																  tableNamePrefix:@""
 																		 location:location
 																		   radius:self.radius];
 	
 	//Return all markers
-	return [self.meMapViewController getMarkersAroundLocation:[MarkerTestData towerMarkerBundlePath]
+	return [MEMarkerQuery getMarkersAroundLocation:[MarkerTestData towerMarkerBundlePath]
 									   tableNamePrefix:@""
 											  location:location
 												radius:self.radius];
@@ -1026,13 +1103,13 @@
 - (NSArray*) getMarkers:(CLLocationCoordinate2D) location{
 	
 	//Get highest marker
-	self.highestMarker = [self.meMapViewController getHighestMarkerInBoundingBox:[MarkerTestData towerMarkerBundlePath]
+	self.highestMarker = [MEMarkerQuery getHighestMarkerInBoundingBox:[MarkerTestData towerMarkerBundlePath]
 																 tableNamePrefix:@""
 															   southWestLocation:self.swCorner
 															   northEastLocation:self.neCorner];
 
 	//Return the rest
-	return [self.meMapViewController getMarkersInBoundingBox:[MarkerTestData towerMarkerBundlePath]
+	return [MEMarkerQuery getMarkersInBoundingBox:[MarkerTestData towerMarkerBundlePath]
 											 tableNamePrefix:@""
 										   southWestLocation:self.swCorner
 										   northEastLocation:self.neCorner];
@@ -1143,13 +1220,13 @@
 	
 	//Get highest marker
 	/*
-	self.highestMarker = [self.meMapViewController getHighestMarkerInBoundingBox:[MarkerTestData towerMarkerBundlePath]
+	self.highestMarker = [MEMarkerQuery getHighestMarkerInBoundingBox:[MarkerTestData towerMarkerBundlePath]
 																 tableNamePrefix:@""
 															   southWestLocation:self.swCorner
 															   northEastLocation:self.neCorner];*/
 	
 	//Return the rest
-	return [self.meMapViewController getMarkersOnRadial:[MarkerTestData towerMarkerBundlePath]
+	return [MEMarkerQuery getMarkersOnRadial:[MarkerTestData towerMarkerBundlePath]
 										tableNamePrefix:@""
 											   location:self.currentLocation
 												 radial:self.heading
@@ -1382,7 +1459,7 @@
 	CLLocationCoordinate2D neCorner = CLLocationCoordinate2DMake(location.latitude+0.25,
 																 location.longitude+0.25);
 	
-	CGPoint minMax  = [self.meMapViewController getMinMaxTerrainHeightsInBoundingBox:self.terrainMaps
+	CGPoint minMax  = [METerrainProfiler getMinMaxTerrainHeightsInBoundingBox:self.terrainMaps
 															  southWestLocation:swCorner
 															  northEastLocation:neCorner];
 	return [self metersToFeet:minMax.y];
@@ -1397,7 +1474,7 @@
 	CLLocationCoordinate2D neCorner = CLLocationCoordinate2DMake(location.latitude+0.25,
 																 location.longitude+0.25);
 	//Get highest marker
-	MEMarker* highestMarker = [self.meMapViewController getHighestMarkerInBoundingBox:[MarkerTestData towerMarkerBundlePath]
+	MEMarker* highestMarker = [MEMarkerQuery getHighestMarkerInBoundingBox:[MarkerTestData towerMarkerBundlePath]
 																 tableNamePrefix:@""
 															   southWestLocation:swCorner
 															   northEastLocation:neCorner];
@@ -1492,7 +1569,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 
 -(double) getMaxTerrainHeight:(CLLocationCoordinate2D) location{
 	
-	CGPoint minMax  = [self.meMapViewController getMinMaxTerrainHeightsAroundLocation:self.terrainMaps
+	CGPoint minMax  = [METerrainProfiler getMinMaxTerrainHeightsAroundLocation:self.terrainMaps
 																			 location:location
 																			   radius:5];
 	return [self metersToFeet:minMax.y];
@@ -1655,7 +1732,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	
 	//Ask mapping engine for terrain height and marker weights on another thread.
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		minMax = [self.meMapViewController getMinMaxTerrainHeightsInBoundingBox:self.terrainMaps
+		minMax = [METerrainProfiler getMinMaxTerrainHeightsInBoundingBox:self.terrainMaps
 																	  southWestLocation:self.swCorner
 																	  northEastLocation:self.neCorner];
 		

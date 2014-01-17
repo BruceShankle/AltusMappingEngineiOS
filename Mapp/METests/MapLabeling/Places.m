@@ -39,7 +39,7 @@
 	mapInfo.mapType = kMapTypeFileMarker;
 	mapInfo.sqliteFileName = [[NSBundle mainBundle] pathForResource:@"Places"
 															 ofType:@"sqlite"];
-	mapInfo.zOrder = 20;
+	mapInfo.zOrder = 21;
 	mapInfo.meMarkerMapDelegate = self;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 }
@@ -51,7 +51,7 @@
 - (void) mapView:(MEMapView *)mapView
 updateMarkerInfo:(MEMarkerInfo *)markerInfo
 		 mapName:(NSString *)mapName{
-	UIImage* image = [MEFontUtil newImageWithFont:@"Arial"
+	UIImage* image = [MEFontUtil newImageWithFont:@"ArialMT"
 						fontSize:15
 					   fillColor:[UIColor blackColor]
 					 strokeColor:[UIColor whiteColor]

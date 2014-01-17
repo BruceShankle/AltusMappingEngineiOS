@@ -441,7 +441,7 @@
 @implementation MEMapBoxLandCoverMapTest
 - (id) init{
     if(self = [super init]){
-        self.name=@"MapBox LandCover";
+        self.name=@"MapBox Streets";
     }
     return self;
 }
@@ -560,7 +560,7 @@
 @end
 
 ////////////////////////////////////////////////////////////////////////
-@implementation MEStamenWaerColorMapTest
+@implementation MEStamenWaterColorMapTest
 
 - (id) init
 {
@@ -574,6 +574,23 @@
 -(MEInternetTileProvider*) createTileProvider
 {
 	return [[MEStamenWaterColorTileProvider alloc]init];
+}
+@end
+
+////////////////////////////////////////////////////////////////////////
+@implementation MEStamenTonerMapTest
+
+- (id) init{
+    if(self = [super init])
+    {
+        self.name=@"Stamen Toner";
+    }
+    return self;
+}
+
+-(MEInternetTileProvider*) createTileProvider
+{
+	return [[MEStamenTonerTileProvider alloc]init];
 }
 @end
 
@@ -609,7 +626,7 @@
 {
     if(self = [super init])
     {
-        self.name=@"MapBox LandCover - 2 Byte";
+        self.name=@"MapBox Streets - 2 Byte";
 		self.compressTextures = YES;
 		self.zOrder = 4;
     }

@@ -12,6 +12,7 @@
 #import "MapViewController.h"
 #import "METests/METest.h"
 #import "MapManager/MapManager.h"
+#import "METests/TerrainProfileTests/TerrainMapFinder.h"
 
 @implementation MapSelectorTableViewController
 @synthesize meViewController;
@@ -55,18 +56,18 @@
 	int totalCount;
 	totalCount = self.mapManager.mapCategories.count;
 	//totalCount++; //For streamed maps
+	totalCount++; //For 3D terrain maps
 	return totalCount;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	NSArray* categories=self.mapManager.mapCategories;
-	if(section<=categories.count-1)
-	{
+	if(section<=categories.count-1){
 		MEMapCategory* category=[categories objectAtIndex:section];
 		return category.Name;
 	}
-	return @"Streamed Maps";
+	return @"3D Terrain";
 }
 
 
@@ -74,14 +75,26 @@
 {
 	NSArray* categories=self.mapManager.mapCategories;
 	
-	if(section<=categories.count-1)
-	{
+	if(section<=categories.count-1){
 		MEMapCategory* category=[categories objectAtIndex:section];
 		return [category.Maps count];
 	}
 	
-	//Must be stream category
-	return self.remoteMapCatalog.mapCount;
+	//3D terrain category
+	//Get number of terrain maps.
+	NSMutableArray* terrainMaps = [TerrainMapFinder getTerrainMaps];
+	return terrainMaps.count;
+}
+
+-(NSString*) get3DName:(NSString*) name{
+	return [NSString stringWithFormat:@"%@_3D", name];
+}
+
+- (MEMapInfo*) getTerrain3DMapInfo:(int) index{
+	NSMutableArray* terrainMaps = [TerrainMapFinder getTerrainMaps];
+	MEMapInfo* mapInfo = [terrainMaps objectAtIndex:index];
+	mapInfo.name = [self get3DName:mapInfo.name];
+	return mapInfo;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -113,12 +126,11 @@
 	}
 	else
 	{
-		//Get name from json array
-		cellName = [self.remoteMapCatalog mapName:indexPath.row];
-		NSString* mapDomain = [self.remoteMapCatalog mapDomain:indexPath.row];
+		MEMapInfo* mapInfo = [self getTerrain3DMapInfo:indexPath.row];
+		cellName = mapInfo.name;
 		
-		//Turn check on or off
-		if([self.meViewController containsMap:mapDomain])
+		//Turn check on or off depending on whether or not map is on
+		if([self.meViewController containsMap:mapInfo.name])
 		{
 			[cell setAccessoryType:UITableViewCellAccessoryCheckmark];
 		}
@@ -133,51 +145,25 @@
 
 
 #pragma mark - Table view delegate
-- (BOOL) toggleStreamableMap:(int) index
-{
-	NSString* mapDomain = [self.remoteMapCatalog mapDomain:index];
+- (BOOL) toggleTerrain3DMap:(int) index{
 	
-	BOOL isOn = [self.meViewController containsMap:mapDomain];
+	MEMapInfo* mapInfo = [self getTerrain3DMapInfo:index];
 	
-	if(!isOn)
-	{
-		//Create a BA3 style streaming tile provider
-		MapStreamingTileProvider* tileProvider;
-		tileProvider = [[MapStreamingTileProvider alloc] init];
-		tileProvider.mapDomain = mapDomain;
-		tileProvider.meMapViewController = self.meViewController;
-		
-		RemoteMapInfo mapInfo = [self.remoteMapCatalog mapInfo:index];
-		
-		//Set up the the virtual map info
-		MEVirtualMapInfo* vMapInfo = [[[MEVirtualMapInfo alloc]init]autorelease];
-		vMapInfo.name = mapDomain;
-		vMapInfo.meTileProvider = tileProvider;
-		vMapInfo.maxLevel = mapInfo.maxLevel;
-		vMapInfo.minX = mapInfo.minX;
-		vMapInfo.minY = mapInfo.minY;
-		vMapInfo.maxX = mapInfo.maxX;
-		vMapInfo.maxY = mapInfo.maxY;
-		vMapInfo.borderPixelCount = mapInfo.borderSize;
-		vMapInfo.isSphericalMercator = NO;
-		tileProvider.isAsynchronous = YES;
-		if(self.mapViewController.loadLowestDetailFirst)
-			vMapInfo.loadingStrategy = kLowestDetailFirst;
-		else
-			vMapInfo.loadingStrategy = kHighestDetailOnly;
-		vMapInfo.contentType = kZoomIndependent;
-		
-		//Add the virtual map
-		[self.meViewController addMapUsingMapInfo:vMapInfo];
-		
-		
+	BOOL isOn = [self.meViewController containsMap:mapInfo.name];
+	
+	if(!isOn){
+		//Add map
+		METerrain3DMapInfo* mapInfo3D = [[[METerrain3DMapInfo alloc]init]autorelease];
+		mapInfo3D.name = mapInfo.name;
+		mapInfo3D.sqliteFileName = mapInfo.sqliteFileName;
+		mapInfo3D.dataFileName = mapInfo.dataFileName;
+		[self.meViewController addMapUsingMapInfo:mapInfo3D];
 		isOn = YES;
-		
 	}
 	else
 	{
-		//Turn virtual map off.
-		[self.meViewController removeMap:mapDomain clearCache:NO];
+		//Remove map
+		[self.meViewController removeMap:mapInfo.name clearCache:NO];
 		isOn = NO;
 	}
 	return isOn;
@@ -307,7 +293,7 @@
 							 compressTextures:NO];
 
                 
-				[self.meTestManager setCopyrightNotice:@"Terrain and water data courtesy of NASA SRTM."];
+				[self.meTestManager setCopyrightNotice:@""];
             }
             else
             {
@@ -321,7 +307,7 @@
 	else
 	{
 		//Turn streamable map on or off
-		isOn = [self toggleStreamableMap:indexPath.row];
+		isOn = [self toggleTerrain3DMap:indexPath.row];
 	}
 	
 	//Check or uncheck cell

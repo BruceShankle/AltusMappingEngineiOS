@@ -60,7 +60,10 @@
 @interface MEStamenTerrainMapTest : MEInternetMapTest
 @end
 
-@interface MEStamenWaerColorMapTest : MEInternetMapTest
+@interface MEStamenWaterColorMapTest : MEInternetMapTest
+@end
+
+@interface MEStamenTonerMapTest : MEInternetMapTest
 @end
 
 @interface MEIOMHaitiMapTest : MEInternetMapTest

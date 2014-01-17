@@ -98,7 +98,7 @@
 - (void) findOtherTests
 {
 	[self getTestFromCategory:@"Internet Maps" testName:@"MapBox"];
-	[self getTestFromCategory:@"Internet Maps" testName:@"MapBox LandCover"];
+	[self getTestFromCategory:@"Internet Maps" testName:@"MapBox Streets"];
 	[self getTestFromCategory:@"Internet Maps" testName:@"MapQuest"];
 	[self getTestFromCategory:@"Internet Maps" testName:@"MapQuest Aerial"];
 	[self getTestFromCategory:@"Internet Maps" testName:@"Open Street Maps"];

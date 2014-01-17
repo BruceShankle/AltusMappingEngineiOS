@@ -9,6 +9,11 @@
 @end
 
 //Toggle marker appearance by updating a single cached marker image
+@interface CollisionMarkerTest : BlinkingMarkerTest
+@end
+
+
+//Toggle marker appearance by updating a single cached marker image
 @interface BlinkingMarkerCachedTest : BlinkingMarkerTest
 @end
 

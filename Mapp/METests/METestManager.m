@@ -24,7 +24,6 @@
 #import "VectorTests/MEInMemoryVectorLinesTest.h"
 #import "VectorTests/MEDynamicLinesTest.h"
 #import "VectorTests/MEShapeFileTest.h"
-#import "VectorTests/MEKMLShapes.h"
 #import "TileProviderTests/MEUIImageTileProviderTest.h"
 #import "TileProviderTests/MEInvisibleTileProviderTest.h"
 #import "TileProviderTests/MEMapServerTileProviderTest.h"
@@ -57,11 +56,17 @@
 #import "DynamicMarkers/AirTrafficScenario.h"
 #import "DynamicMarkers/TowersWithHeightColorBarTest.h"
 #import "VectorTileProvider/MEVectorTileProviderTests.h"
+#import "MarkerTileProvider/MEMarkerTileProviderTests.h"
 #import "WMSTests/MEWMSTests.h"
 #import "TerrainProfileTests/TerrainProfileTests.h"
 #import "TerrainProfileTests/TerrainGridTests.h"
 #import "TerrainProfileTests/TerrainInRadiusTests.h"
 #import "MapLabeling/Places.h"
+#import "3DTerrain/ME3DTerrainTests.h"
+#import "3DTerrain/TerrainExplorer.h"
+#import "MosaicTests/MEMosiacTests.h"
+#import "MarkerTests/MarkerDatabaseSwap.h"
+#import "LicenseManagement/LicenseManagementTest.h"
 
 @implementation METestManager
 
@@ -169,6 +174,27 @@
     return nil;
 }
 
+- (void) createMosaicTests {
+	ME3DTerrainCategory* testCategory = [[[ME3DTerrainCategory alloc]init]autorelease];
+    testCategory.name = @"Mosaics";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[MESphericalMercatorMosiacPNG class]];
+}
+
+- (void) create3DTests {
+	ME3DTerrainCategory* testCategory = [[[ME3DTerrainCategory alloc]init]autorelease];
+    testCategory.name = @"3D";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[ME3DCameraToggle class]];
+    [testCategory addTestClass:[ME3DCameraHeadingIncrement class]];
+    [testCategory addTestClass:[ME3DCameraHeadingDecrement class]];
+    
+    [testCategory addTestClass:[ME3DCameraPitchIncrement class]];
+    [testCategory addTestClass:[ME3DCameraPitchDecrement class]];
+	[testCategory addTestClass:[ME3DTerrainTest1 class]];
+    [testCategory addTestClass:[ME3DJumpToBug class]];
+}
+
 - (void) createLabelTests {
 	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"Labeling";
@@ -198,6 +224,17 @@
     testCategory.name = @"Vector Tile Providers";
     [self addCategory:testCategory];
 	[testCategory addTestClass:[MEVectorTPSimpleLines class]];
+    [testCategory addTestClass:[MEWorldVectorVirtual class]];
+    [testCategory addTestClass:[MEWorldVectorVirtualStyle2 class]];
+    [testCategory addTestClass:[MEWorldVectorVirtualStyle3 class]];
+	[testCategory addTestClass:[MEWorldVectorVirtualRemoveMap class]];
+}
+
+- (void) createMarkerTileProviderTests {
+	METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
+    testCategory.name = @"Marker Tile Providers";
+    [self addCategory:testCategory];
+	[testCategory addTestClass:[MEMarkerVirtual class]];
 }
 
 - (void) createTerrainProfileTests{
@@ -218,6 +255,10 @@
 	[testCategory addTestClass:[TerrainProfileDeathValley class]];
 	[testCategory addTestClass:[TerrainProfileAntiMeridian class]];
 	[testCategory addTestClass:[TerrainProfileMtRanier class]];
+    [testCategory addTestClass:[TerrainProfileMtRanierAcuteA class]];
+    [testCategory addTestClass:[TerrainProfileMtRanierAcuteB class]];
+    [testCategory addTestClass:[TerrainProfileMtRanierObtuseA class]];
+    [testCategory addTestClass:[TerrainProfileMtRanierObtuseB class]];
 	[testCategory addTestClass:[TerrainProfileMtRanierSpiral class]];
 	[testCategory addTestClass:[TerrainProfileMtRanierZigZag class]];
 	[testCategory addTestClass:[TerrainProfileArctic class]];
@@ -263,7 +304,9 @@
     METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"Core";
     [self addCategory:testCategory];
-	//[testCategory addTestClass:[MEDatabaseStressTest class]];
+	[testCategory addTestClass:[MEGreenModeTest class]];
+	[testCategory addTestClass:[MEAdjustFramerate class]];
+	[testCategory addTestClass:[MEAppManagedTimer class]];
 	[testCategory addTestClass:[MEInitializationTest class]];
 	[testCategory addTestClass:[METileLevelBiasTest class]];
 	[testCategory addTestClass:[METileLevelBiasSmoothingTest class]];
@@ -344,7 +387,8 @@
 	[testCategory addTestClass:[MEMapQuestAerialMapTest2 class]];
 	[testCategory addTestClass:[MEOpenStreetMapsMapTest class]];
 	[testCategory addTestClass:[MEIOMHaitiMapTest class]];
-	[testCategory addTestClass:[MEStamenWaerColorMapTest class]];
+	[testCategory addTestClass:[MEStamenWaterColorMapTest class]];
+	[testCategory addTestClass:[MEStamenTonerMapTest class]];
 	
 	//Add compressed internet maps
 	testCategory = [[[METestCategory alloc]init]autorelease];
@@ -365,7 +409,6 @@
     METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"Vectors";
     [self addCategory:testCategory];
-	[testCategory addTestClass:[MECaliforniaPolygon class]];
     [testCategory addTestClass:[MEInMemoryVectorPolygonsTest class]];
 	[testCategory addTestClass:[MEInMemoryVectorPolygonsStressTest class]];
 	[testCategory addTestClass:[MEInMemoryVectorPolygonEdgeCases class]];
@@ -381,6 +424,7 @@
     testCategory.name = @"Markers";
 	[self addCategory:testCategory];
 	
+    [testCategory addTestClass:[MarkerDatabaseSwap class]];
 	[testCategory addTestClass:[AirTrafficTest class]];
 	[testCategory addTestClass:[MERemoveMarkerTest class]];
 	[testCategory addTestClass:[MEMarkersFastPath class]];
@@ -396,6 +440,7 @@
 	[testCategory addTestClass:[MEMTCountriesAndStateMarkersFromDisk class]];
 	[testCategory addTestClass:[MEMTCitiesFromDisk class]];
 	[testCategory addTestClass:[METowersHeightsMarkersTest class]];
+    [testCategory addTestClass:[METowersHeightsMarkersVirtualTest class]];
 	[testCategory addTestClass:[METowersHeightsMarkersTestRandomFontSize class]];
 	[testCategory addTestClass:[METowersHeightsMarkersTestHalfHidden class]];
 
@@ -442,6 +487,7 @@
     METestCategory* testCategory = [[[METestCategory alloc]init]autorelease];
     testCategory.name = @"Misc";
     [self addCategory:testCategory];
+    [testCategory addTestClass:[LicenseManagementTest class]];
 	[testCategory addTestClass:[MECacheImageOnBackgroundThreadTest class]];
 	[testCategory addTestClass:[MESparseTileMapTest class]];
 	[testCategory addTestClass:[MERefreshAllMapsTest class]];
@@ -530,6 +576,7 @@
 	METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
     testCategory.name = @"Demos";
     [self addCategory:testCategory];
+	[testCategory addTestClass:[MapExplorer class]];
     [testCategory addTestClass:[PlanetWatch class]];
 	[testCategory addTestClass:[PlanetWatchRaster class]];
 	[testCategory addTestClass:[PlanetWatchVector class]];
@@ -540,6 +587,7 @@
 	METestCategory* testCategory = [[[METestCategory alloc] init] autorelease];
     testCategory.name = @"Dynamic Markers";
     [self addCategory:testCategory];
+    [testCategory addTestClass:[CollisionMarkerTest class]];
 	[testCategory addTestClass:[AirTrafficScenario class]];
 	[testCategory addTestClass:[TowersWithHeightColorBarTest class]];
     [testCategory addTestClass:[BlinkingMarkerTest class]];
@@ -563,9 +611,12 @@
 }
 - (void) createAllTests
 {
+    [self createMosaicTests];
+	[self create3DTests];
 	[self createTerrainProfileTests];
 	[self createLabelTests];
 	[self createWMSTests];
+    [self createMarkerTileProviderTests];
 	[self createVectorTileProviderTests];
 	[self createDynamicMarkerTests];
 	[self createLocalTerrainTests];
