@@ -4,10 +4,9 @@
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
 		<title>MEMapViewDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
-		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -155,13 +154,13 @@
 </tr>
 						</tbody></table></div>
 					
-					
-					
+                    
+                    
 					
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>The <a href="MEMapViewDelegate.html">MEMapViewDelegate</a> protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the <a href="../Classes/MEMapView.html">MEMapView</a> class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete.</p>
+						<p>The MEMapViewDelegate protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the <a href="../Classes/MEMapView.html">MEMapView</a> class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete.</p>
 					</div>
 					
 					
@@ -180,91 +179,78 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/mapView:singleTapAt:withLocationCoordinate:">&ndash;&nbsp;mapView:singleTapAt:withLocationCoordinate:</a></code>
-		<span class="tooltip"><p>Called when the user taps on a map.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/mapView:willStartLoadingMap:">&ndash;&nbsp;mapView:willStartLoadingMap:</a></code>
-		<span class="tooltip"><p>Called when the engine begins loading data for a map.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/mapView:didFinishLoadingMap:">&ndash;&nbsp;mapView:didFinishLoadingMap:</a></code>
-		<span class="tooltip"><p>Called when the engine has finished loading map data -OR- all tile requests have been submitted to tile providers for virtual maps.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/mapView:animationPausedOnMap:">&ndash;&nbsp;mapView:animationPausedOnMap:</a></code>
-		<span class="tooltip"><p>For animated maps, called when the animation transitions to a paused state.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/mapView:animationWaitingOnMap:">&ndash;&nbsp;mapView:animationWaitingOnMap:</a></code>
-		<span class="tooltip"><p>For animated maps, called between the paused and playing states when the engine is waiting on full frame sets from the tile provider. This special state can only be entered when the map is paused, play is called, and the necessary tiles are not in the cache.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/mapView:animationPlayingOnMap:">&ndash;&nbsp;mapView:animationPlayingOnMap:</a></code>
-		<span class="tooltip"><p>For animated maps, called when the engine has started cycling through animation frames.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/mapView:animationFrameChangedOnMap:withFrame:">&ndash;&nbsp;mapView:animationFrameChangedOnMap:withFrame:</a></code>
-		<span class="tooltip"><p>For animated maps, called when a frame change occurs.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/panBegan:">&ndash;&nbsp;panBegan:</a></code>
-		<span class="tooltip"><p>Called when the user has started panning the view.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/panEnded:">&ndash;&nbsp;panEnded:</a></code>
-		<span class="tooltip"><p>Called when the panning is completed.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pinchBegan:">&ndash;&nbsp;pinchBegan:</a></code>
-		<span class="tooltip"><p>Called when a pinch operation starts.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pinchEnded:">&ndash;&nbsp;pinchEnded:</a></code>
-		<span class="tooltip"><p>Called when a pinch operation ends.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/meGestureRecognizer:shouldReceiveTouch:">&ndash;&nbsp;meGestureRecognizer:shouldReceiveTouch:</a></code>
-		<span class="tooltip"><p>Called to determine if the engine should receive the given gesture.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/meGestureRecognizerShouldBegin:">&ndash;&nbsp;meGestureRecognizerShouldBegin:</a></code>
-		<span class="tooltip"><p>Called to determine if the given gesture recognizer should begin.</p></span>
 	</span>
 	
 	
@@ -756,6 +742,8 @@
 					</div>
 					
 					
+                    
+                    
 				</div>
 				<div class="main-navigation navigation-bottom">
 					<ul>
@@ -766,9 +754,9 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 BA3, LLC. All rights reserved. (Last updated: 2013-08-30)</span><br />
+						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-01-17)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
 					</div>
 				</div>
