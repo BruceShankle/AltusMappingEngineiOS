@@ -15,18 +15,22 @@
 @property CGFloat frameRate;
 @property CGFloat frameTime;
 @property CGFloat drawCallsPerFrame;
-@property int tileCacheMemorySize;
-@property int tileCacheTileCount;
-@property int inFlightTileCount;
-@property int multiInFlightTileCount;
-@property int appMemoryUsage;
+@property uint tileCacheMemorySize;
+@property uint tileCacheTileCount;
+@property uint inFlightTileCount;
+@property uint multiInFlightTileCount;
+@property uint appMemoryUsage;
 
-@property int serialWorkerBackgroundCount;
-@property int serialWorkerLowCount;
-@property int serialWorkerDefaultCount;
-@property int serialWorkerHighCount;
+@property uint serialWorkerBackgroundCount;
+@property uint serialWorkerLowCount;
+@property uint serialWorkerDefaultCount;
+@property uint serialWorkerHighCount;
 
-@property int totalWorkerCount;
-
+@property uint totalWorkerCount;
+@property uint animationCount;
+@property uint updateablesCount;
+@property uint visibleTileCount;
+@property uint visibleTileCountPreBias;
+@property BOOL cameraIsMoving;
 @end
 

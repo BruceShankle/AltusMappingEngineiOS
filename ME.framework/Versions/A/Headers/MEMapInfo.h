@@ -28,7 +28,9 @@ typedef enum {
 	kMapTypeDynamicMarker,
 	kMapTypeDynamicMarkerFast,
 	kMapTypeFileMBTiles,
-	kMapTypeVirtualVector
+	kMapTypeVirtualVector,
+    kMapTypeVirtualMarker,
+	kMapTypeFileTerrain3D
 } MEMapType;
 
 //////////////////////////////////////////////////
@@ -279,6 +281,10 @@ typedef enum {
 
 @end
 
+////////////////////////////////////////////////////
+/**Describes a 3D terrain map.*/
+@interface METerrain3DMapInfo : MEMapInfo
+@end
 
 
 
