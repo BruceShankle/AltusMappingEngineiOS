@@ -62,12 +62,12 @@
 
 
 //(vec2d origin, double radial, double distance)
-/**Tesselates a route between two georaphic points into an array of points of nodeCount size.*/
+/**Tesselates a route between two geographic points into an array of points of nodeCount size.*/
 +(NSArray*) tesselateRoute:(CGPoint) point1
 					point2:(CGPoint) point2
 				 nodeCount:(int) nodeCount;
 
-/**Tesselates a route between two georaphic points into an array of points along the route separating each node by milesPerNode nautical miles.*/
+/**Tesselates a route between two geographic points into an array of points along the route separating each node by milesPerNode nautical miles.*/
 +(NSArray*) tesselateRoute:(CGPoint) point1
 					point2:(CGPoint) point2
 			  milesPerNode:(double) milesPerNode;
