@@ -1,9 +1,6 @@
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
-
 #pragma once
-
 #define MEFRAMEWORK
-//#define DEBUG_TILE_PROVIDERS
 
 #import <ME/DirectoryInfo.h>
 #import <ME/MELineStyle.h>
@@ -27,3 +24,6 @@
 #import <ME/MEHitTesting.h>
 #import <ME/MEGeometryGroup.h>
 #import <ME/Enums.h>
+#import <ME/MEHeightProfiling.h>
+#import <ME/MEMarker.h>
+#import <ME/MEMarkerQuery.h>
