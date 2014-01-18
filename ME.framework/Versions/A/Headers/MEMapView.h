@@ -1,9 +1,9 @@
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
 
 /**
- MEMapView displays maps, annotations and other content, and handles gestures (panning, zooming, scrolling, tapping) perfomed by the user. MEMapView's interface is similar to that of MKMapView and UIScrollView.
+ MEMapView displays maps, annotations and other content, and handles gestures (panning, zooming, scrolling, tapping) perfomed by the user.
  */
-
+#pragma once
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
@@ -11,6 +11,8 @@
 #import "MEGeometry.h"
 #import "MEGeographicBounds.h"
 #import "MEProtocols.h"
+
+@class MEMapViewController;
 
 @interface MEMapView : GLKView <UIGestureRecognizerDelegate>
 
@@ -21,6 +23,7 @@
 @property (nonatomic, assign) double tileLevelBias;
 @property (nonatomic, assign) BOOL tileBiasSmoothingEnabled;
 @property (nonatomic, assign) double panVelocityScale;
+@property (nonatomic, assign) MEMapViewController* meMapViewController;
 
 @property(nonatomic, readonly, retain) UIPanGestureRecognizer *panGestureRecognizer;
 @property(nonatomic, readonly, retain) UIPinchGestureRecognizer *pinchGestureRecognizer;
@@ -58,7 +61,15 @@
 
 - (CLLocationCoordinate2D) decodeCoordinate:(NSValue*) valueWrappedCoordinate;
 - (NSValue*) encodeCoordinate:(CLLocationCoordinate2D) clLocation;
-- (void) setCameraOrientation:(CGFloat) heading roll:(CGFloat) roll pitch:(CGFloat) pitch animationDuration:(CGFloat) animationDuration;
+- (void) setCameraOrientation:(CGFloat) heading
+						 roll:(CGFloat) roll
+						pitch:(CGFloat) pitch
+			animationDuration:(CGFloat) animationDuration;
+
+/**For 3D mode, sets the camera's altitude in meters above sea level.*/
+- (void) setCameraAltitude:(CGFloat) altitude
+		 animationDuration:(CGFloat) animationDuration;
+
 
 - (void) zoomIn;
 - (void) zoomOut;
