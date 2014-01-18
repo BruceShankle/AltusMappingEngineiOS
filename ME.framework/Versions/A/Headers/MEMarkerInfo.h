@@ -149,14 +149,4 @@ typedef enum {
 /**When a marker texture is drawn, the default sampling of it's texture is bilinear. For some markers, for example those with text that you wise to be as crisp as possible on-screen, this can appear less readable when a marker image pixel falls between screen pixels. Setting this to YES will force nearest-neighbor sampling of the texture. The down-side, is that when the marker is being animated or panned around the map it's image may appear to 'snap' to pixel alignment.*/
 @property (nonatomic, assign) BOOL nearestNeighborTextureSampling;
 
-
 @end
-
-/**Represents a marker. Used as return values from MEMapViewController getMarkersAroundLocation function.*/
-@interface MEMarker : NSObject 
-@property (assign) unsigned int uid;
-@property (retain) NSString* metaData;
-@property (assign) CLLocationCoordinate2D location;
-@property (assign) double weight;
-@end
-
