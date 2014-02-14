@@ -10,6 +10,16 @@ We may also be moving Altus for iOS to a different git server due to the size of
 
 You can download the current Altus ARC-compatible binaries for iOS
 <a href="http://dev1.ba3.us/AltusARC_13c026a9f1.zip">here.</a>
+
+This download includes a new ARC-compatible reference application called AltusDemo.
+Also, the framework #import directive has changed from
+#import <ME/ME.h> to #import <AltusMappingEngine/AltusMappingEngine.h>.
+
+See the AltusDemo xcode project for more details.
+
+Happy Valentines Day,
+The BA3 Team
+
 <hr>
 
 The BA3 Altus Mapping Engine(TM) is a high-performance library designed for iOS developers who are creating
