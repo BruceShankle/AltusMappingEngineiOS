@@ -19,15 +19,14 @@ Also, the framework #import directive has changed from
 #import &lt;AltusMappingEngine/AltusMappingEngine.h&gt;
 </code></pre>
 
-See the AltusDemo xcode project for more details.
+See the AltusDemo xcode project for more details.<br>
 
-Happy Valentines Day,
+Happy Valentines Day,<br>
 The BA3 Team
 
-***
+<hr>
 
-BA3 Altus Mapping Engine
-========================
+<b>BA3 Altus Mapping Engine</b><br>
 The BA3 Altus Mapping Engine(TM) is a high-performance library designed for iOS developers who are creating
 both simple and demanding mapping apps for iPhones and iPads.
 Developers using things like MapKit and Route-Me generally run into performance,
