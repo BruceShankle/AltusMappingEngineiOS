@@ -7,7 +7,6 @@ We will be rolling out releases in stages as we add more test collateral from ou
 
 We may also be moving Altus for iOS to a different git server due to the size of the fat binaries for creating an iOS framework.
 
-
 You can download the current Altus ARC-compatible binaries for iOS
 <a href="http://dev1.ba3.us/AltusARC_13c026a9f1.zip">here.</a>
 
@@ -25,8 +24,10 @@ See the AltusDemo xcode project for more details.
 Happy Valentines Day,
 The BA3 Team
 
-<hr>
+***
 
+BA3 Altus Mapping Engine
+========================
 The BA3 Altus Mapping Engine(TM) is a high-performance library designed for iOS developers who are creating
 both simple and demanding mapping apps for iPhones and iPads.
 Developers using things like MapKit and Route-Me generally run into performance,
