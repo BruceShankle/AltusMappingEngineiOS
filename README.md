@@ -13,9 +13,12 @@ You can download the current Altus ARC-compatible binaries for iOS
 
 This download includes a new ARC-compatible reference application called AltusDemo.
 Also, the framework #import directive has changed from
-<pre>
-#import <ME/ME.h> </pre> to 
-<pre>#import <AltusMappingEngine/AltusMappingEngine.h></pre>
+<pre><code>
+#import &lt;ME/ME.h&gt;
+</pre></code>to:
+<pre><code>
+#import &lt;AltusMappingEngine/AltusMappingEngine.h&gt;
+</code></pre>
 
 See the AltusDemo xcode project for more details.
 
