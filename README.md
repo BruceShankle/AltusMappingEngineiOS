@@ -1,5 +1,15 @@
 <a href="http://www.ba3.us/"><img src="./landing-github-ios.jpg"></a>
 
+March 2014 - Altus iOS Latest Version 
+=====================================
+A newer version of Altus for iOS is now availalbe here:
+<a href = "http://dev1.ba3.us/AltusMappingEngine.framework.zip">AltusMappingEngine.framework.zip</a>
+
+A demo program that shows how to use the new version is here:
+<a href = "http://dev1.ba3.us/AltusDemo.zip">AltusDemo.zip</a>
+
+We have also recently announced a new web version that runs directly in your browser. You can learn more about that on our <a href="http://www.ba3.us">home page</a>.
+
 Announcement Valentine's Day 2014
 =================================
 Altus for iOS now supports ARC as well as ARM 64-bit.
