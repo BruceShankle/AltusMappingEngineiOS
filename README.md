@@ -8,6 +8,17 @@ Tutorials are being moved from separate branches into the master branch.
 Those related to older releases (prior to ARC-support) will be located in the 'deprecated' folder. Most of those
 tutorials are still valuable so we'll keep them around for a while.
 
+March 2014 - Altus iOS Latest Version
+=====================================
+A newer version of Altus for iOS is now availalbe here:
+<a href = "http://dev1.ba3.us/AltusMappingEngine.framework.zip">AltusMappingEngine.framework.zip</a>
+
+A demo program that shows how to use the new version is here:
+<a href = "http://dev1.ba3.us/AltusDemo.zip">AltusDemo.zip</a>
+
+We have also recently announced a new web version that runs directly in your browser. You can learn more about that on our <a href="http://www.ba3.us">home page</a>.
+
+
 Announcement Valentine's Day 2014
 =================================
 Altus for iOS now supports ARC as well as ARM 64-bit.
@@ -15,23 +26,26 @@ We will be rolling out releases in stages as we add more test collateral from ou
 
 We may also be moving Altus for iOS to a different git server due to the size of the fat binaries for creating an iOS framework.
 
-
 You can download the current Altus ARC-compatible binaries for iOS
 <a href="http://dev1.ba3.us/AltusARC_13c026a9f1.zip">here.</a>
 
 This download includes a new ARC-compatible reference application called AltusDemo.
 Also, the framework #import directive has changed from
-<pre>
-#import <ME/ME.h> </pre> to 
-<pre>#import <AltusMappingEngine/AltusMappingEngine.h></pre>
+<pre><code>
+#import &lt;ME/ME.h&gt;
+</pre></code>to:
+<pre><code>
+#import &lt;AltusMappingEngine/AltusMappingEngine.h&gt;
+</code></pre>
 
-See the AltusDemo xcode project for more details.
+See the AltusDemo xcode project for more details.<br>
 
-Happy Valentines Day,
+Happy Valentines Day,<br>
 The BA3 Team
 
 <hr>
 
+<b>BA3 Altus Mapping Engine</b><br>
 The BA3 Altus Mapping Engine(TM) is a high-performance library designed for iOS developers who are creating
 both simple and demanding mapping apps for iPhones and iPads.
 Developers using things like MapKit and Route-Me generally run into performance,
