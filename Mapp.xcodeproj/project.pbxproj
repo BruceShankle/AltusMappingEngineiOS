@@ -190,7 +190,6 @@
 		32A7313115E5513C00390263 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A7312C15E5513C00390263 /* FMResultSet.m */; };
 		32A7C27B165573D50045E2F5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 32A7C279165573D50045E2F5 /* README.md */; };
 		32A7C27C165573D50045E2F5 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 32A7C27A165573D50045E2F5 /* release_notes.md */; };
-		32A7C27D165577020045E2F5 /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 328151AB157E1E850057C029 /* libturbojpeg.a */; };
 		32A7C28C1656FB990045E2F5 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A7C2851656FB990045E2F5 /* MapManager.m */; };
 		32A7C28D1656FB990045E2F5 /* MEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A7C2871656FB990045E2F5 /* MEMap.m */; };
 		32A7C28E1656FB990045E2F5 /* MEMapCategory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32A7C2891656FB990045E2F5 /* MEMapCategory.mm */; };
@@ -222,7 +221,6 @@
 		32B1918016439B5B008A714A /* blueTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B1917B16439B5B008A714A /* blueTriangle.png */; };
 		32B1918116439B5B008A714A /* blueStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B1917C16439B5B008A714A /* blueStar.png */; };
 		32B1918216439B5B008A714A /* blueCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 32B1917D16439B5B008A714A /* blueCircle.png */; };
-		32B2D90F15D5852C007EAE4B /* libGEOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B2D90E15D5852C007EAE4B /* libGEOS.a */; };
 		32B3192517D1338D00B7CF1C /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B3192417D1338D00B7CF1C /* Places.m */; };
 		32B3192717D137DC00B7CF1C /* Places.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32B3192617D137DC00B7CF1C /* Places.sqlite */; };
 		32B3AA90172E35DF00CE9C0C /* AirTrafficTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3222877116EC4EE4009ED5F2 /* AirTrafficTest.m */; };
@@ -483,7 +481,6 @@
 		32804A13162884420078B197 /* MapManagementCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManagementCategory.m; sourceTree = "<group>"; };
 		32807BA317FFDE41008EFFFF /* ME3DTerrainTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ME3DTerrainTests.h; sourceTree = "<group>"; };
 		32807BA417FFDE41008EFFFF /* ME3DTerrainTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ME3DTerrainTests.m; sourceTree = "<group>"; };
-		328151AB157E1E850057C029 /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libturbojpeg.a; sourceTree = "<group>"; };
 		3281628C157810BF00E29122 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
 		3281628E157810BF00E29122 /* Default-Portrait~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~iphone.png"; sourceTree = SOURCE_ROOT; };
 		3288AD741616BC65007E64E9 /* METoolStates.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = METoolStates.sqlite; sourceTree = "<group>"; };
@@ -618,7 +615,6 @@
 		32B1917B16439B5B008A714A /* blueTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueTriangle.png; sourceTree = "<group>"; };
 		32B1917C16439B5B008A714A /* blueStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueStar.png; sourceTree = "<group>"; };
 		32B1917D16439B5B008A714A /* blueCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueCircle.png; sourceTree = "<group>"; };
-		32B2D90E15D5852C007EAE4B /* libGEOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGEOS.a; sourceTree = "<group>"; };
 		32B3192317D1338D00B7CF1C /* Places.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Places.h; sourceTree = "<group>"; };
 		32B3192417D1338D00B7CF1C /* Places.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Places.m; sourceTree = "<group>"; };
 		32B3192617D137DC00B7CF1C /* Places.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Places.sqlite; sourceTree = "<group>"; };
@@ -726,7 +722,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32A7C27D165577020045E2F5 /* libturbojpeg.a in Frameworks */,
 				3241DAFE1603E59200CA766A /* CoreText.framework in Frameworks */,
 				B943000F15DF0BBB00E27B27 /* libsqlite3.dylib in Frameworks */,
 				320A50BB15C00C6600D1063F /* MapKit.framework in Frameworks */,
@@ -743,7 +738,6 @@
 				329F176B143A5FF50025CA61 /* UIKit.framework in Frameworks */,
 				329F176D143A5FF50025CA61 /* Foundation.framework in Frameworks */,
 				329F176F143A5FF50025CA61 /* CoreGraphics.framework in Frameworks */,
-				32B2D90F15D5852C007EAE4B /* libGEOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1185,15 +1179,6 @@
 			path = 3DTerrain;
 			sourceTree = "<group>";
 		};
-		328151AA157E1E850057C029 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				32B2D90E15D5852C007EAE4B /* libGEOS.a */,
-				328151AB157E1E850057C029 /* libturbojpeg.a */,
-			);
-			path = libs;
-			sourceTree = "<group>";
-		};
 		328E1350188909D900825948 /* LicenseManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -1289,7 +1274,6 @@
 				3233C0C01759DC8600705A10 /* VectorMapTextures */,
 				32A7C2831656FB980045E2F5 /* MapManager */,
 				3228C67915DD2790005159C8 /* METests */,
-				328151AA157E1E850057C029 /* libs */,
 				32F4FD9A1516645800FB09F2 /* Database */,
 				326182791524F167006765E0 /* TileProviders */,
 				3279C1FE14F4F03F00A2FBED /* RecordedFlights */,
