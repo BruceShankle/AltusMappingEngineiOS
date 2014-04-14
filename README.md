@@ -1,105 +1,40 @@
 <a href="http://www.ba3.us/"><img src="./landing-github-ios.jpg"></a>
 
-Refactoring Tutorial Locations
-==============================
-In preparation for publishing newer releases, we are refactoring the location of tutorials.
-Tutorials are being moved from separate branches into the master branch.
+<b>BA3 Altus Mapping Engine SDK for iOS</b><br>
+The Altus Mapping Engine(TM) is a high-performance,  rendering
+library designed for advanced GIS visualization. Altus has a proven track-record for complex, offline, cockpit use in general and commercial aviation. If you've hit the perfomance barries of other solutions, Altus may be for you.
 
-Those related to older releases (prior to ARC-support) will be located in the 'deprecated' folder. Most of those
+Developers using SDKs like MapKit, Route-Me, and others generally run into performance,
+capacity or feature walls that block development. The Altus Mapping Engine can eliminate those walls.
+
+<b> April 14, 2014</b><br>
+Today we have begun publishing our our ARC and ARM-64 branch out to GitHub. This release has several
+notable changes:
+<ul>
+<li>Removed un-needed libs from the reference applications.</li>
+<li>Moved the older non-ARC framework, tutorials, documentation and server tools to the deprecated folder.</li>
+<li>Renamed our main include file name from ME.h to AltusMappingEngine.h</li>
+<li>Released a new reference application called AltusDemo</li>
+<li>Flattened the repository structure to a single branch, master, instead of per-branch tutorials as we had before</li>
+</ul>
+
+Older releases (prior to ARC-support) are now located in the 'deprecated' folder. Most of those
 tutorials are still valuable so we'll keep them around for a while.
-
-March 2014 - Altus iOS Latest Version
-=====================================
-A newer version of Altus for iOS is now availalbe here:
-<a href = "http://dev1.ba3.us/AltusMappingEngine.framework.zip">AltusMappingEngine.framework.zip</a>
-
-A demo program that shows how to use the new version is here:
-<a href = "http://dev1.ba3.us/AltusDemo.zip">AltusDemo.zip</a>
 
 We have also recently announced a new web version that runs directly in your browser. You can learn more about that on our <a href="http://www.ba3.us">home page</a>.
 
-
-Announcement Valentine's Day 2014
-=================================
-Altus for iOS now supports ARC as well as ARM 64-bit.
-We will be rolling out releases in stages as we add more test collateral from our non-ARC test harnesses.
-
-We may also be moving Altus for iOS to a different git server due to the size of the fat binaries for creating an iOS framework.
-
-You can download the current Altus ARC-compatible binaries for iOS
-<a href="http://dev1.ba3.us/AltusARC_13c026a9f1.zip">here.</a>
-
-This download includes a new ARC-compatible reference application called AltusDemo.
-Also, the framework #import directive has changed from
-<pre><code>
-#import &lt;ME/ME.h&gt;
-</pre></code>to:
-<pre><code>
-#import &lt;AltusMappingEngine/AltusMappingEngine.h&gt;
-</code></pre>
-
-See the AltusDemo xcode project for more details.<br>
-
-Happy Valentines Day,<br>
-The BA3 Team
-
-<hr>
-
-<b>BA3 Altus Mapping Engine</b><br>
-The BA3 Altus Mapping Engine(TM) is a high-performance library designed for iOS developers who are creating
-both simple and demanding mapping apps for iPhones and iPads.
-Developers using things like MapKit and Route-Me generally run into performance,
-capacity or feature walls that block development, and the BA3 Mapping Engine can eliminate those walls.
-
-Get the BA3 Altus SDK and Sample Applications
-=============================================
+<b>Get the BA3 Altus SDK and Sample Applications</b><br>
 
 Complete source code is supplied for all of the Altus Mapping Engine tutorials, 
 and the tutorials themselves can be found in the 
 <a href="http://www.ba3.us/?page=pages/knowledge-base">Knowledge Base</a>.
-There is one code branch for each tutorial (e.g. "tutorial3"), as well as a "blankslate" branch that
-has all of the libraries for the Altus Mapping Engine linked in, but no code (blankslate displays a white screen).
-If this is your first time using these tutorials and you want to access the source code,
-go to a command prompt and run these commands:
+Tutorials documented there are located in the deprecated folder. Over time we'll bring these
+up to date. Where the tutorials suggest checking out a branch, that is out of date. All tutorials
+are now located in their own individual folders.
 
 <pre>
 git clone https://github.com/ba3llc/BA3MappingEngineTutorials.git
 cd BA3MappingEngineTutorials
-git checkout blankslate
-</pre>
-
-
-To get one of the tutorials, type:
-
-<pre>
-git checkout tutorial3 
-</pre>
-
-<b>About once a week, the SDK is updated with a new build of the Altus Mapping Engine,
-any new tutorials and any necessary corrections.</b>
-
-If it has been several weeks since you started the tutorials, or if you cannot checkout one of the tutorials,
-you should get the latest version. To get the latest version, type:
-
-<pre>
-git checkout master
-git pull
-</pre>
-
-Once you do that, you can checkout any of the tutorials as usual. 
-
-Say that you are ready to move on to Tutorial 4, but you made minor modifications to the code in tutorial 3.
-Git will not let you checkout tutorial4. In that case, you can type this to discard your changes:
-
-<pre>
-git reset --hard
-git checkout tutorial4
-</pre>
-
-If you want to see a list of all of the source code available, type:
-
-<pre>
-git branch --list
 </pre>
 
 You can learn more about the BA3 Altus Mapping Engine at <a href="http://ba3.us">BA3.us</a>. Questions? Please send them to info@ba3.us
