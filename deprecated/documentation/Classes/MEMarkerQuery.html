@@ -1,0 +1,776 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MEMarkerQuery Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">ME </a></h1>
+				<a id="developerHome" href="../index.html">BA3, LLC</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MEMarkerQuery Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/getHighestMarkerAroundLocation:tableNamePrefix:location:radius:">&nbsp;&nbsp;&nbsp;&nbsp;+ getHighestMarkerAroundLocation:tableNamePrefix:location:radius:</option>
+	
+	<option value="//api/name/getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:">&nbsp;&nbsp;&nbsp;&nbsp;+ getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:</option>
+	
+	<option value="//api/name/getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:">&nbsp;&nbsp;&nbsp;&nbsp;+ getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:</option>
+	
+	<option value="//api/name/getMarkersAroundLocation:tableNamePrefix:location:radius:">&nbsp;&nbsp;&nbsp;&nbsp;+ getMarkersAroundLocation:tableNamePrefix:location:radius:</option>
+	
+	<option value="//api/name/getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:">&nbsp;&nbsp;&nbsp;&nbsp;+ getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:</option>
+	
+	<option value="//api/name/getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:">&nbsp;&nbsp;&nbsp;&nbsp;+ getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:</option>
+	
+	<option value="//api/name/getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:">&nbsp;&nbsp;&nbsp;&nbsp;+ getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getHighestMarkerAroundLocation:tableNamePrefix:location:radius:">getHighestMarkerAroundLocation:tableNamePrefix:location:radius:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:">getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:">getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMarkersAroundLocation:tableNamePrefix:location:radius:">getMarkersAroundLocation:tableNamePrefix:location:radius:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:">getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:">getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:">getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MEMarkerQuery Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MEMarkerQuery Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MEMarkerQuery.h<br />MEMarkerQuery.mm</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Used to query marker map databases.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:">+&nbsp;getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:">+&nbsp;getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMarkersAroundLocation:tableNamePrefix:location:radius:">+&nbsp;getMarkersAroundLocation:tableNamePrefix:location:radius:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getHighestMarkerAroundLocation:tableNamePrefix:location:radius:">+&nbsp;getHighestMarkerAroundLocation:tableNamePrefix:location:radius:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:">+&nbsp;getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:">+&nbsp;getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:">+&nbsp;getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/getHighestMarkerAroundLocation:tableNamePrefix:location:radius:" title="getHighestMarkerAroundLocation:tableNamePrefix:location:radius:"></a>
+	<h3 class="subsubtitle method-title">getHighestMarkerAroundLocation:tableNamePrefix:location:radius:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an <a href="../Classes/MEMarker.html">MEMarker</a> object with the highest weight from the specified marker database within a given nautical mile radius of the specified location. If there is no marker, returns nil. This function may be called from a background thread.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (MEMarker *)getHighestMarkerAroundLocation:(NSString *)<em>markerSqliteFile</em> tableNamePrefix:(NSString *)<em>tableNamePrefix</em> location:(CLLocationCoordinate2D)<em>location</em> radius:(double)<em>radius</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerSqliteFile</em></dt>
+			<dd><p>The full path of the marker sqlite database file.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tableNamePrefix</em></dt>
+			<dd><p>For databases with multiple marker tables, the prefix for the table name.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>location</em></dt>
+			<dd><p>The geographic point around which to search for markers.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>radius</em></dt>
+			<dd><p>The nautical mile radius around the point to search for markers.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMarkerQuery.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:" title="getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:"></a>
+	<h3 class="subsubtitle method-title">getHighestMarkerInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an <a href="../Classes/MEMarker.html">MEMarker</a> object with the highest weight that lies within the geographic bounds of a rectangle defined by the specified SW and NE points. If there is no marker, returns nil. This function takes into account meridian and antimeridian crossing of the given bounds. This function may be called from a background thread.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (MEMarker *)getHighestMarkerInBoundingBox:(NSString *)<em>markerSqliteFile</em> tableNamePrefix:(NSString *)<em>tableNamePrefix</em> southWestLocation:(CLLocationCoordinate2D)<em>southWestLocation</em> northEastLocation:(CLLocationCoordinate2D)<em>northEastLocation</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerSqliteFile</em></dt>
+			<dd><p>The full path of the marker sqlite database file.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tableNamePrefix</em></dt>
+			<dd><p>For databases with multiple marker tables, the prefix for the table name.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>southWestLocation</em></dt>
+			<dd><p>The &lsquo;lower left&rsquo; corner of the bounds.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>northEastLocation</em></dt>
+			<dd><p>THe &lsquo;upper right&rsquo; cornder of the bounds.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMarkerQuery.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:" title="getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:"></a>
+	<h3 class="subsubtitle method-title">getMarkersAlongRoute:tableNamePrefix:wayPoints:bufferRadius:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of <a href="../Classes/MEMarker.html">MEMarker</a> objects that lie along a given route. The route is tesselated to at least samplePointCount and a corridor around this tesselated route is used to search for markers that intersect the corridor. This function may be called from a background thread.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)getMarkersAlongRoute:(NSString *)<em>markerSqliteFile</em> tableNamePrefix:(NSString *)<em>tableNamePrefix</em> wayPoints:(NSArray *)<em>wayPoints</em> bufferRadius:(double)<em>bufferRadius</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerSqliteFile</em></dt>
+			<dd><p>The full path of the marker sqlite database file.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tableNamePrefix</em></dt>
+			<dd><p>For databases with multiple marker tables, the prefix for the table name.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>wayPoints</em></dt>
+			<dd><p>An array of NSValue wrapped CGPoints (minimum of two) that represent waypoints for the route where in each point x = longitude and y = latitude.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bufferRadius</em></dt>
+			<dd><p>The nautical mile buffer radius around the route formed by the way points.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>samplePointCount</em></dt>
+			<dd><p>The number of sample points the route will be tesselated to.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMarkerQuery.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getMarkersAroundLocation:tableNamePrefix:location:radius:" title="getMarkersAroundLocation:tableNamePrefix:location:radius:"></a>
+	<h3 class="subsubtitle method-title">getMarkersAroundLocation:tableNamePrefix:location:radius:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of <a href="../Classes/MEMarker.html">MEMarker</a> objects from the specified marker database within a given nautical mile radius of the specified location. This function may called from a background thread.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)getMarkersAroundLocation:(NSString *)<em>markerSqliteFile</em> tableNamePrefix:(NSString *)<em>tableNamePrefix</em> location:(CLLocationCoordinate2D)<em>location</em> radius:(double)<em>radius</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerSqliteFile</em></dt>
+			<dd><p>The full path of the marker sqlite database file.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tableNamePrefix</em></dt>
+			<dd><p>For databases with multiple marker tables, the prefix for the table name.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>location</em></dt>
+			<dd><p>The geographic point around which to search for markers.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>radius</em></dt>
+			<dd><p>The nautical mile radius around the point to search for markers.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMarkerQuery.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:" title="getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:"></a>
+	<h3 class="subsubtitle method-title">getMarkersInBoundingBox:tableNamePrefix:southWestLocation:northEastLocation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of <a href="../Classes/MEMarker.html">MEMarker</a> objects from the specified marker database that lie within the geographic bounds of a rectangle defined by the specified SW and NE points. This function takes into account meridian and antimeridian crossing of the given bounds. This function may be called from a background thread.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)getMarkersInBoundingBox:(NSString *)<em>markerSqliteFile</em> tableNamePrefix:(NSString *)<em>tableNamePrefix</em> southWestLocation:(CLLocationCoordinate2D)<em>southWestLocation</em> northEastLocation:(CLLocationCoordinate2D)<em>northEastLocation</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerSqliteFile</em></dt>
+			<dd><p>The full path of the marker sqlite database file.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tableNamePrefix</em></dt>
+			<dd><p>For databases with multiple marker tables, the prefix for the table name.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>southWestLocation</em></dt>
+			<dd><p>The &lsquo;lower left&rsquo; corner of the bounds.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>northEastLocation</em></dt>
+			<dd><p>THe &lsquo;upper right&rsquo; cornder of the bounds.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMarkerQuery.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:" title="getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:"></a>
+	<h3 class="subsubtitle method-title">getMarkersOnRadial:tableNamePrefix:location:radial:distance:bufferRadius:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of <a href="../Classes/MEMarker.html">MEMarker</a> objects for markers that lie on a radial (from true North) from a given point. This function may be called from a background thread.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)getMarkersOnRadial:(NSString *)<em>markerSqliteFile</em> tableNamePrefix:(NSString *)<em>tableNamePrefix</em> location:(CLLocationCoordinate2D)<em>location</em> radial:(double)<em>radial</em> distance:(double)<em>distance</em> bufferRadius:(double)<em>bufferRadius</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerSqliteFile</em></dt>
+			<dd><p>The full path of the marker sqlite database file.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tableNamePrefix</em></dt>
+			<dd><p>For databases with multiple marker tables, the prefix for the table name.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>location</em></dt>
+			<dd><p>The location from which the radial lies.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>radial</em></dt>
+			<dd><p>The radial in degrees.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>distance</em></dt>
+			<dd><p>The nautical mile distance of the radial.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bufferRadius</em></dt>
+			<dd><p>The nautical mile width of the corridor along the radial.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMarkerQuery.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:" title="getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:"></a>
+	<h3 class="subsubtitle method-title">getMaxMarkerWeightsAlongRoute:tableNamePrefix:wayPoints:samplePointCount:bufferRadius:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of maximum marker weights in a route corridor mapped to a fixed sample point count.The intention of this function is to enable you to draw a graph of samplePointCount width such that a maximum marker weight can be plotted on the graph. For example: plotting the tallest obstacle along a route. This function may be called from a background thread.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)getMaxMarkerWeightsAlongRoute:(NSString *)<em>markerSqliteFile</em> tableNamePrefix:(NSString *)<em>tableNamePrefix</em> wayPoints:(NSArray *)<em>wayPoints</em> samplePointCount:(uint)<em>samplePointCount</em> bufferRadius:(double)<em>bufferRadius</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>markerSqliteFile</em></dt>
+			<dd><p>The full path of the marker sqlite database file.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tableNamePrefix</em></dt>
+			<dd><p>For databases with multiple marker tables, the prefix for the table name.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>wayPoints</em></dt>
+			<dd><p>An array of NSValue wrapped CGPoints (minimum of two) that represent waypoints for the route where in each point x = longitude and y = latitude.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>samplePointCount</em></dt>
+			<dd><p>The number of samples to generate.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bufferRadius</em></dt>
+			<dd><p>The nautical mile buffer radius around the route formed by the way points..</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMarkerQuery.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+                    
+                    
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-04-14)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
