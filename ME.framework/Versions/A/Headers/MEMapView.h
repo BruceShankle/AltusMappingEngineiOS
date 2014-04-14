@@ -35,7 +35,9 @@
 @property (nonatomic, assign) double panAcceleration;
 @property (nonatomic, retain) UIColor* clearColor;
 
+/** Sets the minimum distance in meters from the camera/viewer to the map */
 @property (nonatomic, assign) double minimumZoom;
+/** Sets the maximum distance in meters from the camera/viewer to the map */
 @property (nonatomic, assign) double maximumZoom;
 
 @property (nonatomic, getter=isPanEnabled) BOOL panEnabled;
@@ -79,5 +81,8 @@
 - (IBAction) tapGestureHandler:(UIGestureRecognizer *)sender;
 - (IBAction) tapZoomInGestureHandler:(UIGestureRecognizer *)sender;
 - (IBAction) tapZoomOutGestureHandler:(UIGestureRecognizer *)sender;
+
+// force tap gesture handler
+- (void) tapGestureAtPoint:(CGPoint)point;
 
 @end

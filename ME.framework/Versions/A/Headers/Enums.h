@@ -1,8 +1,5 @@
 //  Copyright (c) 2013 BA3, LLC. All rights reserved.
 #pragma once
-//Enumerations used across iOS and Android
-//Trying to start consolidating enums bloat. -Bruce
-
 //Enum for conveying image type in database
 typedef enum {
 	IMAGEDATATYPE_PNG,

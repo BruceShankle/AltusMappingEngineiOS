@@ -1,5 +1,5 @@
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
-
+#import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -59,6 +59,12 @@ typedef enum {
 
 /** If setting nsImageData or pImageData, you should set this to the appropriate image data type.*/
 @property (assign) MEImageDataType imageDataType;
+
+/**Southwest corner of tile.*/
+@property (assign) CLLocationCoordinate2D locationMin;
+
+/**Northeast corner of tile.*/
+@property (assign) CLLocationCoordinate2D locationMax;
 
 /** Initialize with slippy IDs.*/
 - (id) initWithSlippyX:(unsigned int) slippyX
@@ -121,7 +127,7 @@ typedef enum {
 /**If set to YES, this tile can be ejected and re-requested by calling refreshDirtyTiles on the MEMapViewController object.*/
 @property (assign) BOOL isDirty;
 
-/** If set to YES, tells the mapping engine to only render the tile if it cannot sample from a parent tile that was previously requested. This response can be used, for example, if you have an intermittent internet connection and cannot download the requested tile, but do not with to show the user a placeholder tile if a parent tile can be sampled from.
+/** If set to YES, tells the mapping engine to only render the tile if it cannot sample from a parent tile that was previously requested. This response can be used, for example, if you have an intermittent internet connection and cannot download the requested tile, but do not wish to show the user a placeholder tile if a parent tile can be sampled from.
  */
 @property (assign) BOOL isProxy;
 

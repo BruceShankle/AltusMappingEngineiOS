@@ -156,7 +156,17 @@
  */
 - (void) addVectorMap:(NSString*) mapName mapSqliteFileName:(NSString*) mapSqliteFileName mapDataFileName:(NSString*) mapDataFileName;
 
+
+/** Add a marker map layer to the current view with from a file
+ */
 - (void) addVirtualMarkerMap:(MEMarkerMapInfo*) mapInfo;
+
+/** Adds a raster map generated from raw double data */
+- (void) addDataGridMap:(NSString*)mapName
+              withArray:(double*)array
+              withWidth:(int)width
+             withHeight:(int)height
+             withBounds:(CGRect)bounds;
 
 /** Sets the base map (zOrder of 0) layer to be a tiled map of the specified image.
  @param tiledImage A 256x256 image that will be tiled for the entire map.*/
@@ -620,4 +630,10 @@ nearestNeighborTextureSampling:(BOOL) nearestNeighborTextureSampling;
  */
 - (void) setLicenseKey:(NSString*) licenseKey;
 
+/**Returns the version tag for this build of Altus.*/
+- (NSString*) getVersionTag;
+    
+/**Returns the version commit hash for this build of Altus.*/
+- (NSString*) getVersionHash;
+    
 @end
