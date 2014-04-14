@@ -1,5 +1,13 @@
 <a href="http://www.ba3.us/"><img src="./landing-github-ios.jpg"></a>
 
+Refactoring Tutorial Locations
+==============================
+In preparation for publishing newer releases, we are refactoring the location of tutorials.
+Tutorials are being moved from separate branches into the master branch.
+
+Those related to older releases (prior to ARC-support) will be located in the 'deprecated' folder. Most of those
+tutorials are still valuable so we'll keep them around for a while.
+
 Announcement Valentine's Day 2014
 =================================
 Altus for iOS now supports ARC as well as ARM 64-bit.
