@@ -50,6 +50,8 @@
     METestCategory* testCategory = [[METestCategory alloc]init];
     testCategory.name = @"Maps";
     [self addCategory:testCategory];
+    [testCategory addTestClass:[AltusRasterPackage class]];
+    [testCategory addTestClass:[AltusVectorPackage class]];
     [testCategory addTestClass:[WorldSimple class]];
     [testCategory addTestClass:[HoustonStreetsStyle1 class]];
     [testCategory addTestClass:[HoustonStreetsStyle2 class]];
@@ -59,7 +61,7 @@
     [testCategory addTestClass:[MapBoxStreets class]];
     [testCategory addTestClass:[MBTilesNative class]];
     [testCategory addTestClass:[BA3NativeAcadia class]];
-    [testCategory addTestClass:[AltusVectorPackage class]];
+    
 }
 
 - (void) createMarkerTests{

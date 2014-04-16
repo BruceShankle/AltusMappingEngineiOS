@@ -35,7 +35,7 @@
                                                            ofType:@"sqlite"];
     
     //Add the map
-    [self.meMapViewController addPackagedVectorMap:self.name packageFileName:packageFileName];
+    [self.meMapViewController addPackagedMap:self.name packageFileName:packageFileName];
     
     //Set the zOrder
     [self.meMapViewController setMapZOrder:self.name zOrder:2];

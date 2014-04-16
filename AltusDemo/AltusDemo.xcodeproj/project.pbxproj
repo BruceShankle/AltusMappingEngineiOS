@@ -66,7 +66,6 @@
 		324ACC3718AEB01400833819 /* HoustonStreets.map in Resources */ = {isa = PBXBuildFile; fileRef = 324ACC3518AEB01400833819 /* HoustonStreets.map */; };
 		324ACC3818AEB01400833819 /* HoustonStreets.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 324ACC3618AEB01400833819 /* HoustonStreets.sqlite */; };
 		324ACC3B18AEB0A300833819 /* HoustonStreets.m in Sources */ = {isa = PBXBuildFile; fileRef = 324ACC3A18AEB0A300833819 /* HoustonStreets.m */; };
-		324D0D7518FBA77F00381A69 /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324D0D7418FBA77F00381A69 /* AltusMappingEngine.framework */; };
 		327E334B18ADA52000FBBB90 /* METest.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E334318ADA52000FBBB90 /* METest.m */; };
 		327E334C18ADA52000FBBB90 /* METestCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E334518ADA52000FBBB90 /* METestCategory.m */; };
 		327E334D18ADA52000FBBB90 /* METestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E334818ADA52000FBBB90 /* METestManager.m */; };
@@ -85,6 +84,9 @@
 		32BAC4C518AF264500DE8583 /* BA3Native.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAC4C418AF264500DE8583 /* BA3Native.m */; };
 		32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAC4D918AF3F9E00DE8583 /* Places.m */; };
 		32BAC4DC18AF3F9E00DE8583 /* Places.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4DA18AF3F9E00DE8583 /* Places.sqlite */; };
+		32DC9A4118FE904200F83FB9 /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DC9A4018FE904200F83FB9 /* AltusMappingEngine.framework */; };
+		32EE6FBF18FE30A6005F65CE /* AltusRasterPackage.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */; };
+		32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */; };
 		B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C70FE18CB8815003FB579 /* WorldSimple.m */; };
 		B941659918F877890061DEEB /* Earth.map in Resources */ = {isa = PBXBuildFile; fileRef = B941659418F877890061DEEB /* Earth.map */; };
 		B941659A18F877890061DEEB /* Earth.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B941659518F877890061DEEB /* Earth.sqlite */; };
@@ -175,7 +177,6 @@
 		324ACC3918AEB0A200833819 /* HoustonStreets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoustonStreets.h; sourceTree = "<group>"; };
 		324ACC3A18AEB0A300833819 /* HoustonStreets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoustonStreets.m; sourceTree = "<group>"; };
 		324ACC3C18AECA5400833819 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
-		324D0D7418FBA77F00381A69 /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
 		327E334218ADA52000FBBB90 /* METest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METest.h; sourceTree = "<group>"; };
 		327E334318ADA52000FBBB90 /* METest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METest.m; sourceTree = "<group>"; };
 		327E334418ADA52000FBBB90 /* METestCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METestCategory.h; sourceTree = "<group>"; };
@@ -210,6 +211,10 @@
 		32BAC4DA18AF3F9E00DE8583 /* Places.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Places.sqlite; sourceTree = "<group>"; };
 		32BAC4DD18AF405900DE8583 /* Maps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maps.h; sourceTree = "<group>"; };
 		32BAC4DE18AF40D500DE8583 /* Markers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markers.h; sourceTree = "<group>"; };
+		32DC9A4018FE904200F83FB9 /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
+		32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AltusRasterPackage.sqlite; sourceTree = "<group>"; };
+		32EE6FC118FE30BC005F65CE /* AltusRasterPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltusRasterPackage.h; sourceTree = "<group>"; };
+		32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltusRasterPackage.m; sourceTree = "<group>"; };
 		B91C70FD18CB8815003FB579 /* WorldSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldSimple.h; sourceTree = "<group>"; };
 		B91C70FE18CB8815003FB579 /* WorldSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldSimple.m; sourceTree = "<group>"; };
 		B941659418F877890061DEEB /* Earth.map */ = {isa = PBXFileReference; lastKnownFileType = file; name = Earth.map; path = Terrain/Earth.map; sourceTree = "<group>"; };
@@ -229,7 +234,7 @@
 				32131B9A18AC89E700799EBD /* libsqlite3.dylib in Frameworks */,
 				32131B9818AC89D300799EBD /* libstdc++.dylib in Frameworks */,
 				32131B5318AC864700799EBD /* CoreGraphics.framework in Frameworks */,
-				324D0D7518FBA77F00381A69 /* AltusMappingEngine.framework in Frameworks */,
+				32DC9A4118FE904200F83FB9 /* AltusMappingEngine.framework in Frameworks */,
 				32131B5518AC864700799EBD /* UIKit.framework in Frameworks */,
 				32131B5118AC864700799EBD /* Foundation.framework in Frameworks */,
 			);
@@ -269,7 +274,7 @@
 		32131B4F18AC864700799EBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				324D0D7418FBA77F00381A69 /* AltusMappingEngine.framework */,
+				32DC9A4018FE904200F83FB9 /* AltusMappingEngine.framework */,
 				32131B9918AC89E700799EBD /* libsqlite3.dylib */,
 				32131B9718AC89D300799EBD /* libstdc++.dylib */,
 				32131B5018AC864700799EBD /* Foundation.framework */,
@@ -431,6 +436,7 @@
 		327E335118ADD76000FBBB90 /* Raster */ = {
 			isa = PBXGroup;
 			children = (
+				32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */,
 				32BAC4BE18AF261400DE8583 /* Acadia.map */,
 				32BAC4BF18AF261400DE8583 /* Acadia.sqlite */,
 				327E335D18ADE27000FBBB90 /* Earthquakes.mbtiles */,
@@ -447,6 +453,8 @@
 				327E337518AE0BC100FBBB90 /* MapBoxSatellite.m */,
 				32BAC4C318AF264500DE8583 /* BA3Native.h */,
 				32BAC4C418AF264500DE8583 /* BA3Native.m */,
+				32EE6FC118FE30BC005F65CE /* AltusRasterPackage.h */,
+				32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */,
 			);
 			path = Raster;
 			sourceTree = "<group>";
@@ -608,6 +616,7 @@
 				3247FD0218D827BE00F2A449 /* knots15@2x.png in Resources */,
 				3219134118C90ECE008B2143 /* Towers.sqlite in Resources */,
 				324ACC2718AEB00600833819 /* apple_golf.png in Resources */,
+				32EE6FBF18FE30A6005F65CE /* AltusRasterPackage.sqlite in Resources */,
 				3247FD0518D827BE00F2A449 /* knots25.png in Resources */,
 				B941659A18F877890061DEEB /* Earth.sqlite in Resources */,
 				327E336918ADE97000FBBB90 /* pinRed@2x.png in Resources */,
@@ -658,6 +667,7 @@
 				B941659B18F877890061DEEB /* EarthLocal.m in Sources */,
 				32BAC4C518AF264500DE8583 /* BA3Native.m in Sources */,
 				327E336418ADE68500FBBB90 /* RasterTileProvider.m in Sources */,
+				32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */,
 				32131B5D18AC864700799EBD /* main.m in Sources */,
 				327E337618AE0BC100FBBB90 /* MapBoxSatellite.m in Sources */,
 				32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */,
@@ -799,7 +809,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Bruce/develop/BA3MappingEngineTutorials,
+					/Users/Bruce/develop/AltusMappingEngineiOS,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AltusDemo/AltusDemo-Prefix.pch";
@@ -823,7 +833,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Bruce/develop/BA3MappingEngineTutorials,
+					/Users/Bruce/develop/AltusMappingEngineiOS,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AltusDemo/AltusDemo-Prefix.pch";

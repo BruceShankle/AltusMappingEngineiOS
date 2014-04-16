@@ -120,7 +120,7 @@
 //Map layer management
 
 /** Add an Altus map package.*/
-- (void) addPackagedVectorMap:(NSString*) mapName packageFileName:(NSString*) packageFileName;
+- (void) addPackagedMap:(NSString*) mapName packageFileName:(NSString*) packageFileName;
 
 /** Add a map layer to the current view. The map must have been a map produced by the BA3 metool.
  @param mapName Unique name of the map for this view.
