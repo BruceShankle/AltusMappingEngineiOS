@@ -66,6 +66,8 @@
 		324ACC3718AEB01400833819 /* HoustonStreets.map in Resources */ = {isa = PBXBuildFile; fileRef = 324ACC3518AEB01400833819 /* HoustonStreets.map */; };
 		324ACC3818AEB01400833819 /* HoustonStreets.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 324ACC3618AEB01400833819 /* HoustonStreets.sqlite */; };
 		324ACC3B18AEB0A300833819 /* HoustonStreets.m in Sources */ = {isa = PBXBuildFile; fileRef = 324ACC3A18AEB0A300833819 /* HoustonStreets.m */; };
+		324E777618FF66BE00630F18 /* CustomClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E777518FF66BE00630F18 /* CustomClustering.m */; };
+		324E777918FF93BC00630F18 /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324E777818FF93BC00630F18 /* AltusMappingEngine.framework */; };
 		327E334B18ADA52000FBBB90 /* METest.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E334318ADA52000FBBB90 /* METest.m */; };
 		327E334C18ADA52000FBBB90 /* METestCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E334518ADA52000FBBB90 /* METestCategory.m */; };
 		327E334D18ADA52000FBBB90 /* METestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E334818ADA52000FBBB90 /* METestManager.m */; };
@@ -84,7 +86,6 @@
 		32BAC4C518AF264500DE8583 /* BA3Native.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAC4C418AF264500DE8583 /* BA3Native.m */; };
 		32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAC4D918AF3F9E00DE8583 /* Places.m */; };
 		32BAC4DC18AF3F9E00DE8583 /* Places.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4DA18AF3F9E00DE8583 /* Places.sqlite */; };
-		32DC9A4118FE904200F83FB9 /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DC9A4018FE904200F83FB9 /* AltusMappingEngine.framework */; };
 		32EE6FBF18FE30A6005F65CE /* AltusRasterPackage.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */; };
 		32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */; };
 		B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C70FE18CB8815003FB579 /* WorldSimple.m */; };
@@ -177,6 +178,9 @@
 		324ACC3918AEB0A200833819 /* HoustonStreets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoustonStreets.h; sourceTree = "<group>"; };
 		324ACC3A18AEB0A300833819 /* HoustonStreets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoustonStreets.m; sourceTree = "<group>"; };
 		324ACC3C18AECA5400833819 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		324E777418FF66BE00630F18 /* CustomClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomClustering.h; sourceTree = "<group>"; };
+		324E777518FF66BE00630F18 /* CustomClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomClustering.m; sourceTree = "<group>"; };
+		324E777818FF93BC00630F18 /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
 		327E334218ADA52000FBBB90 /* METest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METest.h; sourceTree = "<group>"; };
 		327E334318ADA52000FBBB90 /* METest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METest.m; sourceTree = "<group>"; };
 		327E334418ADA52000FBBB90 /* METestCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METestCategory.h; sourceTree = "<group>"; };
@@ -211,7 +215,6 @@
 		32BAC4DA18AF3F9E00DE8583 /* Places.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Places.sqlite; sourceTree = "<group>"; };
 		32BAC4DD18AF405900DE8583 /* Maps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maps.h; sourceTree = "<group>"; };
 		32BAC4DE18AF40D500DE8583 /* Markers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markers.h; sourceTree = "<group>"; };
-		32DC9A4018FE904200F83FB9 /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
 		32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AltusRasterPackage.sqlite; sourceTree = "<group>"; };
 		32EE6FC118FE30BC005F65CE /* AltusRasterPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltusRasterPackage.h; sourceTree = "<group>"; };
 		32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltusRasterPackage.m; sourceTree = "<group>"; };
@@ -234,7 +237,7 @@
 				32131B9A18AC89E700799EBD /* libsqlite3.dylib in Frameworks */,
 				32131B9818AC89D300799EBD /* libstdc++.dylib in Frameworks */,
 				32131B5318AC864700799EBD /* CoreGraphics.framework in Frameworks */,
-				32DC9A4118FE904200F83FB9 /* AltusMappingEngine.framework in Frameworks */,
+				324E777918FF93BC00630F18 /* AltusMappingEngine.framework in Frameworks */,
 				32131B5518AC864700799EBD /* UIKit.framework in Frameworks */,
 				32131B5118AC864700799EBD /* Foundation.framework in Frameworks */,
 			);
@@ -274,7 +277,7 @@
 		32131B4F18AC864700799EBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32DC9A4018FE904200F83FB9 /* AltusMappingEngine.framework */,
+				324E777818FF93BC00630F18 /* AltusMappingEngine.framework */,
 				32131B9918AC89E700799EBD /* libsqlite3.dylib */,
 				32131B9718AC89D300799EBD /* libstdc++.dylib */,
 				32131B5018AC864700799EBD /* Foundation.framework */,
@@ -403,6 +406,15 @@
 			path = VectorMapTextures;
 			sourceTree = "<group>";
 		};
+		324E776D18FF658F00630F18 /* Virtual */ = {
+			isa = PBXGroup;
+			children = (
+				324E777418FF66BE00630F18 /* CustomClustering.h */,
+				324E777518FF66BE00630F18 /* CustomClustering.m */,
+			);
+			path = Virtual;
+			sourceTree = "<group>";
+		};
 		327E334118ADA52000FBBB90 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,6 +483,7 @@
 		32BAC4CB18AF3F2800DE8583 /* Markers */ = {
 			isa = PBXGroup;
 			children = (
+				324E776D18FF658F00630F18 /* Virtual */,
 				32BAC4D718AF3F9E00DE8583 /* Clustered */,
 				32BAC4DE18AF40D500DE8583 /* Markers.h */,
 			);
@@ -663,6 +676,7 @@
 				327E336118ADE5EC00FBBB90 /* MapBoxStreets.m in Sources */,
 				32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */,
 				32131B6118AC864700799EBD /* AppDelegate.m in Sources */,
+				324E777618FF66BE00630F18 /* CustomClustering.m in Sources */,
 				327E334E18ADA52000FBBB90 /* METestViewControllers.m in Sources */,
 				B941659B18F877890061DEEB /* EarthLocal.m in Sources */,
 				32BAC4C518AF264500DE8583 /* BA3Native.m in Sources */,

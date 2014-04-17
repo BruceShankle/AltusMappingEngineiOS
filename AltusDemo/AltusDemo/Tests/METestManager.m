@@ -68,6 +68,7 @@
     METestCategory* testCategory = [[METestCategory alloc]init];
     testCategory.name = @"Markers";
     [self addCategory:testCategory];
+    [testCategory addTestClass:[CustomClustering class]];
     [testCategory addTestClass:[Places class]];
     [testCategory addTestClass:[Towers class]];
 }

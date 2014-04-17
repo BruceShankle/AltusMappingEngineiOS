@@ -29,6 +29,9 @@
 	//Initialize the map view controller
 	[self.meMapViewController initialize];
     
+    self.meMapViewController.meMapView.tileBiasSmoothingEnabled = YES;
+    self.meMapViewController.meMapView.tileLevelBias = 1.0;
+    
 }
 
 - (void) addMapWithName:(NSString*) mapName withZorder:(int) zOrder {
