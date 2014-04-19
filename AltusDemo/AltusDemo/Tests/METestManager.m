@@ -18,6 +18,12 @@
     
 }
 
+- (void) stopBaseMapTests{
+    [self stopCategory:@"Terrain"];
+    [self stopCategory:@"Raster Maps"];
+    [self stopCategory:@"Vector Maps"];
+}
+
 - (void) stopCategory:(NSString*) categoryName{
     METestCategory* category = [self categoryWithName:categoryName];
     if(category!=nil){
@@ -41,27 +47,41 @@
 
 - (void) createAllTests{
     [self createTerrainTests];
-    [self createMapTests];
+    [self createRasterMapTests];
+    [self createVectorMapTests];
+    [self createVirtualVectorMapTests];
     [self createMarkerTests];
     [self createWeatherTests];
 }
 
-- (void) createMapTests{
+- (void) createRasterMapTests{
     METestCategory* testCategory = [[METestCategory alloc]init];
-    testCategory.name = @"Maps";
+    testCategory.name = @"Raster Maps";
     [self addCategory:testCategory];
     [testCategory addTestClass:[AltusRasterPackage class]];
-    [testCategory addTestClass:[AltusVectorPackage class]];
-    [testCategory addTestClass:[WorldSimple class]];
-    [testCategory addTestClass:[HoustonStreetsStyle1 class]];
-    [testCategory addTestClass:[HoustonStreetsStyle2 class]];
-    [testCategory addTestClass:[HoustonStreetsStyle3 class]];
     [testCategory addTestClass:[MapQuestAerial class]];
     [testCategory addTestClass:[MapBoxSatellite class]];
     [testCategory addTestClass:[MapBoxStreets class]];
     [testCategory addTestClass:[MBTilesNative class]];
     [testCategory addTestClass:[BA3NativeAcadia class]];
-    
+}
+
+- (void) createVectorMapTests{
+    METestCategory* testCategory = [[METestCategory alloc]init];
+    testCategory.name = @"Vector Maps";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[AltusVectorPackage class]];
+    [testCategory addTestClass:[WorldSimple class]];
+    [testCategory addTestClass:[HoustonStreetsStyle1 class]];
+    [testCategory addTestClass:[HoustonStreetsStyle2 class]];
+    [testCategory addTestClass:[HoustonStreetsStyle3 class]];
+}
+
+- (void) createVirtualVectorMapTests{
+    METestCategory* testCategory = [[METestCategory alloc]init];
+    testCategory.name = @"Virtual Vector Maps";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[VectorGrid class]];
 }
 
 - (void) createMarkerTests{

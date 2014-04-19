@@ -19,8 +19,7 @@
     }
     
     //Stop tests that obscure or affect this one
-    [self.meTestManager stopCategory:@"Terrain"];
-    [self.meTestManager stopCategory:@"Maps"];
+    [self.meTestManager stopBaseMapTests];
     
     //Create tile provider
     RasterTileProvider* tileProvider = [[RasterTileProvider alloc]initWithURLTemplate:self.urlTemplate

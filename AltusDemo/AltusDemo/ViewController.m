@@ -29,6 +29,8 @@
 	//Initialize the map view controller
 	[self.meMapViewController initialize];
     
+    //Enable level biasing which makes the mapping engine
+    //display a consistent level at all times (at the cost of additional memory)
     self.meMapViewController.meMapView.tileBiasSmoothingEnabled = YES;
     self.meMapViewController.meMapView.tileLevelBias = 1.0;
     

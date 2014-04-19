@@ -82,8 +82,7 @@
     }
     
     //Stop tests that obscure or affect this one
-    [self.meTestManager stopCategory:@"Terrain"];
-    [self.meTestManager stopCategory:@"Maps"];
+    [self.meTestManager stopBaseMapTests];
     
     InternetVectorTileProvider *tileProvider = [[InternetVectorTileProvider alloc]init];
     tileProvider.meMapViewController = self.meMapViewController;

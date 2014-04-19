@@ -4,7 +4,7 @@
 
 /**Base class for ME geometry objects.*/
 @interface MEGeometryObject : NSObject
-@property (assign) unsigned int shapeId;
+@property (assign) unsigned int featureId;
 @end
 
 /**Represents a point.*/
@@ -19,6 +19,8 @@
 @interface MELine: MEGeometryObject
 /**An array of MEGeometryPoints.*/
 @property (retain) NSMutableArray* points;
+/**Add a point. x = Longitude, y=Latitude.*/
+-(void) addPoint:(double) x y:(double) y;
 @end
 
 /**Represents a polygon.*/
@@ -27,6 +29,10 @@
 @property (retain) NSMutableArray* shell;
 /**An array of arrays containing MEGeometryPoints.*/
 @property (retain) NSMutableArray* holes;
+/**Add a point. x = Longitude, y=Latitude.*/
+-(void) addPoint:(double) x y:(double) y;
+/**Close the polygon.*/
+-(void) close;
 @end
 
 /**Represents a set of triangles.*/

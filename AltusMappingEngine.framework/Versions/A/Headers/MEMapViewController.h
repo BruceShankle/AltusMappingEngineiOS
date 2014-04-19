@@ -414,7 +414,6 @@
 
 /**Adds a style to a feature in a vector map.
  @param mapName The name of the vector map.
- @param featureID The polygon feature of the map to apply the style to.
  @param style The style to apply.*/
 - (void) addPolygonStyleToVectorMap:(NSString*) mapName
 						  featureId:(unsigned int) featureID

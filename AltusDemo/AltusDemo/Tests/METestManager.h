@@ -22,6 +22,9 @@
                   withName:(NSString*) testName;
 
 - (void) stopCategory:(NSString*) categoryName;
+
+- (void) stopBaseMapTests;
+
 @end
 
 

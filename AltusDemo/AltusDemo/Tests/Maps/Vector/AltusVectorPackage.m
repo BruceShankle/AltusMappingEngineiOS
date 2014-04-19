@@ -27,8 +27,7 @@
     }
     
     //Stop tests that obscure or affect this one
-    [self.meTestManager stopCategory:@"Terrain"];
-    [self.meTestManager stopCategory:@"Maps"];
+    [self.meTestManager stopBaseMapTests];
     
     //Get map package name
     NSString* packageFileName = [[NSBundle mainBundle] pathForResource:@"AltusVectorPackage"

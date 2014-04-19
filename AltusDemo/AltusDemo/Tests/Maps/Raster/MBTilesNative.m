@@ -17,8 +17,7 @@
     }
     
     //Stop tests that obscure or affect this one
-    [self.meTestManager stopCategory:@"Terrain"];
-    [self.meTestManager stopCategory:@"Maps"];
+    [self.meTestManager stopBaseMapTests];
     
 	NSString* databaseFile = [[NSBundle mainBundle] pathForResource:@"Earthquakes"
 															 ofType:@"mbtiles"];
