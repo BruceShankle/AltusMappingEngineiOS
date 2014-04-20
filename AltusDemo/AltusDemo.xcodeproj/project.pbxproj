@@ -19,6 +19,7 @@
 		32131B7318AC864700799EBD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32131B7218AC864700799EBD /* XCTest.framework */; };
 		32131B7418AC864700799EBD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32131B5018AC864700799EBD /* Foundation.framework */; };
 		32131B7518AC864700799EBD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32131B5418AC864700799EBD /* UIKit.framework */; };
+		32131B9418AC87DF00799EBD /* libAltusMappingEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32131B9118AC86E800799EBD /* libAltusMappingEngine.a */; };
 		32131B9818AC89D300799EBD /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32131B9718AC89D300799EBD /* libstdc++.dylib */; };
 		32131B9A18AC89E700799EBD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32131B9918AC89E700799EBD /* libsqlite3.dylib */; };
 		3219133A18C9099C008B2143 /* Towers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3219133918C9099C008B2143 /* Towers.m */; };
@@ -80,7 +81,6 @@
 		327E337018AE010F00FBBB90 /* MapQuestAerial.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E336F18AE010F00FBBB90 /* MapQuestAerial.m */; };
 		327E337618AE0BC100FBBB90 /* MapBoxSatellite.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E337518AE0BC100FBBB90 /* MapBoxSatellite.m */; };
 		3296D42E1902629500A275DF /* VectorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296D42D1902629500A275DF /* VectorGrid.m */; };
-		3296D4321902802300A275DF /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3296D4311902802300A275DF /* AltusMappingEngine.framework */; };
 		32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6B63718EE114C00E429AB /* AltusVectorPackage.m */; };
 		32BAC4C018AF261400DE8583 /* Acadia.map in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4BE18AF261400DE8583 /* Acadia.map */; };
 		32BAC4C118AF261400DE8583 /* Acadia.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4BF18AF261400DE8583 /* Acadia.sqlite */; };
@@ -104,6 +104,20 @@
 			remoteGlobalIDString = 32131B4C18AC864700799EBD;
 			remoteInfo = AltusDemo;
 		};
+		32131B9018AC86E800799EBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32131B8B18AC86E800799EBD /* AltusMappingEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3214DEC218AC6BFC00B778D5;
+			remoteInfo = AltusMappingEngine;
+		};
+		32131B9218AC87BB00799EBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32131B8B18AC86E800799EBD /* AltusMappingEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3214DEC118AC6BFC00B778D5;
+			remoteInfo = AltusMappingEngine;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +139,7 @@
 		32131B6B18AC864700799EBD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		32131B7118AC864700799EBD /* AltusDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AltusDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32131B7218AC864700799EBD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		32131B8B18AC86E800799EBD /* AltusMappingEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AltusMappingEngine.xcodeproj; path = ../AltusMappingEngine/AltusMappingEngine.xcodeproj; sourceTree = "<group>"; };
 		32131B9718AC89D300799EBD /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		32131B9918AC89E700799EBD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		3219133818C9099C008B2143 /* Towers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Towers.h; sourceTree = "<group>"; };
@@ -206,7 +221,6 @@
 		327E337518AE0BC100FBBB90 /* MapBoxSatellite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBoxSatellite.m; sourceTree = "<group>"; };
 		3296D42C1902629500A275DF /* VectorGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorGrid.h; sourceTree = "<group>"; };
 		3296D42D1902629500A275DF /* VectorGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VectorGrid.m; sourceTree = "<group>"; };
-		3296D4311902802300A275DF /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
 		32B6B63618EE114C00E429AB /* AltusVectorPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltusVectorPackage.h; sourceTree = "<group>"; };
 		32B6B63718EE114C00E429AB /* AltusVectorPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltusVectorPackage.m; sourceTree = "<group>"; };
 		32BAC4BE18AF261400DE8583 /* Acadia.map */ = {isa = PBXFileReference; lastKnownFileType = file; path = Acadia.map; sourceTree = "<group>"; };
@@ -239,8 +253,8 @@
 			files = (
 				32131B9A18AC89E700799EBD /* libsqlite3.dylib in Frameworks */,
 				32131B9818AC89D300799EBD /* libstdc++.dylib in Frameworks */,
+				32131B9418AC87DF00799EBD /* libAltusMappingEngine.a in Frameworks */,
 				32131B5318AC864700799EBD /* CoreGraphics.framework in Frameworks */,
-				3296D4321902802300A275DF /* AltusMappingEngine.framework in Frameworks */,
 				32131B5518AC864700799EBD /* UIKit.framework in Frameworks */,
 				32131B5118AC864700799EBD /* Foundation.framework in Frameworks */,
 			);
@@ -280,9 +294,9 @@
 		32131B4F18AC864700799EBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3296D4311902802300A275DF /* AltusMappingEngine.framework */,
 				32131B9918AC89E700799EBD /* libsqlite3.dylib */,
 				32131B9718AC89D300799EBD /* libstdc++.dylib */,
+				32131B8B18AC86E800799EBD /* AltusMappingEngine.xcodeproj */,
 				32131B5018AC864700799EBD /* Foundation.framework */,
 				32131B5218AC864700799EBD /* CoreGraphics.framework */,
 				32131B5418AC864700799EBD /* UIKit.framework */,
@@ -317,6 +331,14 @@
 				32131B5E18AC864700799EBD /* AltusDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32131B8C18AC86E800799EBD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32131B9118AC86E800799EBD /* libAltusMappingEngine.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		321E0D0018B67DFD0011218A /* Weather */ = {
@@ -546,6 +568,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				32131B9318AC87BB00799EBD /* PBXTargetDependency */,
 			);
 			name = AltusDemo;
 			productName = AltusDemo;
@@ -598,6 +621,12 @@
 			mainGroup = 32131B4418AC864700799EBD;
 			productRefGroup = 32131B4E18AC864700799EBD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 32131B8C18AC86E800799EBD /* Products */;
+					ProjectRef = 32131B8B18AC86E800799EBD /* AltusMappingEngine.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				32131B4C18AC864700799EBD /* AltusDemo */,
@@ -605,6 +634,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		32131B9118AC86E800799EBD /* libAltusMappingEngine.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAltusMappingEngine.a;
+			remoteRef = 32131B9018AC86E800799EBD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		32131B4B18AC864700799EBD /* Resources */ = {
@@ -724,6 +763,11 @@
 			target = 32131B4C18AC864700799EBD /* AltusDemo */;
 			targetProxy = 32131B7618AC864700799EBD /* PBXContainerItemProxy */;
 		};
+		32131B9318AC87BB00799EBD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AltusMappingEngine;
+			targetProxy = 32131B9218AC87BB00799EBD /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -835,10 +879,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Bruce/develop/AltusMappingEngineiOS,
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AltusDemo/AltusDemo-Prefix.pch";
 				INFOPLIST_FILE = "AltusDemo/AltusDemo-Info.plist";
@@ -859,10 +899,6 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Bruce/develop/AltusMappingEngineiOS,
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AltusDemo/AltusDemo-Prefix.pch";
 				INFOPLIST_FILE = "AltusDemo/AltusDemo-Info.plist";
