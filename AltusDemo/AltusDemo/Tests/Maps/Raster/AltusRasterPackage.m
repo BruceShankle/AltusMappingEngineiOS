@@ -24,7 +24,7 @@
     [self.meMapViewController setMaxVirtualMapParentSearchDepth:20];
     [self.meMapViewController addPackagedMap:self.name packageFileName:packageFileName];
     [self.meMapViewController setMapZOrder:self.name zOrder:10];
-    
+    [self.meMapViewController setMapAlpha:self.name  alpha:0.5];
        
     
 	self.isRunning = YES;

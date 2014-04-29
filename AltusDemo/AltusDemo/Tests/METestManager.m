@@ -90,6 +90,7 @@
     [self addCategory:testCategory];
     [testCategory addTestClass:[CustomClustering class]];
     [testCategory addTestClass:[Places class]];
+    [testCategory addTestClass:[PlacesFancyLabels class]];
     [testCategory addTestClass:[Towers class]];
 }
 
