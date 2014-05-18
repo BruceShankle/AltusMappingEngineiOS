@@ -1,6 +1,6 @@
 //  Copyright (c) 2014 BA3, LLC. All rights reserved.
 #import "MapBoxSatellite.h"
-#import "RasterTileProvider.h"
+#import "../../Utilities/MapFactory.h"
 
 @implementation MapBoxSatellite
 
@@ -21,31 +21,16 @@
     //Stop tests that obscure or affect this one
     [self.meTestManager stopBaseMapTests];
     
-    //Create tile provider
-    RasterTileProvider* tileProvider = [[RasterTileProvider alloc] initWithURLTemplate:self.urlTemplate
-                                                                            queueCount:8];
-    
-    //Add subdomains
-    [tileProvider.subDomains addObject:@"a"];
-    [tileProvider.subDomains addObject:@"b"];
-    [tileProvider.subDomains addObject:@"c"];
-    [tileProvider.subDomains addObject:@"d"];
-    
-    tileProvider.meMapViewController = self.meMapViewController;
-    
-    //Create virtual map info
-    MEVirtualMapInfo* virtualMapInfo = [[MEVirtualMapInfo alloc]init];
-    virtualMapInfo.name = self.name;
-    virtualMapInfo.maxLevel = 20;
-    virtualMapInfo.isSphericalMercator = YES;
-    virtualMapInfo.meTileProvider = tileProvider;
-    virtualMapInfo.meMapViewController = self.meMapViewController;
-    virtualMapInfo.zOrder = 2;
-    virtualMapInfo.loadingStrategy = kHighestDetailOnly;
-    virtualMapInfo.contentType = kZoomDependent;
-    
     //Add the map
-    [self.meMapViewController addMapUsingMapInfo:virtualMapInfo];
+    [self.meMapViewController addMapUsingMapInfo:
+     [MapFactory createInternetMapInfo:self.meMapViewController
+                               mapName:self.name
+                           urlTemplate:self.urlTemplate
+                            subDomains:@"a,b,c,d"
+                              maxLevel:20
+                                zOrder:2
+                            numWorkers:3
+                           enableAlpha:NO]];
 	
 	self.isRunning = YES;
 }

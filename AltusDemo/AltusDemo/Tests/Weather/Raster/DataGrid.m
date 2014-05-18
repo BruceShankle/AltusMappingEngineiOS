@@ -28,7 +28,7 @@
 	[scanner setCharactersToBeSkipped: [NSCharacterSet characterSetWithCharactersInString:@"\n, "]];
 	
     // allocate the array of data
-    uint capacity = self.width * self.height + 1;
+    uint capacity = self.width * self.height;
     self.dataArray = (double *)malloc(capacity * sizeof(double));
     
     // scan through data

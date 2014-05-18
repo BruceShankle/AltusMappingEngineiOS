@@ -52,6 +52,9 @@
         coordCount++;
     }
     
+    minCoord = CLLocationCoordinate2DMake(-85, -180);
+    maxCoord = CLLocationCoordinate2DMake(85, 180);
+    
     numLongitudeValues = 400;
     numLatitudeValues = 200;
     
@@ -184,9 +187,24 @@ double GetIncrementNearValue(double value, double increment, double startValue) 
     return value;
 }
 
+double GetPoleScaledPixelSpacing(double targetPixelSpacing, METileProviderRequest *tileRequest) {
+    const int MaxLevelScale = 13;
+    const int PolePixelSpacing = targetPixelSpacing * 10;
+    
+    // get tile level
+    uint tileLevel = tileRequest.uid & 0x1F;
+    double levelScale = (MaxLevelScale - (double)tileLevel) / MaxLevelScale;
+    double latitudeScale = 1 - (90 - fabs(tileRequest.maxY + tileRequest.minY) * 0.5) / 90;
+    
+    latitudeScale = MIN(MAX(0, latitudeScale), 1.0);
+    latitudeScale = pow(latitudeScale, 4);
+    
+    levelScale = MIN(MAX(0, levelScale), 1.0);
+    return targetPixelSpacing + levelScale * latitudeScale * (PolePixelSpacing - targetPixelSpacing);
+}
+
 - (void) requestTileAsync:(METileProviderRequest *)meTileRequest{
     
-
     NSMutableArray *markers = [[NSMutableArray alloc] init];
     
     CGRect bounds = CGRectMake(meTileRequest.minX,
@@ -194,13 +212,15 @@ double GetIncrementNearValue(double value, double increment, double startValue) 
                                meTileRequest.maxX - meTileRequest.minX,
                                meTileRequest.maxY - meTileRequest.minY);
     
+    double pixelSpacing = GetPoleScaledPixelSpacing(50, meTileRequest);
+    
     if ([self.windSpeedGrid intersectsRect:bounds]) {
         
-        double spacingX = GetMarkerSpacing(50, meTileRequest.minX, meTileRequest.maxX, self.windSpeedGrid.deltaLongitude);
+        double spacingX = GetMarkerSpacing(pixelSpacing, meTileRequest.minX, meTileRequest.maxX, self.windSpeedGrid.deltaLongitude);
         double startX = GetIncrementNearValue(meTileRequest.minX, spacingX, self.windSpeedGrid.minCoord.longitude);
         double endX = GetIncrementNearValue(meTileRequest.maxX, spacingX, self.windSpeedGrid.minCoord.longitude);
 
-        double spacingY = GetMarkerSpacing(50, meTileRequest.minY, meTileRequest.maxY, self.windSpeedGrid.deltaLatitude);
+        double spacingY = GetMarkerSpacing(pixelSpacing, meTileRequest.minY, meTileRequest.maxY, self.windSpeedGrid.deltaLatitude);
         double startY = GetIncrementNearValue(meTileRequest.minY, spacingY, self.windSpeedGrid.minCoord.latitude);
         double endY = GetIncrementNearValue(meTileRequest.maxY, spacingY, self.windSpeedGrid.minCoord.latitude);
 
@@ -242,7 +262,7 @@ double GetIncrementNearValue(double value, double increment, double startValue) 
 {
     if(self = [super init])
     {
-        self.name=@"World Samples";
+        self.name=@"World-Wide Winds";
     }
     return self;
 }

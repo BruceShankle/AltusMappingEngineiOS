@@ -15,6 +15,7 @@
     
 	//Create view
 	self.meMapView=[[MEMapView alloc]init];
+    self.meMapView.name = @"Main view";
 	
     //Assign view to view controller
 	self.meMapViewController.view = self.meMapView;
@@ -28,27 +29,13 @@
 	
 	//Initialize the map view controller
 	[self.meMapViewController initialize];
+    self.meMapViewController.verboseMessagesEnabled = YES;
     
     //Enable level biasing which makes the mapping engine
     //display a consistent level at all times (at the cost of additional memory)
     self.meMapViewController.meMapView.tileBiasSmoothingEnabled = YES;
     self.meMapViewController.meMapView.tileLevelBias = 1.0;
     
-}
-
-- (void) addMapWithName:(NSString*) mapName withZorder:(int) zOrder {
-    NSString* sqliteFile = [[NSBundle mainBundle] pathForResource:mapName
-															 ofType:@"sqlite"];
-    
-    NSString* mapFile = [[NSBundle mainBundle] pathForResource:mapName
-                                                           ofType:@"map"];
-    
-    [self.meMapViewController addMap:mapName
-                   mapSqliteFileName:sqliteFile
-                     mapDataFileName:mapFile
-                    compressTextures:NO];
-    
-    [self.meMapViewController setMapZOrder:mapName zOrder:zOrder];
 }
 
 - (void)viewDidLoad
@@ -62,7 +49,7 @@
     self.meTestManager = [[METestManager alloc]initWithMEMapViewController:self.meMapViewController];
     
     //Turn on terrain base map
-    [self.meTestManager startTestInCategory:@"Terrain" withName:@"Earth - Terrain"];
+    [self.meTestManager startInitialTest];
     
 }
 

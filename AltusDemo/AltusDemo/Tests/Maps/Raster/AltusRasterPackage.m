@@ -16,15 +16,20 @@
         return;
     }
     
+    //Get documents path
+    //NSString* docPath = [METest getDocumentsPath];
+    //NSLog(docPath);
+    //NSString* packageFileName = [NSString stringWithFormat:@"%@/vfr_usa_0_11.sqlite", docPath];
+    
     //Get map package name
     NSString* packageFileName = [[NSBundle mainBundle] pathForResource:@"AltusRasterPackage"
-                                                                ofType:@"sqlite"];
+                                                              ofType:@"sqlite"];
     
     //Add the map
     [self.meMapViewController setMaxVirtualMapParentSearchDepth:20];
     [self.meMapViewController addPackagedMap:self.name packageFileName:packageFileName];
     [self.meMapViewController setMapZOrder:self.name zOrder:10];
-    [self.meMapViewController setMapAlpha:self.name  alpha:0.5];
+    //[self.meMapViewController setMapAlpha:self.name  alpha:0.5];
        
     
 	self.isRunning = YES;

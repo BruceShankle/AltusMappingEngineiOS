@@ -1,5 +1,5 @@
 //  Copyright (c) 2014 BA3, LLC. All rights reserved.
-#import "ColorMosaicTest2.h"
+#import "ColorMosaicTest.h"
 
 @implementation ColorMosaicTileWorker
 
@@ -119,11 +119,11 @@
 
 @end
 
-@implementation ColorMosaicTest2
+@implementation ColorMosaicTest
 
 - (id) init{
     if(self = [super init]){
-        self.name=@"Color Mosaic Test 2";
+        self.name=@"Temperature Mosaic";
     }
     return self;
 }

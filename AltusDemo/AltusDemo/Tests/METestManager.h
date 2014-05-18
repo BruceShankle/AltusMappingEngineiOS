@@ -25,6 +25,10 @@
 
 - (void) stopBaseMapTests;
 
+- (void) stopAllTests;
+
+- (void) startInitialTest;
+
 @end
 
 

@@ -24,5 +24,10 @@ static const CLLocationCoordinate2D MIAMI_COORD = {25.7877, -80.2241};
 static const CLLocationCoordinate2D RALEIGH_COORD = {35.8189, -78.6447};
 static const CLLocationCoordinate2D NEWYORKCITY_COORD = {40.6700, -73.9400};
 
+//Over-seas
+//Hyderabad, India
+static const CLLocationCoordinate2D HYD_COORD = {17.382863, 78.485636};
+
+
 
 

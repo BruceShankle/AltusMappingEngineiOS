@@ -6,7 +6,6 @@
 - (id) init {
 	if(self=[super init]){
 		self.name = @"Towers";
-        self.interval = 1;
 	}
 	return self;
 }
@@ -34,16 +33,11 @@
 		return;
 	}
     
-    [self.meMapViewController shutdown];
-    self.meMapViewController.coreCacheSize = 22000000.0 * 1;
-	[self.meMapViewController initialize];
-    
-    [self.meMapViewController addCachedMarkerImage:[UIImage imageNamed:@"Tower"]
-                                          withName:@"Tower"
+    [self.meMapViewController addCachedMarkerImage:[UIImage imageNamed:@"pinRed"]
+                                          withName:@"pinRed"
                                    compressTexture:YES
                     nearestNeighborTextureSampling:NO];
 	[self addMap];
-	[self startTimer];
 	self.isRunning = YES;
 }
 
@@ -56,16 +50,39 @@
 	self.isRunning = NO;
 }
 
-- (void) timerTick{
-    [self removeMap];
-    [self addMap];
-}
 
 - (void) mapView:(MEMapView *)mapView
 updateMarkerInfo:(MEMarkerInfo *)markerInfo
 		 mapName:(NSString *)mapName{
-	markerInfo.cachedImageName=@"Tower";
-	markerInfo.anchorPoint = CGPointMake(14,25);
+	
+    //Scale marker font size based on population
+    float fontSize = 8.6f;
+    UIColor* fillColor = [UIColor whiteColor];
+    UIColor* strokeColor = [UIColor blackColor];
+	NSString* label;
+	if(markerInfo.metaData.length==0){
+		label = @"N/A";
+	}
+	else{
+		label = markerInfo.metaData;
+	}
+    //Have the mapping engine create a label for us
+    UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
+                                                   fontSize:fontSize
+                                                  fillColor:fillColor
+                                                strokeColor:strokeColor
+                                                strokeWidth:0
+                                                       text:label];
+    
+    //Craete an anhor point based on the image size
+    CGPoint anchorPoint = CGPointMake(textImage.size.width / 2.0,
+                                      textImage.size.height / 2.0);
+    //Update marker info
+	markerInfo.uiImage = textImage;
+	markerInfo.anchorPoint = anchorPoint;
+	markerInfo.nearestNeighborTextureSampling = YES;
 }
+
+
 
 @end

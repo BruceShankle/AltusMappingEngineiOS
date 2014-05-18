@@ -7,5 +7,5 @@
 @property (retain) DataGrid *grid;
 @end
 
-@interface ColorMosaicTest2 : METest
+@interface ColorMosaicTest : METest
 @end

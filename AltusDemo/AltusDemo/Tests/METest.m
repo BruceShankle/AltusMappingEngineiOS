@@ -30,7 +30,11 @@
 
 
 - (void) startTimer{
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:self.interval target:self selector:@selector(timerTick) userInfo:nil repeats:YES];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:self.interval
+                                                  target:self
+                                                selector:@selector(timerTick)
+                                                userInfo:nil
+                                                 repeats:YES];
 	NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 	[runloop addTimer:self.timer forMode:NSRunLoopCommonModes];
 	[runloop addTimer:self.timer forMode:UITrackingRunLoopMode];
