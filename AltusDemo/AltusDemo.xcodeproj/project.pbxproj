@@ -25,8 +25,9 @@
 		3219133E18C90ADD008B2143 /* Tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 3219133C18C90ADD008B2143 /* Tower.png */; };
 		3219133F18C90ADD008B2143 /* Tower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3219133D18C90ADD008B2143 /* Tower@2x.png */; };
 		3219134118C90ECE008B2143 /* Towers.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3219134018C90ECE008B2143 /* Towers.sqlite */; };
+		321D3DB6192373D8004ACD80 /* TileFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 321D3DB5192373D8004ACD80 /* TileFactory.m */; };
+		321D3DB919238F46004ACD80 /* ColorMosaicTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 321D3DB819238F46004ACD80 /* ColorMosaicTest.m */; };
 		321E0D0A18B67DFD0011218A /* WorldSamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D0318B67DFD0011218A /* WorldSamples.m */; };
-		321E0D0B18B67DFD0011218A /* ColorMosaicTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D0618B67DFD0011218A /* ColorMosaicTest.m */; };
 		321E0D0C18B67DFD0011218A /* DataGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D0818B67DFD0011218A /* DataGrid.m */; };
 		321E0D0D18B67DFD0011218A /* ds.temp.xyz in Resources */ = {isa = PBXBuildFile; fileRef = 321E0D0918B67DFD0011218A /* ds.temp.xyz */; };
 		3247FCE618D8275300F2A449 /* ds.wdir.xyz in Resources */ = {isa = PBXBuildFile; fileRef = 3247FCE418D8275300F2A449 /* ds.wdir.xyz */; };
@@ -66,8 +67,30 @@
 		324ACC3718AEB01400833819 /* HoustonStreets.map in Resources */ = {isa = PBXBuildFile; fileRef = 324ACC3518AEB01400833819 /* HoustonStreets.map */; };
 		324ACC3818AEB01400833819 /* HoustonStreets.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 324ACC3618AEB01400833819 /* HoustonStreets.sqlite */; };
 		324ACC3B18AEB0A300833819 /* HoustonStreets.m in Sources */ = {isa = PBXBuildFile; fileRef = 324ACC3A18AEB0A300833819 /* HoustonStreets.m */; };
-		324B6EBD190F75C1002FE7CA /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324B6EBC190F75C1002FE7CA /* AltusMappingEngine.framework */; };
+		324E3B85191AAD5E00B1961A /* MultiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E3B84191AAD5E00B1961A /* MultiView.m */; };
+		324E3B8C191AD25200B1961A /* AirTrafficScenario.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E3B8B191AD25200B1961A /* AirTrafficScenario.m */; };
+		324E3B9A191AD3F300B1961A /* orangeplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B8E191AD3F300B1961A /* orangeplane.png */; };
+		324E3B9B191AD3F300B1961A /* orangeplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B8F191AD3F300B1961A /* orangeplane@2x.png */; };
+		324E3B9C191AD3F300B1961A /* purpleplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B90191AD3F300B1961A /* purpleplane.png */; };
+		324E3B9D191AD3F300B1961A /* purpleplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B91191AD3F300B1961A /* purpleplane@2x.png */; };
+		324E3B9E191AD3F300B1961A /* redplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B92191AD3F300B1961A /* redplane.png */; };
+		324E3B9F191AD3F300B1961A /* redplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B93191AD3F300B1961A /* redplane@2x.png */; };
+		324E3BA0191AD3F300B1961A /* whiteplaneredoutline.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B94191AD3F300B1961A /* whiteplaneredoutline.png */; };
+		324E3BA1191AD3F300B1961A /* whiteplaneredoutline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B95191AD3F300B1961A /* whiteplaneredoutline@2x.png */; };
+		324E3BA2191AD3F300B1961A /* yellowplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B96191AD3F300B1961A /* yellowplane.png */; };
+		324E3BA3191AD3F300B1961A /* yellowplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B97191AD3F300B1961A /* yellowplane@2x.png */; };
+		324E3BA4191AD3F300B1961A /* blueplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B98191AD3F300B1961A /* blueplane.png */; };
+		324E3BA5191AD3F300B1961A /* blueplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B99191AD3F300B1961A /* blueplane@2x.png */; };
 		324E777618FF66BE00630F18 /* CustomClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E777518FF66BE00630F18 /* CustomClustering.m */; };
+		32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF519121062008B9C0C /* TerrainInRadiusTests.m */; };
+		32587D0019121062008B9C0C /* TerrainMapFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF719121062008B9C0C /* TerrainMapFinder.m */; };
+		32587D0119121062008B9C0C /* TerrainProfileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF919121062008B9C0C /* TerrainProfileTests.m */; };
+		32587D0219121062008B9C0C /* TerrainProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CFB19121062008B9C0C /* TerrainProfileView.m */; };
+		32587D0319121062008B9C0C /* TerrainRadiusPerf.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CFD19121062008B9C0C /* TerrainRadiusPerf.m */; };
+		32587D0919121965008B9C0C /* pinGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0519121965008B9C0C /* pinGreen.png */; };
+		32587D0A19121965008B9C0C /* pinGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0619121965008B9C0C /* pinGreen@2x.png */; };
+		32587D0B19121965008B9C0C /* pinPurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0719121965008B9C0C /* pinPurple.png */; };
+		32587D0C19121965008B9C0C /* pinPurple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0819121965008B9C0C /* pinPurple@2x.png */; };
 		326C92D3190F70A50097C50D /* WayPointMarkerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 326C92D2190F70A50097C50D /* WayPointMarkerImage.m */; };
 		326C92D6190F712E0097C50D /* WayPointStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 326C92D4190F712E0097C50D /* WayPointStar@2x.png */; };
 		326C92D7190F712E0097C50D /* WayPointStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 326C92D5190F712E0097C50D /* WayPointStar.png */; };
@@ -79,11 +102,11 @@
 		327E335C18ADE1CD00FBBB90 /* MBTilesNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E335B18ADE1CD00FBBB90 /* MBTilesNative.m */; };
 		327E335E18ADE27000FBBB90 /* Earthquakes.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 327E335D18ADE27000FBBB90 /* Earthquakes.mbtiles */; };
 		327E336118ADE5EC00FBBB90 /* MapBoxStreets.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E336018ADE5EC00FBBB90 /* MapBoxStreets.m */; };
-		327E336418ADE68500FBBB90 /* RasterTileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E336318ADE68500FBBB90 /* RasterTileProvider.m */; };
 		327E336818ADE97000FBBB90 /* pinRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 327E336618ADE97000FBBB90 /* pinRed.png */; };
 		327E336918ADE97000FBBB90 /* pinRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 327E336718ADE97000FBBB90 /* pinRed@2x.png */; };
 		327E337018AE010F00FBBB90 /* MapQuestAerial.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E336F18AE010F00FBBB90 /* MapQuestAerial.m */; };
 		327E337618AE0BC100FBBB90 /* MapBoxSatellite.m in Sources */ = {isa = PBXBuildFile; fileRef = 327E337518AE0BC100FBBB90 /* MapBoxSatellite.m */; };
+		32803D78190F7F1B00099DD5 /* RoutePlanning.m in Sources */ = {isa = PBXBuildFile; fileRef = 32803D77190F7F1B00099DD5 /* RoutePlanning.m */; };
 		3296D42E1902629500A275DF /* VectorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296D42D1902629500A275DF /* VectorGrid.m */; };
 		32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6B63718EE114C00E429AB /* AltusVectorPackage.m */; };
 		32BAC4C018AF261400DE8583 /* Acadia.map in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4BE18AF261400DE8583 /* Acadia.map */; };
@@ -91,12 +114,14 @@
 		32BAC4C518AF264500DE8583 /* BA3Native.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAC4C418AF264500DE8583 /* BA3Native.m */; };
 		32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAC4D918AF3F9E00DE8583 /* Places.m */; };
 		32BAC4DC18AF3F9E00DE8583 /* Places.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4DA18AF3F9E00DE8583 /* Places.sqlite */; };
+		32BBEC5E191062950091BC7A /* Earth.map in Resources */ = {isa = PBXBuildFile; fileRef = 32BBEC5C191062950091BC7A /* Earth.map */; };
+		32BBEC5F191062950091BC7A /* Earth.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32BBEC5D191062950091BC7A /* Earth.sqlite */; };
+		32BBEC62191062BD0091BC7A /* Earth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BBEC61191062BD0091BC7A /* Earth.m */; };
+		32D7CF681924B67200F1125C /* MapFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D7CF671924B67200F1125C /* MapFactory.m */; };
+		32ED30651928A56E00A8621A /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32ED30641928A56E00A8621A /* AltusMappingEngine.framework */; };
 		32EE6FBF18FE30A6005F65CE /* AltusRasterPackage.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */; };
 		32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */; };
 		B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C70FE18CB8815003FB579 /* WorldSimple.m */; };
-		B941659918F877890061DEEB /* Earth.map in Resources */ = {isa = PBXBuildFile; fileRef = B941659418F877890061DEEB /* Earth.map */; };
-		B941659A18F877890061DEEB /* Earth.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B941659518F877890061DEEB /* Earth.sqlite */; };
-		B941659B18F877890061DEEB /* EarthLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B941659718F877890061DEEB /* EarthLocal.m */; };
 		B941659E18F880700061DEEB /* DynamicColorBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B941659D18F880700061DEEB /* DynamicColorBar.m */; };
 /* End PBXBuildFile section */
 
@@ -136,10 +161,12 @@
 		3219133C18C90ADD008B2143 /* Tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tower.png; sourceTree = "<group>"; };
 		3219133D18C90ADD008B2143 /* Tower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tower@2x.png"; sourceTree = "<group>"; };
 		3219134018C90ECE008B2143 /* Towers.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Towers.sqlite; sourceTree = "<group>"; };
+		321D3DB4192373D8004ACD80 /* TileFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileFactory.h; sourceTree = "<group>"; };
+		321D3DB5192373D8004ACD80 /* TileFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileFactory.m; sourceTree = "<group>"; };
+		321D3DB719238F46004ACD80 /* ColorMosaicTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMosaicTest.h; sourceTree = "<group>"; };
+		321D3DB819238F46004ACD80 /* ColorMosaicTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorMosaicTest.m; sourceTree = "<group>"; };
 		321E0D0218B67DFD0011218A /* WorldSamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldSamples.h; sourceTree = "<group>"; };
 		321E0D0318B67DFD0011218A /* WorldSamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldSamples.m; sourceTree = "<group>"; };
-		321E0D0518B67DFD0011218A /* ColorMosaicTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMosaicTest.h; sourceTree = "<group>"; };
-		321E0D0618B67DFD0011218A /* ColorMosaicTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorMosaicTest.m; sourceTree = "<group>"; };
 		321E0D0718B67DFD0011218A /* DataGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataGrid.h; sourceTree = "<group>"; };
 		321E0D0818B67DFD0011218A /* DataGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGrid.m; sourceTree = "<group>"; };
 		321E0D0918B67DFD0011218A /* ds.temp.xyz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ds.temp.xyz; sourceTree = "<group>"; };
@@ -183,9 +210,39 @@
 		324ACC3918AEB0A200833819 /* HoustonStreets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoustonStreets.h; sourceTree = "<group>"; };
 		324ACC3A18AEB0A300833819 /* HoustonStreets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoustonStreets.m; sourceTree = "<group>"; };
 		324ACC3C18AECA5400833819 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
-		324B6EBC190F75C1002FE7CA /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
+		324E3B83191AAD5E00B1961A /* MultiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiView.h; sourceTree = "<group>"; };
+		324E3B84191AAD5E00B1961A /* MultiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiView.m; sourceTree = "<group>"; };
+		324E3B8A191AD25200B1961A /* AirTrafficScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirTrafficScenario.h; sourceTree = "<group>"; };
+		324E3B8B191AD25200B1961A /* AirTrafficScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirTrafficScenario.m; sourceTree = "<group>"; };
+		324E3B8E191AD3F300B1961A /* orangeplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeplane.png; sourceTree = "<group>"; };
+		324E3B8F191AD3F300B1961A /* orangeplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orangeplane@2x.png"; sourceTree = "<group>"; };
+		324E3B90191AD3F300B1961A /* purpleplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleplane.png; sourceTree = "<group>"; };
+		324E3B91191AD3F300B1961A /* purpleplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purpleplane@2x.png"; sourceTree = "<group>"; };
+		324E3B92191AD3F300B1961A /* redplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redplane.png; sourceTree = "<group>"; };
+		324E3B93191AD3F300B1961A /* redplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redplane@2x.png"; sourceTree = "<group>"; };
+		324E3B94191AD3F300B1961A /* whiteplaneredoutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteplaneredoutline.png; sourceTree = "<group>"; };
+		324E3B95191AD3F300B1961A /* whiteplaneredoutline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteplaneredoutline@2x.png"; sourceTree = "<group>"; };
+		324E3B96191AD3F300B1961A /* yellowplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowplane.png; sourceTree = "<group>"; };
+		324E3B97191AD3F300B1961A /* yellowplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowplane@2x.png"; sourceTree = "<group>"; };
+		324E3B98191AD3F300B1961A /* blueplane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueplane.png; sourceTree = "<group>"; };
+		324E3B99191AD3F300B1961A /* blueplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueplane@2x.png"; sourceTree = "<group>"; };
 		324E777418FF66BE00630F18 /* CustomClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomClustering.h; sourceTree = "<group>"; };
 		324E777518FF66BE00630F18 /* CustomClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomClustering.m; sourceTree = "<group>"; };
+		32587CF419121062008B9C0C /* TerrainInRadiusTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainInRadiusTests.h; sourceTree = "<group>"; };
+		32587CF519121062008B9C0C /* TerrainInRadiusTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainInRadiusTests.m; sourceTree = "<group>"; };
+		32587CF619121062008B9C0C /* TerrainMapFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainMapFinder.h; sourceTree = "<group>"; };
+		32587CF719121062008B9C0C /* TerrainMapFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainMapFinder.m; sourceTree = "<group>"; };
+		32587CF819121062008B9C0C /* TerrainProfileTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainProfileTests.h; sourceTree = "<group>"; };
+		32587CF919121062008B9C0C /* TerrainProfileTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainProfileTests.m; sourceTree = "<group>"; };
+		32587CFA19121062008B9C0C /* TerrainProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainProfileView.h; sourceTree = "<group>"; };
+		32587CFB19121062008B9C0C /* TerrainProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainProfileView.m; sourceTree = "<group>"; };
+		32587CFC19121062008B9C0C /* TerrainRadiusPerf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainRadiusPerf.h; sourceTree = "<group>"; };
+		32587CFD19121062008B9C0C /* TerrainRadiusPerf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainRadiusPerf.m; sourceTree = "<group>"; };
+		32587D0419121567008B9C0C /* HeightProfiling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeightProfiling.h; sourceTree = "<group>"; };
+		32587D0519121965008B9C0C /* pinGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinGreen.png; sourceTree = "<group>"; };
+		32587D0619121965008B9C0C /* pinGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinGreen@2x.png"; sourceTree = "<group>"; };
+		32587D0719121965008B9C0C /* pinPurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinPurple.png; sourceTree = "<group>"; };
+		32587D0819121965008B9C0C /* pinPurple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinPurple@2x.png"; sourceTree = "<group>"; };
 		326C92D1190F70A50097C50D /* WayPointMarkerImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WayPointMarkerImage.h; sourceTree = "<group>"; };
 		326C92D2190F70A50097C50D /* WayPointMarkerImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayPointMarkerImage.m; sourceTree = "<group>"; };
 		326C92D4190F712E0097C50D /* WayPointStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WayPointStar@2x.png"; sourceTree = "<group>"; };
@@ -205,8 +262,6 @@
 		327E335B18ADE1CD00FBBB90 /* MBTilesNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBTilesNative.m; sourceTree = "<group>"; };
 		327E335D18ADE27000FBBB90 /* Earthquakes.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = Earthquakes.mbtiles; sourceTree = "<group>"; };
 		327E336018ADE5EC00FBBB90 /* MapBoxStreets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBoxStreets.m; sourceTree = "<group>"; };
-		327E336218ADE68500FBBB90 /* RasterTileProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasterTileProvider.h; sourceTree = "<group>"; };
-		327E336318ADE68500FBBB90 /* RasterTileProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasterTileProvider.m; sourceTree = "<group>"; };
 		327E336618ADE97000FBBB90 /* pinRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinRed.png; sourceTree = "<group>"; };
 		327E336718ADE97000FBBB90 /* pinRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinRed@2x.png"; sourceTree = "<group>"; };
 		327E336E18AE010F00FBBB90 /* MapQuestAerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapQuestAerial.h; sourceTree = "<group>"; };
@@ -215,6 +270,9 @@
 		327E337218AE016500FBBB90 /* MapBoxStreets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBoxStreets.h; sourceTree = "<group>"; };
 		327E337418AE0BC100FBBB90 /* MapBoxSatellite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBoxSatellite.h; sourceTree = "<group>"; };
 		327E337518AE0BC100FBBB90 /* MapBoxSatellite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBoxSatellite.m; sourceTree = "<group>"; };
+		32803D76190F7F1B00099DD5 /* RoutePlanning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutePlanning.h; sourceTree = "<group>"; };
+		32803D77190F7F1B00099DD5 /* RoutePlanning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutePlanning.m; sourceTree = "<group>"; };
+		32803D79190F7F6100099DD5 /* UserInteraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInteraction.h; sourceTree = "<group>"; };
 		3296D42C1902629500A275DF /* VectorGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorGrid.h; sourceTree = "<group>"; };
 		3296D42D1902629500A275DF /* VectorGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VectorGrid.m; sourceTree = "<group>"; };
 		32B6B63618EE114C00E429AB /* AltusVectorPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltusVectorPackage.h; sourceTree = "<group>"; };
@@ -228,15 +286,19 @@
 		32BAC4DA18AF3F9E00DE8583 /* Places.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Places.sqlite; sourceTree = "<group>"; };
 		32BAC4DD18AF405900DE8583 /* Maps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maps.h; sourceTree = "<group>"; };
 		32BAC4DE18AF40D500DE8583 /* Markers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markers.h; sourceTree = "<group>"; };
+		32BBEC5B191061D50091BC7A /* Terrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terrain.h; sourceTree = "<group>"; };
+		32BBEC5C191062950091BC7A /* Earth.map */ = {isa = PBXFileReference; lastKnownFileType = file; path = Earth.map; sourceTree = "<group>"; };
+		32BBEC5D191062950091BC7A /* Earth.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Earth.sqlite; sourceTree = "<group>"; };
+		32BBEC60191062BD0091BC7A /* Earth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Earth.h; sourceTree = "<group>"; };
+		32BBEC61191062BD0091BC7A /* Earth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Earth.m; sourceTree = "<group>"; };
+		32D7CF661924B67200F1125C /* MapFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapFactory.h; sourceTree = "<group>"; };
+		32D7CF671924B67200F1125C /* MapFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapFactory.m; sourceTree = "<group>"; };
+		32ED30641928A56E00A8621A /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
 		32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AltusRasterPackage.sqlite; sourceTree = "<group>"; };
 		32EE6FC118FE30BC005F65CE /* AltusRasterPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltusRasterPackage.h; sourceTree = "<group>"; };
 		32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltusRasterPackage.m; sourceTree = "<group>"; };
 		B91C70FD18CB8815003FB579 /* WorldSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldSimple.h; sourceTree = "<group>"; };
 		B91C70FE18CB8815003FB579 /* WorldSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldSimple.m; sourceTree = "<group>"; };
-		B941659418F877890061DEEB /* Earth.map */ = {isa = PBXFileReference; lastKnownFileType = file; name = Earth.map; path = Terrain/Earth.map; sourceTree = "<group>"; };
-		B941659518F877890061DEEB /* Earth.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = Earth.sqlite; path = Terrain/Earth.sqlite; sourceTree = "<group>"; };
-		B941659618F877890061DEEB /* EarthLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EarthLocal.h; path = Terrain/EarthLocal.h; sourceTree = "<group>"; };
-		B941659718F877890061DEEB /* EarthLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EarthLocal.m; path = Terrain/EarthLocal.m; sourceTree = "<group>"; };
 		B941659818F877890061DEEB /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terrain.h; path = Terrain/Terrain.h; sourceTree = "<group>"; };
 		B941659C18F880700061DEEB /* DynamicColorBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicColorBar.h; path = Terrain/DynamicColorBar.h; sourceTree = "<group>"; };
 		B941659D18F880700061DEEB /* DynamicColorBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicColorBar.m; path = Terrain/DynamicColorBar.m; sourceTree = "<group>"; };
@@ -250,7 +312,7 @@
 				32131B9A18AC89E700799EBD /* libsqlite3.dylib in Frameworks */,
 				32131B9818AC89D300799EBD /* libstdc++.dylib in Frameworks */,
 				32131B5318AC864700799EBD /* CoreGraphics.framework in Frameworks */,
-				324B6EBD190F75C1002FE7CA /* AltusMappingEngine.framework in Frameworks */,
+				32ED30651928A56E00A8621A /* AltusMappingEngine.framework in Frameworks */,
 				32131B5518AC864700799EBD /* UIKit.framework in Frameworks */,
 				32131B5118AC864700799EBD /* Foundation.framework in Frameworks */,
 			);
@@ -290,7 +352,7 @@
 		32131B4F18AC864700799EBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				324B6EBC190F75C1002FE7CA /* AltusMappingEngine.framework */,
+				32ED30641928A56E00A8621A /* AltusMappingEngine.framework */,
 				32131B9918AC89E700799EBD /* libsqlite3.dylib */,
 				32131B9718AC89D300799EBD /* libstdc++.dylib */,
 				32131B5018AC864700799EBD /* Foundation.framework */,
@@ -327,6 +389,17 @@
 				32131B5E18AC864700799EBD /* AltusDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		321D3DB219237352004ACD80 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				321D3DB4192373D8004ACD80 /* TileFactory.h */,
+				321D3DB5192373D8004ACD80 /* TileFactory.m */,
+				32D7CF661924B67200F1125C /* MapFactory.h */,
+				32D7CF671924B67200F1125C /* MapFactory.m */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		321E0D0018B67DFD0011218A /* Weather */ = {
@@ -371,11 +444,11 @@
 		321E0D0418B67DFD0011218A /* Raster */ = {
 			isa = PBXGroup;
 			children = (
-				321E0D0518B67DFD0011218A /* ColorMosaicTest.h */,
-				321E0D0618B67DFD0011218A /* ColorMosaicTest.m */,
 				321E0D0718B67DFD0011218A /* DataGrid.h */,
 				321E0D0818B67DFD0011218A /* DataGrid.m */,
 				321E0D0918B67DFD0011218A /* ds.temp.xyz */,
+				321D3DB719238F46004ACD80 /* ColorMosaicTest.h */,
+				321D3DB819238F46004ACD80 /* ColorMosaicTest.m */,
 			);
 			path = Raster;
 			sourceTree = "<group>";
@@ -383,6 +456,7 @@
 		324ACC1618AEAEFF00833819 /* Vector */ = {
 			isa = PBXGroup;
 			children = (
+				324ACC3C18AECA5400833819 /* Vector.h */,
 				3296D42B1902628300A275DF /* Virtual */,
 				3207B0AC18FB3D7A00D50417 /* AltusVectorPackage.sqlite */,
 				324ACC3518AEB01400833819 /* HoustonStreets.map */,
@@ -392,7 +466,6 @@
 				324ACC3A18AEB0A300833819 /* HoustonStreets.m */,
 				B91C70FD18CB8815003FB579 /* WorldSimple.h */,
 				B91C70FE18CB8815003FB579 /* WorldSimple.m */,
-				324ACC3C18AECA5400833819 /* Vector.h */,
 				32B6B63618EE114C00E429AB /* AltusVectorPackage.h */,
 				32B6B63718EE114C00E429AB /* AltusVectorPackage.m */,
 			);
@@ -420,6 +493,15 @@
 			path = VectorMapTextures;
 			sourceTree = "<group>";
 		};
+		324E3B89191AD25200B1961A /* Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				324E3B8A191AD25200B1961A /* AirTrafficScenario.h */,
+				324E3B8B191AD25200B1961A /* AirTrafficScenario.m */,
+			);
+			path = Dynamic;
+			sourceTree = "<group>";
+		};
 		324E776D18FF658F00630F18 /* Virtual */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +509,24 @@
 				324E777518FF66BE00630F18 /* CustomClustering.m */,
 			);
 			path = Virtual;
+			sourceTree = "<group>";
+		};
+		32587CF119121062008B9C0C /* HeightProfiling */ = {
+			isa = PBXGroup;
+			children = (
+				32587D0419121567008B9C0C /* HeightProfiling.h */,
+				32587CF419121062008B9C0C /* TerrainInRadiusTests.h */,
+				32587CF519121062008B9C0C /* TerrainInRadiusTests.m */,
+				32587CF619121062008B9C0C /* TerrainMapFinder.h */,
+				32587CF719121062008B9C0C /* TerrainMapFinder.m */,
+				32587CF819121062008B9C0C /* TerrainProfileTests.h */,
+				32587CF919121062008B9C0C /* TerrainProfileTests.m */,
+				32587CFA19121062008B9C0C /* TerrainProfileView.h */,
+				32587CFB19121062008B9C0C /* TerrainProfileView.m */,
+				32587CFC19121062008B9C0C /* TerrainRadiusPerf.h */,
+				32587CFD19121062008B9C0C /* TerrainRadiusPerf.m */,
+			);
+			path = HeightProfiling;
 			sourceTree = "<group>";
 		};
 		326C92D0190F70190097C50D /* MarkerImageCreators */ = {
@@ -443,6 +543,9 @@
 		327E334118ADA52000FBBB90 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				321D3DB219237352004ACD80 /* Utilities */,
+				32587CF119121062008B9C0C /* HeightProfiling */,
+				32803D75190F7F1B00099DD5 /* UserInteraction */,
 				B941659218F876AE0061DEEB /* Terrain */,
 				321E0D0018B67DFD0011218A /* Weather */,
 				32BAC4CB18AF3F2800DE8583 /* Markers */,
@@ -463,9 +566,10 @@
 		327E335018ADD6F200FBBB90 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				32BAC4DD18AF405900DE8583 /* Maps.h */,
+				32BBEC541910614D0091BC7A /* Terrain */,
 				324ACC1618AEAEFF00833819 /* Vector */,
 				327E335118ADD76000FBBB90 /* Raster */,
-				32BAC4DD18AF405900DE8583 /* Maps.h */,
 			);
 			path = Maps;
 			sourceTree = "<group>";
@@ -473,17 +577,11 @@
 		327E335118ADD76000FBBB90 /* Raster */ = {
 			isa = PBXGroup;
 			children = (
-				32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */,
-				32BAC4BE18AF261400DE8583 /* Acadia.map */,
-				32BAC4BF18AF261400DE8583 /* Acadia.sqlite */,
-				327E335D18ADE27000FBBB90 /* Earthquakes.mbtiles */,
 				327E335A18ADE1CD00FBBB90 /* Raster.h */,
 				327E337118AE012C00FBBB90 /* MBTilesNative.h */,
 				327E335B18ADE1CD00FBBB90 /* MBTilesNative.m */,
 				327E337218AE016500FBBB90 /* MapBoxStreets.h */,
 				327E336018ADE5EC00FBBB90 /* MapBoxStreets.m */,
-				327E336218ADE68500FBBB90 /* RasterTileProvider.h */,
-				327E336318ADE68500FBBB90 /* RasterTileProvider.m */,
 				327E336E18AE010F00FBBB90 /* MapQuestAerial.h */,
 				327E336F18AE010F00FBBB90 /* MapQuestAerial.m */,
 				327E337418AE0BC100FBBB90 /* MapBoxSatellite.h */,
@@ -492,6 +590,10 @@
 				32BAC4C418AF264500DE8583 /* BA3Native.m */,
 				32EE6FC118FE30BC005F65CE /* AltusRasterPackage.h */,
 				32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */,
+				32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */,
+				32BAC4BE18AF261400DE8583 /* Acadia.map */,
+				32BAC4BF18AF261400DE8583 /* Acadia.sqlite */,
+				327E335D18ADE27000FBBB90 /* Earthquakes.mbtiles */,
 			);
 			path = Raster;
 			sourceTree = "<group>";
@@ -499,10 +601,38 @@
 		327E336518ADE97000FBBB90 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				324E3B8E191AD3F300B1961A /* orangeplane.png */,
+				324E3B8F191AD3F300B1961A /* orangeplane@2x.png */,
+				324E3B90191AD3F300B1961A /* purpleplane.png */,
+				324E3B91191AD3F300B1961A /* purpleplane@2x.png */,
+				324E3B92191AD3F300B1961A /* redplane.png */,
+				324E3B93191AD3F300B1961A /* redplane@2x.png */,
+				324E3B94191AD3F300B1961A /* whiteplaneredoutline.png */,
+				324E3B95191AD3F300B1961A /* whiteplaneredoutline@2x.png */,
+				324E3B96191AD3F300B1961A /* yellowplane.png */,
+				324E3B97191AD3F300B1961A /* yellowplane@2x.png */,
+				324E3B98191AD3F300B1961A /* blueplane.png */,
+				324E3B99191AD3F300B1961A /* blueplane@2x.png */,
+				32587D0519121965008B9C0C /* pinGreen.png */,
+				32587D0619121965008B9C0C /* pinGreen@2x.png */,
+				32587D0719121965008B9C0C /* pinPurple.png */,
+				32587D0819121965008B9C0C /* pinPurple@2x.png */,
 				327E336618ADE97000FBBB90 /* pinRed.png */,
 				327E336718ADE97000FBBB90 /* pinRed@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		32803D75190F7F1B00099DD5 /* UserInteraction */ = {
+			isa = PBXGroup;
+			children = (
+				32803D79190F7F6100099DD5 /* UserInteraction.h */,
+				32803D76190F7F1B00099DD5 /* RoutePlanning.h */,
+				32803D77190F7F1B00099DD5 /* RoutePlanning.m */,
+				324E3B83191AAD5E00B1961A /* MultiView.h */,
+				324E3B84191AAD5E00B1961A /* MultiView.m */,
+			);
+			path = UserInteraction;
 			sourceTree = "<group>";
 		};
 		3296D42B1902628300A275DF /* Virtual */ = {
@@ -517,6 +647,7 @@
 		32BAC4CB18AF3F2800DE8583 /* Markers */ = {
 			isa = PBXGroup;
 			children = (
+				324E3B89191AD25200B1961A /* Dynamic */,
 				326C92D0190F70190097C50D /* MarkerImageCreators */,
 				324E776D18FF658F00630F18 /* Virtual */,
 				32BAC4D718AF3F9E00DE8583 /* Clustered */,
@@ -542,13 +673,21 @@
 			path = Clustered;
 			sourceTree = "<group>";
 		};
+		32BBEC541910614D0091BC7A /* Terrain */ = {
+			isa = PBXGroup;
+			children = (
+				32BBEC5B191061D50091BC7A /* Terrain.h */,
+				32BBEC60191062BD0091BC7A /* Earth.h */,
+				32BBEC61191062BD0091BC7A /* Earth.m */,
+				32BBEC5C191062950091BC7A /* Earth.map */,
+				32BBEC5D191062950091BC7A /* Earth.sqlite */,
+			);
+			path = Terrain;
+			sourceTree = "<group>";
+		};
 		B941659218F876AE0061DEEB /* Terrain */ = {
 			isa = PBXGroup;
 			children = (
-				B941659418F877890061DEEB /* Earth.map */,
-				B941659518F877890061DEEB /* Earth.sqlite */,
-				B941659618F877890061DEEB /* EarthLocal.h */,
-				B941659718F877890061DEEB /* EarthLocal.m */,
 				B941659818F877890061DEEB /* Terrain.h */,
 				B941659C18F880700061DEEB /* DynamicColorBar.h */,
 				B941659D18F880700061DEEB /* DynamicColorBar.m */,
@@ -636,29 +775,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				324ACC2A18AEB00600833819 /* apple_land@2x.png in Resources */,
+				32587D0C19121965008B9C0C /* pinPurple@2x.png in Resources */,
 				324ACC3118AEB00600833819 /* park.png in Resources */,
+				324E3BA4191AD3F300B1961A /* blueplane.png in Resources */,
 				321E0D0D18B67DFD0011218A /* ds.temp.xyz in Resources */,
+				324E3BA5191AD3F300B1961A /* blueplane@2x.png in Resources */,
 				324ACC2E18AEB00600833819 /* apple_water@2x.png in Resources */,
 				3247FCE618D8275300F2A449 /* ds.wdir.xyz in Resources */,
+				324E3BA1191AD3F300B1961A /* whiteplaneredoutline@2x.png in Resources */,
 				3247FD0618D827BE00F2A449 /* knots25@2x.png in Resources */,
 				324ACC2818AEB00600833819 /* apple_golf@2x.png in Resources */,
 				3247FD0918D827BE00F2A449 /* knots35.png in Resources */,
+				324E3B9E191AD3F300B1961A /* redplane.png in Resources */,
 				3247FD0118D827BE00F2A449 /* knots15.png in Resources */,
 				3247FD0B18D827BE00F2A449 /* knots40.png in Resources */,
 				324ACC2C18AEB00600833819 /* apple_park@2x.png in Resources */,
 				324ACC3718AEB01400833819 /* HoustonStreets.map in Resources */,
 				324ACC2F18AEB00600833819 /* landTexture.png in Resources */,
 				3247FD0818D827BE00F2A449 /* knots30@2x.png in Resources */,
+				32587D0B19121965008B9C0C /* pinPurple.png in Resources */,
 				32BAC4DC18AF3F9E00DE8583 /* Places.sqlite in Resources */,
+				324E3B9D191AD3F300B1961A /* purpleplane@2x.png in Resources */,
 				3247FD0A18D827BE00F2A449 /* knots35@2x.png in Resources */,
 				3247FCFE18D827BE00F2A449 /* knots5@2x.png in Resources */,
 				324ACC3818AEB01400833819 /* HoustonStreets.sqlite in Resources */,
 				3247FCFC18D827BE00F2A449 /* knots0@2x.png in Resources */,
 				3247FD0418D827BE00F2A449 /* knots20@2x.png in Resources */,
+				32BBEC5E191062950091BC7A /* Earth.map in Resources */,
+				324E3B9C191AD3F300B1961A /* purpleplane.png in Resources */,
 				32131B6C18AC864700799EBD /* Images.xcassets in Resources */,
+				324E3BA3191AD3F300B1961A /* yellowplane@2x.png in Resources */,
+				32587D0919121965008B9C0C /* pinGreen.png in Resources */,
+				324E3BA2191AD3F300B1961A /* yellowplane.png in Resources */,
 				3247FCFB18D827BE00F2A449 /* knots0.png in Resources */,
 				3247FCFD18D827BE00F2A449 /* knots5.png in Resources */,
 				324ACC3018AEB00600833819 /* landTexture@2x.png in Resources */,
+				324E3B9B191AD3F300B1961A /* orangeplane@2x.png in Resources */,
+				324E3BA0191AD3F300B1961A /* whiteplaneredoutline.png in Resources */,
+				324E3B9F191AD3F300B1961A /* redplane@2x.png in Resources */,
 				3247FD0018D827BE00F2A449 /* knots10@2x.png in Resources */,
 				324ACC2D18AEB00600833819 /* apple_water.png in Resources */,
 				3219133E18C90ADD008B2143 /* Tower.png in Resources */,
@@ -668,20 +822,21 @@
 				324ACC2718AEB00600833819 /* apple_golf.png in Resources */,
 				32EE6FBF18FE30A6005F65CE /* AltusRasterPackage.sqlite in Resources */,
 				3247FD0518D827BE00F2A449 /* knots25.png in Resources */,
-				B941659A18F877890061DEEB /* Earth.sqlite in Resources */,
 				327E336918ADE97000FBBB90 /* pinRed@2x.png in Resources */,
+				32BBEC5F191062950091BC7A /* Earth.sqlite in Resources */,
 				3247FD0318D827BE00F2A449 /* knots20.png in Resources */,
 				32BAC4C018AF261400DE8583 /* Acadia.map in Resources */,
 				3247FD0718D827BE00F2A449 /* knots30.png in Resources */,
 				324ACC3218AEB00600833819 /* park@2x.png in Resources */,
 				324ACC3318AEB00600833819 /* waterTexture.png in Resources */,
 				326C92D7190F712E0097C50D /* WayPointStar.png in Resources */,
+				324E3B9A191AD3F300B1961A /* orangeplane.png in Resources */,
+				32587D0A19121965008B9C0C /* pinGreen@2x.png in Resources */,
 				324ACC2918AEB00600833819 /* apple_land.png in Resources */,
 				3207B0AD18FB3D7A00D50417 /* AltusVectorPackage.sqlite in Resources */,
 				3247FCFF18D827BE00F2A449 /* knots10.png in Resources */,
 				3247FCE718D8275300F2A449 /* ds.wspd.xyz in Resources */,
 				32131B5B18AC864700799EBD /* InfoPlist.strings in Resources */,
-				B941659918F877890061DEEB /* Earth.map in Resources */,
 				324ACC2B18AEB00600833819 /* apple_park.png in Resources */,
 				326C92D6190F712E0097C50D /* WayPointStar@2x.png in Resources */,
 				327E336818ADE97000FBBB90 /* pinRed.png in Resources */,
@@ -707,11 +862,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				32131B6A18AC864700799EBD /* ViewController.m in Sources */,
+				321D3DB919238F46004ACD80 /* ColorMosaicTest.m in Sources */,
 				327E334D18ADA52000FBBB90 /* METestManager.m in Sources */,
 				321E0D0A18B67DFD0011218A /* WorldSamples.m in Sources */,
 				327E334B18ADA52000FBBB90 /* METest.m in Sources */,
 				326C92D3190F70A50097C50D /* WayPointMarkerImage.m in Sources */,
+				32803D78190F7F1B00099DD5 /* RoutePlanning.m in Sources */,
 				321E0D0C18B67DFD0011218A /* DataGrid.m in Sources */,
+				32587D0219121062008B9C0C /* TerrainProfileView.m in Sources */,
 				324ACC3B18AEB0A300833819 /* HoustonStreets.m in Sources */,
 				327E336118ADE5EC00FBBB90 /* MapBoxStreets.m in Sources */,
 				32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */,
@@ -719,17 +877,23 @@
 				326C92DA190F72670097C50D /* PlacesFancyLabels.m in Sources */,
 				324E777618FF66BE00630F18 /* CustomClustering.m in Sources */,
 				327E334E18ADA52000FBBB90 /* METestViewControllers.m in Sources */,
-				B941659B18F877890061DEEB /* EarthLocal.m in Sources */,
 				32BAC4C518AF264500DE8583 /* BA3Native.m in Sources */,
+				324E3B85191AAD5E00B1961A /* MultiView.m in Sources */,
 				3296D42E1902629500A275DF /* VectorGrid.m in Sources */,
-				327E336418ADE68500FBBB90 /* RasterTileProvider.m in Sources */,
+				32587D0019121062008B9C0C /* TerrainMapFinder.m in Sources */,
+				32587D0319121062008B9C0C /* TerrainRadiusPerf.m in Sources */,
 				32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */,
+				321D3DB6192373D8004ACD80 /* TileFactory.m in Sources */,
 				32131B5D18AC864700799EBD /* main.m in Sources */,
+				32BBEC62191062BD0091BC7A /* Earth.m in Sources */,
 				327E337618AE0BC100FBBB90 /* MapBoxSatellite.m in Sources */,
+				324E3B8C191AD25200B1961A /* AirTrafficScenario.m in Sources */,
+				32D7CF681924B67200F1125C /* MapFactory.m in Sources */,
 				32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */,
+				32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */,
 				B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */,
-				321E0D0B18B67DFD0011218A /* ColorMosaicTest.m in Sources */,
 				3219133A18C9099C008B2143 /* Towers.m in Sources */,
+				32587D0119121062008B9C0C /* TerrainProfileTests.m in Sources */,
 				B941659E18F880700061DEEB /* DynamicColorBar.m in Sources */,
 				327E337018AE010F00FBBB90 /* MapQuestAerial.m in Sources */,
 				327E335C18ADE1CD00FBBB90 /* MBTilesNative.m in Sources */,

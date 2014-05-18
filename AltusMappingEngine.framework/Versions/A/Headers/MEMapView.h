@@ -18,6 +18,9 @@
 
 + (void) forceLink; 
 
+/** A simple convenience property for keeping track of multiple views.*/
+@property (atomic, retain) NSString* name;
+
 @property (nonatomic, assign) id <MEMapViewDelegate> meMapViewDelegate;
 @property (nonatomic, assign) uint maxTileRenderSize;
 @property (nonatomic, assign) double tileLevelBias;

@@ -28,12 +28,21 @@
 /** Forces linker to link this file via NIB-only interfaces.*/
 + (void) forceLink;
 
+/**The EAGLContext in use by this view controller and its view.*/
+@property (strong, nonatomic) EAGLContext *context;
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Properties
 /**
  Enables or disables multithreaded resource loading. The default is YES.
  */
 @property (nonatomic, getter=isMultithreaded) BOOL multiThreaded;
+
+/**
+ If set to YES, prior to calling initialize, Altus will use its first-gen
+ thread management system.
+ */
+@property (nonatomic) BOOL useLegacyResourceManager;
 
 /** Contains information about the current state of the mapping engine.*/
 @property (atomic, retain) MEInfo* meInfo;
@@ -79,7 +88,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Core rendering engine management
-/** Allocates resources for caching and map loading. Should be called after the cooresponding MEMapView is loaded.*/
+/** Allocates resources for thread management, data caching, and map loading. Should be called after the cooresponding MEMapView is loaded.*/
 - (void) initialize;
 
 /** Free resources related to rendering. Should be called before deallocating mapping engine views.*/
