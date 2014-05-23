@@ -52,7 +52,7 @@
 
 
 - (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
+    updateMarker:(MEMarker *)marker
 		 mapName:(NSString *)mapName{
 	
     //Scale marker font size based on population
@@ -60,11 +60,11 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     UIColor* fillColor = [UIColor whiteColor];
     UIColor* strokeColor = [UIColor blackColor];
 	NSString* label;
-	if(markerInfo.metaData.length==0){
+	if(marker.metaData.length==0){
 		label = @"N/A";
 	}
 	else{
-		label = markerInfo.metaData;
+		label = marker.metaData;
 	}
     //Have the mapping engine create a label for us
     UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica-Bold"
@@ -78,9 +78,9 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     CGPoint anchorPoint = CGPointMake(textImage.size.width / 2.0,
                                       textImage.size.height / 2.0);
     //Update marker info
-	markerInfo.uiImage = textImage;
-	markerInfo.anchorPoint = anchorPoint;
-	markerInfo.nearestNeighborTextureSampling = YES;
+	marker.uiImage = textImage;
+	marker.anchorPoint = anchorPoint;
+	marker.nearestNeighborTextureSampling = YES;
 }
 
 

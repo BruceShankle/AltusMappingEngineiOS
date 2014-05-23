@@ -9,5 +9,5 @@
 @interface CustomMarkerProvider : METileProvider
 @end
 
-@interface CustomClustering : METest <MEMarkerMapDelegate>
+@interface CustomClustering : METest <MEDynamicMarkerMapDelegate>
 @end

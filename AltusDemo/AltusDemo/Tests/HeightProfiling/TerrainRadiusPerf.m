@@ -158,13 +158,12 @@
 	mapInfo.name = @"markers";
 	mapInfo.zOrder = 100;
 	mapInfo.meDynamicMarkerMapDelegate = self;
-	mapInfo.meMapViewController = self.meMapViewController;
     mapInfo.fadeEnabled = NO;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
 	//Add pin for peak
-	MEDynamicMarker* marker = [[MEDynamicMarker alloc]init];
-	marker.name = @"peak";
+	MEMarker* marker = [[MEMarker alloc]init];
+	marker.uniqueName = @"peak";
 	marker.cachedImageName = @"pinRed";
 	marker.anchorPoint = marker.anchorPoint = CGPointMake(7,35);
 	marker.location = self.peakLocation;
@@ -202,8 +201,8 @@
     CGPoint anchorPoint = CGPointMake(textImage.size.width / 2.0,
                                       textImage.size.height / 2.0);
 	
-	MEDynamicMarker* marker = [[MEDynamicMarker alloc]init];
-    marker.name = [NSString stringWithFormat:@"%f", self.radialFromPeak];
+	MEMarker* marker = [[MEMarker alloc]init];
+    marker.uniqueName = [NSString stringWithFormat:@"%f", self.radialFromPeak];
 	marker.uiImage = textImage;
 	marker.anchorPoint = anchorPoint;
 	marker.location = self.centerLocation;

@@ -17,11 +17,12 @@
 @property (assign) BOOL isRunning;
 @property (assign) double interval;
 @property (assign) BOOL repeats;
-@property (assign) MEMapViewController* meMapViewController;
+@property (retain) MEMapViewController* meMapViewController;
 @property (assign) BOOL isEnabled;
 @property (assign) CGFloat bestFontSize;
 @property (retain) IBOutlet UILabel* lblStatus;
-
+@property (retain) NSDate* lastTickTime;
+@property (assign) NSTimeInterval elapsedTime;
 - (void) startTimer;
 - (void) stopTimer;
 - (void) timerTick;
@@ -33,5 +34,8 @@
 + (NSString*) getDocumentsPath;
 + (NSString*) getCachePath;
 + (double) randomDouble:(double)min max:(double)max;
++ (float) randomFloat:(float)min max:(float)max;
++ (float) randomHeading;
++ (CLLocationCoordinate2D) randomLocation;
 
 @end

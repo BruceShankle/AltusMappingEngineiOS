@@ -8,7 +8,7 @@
 
 +(void) showTowers:(METestManager *)testManager{
 	METest* towers = [testManager testInCategory:@"Markers"
-										  withName:@"Towers"];
+                                        withName:@"Towers"];
 	if(towers){
 		[towers start];
 	}
@@ -34,7 +34,7 @@
 		self.routeViewVerticalBuffer = 20;
 		self.lookAtRouteAnimationDuration = 1.0;
         self.obstacleDatabasePath = [[NSBundle mainBundle] pathForResource:@"Towers"
-                                        ofType:@"sqlite"];
+                                                                    ofType:@"sqlite"];
 		self.bufferRadius = 2.5;
 		self.drawTerrainProfile = YES;
 		self.terrainProfileViewHeight = 150;
@@ -201,18 +201,15 @@
 	mapInfo.name = @"obstacles";
 	mapInfo.zOrder = 100;
 	mapInfo.meDynamicMarkerMapDelegate = self;
-	mapInfo.meMapViewController = self.meMapViewController;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
 	//Add dynamic markers to the dynamic marker map
 	for(MEMarker* marker in self.markersAlongRoute){
-		MEDynamicMarker* dynamicMarker = [[MEDynamicMarker alloc]init];
-		dynamicMarker.name=[NSString stringWithFormat:@"%d", marker.uid];
-		dynamicMarker.location = marker.location;
-		dynamicMarker.cachedImageName = @"pinRed";
-		dynamicMarker.anchorPoint = CGPointMake(7,35);
+		marker.uniqueName=[NSString stringWithFormat:@"%d", marker.uid];
+		marker.cachedImageName = @"pinRed";
+		marker.anchorPoint = CGPointMake(7,35);
 		[self.meMapViewController addDynamicMarkerToMap:@"obstacles"
-										  dynamicMarker:dynamicMarker];
+										  dynamicMarker:marker];
 	}
 	
 }
@@ -228,24 +225,24 @@
 		//Update terrain height samples along route
 		self.terrainProfileView.heightSamples =
 		[METerrainProfiler getTerrainProfile:self.terrainMaps
-										  wayPoints:self.wayPoints
-								   samplePointCount:sampleCount
-									  bufferRadius:self.bufferRadius];
+                                   wayPoints:self.wayPoints
+                            samplePointCount:sampleCount
+                                bufferRadius:self.bufferRadius];
 		
 		//Update marker weight samples along route
 		self.terrainProfileView.weightSamples =
 		[MEMarkerQuery getMaxMarkerWeightsAlongRoute:self.obstacleDatabasePath
-												tableNamePrefix:@""
-													  wayPoints:self.wayPoints
-											   samplePointCount:sampleCount
-												  bufferRadius:self.bufferRadius];
+                                     tableNamePrefix:@""
+                                           wayPoints:self.wayPoints
+                                    samplePointCount:sampleCount
+                                        bufferRadius:self.bufferRadius];
 		
 		//Get markers that lie along the route
 		self.markersAlongRoute =
 		[MEMarkerQuery getMarkersAlongRoute:self.obstacleDatabasePath
-									   tableNamePrefix:@""
-											 wayPoints:self.wayPoints
-										 bufferRadius:self.bufferRadius];
+                            tableNamePrefix:@""
+                                  wayPoints:self.wayPoints
+                               bufferRadius:self.bufferRadius];
 		
 		//Update view on main thread.
 		dispatch_async(dispatch_get_main_queue(), ^{
@@ -271,8 +268,8 @@
 	
 	//Create polygon style
 	self.polygonStyle = [[MEPolygonStyle alloc]initWithStrokeColor:[UIColor whiteColor]
-														strokeWidth:2.0
-														  fillColor:[UIColor blueColor]];
+                                                       strokeWidth:2.0
+                                                         fillColor:[UIColor blueColor]];
 	
 	[self updateBoundingGraphics];
 }
@@ -354,57 +351,6 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
     
     return CLLocationCoordinate2DMake(lat2, lon2);
 }
-
-@implementation FF254205
-
-- (id) init{
-	if(self==[super init]){
-		self.name = @"FF254205";
-		self.maxHeightInFeet = 8000;
-	}
-	return self;
-}
-
-- (void) updateTerrainProfile{
-    
-    uint sampleCount = 1024;
-    self.bufferRadius = 1.0;
-    
-    //Ask mapping engine for terrain height and marker weights on another thread.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        //Update terrain height samples along route
-        NSDate *startTime = [NSDate date];
-        
-        NSMutableArray *testWaypoints2 = [NSMutableArray array];
-        [testWaypoints2 addObject:[self.wayPoints lastObject]];
-        CGPoint lastPoint3 = [[self.wayPoints lastObject] CGPointValue];
-        CLLocationCoordinate2D lastCoord3 = CLLocationCoordinate2DMake(lastPoint3.y, lastPoint3.x);
-        CLLocationCoordinate2D smallDistance2 = SurfaceLocationUsingDistance(lastCoord3, 1.2, 45); // 50'
-        [testWaypoints2 addObject:[NSValue valueWithCGPoint:CGPointMake(smallDistance2.longitude, smallDistance2.latitude)]];
-        
-        self.terrainProfileView.heightSamples =
-        [METerrainProfiler getTerrainProfile:self.terrainMaps
-                                   wayPoints:testWaypoints2 //  self.wayPoints
-                            samplePointCount:sampleCount
-                                bufferRadius:self.bufferRadius];
-        
-        NSDate *endTime = [NSDate date];
-        NSLog(@"Query Time (profile: %f): %f seconds", self.bufferRadius, [endTime timeIntervalSinceDate:startTime]);
-        
-        //Update view on main thread.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.terrainProfileView setNeedsDisplay];
-            [self terrainProfileUpdated];
-            [self updateVectorMap];
-        });
-        
-    });
-}
-
-@end
-//FF Case 254205 - END
-///////////////////////////////////////////////////////////////////
 
 
 ///////////////////////////////////////////////////////////////////
@@ -931,7 +877,6 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	mapInfo.name = self.name;
 	mapInfo.zOrder = 100;
 	mapInfo.meDynamicMarkerMapDelegate = self;
-	mapInfo.meMapViewController = self.meMapViewController;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 	
 	
@@ -1043,18 +988,18 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	
 	//Test getting highest marker
     NSString* towerDatabase = [[NSBundle mainBundle] pathForResource:@"Towers"
-                                    ofType:@"sqlite"];
+                                                              ofType:@"sqlite"];
     
 	self.highestMarker = [MEMarkerQuery getHighestMarkerAroundLocation:towerDatabase
-																  tableNamePrefix:@""
-																		 location:location
-																		   radius:self.radius];
+                                                       tableNamePrefix:@""
+                                                              location:location
+                                                                radius:self.radius];
 	
 	//Return all markers
 	return [MEMarkerQuery getMarkersAroundLocation:towerDatabase
-									   tableNamePrefix:@""
-											  location:location
-												radius:self.radius];
+                                   tableNamePrefix:@""
+                                          location:location
+                                            radius:self.radius];
 	
 	
 }
@@ -1074,18 +1019,15 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 			//Add any new markers that have appeared.
 			for(MEMarker* marker in newMarkerSet){
 				if(![self markerIsInSet:marker markerSet:self.lastMarkerSet]){
-					MEDynamicMarker* dynamicMarker = [[MEDynamicMarker alloc]init];
-					dynamicMarker.name=[NSString stringWithFormat:@"%d", marker.uid];
-					dynamicMarker.location = marker.location;
-					dynamicMarker.cachedImageName = @"pinRed";
-					dynamicMarker.anchorPoint = CGPointMake(7,35);
+					marker.uniqueName=[NSString stringWithFormat:@"%d", marker.uid];
+					marker.cachedImageName = @"pinRed";
+					marker.anchorPoint = CGPointMake(7,35);
 					[self.meMapViewController addDynamicMarkerToMap:self.name
-													  dynamicMarker:dynamicMarker];
+													  dynamicMarker:marker];
 					
 				}
 			}
 			
-		
 			//Remove markers that drop out, or change them back to red
 			for(MEMarker* marker in self.lastMarkerSet){
 				if(![self markerIsInSet:marker markerSet:newMarkerSet]){
@@ -1201,15 +1143,15 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
     
 	//Get highest marker
 	self.highestMarker = [MEMarkerQuery getHighestMarkerInBoundingBox:towerDatabase
-																 tableNamePrefix:@""
-															   southWestLocation:self.swCorner
-															   northEastLocation:self.neCorner];
-
+                                                      tableNamePrefix:@""
+                                                    southWestLocation:self.swCorner
+                                                    northEastLocation:self.neCorner];
+    
 	//Return the rest
 	return [MEMarkerQuery getMarkersInBoundingBox:towerDatabase
-											 tableNamePrefix:@""
-										   southWestLocation:self.swCorner
-										   northEastLocation:self.neCorner];
+                                  tableNamePrefix:@""
+                                southWestLocation:self.swCorner
+                                northEastLocation:self.neCorner];
 }
 
 - (double) lineSegmentHitTestPixelBufferDistance{return 10;}
@@ -1219,8 +1161,8 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	
 	//Create polygon style
 	self.polygonStyle = [[MEPolygonStyle alloc]initWithStrokeColor:[UIColor whiteColor]
-														strokeWidth:2.0
-														  fillColor:[UIColor blueColor]];
+                                                       strokeWidth:2.0
+                                                         fillColor:[UIColor blueColor]];
 	
 	[self updateBoundingGraphics];
 }
@@ -1317,20 +1259,20 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	
 	//Get highest marker
 	/*
-	self.highestMarker = [MEMarkerQuery getHighestMarkerInBoundingBox:[MarkerTestData towerMarkerBundlePath]
-																 tableNamePrefix:@""
-															   southWestLocation:self.swCorner
-															   northEastLocation:self.neCorner];*/
+     self.highestMarker = [MEMarkerQuery getHighestMarkerInBoundingBox:[MarkerTestData towerMarkerBundlePath]
+     tableNamePrefix:@""
+     southWestLocation:self.swCorner
+     northEastLocation:self.neCorner];*/
 	
 	//Return the rest
     NSString* towerDatabase = [[NSBundle mainBundle] pathForResource:@"Towers"
                                                               ofType:@"sqlite"];
 	return [MEMarkerQuery getMarkersOnRadial:towerDatabase
-										tableNamePrefix:@""
-											   location:self.currentLocation
-												 radial:self.heading
-											   distance:self.distancePerCycle
-										  bufferRadius:self.bufferRadius];
+                             tableNamePrefix:@""
+                                    location:self.currentLocation
+                                      radial:self.heading
+                                    distance:self.distancePerCycle
+                                bufferRadius:self.bufferRadius];
 	
 }
 
@@ -1351,7 +1293,7 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	
 	
 	CGPoint startPoint = CGPointMake(self.currentLocation.longitude,
-									  self.currentLocation.latitude);
+                                     self.currentLocation.latitude);
 	CGPoint endPoint = [MEMath pointOnRadial:startPoint
 									  radial:self.heading
 									distance:self.distancePerCycle];
@@ -1418,7 +1360,7 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	
 	
 	self.terrainMaps = [TerrainMapFinder getTerrainMaps];
-
+    
 	[TerrainProfileHelper showTowers:self.meTestManager];
 	
 	//Cache purple pin
@@ -1454,13 +1396,12 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	for(double lon=-180; lon<180; lon+=1){
 		for(double lat=-90; lat<90; lat+=1){
 			//Add marker to label lat lon
-			MEMarkerAnnotation* marker = [[MEMarkerAnnotation alloc] init];
-			marker.coordinate = CLLocationCoordinate2DMake(lat, lon);
-			marker.metaData = @"";
+			MEMarker* marker = [[MEMarker alloc] init];
+            marker.location = CLLocationCoordinate2DMake(lat, lon);
 			[markers addObject:marker];
 		}
 	}
-
+    
 	//Add 1/4 arc-hour markers in Continental US
 	double startLon = -128;
 	double endLon = -66;
@@ -1468,26 +1409,26 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	double endLat = 50;
 	for(double lon=startLon; lon<endLon; lon+=1){
 		for(double lat=startLat; lat<endLat; lat+=1){
-						
+            
 			//Add terrain sample markers
 			//Add marker to label lat lon
-			MEMarkerAnnotation* marker = [[MEMarkerAnnotation alloc] init];
-			marker.coordinate = CLLocationCoordinate2DMake(lat + 0.25, lon + 0.25);
+			MEMarker* marker = [[MEMarker alloc] init];
+			marker.location = CLLocationCoordinate2DMake(lat + 0.25, lon + 0.25);
 			marker.metaData = @"T";
 			[markers addObject:marker];
 			
-			marker = [[MEMarkerAnnotation alloc] init];
-			marker.coordinate = CLLocationCoordinate2DMake(lat + 0.25, lon + 0.75);
+			marker = [[MEMarker alloc] init];
+			marker.location = CLLocationCoordinate2DMake(lat + 0.25, lon + 0.75);
 			marker.metaData = @"T";
 			[markers addObject:marker];
 			
-			marker = [[MEMarkerAnnotation alloc] init];
-			marker.coordinate = CLLocationCoordinate2DMake(lat + 0.75, lon + 0.25);
+			marker = [[MEMarker alloc] init];
+			marker.location = CLLocationCoordinate2DMake(lat + 0.75, lon + 0.25);
 			marker.metaData = @"T";
 			[markers addObject:marker];
 			
-			marker = [[MEMarkerAnnotation alloc] init];
-			marker.coordinate = CLLocationCoordinate2DMake(lat + 0.75, lon + 0.75);
+			marker = [[MEMarker alloc] init];
+			marker.location = CLLocationCoordinate2DMake(lat + 0.75, lon + 0.75);
 			marker.metaData = @"T";
 			[markers addObject:marker];
 		}
@@ -1511,7 +1452,6 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	dynMarkerMapInfo.name = @"highestTowers";
 	dynMarkerMapInfo.zOrder = 19;
 	dynMarkerMapInfo.meDynamicMarkerMapDelegate = self;
-	dynMarkerMapInfo.meMapViewController = self.meMapViewController;
 	[self.meMapViewController addMapUsingMapInfo:dynMarkerMapInfo];
 	
 }
@@ -1523,8 +1463,8 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 
 -(void) addMarker:(MEMarker*) marker{
 	//Add higest marker to dynamic marker map
-	MEDynamicMarker* dynamicMarker = [[MEDynamicMarker alloc]init];
-	dynamicMarker.name=[NSString stringWithFormat:@"%d", marker.uid];
+	MEMarker* dynamicMarker = [[MEMarker alloc]init];
+	dynamicMarker.uniqueName=[NSString stringWithFormat:@"%d", marker.uid];
 	dynamicMarker.location = marker.location;
 	dynamicMarker.cachedImageName = @"pinPurple";
 	dynamicMarker.anchorPoint = CGPointMake(7,35);
@@ -1548,8 +1488,8 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 																 location.longitude+0.25);
 	
 	CGPoint minMax  = [METerrainProfiler getMinMaxTerrainHeightsInBoundingBox:self.terrainMaps
-															  southWestLocation:swCorner
-															  northEastLocation:neCorner];
+                                                            southWestLocation:swCorner
+                                                            northEastLocation:neCorner];
 	return [self metersToFeet:minMax.y];
 }
 
@@ -1558,16 +1498,16 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 -(double) getMaxMarkerHeight:(CLLocationCoordinate2D) location{
 	
 	CLLocationCoordinate2D swCorner = CLLocationCoordinate2DMake(location.latitude-0.25,
-																  location.longitude-0.25);
+                                                                 location.longitude-0.25);
 	CLLocationCoordinate2D neCorner = CLLocationCoordinate2DMake(location.latitude+0.25,
 																 location.longitude+0.25);
 	//Get highest marker
     NSString* towerDatabase = [[NSBundle mainBundle] pathForResource:@"Towers"
                                                               ofType:@"sqlite"];
 	MEMarker* highestMarker = [MEMarkerQuery getHighestMarkerInBoundingBox:towerDatabase
-																 tableNamePrefix:@""
-															   southWestLocation:swCorner
-															   northEastLocation:neCorner];
+                                                           tableNamePrefix:@""
+                                                         southWestLocation:swCorner
+                                                         northEastLocation:neCorner];
 	
 	if(highestMarker==nil){
 		return 0;
@@ -1581,20 +1521,20 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 
 // Implement MEMarkerMapDelegate methods
 - (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
+    updateMarker:(MEMarker *)marker
 		 mapName:(NSString *)mapName
 {
     float fontSize = 12.5f;
     UIColor* fillColor = [UIColor whiteColor];
     UIColor* strokeColor = [UIColor blackColor];
 	NSString* label;
-	if([markerInfo.metaData isEqualToString:@"T"]){
+	if([marker.metaData isEqualToString:@"T"]){
 		strokeColor = [UIColor grayColor];
 		fontSize = 28.0f;
 		fillColor = [UIColor blueColor];
-		double maxHeight = [self getMaxMarkerHeight:markerInfo.location];
+		double maxHeight = [self getMaxMarkerHeight:marker.location];
 		if(maxHeight==0){
-			maxHeight = [self getMaxTerrainHeight:markerInfo.location];
+			maxHeight = [self getMaxTerrainHeight:marker.location];
 			fillColor = [UIColor greenColor];
 			label=[NSString stringWithFormat:@"%02.0f",maxHeight];
 		}
@@ -1604,9 +1544,9 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 		}
 	}
 	else{
-	label=[NSString stringWithFormat:@"%0.1f° %0.1f°",
-					 markerInfo.location.latitude,
-					 markerInfo.location.longitude];
+        label=[NSString stringWithFormat:@"%0.1f° %0.1f°",
+               marker.location.latitude,
+               marker.location.longitude];
 	}
 	
     UIImage* textImage=[MEFontUtil newImageWithFontOutlined:@"Helvetica"
@@ -1620,8 +1560,8 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
     CGPoint anchorPoint = CGPointMake(textImage.size.width / 2.0,
                                       textImage.size.height / 2.0);
     //Update the marker info
-	markerInfo.uiImage = textImage;
-	markerInfo.anchorPoint = anchorPoint;
+	marker.uiImage = textImage;
+	marker.anchorPoint = anchorPoint;
 }
 
 
@@ -1659,8 +1599,8 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 -(double) getMaxTerrainHeight:(CLLocationCoordinate2D) location{
 	
 	CGPoint minMax  = [METerrainProfiler getMinMaxTerrainHeightsAroundLocation:self.terrainMaps
-																			 location:location
-																			   radius:5];
+                                                                      location:location
+                                                                        radius:5];
 	return [self metersToFeet:minMax.y];
 }
 
@@ -1689,7 +1629,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 
 - (NSString *)applicationDocumentsDirectory:(NSString*)file {
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                                   inDomains:NSUserDomainMask] lastObject];
+                                                         inDomains:NSUserDomainMask] lastObject];
     
     NSString *path = [url.path stringByAppendingPathComponent:file];
     return path;
@@ -1706,82 +1646,82 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	[self addMarkerMap];
 	[self getTerrainMinMax];
     
-//    const int SIZE = 1201;
-//    NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:[self applicationDocumentsDirectory:@"N44W072.hgt"]];
-//    self.srtmData = [file readDataOfLength:SIZE*SIZE*2];
+    //    const int SIZE = 1201;
+    //    NSFileHandle* file = [NSFileHandle fileHandleForReadingAtPath:[self applicationDocumentsDirectory:@"N44W072.hgt"]];
+    //    self.srtmData = [file readDataOfLength:SIZE*SIZE*2];
     
-//    [self runTest:44.266452 lon:-71.676197 SRTM:2362 OSM:2358.923960 ME:2129.265137];
-//    [self runTest:44.378393 lon:-71.708976 SRTM:1807 OSM:1827.427880 ME:1712.598511];
-//    [self runTest:44.439226 lon:-71.270355 SRTM:3254 OSM:3254.593280 ME:3175.853027];
-//    [self runTest:44.407838 lon:-71.537583 SRTM:1620 OSM:1601.049920 ME:1482.939697];
-//    [self runTest:44.506065 lon:-71.414542 SRTM:4146 OSM:4127.296720 ME:3966.535645];
-//    [self runTest:44.506168 lon:-71.182299 SRTM:2043 OSM:2063.648360 ME:1935.695557];
-//    [self runTest:44.318952 lon:-71.396745 SRTM:2729 OSM:2749.343920 ME:2660.761230];
-//    [self runTest:44.346727 lon:-71.780645 SRTM:1948 OSM:1958.661480 ME:1699.475098];
-//    [self runTest:44.344505 lon:-71.627029 SRTM:1719 OSM:715.879320  ME:1564.960693];
-//    [self runTest:44.330895 lon:-71.499247 SRTM:3523 OSM:3556.430560 ME:3402.231201];
-//    [self runTest:44.251731 lon:-71.517580 SRTM:2490 OSM:2503.280920 ME:2273.622070];
-//    [self runTest:44.316174 lon:-71.379244 SRTM:3041 OSM:3047.900360 ME:2883.858398];
-//    [self runTest:44.454225 lon:-71.615363 SRTM:1817 OSM:1837.270400 ME:1302.493530];
-//    [self runTest:44.454781 lon:-71.587585 SRTM:1830 OSM:1840.551240 ME:1505.905518];
-//    [self runTest:44.517834 lon:-71.400914 SRTM:3805 OSM:3832.021120 ME:3408.792725];
-//    [self runTest:44.394504 lon:-71.691754 SRTM:1886 OSM:1893.044680 ME:1811.023682];
-//    [self runTest:44.112845 lon:-71.418132 SRTM:3625 OSM:3667.979120 ME:3467.847900];
-//    [self runTest:44.030347 lon:-71.302017 SRTM:3179 OSM:3202.099840 ME:3097.113037];
-//    [self runTest:44.074510 lon:-71.923698 SRTM:2729 OSM:2782.152320 ME:2316.272949];
-//    [self runTest:44.030900 lon:-71.820362 SRTM:4491 OSM:4527.559200 ME:4478.346680];
-//    [self runTest:44.152918 lon:-71.531214 SRTM:4635 OSM:4698.162880 ME:4635.827148];
-//    [self runTest:44.332007 lon:-71.343688 SRTM:3418 OSM:3369.422680 ME:3175.853027];
-//    [self runTest:44.093401 lon:-71.447576 SRTM:4632 OSM:4665.354480 ME:4445.538086];
-//    [self runTest:44.267288 lon:-71.178962 SRTM:4803 OSM:4826.115640 ME:4616.142090];
-//    [self runTest:44.029233 lon:-71.872029 SRTM:3523 OSM:3553.149720 ME:3408.792725];
-//    [self runTest:44.166453 lon:-71.814531 SRTM:2549 OSM:2631.233680 ME:2480.314941];
-//    [self runTest:44.202842 lon:-71.605638 SRTM:3205 OSM:3238.189080 ME:2952.756104];
-//    [self runTest:44.471169 lon:-71.200910 SRTM:2011 OSM:2030.839960 ME:1722.441040];
-//    [self runTest:44.249510 lon:-71.330631 SRTM:4947 OSM:4973.753440 ME:4921.259766];
-//    [self runTest:44.187221 lon:-71.610724 SRTM:4337 OSM:4412.729800 ME:4091.207520];
-//    [self runTest:44.228674 lon:-71.794810 SRTM:1896 OSM:1916.010560 ME:1870.078857];
-//    [self runTest:44.002290 lon:-71.710359 SRTM:1988 OSM:2007.874080 ME:1847.112915];
-//    [self runTest:44.221731 lon:-71.512024 SRTM:4032 OSM:4048.556560 ME:3999.343994];
-//    
-//    
-//    [self runTest:44.417282 lon:-71.392302 SRTM:3572.834651 OSM:3566.272971 ME:3986.220703];
-//    [self runTest:44.418671 lon:-71.354801 SRTM:2795.275595 OSM:2801.837275 ME:3280.840088];
-//    [self runTest:44.312838 lon:-71.962870 SRTM:1719.160108 OSM:1732.283467 ME:2063.648438];
-//    [self runTest:44.477558 lon:-71.394247 SRTM:3543.307092 OSM:3549.868772 ME:4146.981934];
-//    [self runTest:44.330062 lon:-71.480636 SRTM:2969.160110 OSM:2975.721789 ME:3402.231201];
-//    [self runTest:44.340616 lon:-71.801201 SRTM:1564.960632 OSM:1558.398953 ME:1683.070923];
-//    [self runTest:44.324508 lon:-71.288131 SRTM:5344.488197 OSM:5357.611557 ME:5728.346680];
-//    [self runTest:44.321730 lon:-71.300354 SRTM:5521.653552 OSM:5518.372712 ME:5728.346680];
-//    [self runTest:44.283398 lon:-71.251185 SRTM:2821.522314 OSM:2795.275595 ME:3244.750732];
-//    [self runTest:44.074791 lon:-71.318129 SRTM:1200.787403 OSM:1135.170605 ME:2152.230957];
-//    [self runTest:44.240619 lon:-71.649806 SRTM:1706.036748 OSM:1722.440947 ME:1965.223145];
-//    [self runTest:44.325341 lon:-71.300631 SRTM:5305.118118 OSM:5334.645677 ME:5728.346680];
-//    [self runTest:44.315897 lon:-71.306465 SRTM:5200.131242 OSM:5216.535441 ME:5728.346680];
-//    [self runTest:44.390339 lon:-71.064519 SRTM:1223.753283 OSM:1250.000002 ME:1729.002686];
-//    [self runTest:44.206454 lon:-71.428133 SRTM:3392.388457 OSM:3398.950136 ME:3753.281006];
-//    [self runTest:44.191452 lon:-71.935090 SRTM:1056.430448 OSM:1085.958007 ME:1292.651001];
-//    [self runTest:44.437004 lon:-71.097854 SRTM:2782.152235 OSM:2785.433075 ME:3070.866211];
-//    [self runTest:44.182842 lon:-71.703418 SRTM:2227.690292 OSM:2237.532812 ME:2375.328125];
-//    [self runTest:44.101180 lon:-71.113405 SRTM:2539.370083 OSM:2578.740161 ME:2621.391113];
-//    [self runTest:44.043403 lon:-71.314796 SRTM:1791.338585 OSM:1768.372706 ME:2893.700928];
-//    [self runTest:44.019791 lon:-71.365074 SRTM:1866.797903 OSM:1886.482943 ME:2188.320312];
-//    [self runTest:44.033403 lon:-71.146182 SRTM:757.874017  OSM:757.874017  ME:984.252014 ];
-//    [self runTest:44.252654 lon:-71.294072 SRTM:5459.317594 OSM:5459.317594 ME:6253.281250];
-//    [self runTest:44.458670 lon:-71.166743 SRTM:1715.879268 OSM:1709.317588 ME:2007.874023];
-//    [self runTest:44.093124 lon:-71.289518 SRTM:1400.918637 OSM:1414.041997 ME:2139.107666];
-//    [self runTest:44.202845 lon:-71.105906 SRTM:3307.086619 OSM:3280.839900 ME:3480.971191];
-//    [self runTest:44.419783 lon:-71.074798 SRTM:1358.267719 OSM:1394.356958 ME:2526.246826];
-//    [self runTest:44.057569 lon:-71.092848 SRTM:1653.543310 OSM:1673.228349 ME:1735.564331];
-//    [self runTest:44.136457 lon:-71.332575 SRTM:3024.934388 OSM:3077.427826 ME:3129.921387];
-//    [self runTest:44.407283 lon:-71.032297 SRTM:1272.965881 OSM:1282.808401 ME:1801.181152];
-//    [self runTest:44.204233 lon:-71.310630 SRTM:3805.774284 OSM:3809.055124 ME:3969.816406];
-//    [self runTest:44.107012 lon:-71.395353 SRTM:3300.524939 OSM:3313.648299 ME:3871.391113];
-//    [self runTest:44.161457 lon:-71.195906 SRTM:1558.398953 OSM:1587.926512 ME:2171.916016];
-//    [self runTest:44.215622 lon:-71.062017 SRTM:2864.173233 OSM:2929.790031 ME:3520.341309];
-//    [self runTest:44.240343 lon:-71.350354 SRTM:4688.320217 OSM:4753.937015 ME:4921.259766];
-//    [self runTest:44.201456 lon:-71.280630 SRTM:3110.236225 OSM:3090.551186 ME:3969.816406];
-
+    //    [self runTest:44.266452 lon:-71.676197 SRTM:2362 OSM:2358.923960 ME:2129.265137];
+    //    [self runTest:44.378393 lon:-71.708976 SRTM:1807 OSM:1827.427880 ME:1712.598511];
+    //    [self runTest:44.439226 lon:-71.270355 SRTM:3254 OSM:3254.593280 ME:3175.853027];
+    //    [self runTest:44.407838 lon:-71.537583 SRTM:1620 OSM:1601.049920 ME:1482.939697];
+    //    [self runTest:44.506065 lon:-71.414542 SRTM:4146 OSM:4127.296720 ME:3966.535645];
+    //    [self runTest:44.506168 lon:-71.182299 SRTM:2043 OSM:2063.648360 ME:1935.695557];
+    //    [self runTest:44.318952 lon:-71.396745 SRTM:2729 OSM:2749.343920 ME:2660.761230];
+    //    [self runTest:44.346727 lon:-71.780645 SRTM:1948 OSM:1958.661480 ME:1699.475098];
+    //    [self runTest:44.344505 lon:-71.627029 SRTM:1719 OSM:715.879320  ME:1564.960693];
+    //    [self runTest:44.330895 lon:-71.499247 SRTM:3523 OSM:3556.430560 ME:3402.231201];
+    //    [self runTest:44.251731 lon:-71.517580 SRTM:2490 OSM:2503.280920 ME:2273.622070];
+    //    [self runTest:44.316174 lon:-71.379244 SRTM:3041 OSM:3047.900360 ME:2883.858398];
+    //    [self runTest:44.454225 lon:-71.615363 SRTM:1817 OSM:1837.270400 ME:1302.493530];
+    //    [self runTest:44.454781 lon:-71.587585 SRTM:1830 OSM:1840.551240 ME:1505.905518];
+    //    [self runTest:44.517834 lon:-71.400914 SRTM:3805 OSM:3832.021120 ME:3408.792725];
+    //    [self runTest:44.394504 lon:-71.691754 SRTM:1886 OSM:1893.044680 ME:1811.023682];
+    //    [self runTest:44.112845 lon:-71.418132 SRTM:3625 OSM:3667.979120 ME:3467.847900];
+    //    [self runTest:44.030347 lon:-71.302017 SRTM:3179 OSM:3202.099840 ME:3097.113037];
+    //    [self runTest:44.074510 lon:-71.923698 SRTM:2729 OSM:2782.152320 ME:2316.272949];
+    //    [self runTest:44.030900 lon:-71.820362 SRTM:4491 OSM:4527.559200 ME:4478.346680];
+    //    [self runTest:44.152918 lon:-71.531214 SRTM:4635 OSM:4698.162880 ME:4635.827148];
+    //    [self runTest:44.332007 lon:-71.343688 SRTM:3418 OSM:3369.422680 ME:3175.853027];
+    //    [self runTest:44.093401 lon:-71.447576 SRTM:4632 OSM:4665.354480 ME:4445.538086];
+    //    [self runTest:44.267288 lon:-71.178962 SRTM:4803 OSM:4826.115640 ME:4616.142090];
+    //    [self runTest:44.029233 lon:-71.872029 SRTM:3523 OSM:3553.149720 ME:3408.792725];
+    //    [self runTest:44.166453 lon:-71.814531 SRTM:2549 OSM:2631.233680 ME:2480.314941];
+    //    [self runTest:44.202842 lon:-71.605638 SRTM:3205 OSM:3238.189080 ME:2952.756104];
+    //    [self runTest:44.471169 lon:-71.200910 SRTM:2011 OSM:2030.839960 ME:1722.441040];
+    //    [self runTest:44.249510 lon:-71.330631 SRTM:4947 OSM:4973.753440 ME:4921.259766];
+    //    [self runTest:44.187221 lon:-71.610724 SRTM:4337 OSM:4412.729800 ME:4091.207520];
+    //    [self runTest:44.228674 lon:-71.794810 SRTM:1896 OSM:1916.010560 ME:1870.078857];
+    //    [self runTest:44.002290 lon:-71.710359 SRTM:1988 OSM:2007.874080 ME:1847.112915];
+    //    [self runTest:44.221731 lon:-71.512024 SRTM:4032 OSM:4048.556560 ME:3999.343994];
+    //
+    //
+    //    [self runTest:44.417282 lon:-71.392302 SRTM:3572.834651 OSM:3566.272971 ME:3986.220703];
+    //    [self runTest:44.418671 lon:-71.354801 SRTM:2795.275595 OSM:2801.837275 ME:3280.840088];
+    //    [self runTest:44.312838 lon:-71.962870 SRTM:1719.160108 OSM:1732.283467 ME:2063.648438];
+    //    [self runTest:44.477558 lon:-71.394247 SRTM:3543.307092 OSM:3549.868772 ME:4146.981934];
+    //    [self runTest:44.330062 lon:-71.480636 SRTM:2969.160110 OSM:2975.721789 ME:3402.231201];
+    //    [self runTest:44.340616 lon:-71.801201 SRTM:1564.960632 OSM:1558.398953 ME:1683.070923];
+    //    [self runTest:44.324508 lon:-71.288131 SRTM:5344.488197 OSM:5357.611557 ME:5728.346680];
+    //    [self runTest:44.321730 lon:-71.300354 SRTM:5521.653552 OSM:5518.372712 ME:5728.346680];
+    //    [self runTest:44.283398 lon:-71.251185 SRTM:2821.522314 OSM:2795.275595 ME:3244.750732];
+    //    [self runTest:44.074791 lon:-71.318129 SRTM:1200.787403 OSM:1135.170605 ME:2152.230957];
+    //    [self runTest:44.240619 lon:-71.649806 SRTM:1706.036748 OSM:1722.440947 ME:1965.223145];
+    //    [self runTest:44.325341 lon:-71.300631 SRTM:5305.118118 OSM:5334.645677 ME:5728.346680];
+    //    [self runTest:44.315897 lon:-71.306465 SRTM:5200.131242 OSM:5216.535441 ME:5728.346680];
+    //    [self runTest:44.390339 lon:-71.064519 SRTM:1223.753283 OSM:1250.000002 ME:1729.002686];
+    //    [self runTest:44.206454 lon:-71.428133 SRTM:3392.388457 OSM:3398.950136 ME:3753.281006];
+    //    [self runTest:44.191452 lon:-71.935090 SRTM:1056.430448 OSM:1085.958007 ME:1292.651001];
+    //    [self runTest:44.437004 lon:-71.097854 SRTM:2782.152235 OSM:2785.433075 ME:3070.866211];
+    //    [self runTest:44.182842 lon:-71.703418 SRTM:2227.690292 OSM:2237.532812 ME:2375.328125];
+    //    [self runTest:44.101180 lon:-71.113405 SRTM:2539.370083 OSM:2578.740161 ME:2621.391113];
+    //    [self runTest:44.043403 lon:-71.314796 SRTM:1791.338585 OSM:1768.372706 ME:2893.700928];
+    //    [self runTest:44.019791 lon:-71.365074 SRTM:1866.797903 OSM:1886.482943 ME:2188.320312];
+    //    [self runTest:44.033403 lon:-71.146182 SRTM:757.874017  OSM:757.874017  ME:984.252014 ];
+    //    [self runTest:44.252654 lon:-71.294072 SRTM:5459.317594 OSM:5459.317594 ME:6253.281250];
+    //    [self runTest:44.458670 lon:-71.166743 SRTM:1715.879268 OSM:1709.317588 ME:2007.874023];
+    //    [self runTest:44.093124 lon:-71.289518 SRTM:1400.918637 OSM:1414.041997 ME:2139.107666];
+    //    [self runTest:44.202845 lon:-71.105906 SRTM:3307.086619 OSM:3280.839900 ME:3480.971191];
+    //    [self runTest:44.419783 lon:-71.074798 SRTM:1358.267719 OSM:1394.356958 ME:2526.246826];
+    //    [self runTest:44.057569 lon:-71.092848 SRTM:1653.543310 OSM:1673.228349 ME:1735.564331];
+    //    [self runTest:44.136457 lon:-71.332575 SRTM:3024.934388 OSM:3077.427826 ME:3129.921387];
+    //    [self runTest:44.407283 lon:-71.032297 SRTM:1272.965881 OSM:1282.808401 ME:1801.181152];
+    //    [self runTest:44.204233 lon:-71.310630 SRTM:3805.774284 OSM:3809.055124 ME:3969.816406];
+    //    [self runTest:44.107012 lon:-71.395353 SRTM:3300.524939 OSM:3313.648299 ME:3871.391113];
+    //    [self runTest:44.161457 lon:-71.195906 SRTM:1558.398953 OSM:1587.926512 ME:2171.916016];
+    //    [self runTest:44.215622 lon:-71.062017 SRTM:2864.173233 OSM:2929.790031 ME:3520.341309];
+    //    [self runTest:44.240343 lon:-71.350354 SRTM:4688.320217 OSM:4753.937015 ME:4921.259766];
+    //    [self runTest:44.201456 lon:-71.280630 SRTM:3110.236225 OSM:3090.551186 ME:3969.816406];
+    
 	self.isRunning = YES;
 }
 
@@ -1805,9 +1745,9 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	
 	//Create polygon style
 	self.polygonStyle = [[MEPolygonStyle alloc]initWithStrokeColor:[UIColor whiteColor]
-														strokeWidth:2.0
-														  fillColor:[UIColor redColor]];
-		
+                                                       strokeWidth:2.0
+                                                         fillColor:[UIColor redColor]];
+    
 	//Add a vector map
 	MEVectorMapInfo* mapInfo = [[MEVectorMapInfo alloc]init];
 	mapInfo.name = self.boundingGraphicsMapName;
@@ -1856,9 +1796,8 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	mapInfo.name = @"markers";
 	mapInfo.zOrder = 100;
 	mapInfo.meDynamicMarkerMapDelegate = self;
-	mapInfo.meMapViewController = self.meMapViewController;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-
+    
 }
 
 - (void) removeMarkerMap{
@@ -1896,7 +1835,7 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	double lon = self.swCorner.longitude + (self.neCorner.longitude - self.swCorner.longitude)/2;
 	double lat = self.swCorner.latitude + (self.neCorner.latitude - self.swCorner.latitude)/2;
 	
-	MEDynamicMarker* marker = [[MEDynamicMarker alloc]init];
+	MEMarker* marker = [[MEMarker alloc]init];
 	marker.uiImage = textImage;
 	marker.anchorPoint = anchorPoint;
 	marker.location = CLLocationCoordinate2DMake(lat,lon);
@@ -1910,8 +1849,8 @@ updateMarkerInfo:(MEMarkerInfo *)markerInfo
 	//Ask mapping engine for terrain height and marker weights on another thread.
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 		minMax = [METerrainProfiler getMinMaxTerrainHeightsInBoundingBox:self.terrainMaps
-																	  southWestLocation:self.swCorner
-																	  northEastLocation:self.neCorner];
+                                                       southWestLocation:self.swCorner
+                                                       northEastLocation:self.neCorner];
 		
 		//Update view on main thread.
 		dispatch_async(dispatch_get_main_queue(), ^{

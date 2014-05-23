@@ -2,9 +2,6 @@
 #import "WorldSamples.h"
 
 @implementation WindGrid
-//    NSMutableArray* valueArray;
-//    CLLocationCoordinate2D min, max;
-//    CGPoint deltaCoordinate;
 
 -(void) readFromXYZ:(NSString*)filepath {
     NSMutableArray *values = [[NSMutableArray alloc]init];
@@ -65,11 +62,12 @@
     
     valueArray = [values copy];
     
-    NSLog(@"count: %d, min/max value: (%f, %f), min: (%f, %f), max: (%f, %f), dx: %f, dy: %f", coordCount, minValue, maxValue, minCoord.longitude, minCoord.latitude, maxCoord.longitude, maxCoord.latitude, self.deltaLongitude, self.deltaLatitude);
+    /*
+    NSLog(@"count: %d, min/max value: (%f, %f), min: (%f, %f), max: (%f, %f), dx: %f, dy: %f", coordCount, minValue, maxValue, minCoord.longitude, minCoord.latitude, maxCoord.longitude, maxCoord.latitude, self.deltaLongitude, self.deltaLatitude);*/
 }
 
 -(double) getValueAtCoordinate:(CLLocationCoordinate2D)coordinate {
-
+    
     // compute normalized index;
     CGPoint floatIndex = CGPointMake((coordinate.longitude - self.minCoord.longitude) / (self.maxCoord.longitude - self.minCoord.longitude),
                                      (coordinate.latitude - self.minCoord.latitude) / (self.maxCoord.latitude - self.minCoord.latitude));
@@ -80,7 +78,7 @@
     // get nearest discrete index
     int x = roundf(floatIndex.x);
     int y = roundf(floatIndex.y);
-
+    
     // clamp
     if (x < 0) x = 0;
     if (x >= numLongitudeValues) x = numLongitudeValues - 1;
@@ -99,9 +97,9 @@
     double dy = self.deltaLatitude * 0.4999;
     
     return  (coordinate.longitude > self.minCoord.longitude - dx) &&
-            (coordinate.latitude > self.minCoord.latitude - dy) &&
-            (coordinate.longitude < self.maxCoord.longitude + dx) &&
-            (coordinate.latitude < self.maxCoord.latitude + dy);
+    (coordinate.latitude > self.minCoord.latitude - dy) &&
+    (coordinate.longitude < self.maxCoord.longitude + dx) &&
+    (coordinate.latitude < self.maxCoord.latitude + dy);
 }
 
 -(BOOL) intersectsRect:(CGRect)rect {
@@ -125,13 +123,13 @@
 	return self;
 }
 
-- (MEDynamicMarker*) createMarkerWithName:(NSString*)name
-                             andImageName:(NSString*)imageName
-                              andLocation:(CLLocationCoordinate2D)location
-                              andRotation:(double)rotation
+- (MEMarker*) createMarkerWithName:(NSString*)name
+                      andImageName:(NSString*)imageName
+                       andLocation:(CLLocationCoordinate2D)location
+                       andRotation:(double)rotation
 {
-	MEDynamicMarker* marker = [[MEDynamicMarker alloc]init];
-	marker.name = name;
+	MEMarker* marker = [[MEMarker alloc]init];
+	marker.uniqueName = name;
 	marker.cachedImageName = imageName;
     
 	marker.compressTexture = NO;
@@ -219,15 +217,14 @@ double GetPoleScaledPixelSpacing(double targetPixelSpacing, METileProviderReques
         double spacingX = GetMarkerSpacing(pixelSpacing, meTileRequest.minX, meTileRequest.maxX, self.windSpeedGrid.deltaLongitude);
         double startX = GetIncrementNearValue(meTileRequest.minX, spacingX, self.windSpeedGrid.minCoord.longitude);
         double endX = GetIncrementNearValue(meTileRequest.maxX, spacingX, self.windSpeedGrid.minCoord.longitude);
-
+        
         double spacingY = GetMarkerSpacing(pixelSpacing, meTileRequest.minY, meTileRequest.maxY, self.windSpeedGrid.deltaLatitude);
         double startY = GetIncrementNearValue(meTileRequest.minY, spacingY, self.windSpeedGrid.minCoord.latitude);
         double endY = GetIncrementNearValue(meTileRequest.maxY, spacingY, self.windSpeedGrid.minCoord.latitude);
-
+        
         for (double x = startX; x < endX; x += spacingX) {
             for (double y = startY; y < endY; y += spacingY) {
                 
-                NSString *name = [NSString stringWithFormat:@"%d", rand()];
                 CLLocationCoordinate2D location = CLLocationCoordinate2DMake(y, x);
                 
                 // skip if location not in dataset
@@ -235,16 +232,21 @@ double GetPoleScaledPixelSpacing(double targetPixelSpacing, METileProviderReques
                     continue;
                 }
                 
-                double windSpeed = [self.windSpeedGrid getValueAtCoordinate:location];                
+                //Get  unique name
+                NSString *name = [NSString stringWithFormat:@"%d", self.count];
+                self.count++;
+                
+                
+                double windSpeed = [self.windSpeedGrid getValueAtCoordinate:location];
                 double rotation = [self.windDirectionGrid getValueAtCoordinate:location];
-        
+                
                 // scale up wind speed to look better! hackathon
                 windSpeed *= 4;
                 NSString *imageName = [WorldSamples getWindBarbNameForWindSpeed:windSpeed];
-                MEDynamicMarker* rdu = [self createMarkerWithName:name
-                                                     andImageName:imageName
-                                                      andLocation:location
-                                                      andRotation:rotation];
+                MEMarker* rdu = [self createMarkerWithName:name
+                                              andImageName:imageName
+                                               andLocation:location
+                                               andRotation:rotation];
                 [markers addObject:rdu];
             }
         }
@@ -262,7 +264,7 @@ double GetPoleScaledPixelSpacing(double targetPixelSpacing, METileProviderReques
 {
     if(self = [super init])
     {
-        self.name=@"World-Wide Winds";
+        self.name=@"World Samples";
     }
     return self;
 }
@@ -282,22 +284,27 @@ double GetPoleScaledPixelSpacing(double targetPixelSpacing, METileProviderReques
     tileProvider.windDirectionGrid = windDirectionGrid;
 	
 	//Create virtual map info
-	MEVirtualMapInfo* mapInfo = [[MEVirtualMapInfo alloc]init];
-	mapInfo.meMapViewController = self.meMapViewController;
+    MEVirtualMarkerMapInfo* mapInfo = [[MEVirtualMarkerMapInfo alloc]init];
+    mapInfo.name = self.name;
+    mapInfo.hitTestingEnabled = NO;
 	mapInfo.meTileProvider = tileProvider;
-	mapInfo.mapType = kMapTypeVirtualMarker;
 	mapInfo.zOrder = 30;
-	mapInfo.name = self.name;
 	
-	//Add map
-	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-    
+	
     //Cache images
     for (int i = 0; i <= 40; i+= 5) {
         NSString *imageName = [WorldSamples getWindBarbNameForWindSpeed:i];
         UIImage *image = [UIImage imageNamed:imageName];
-        [self.meMapViewController addCachedMarkerImage:image withName:imageName compressTexture:NO nearestNeighborTextureSampling:NO];
+        [self.meMapViewController addCachedMarkerImage:image
+                                              withName:imageName
+                                       compressTexture:NO
+                        nearestNeighborTextureSampling:NO];
     }
+    
+	//Add map
+	[self.meMapViewController addMapUsingMapInfo:mapInfo];
+    
+    
     
     self.isRunning = YES;
 }

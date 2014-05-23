@@ -28,5 +28,5 @@
 
 @property (retain) WindGrid* windSpeedGrid;
 @property (retain) WindGrid* windDirectionGrid;
-
+@property (assign) int count;
 @end

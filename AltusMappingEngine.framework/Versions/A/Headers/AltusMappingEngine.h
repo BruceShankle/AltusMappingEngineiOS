@@ -15,7 +15,6 @@
 #import <AltusMappingEngine/MERenderModes.h>
 #import <AltusMappingEngine/MEGeometry.h>
 #import <AltusMappingEngine/MEProtocols.h>
-#import <AltusMappingEngine/MEMarkerInfo.h>
 #import <AltusMappingEngine/MEImageUtil.h>
 #import <AltusMappingEngine/MEFontUtil.h>
 #import <AltusMappingEngine/MEMapInfo.h>

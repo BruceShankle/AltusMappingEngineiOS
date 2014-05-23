@@ -1,0 +1,46 @@
+Major changes from 1.4 to 1.5
+=============================
+Update version number for release.
+Call shutdown on dealloc in MEMapViewController.
+Refactor package loading system for supporting other map types.
+Support map bounds and max level in map packages.
+Add the Charlotte sectional as a package, low resolution.
+Add virtual marker sample.
+Added GL context management to play more nicely with other GL views.
+Adding virtual vector map test, shows how to draw a grid.
+Create a sample that demonstrates fancy marker images.
+Add basic route planning example.
+Modify Terrain rendering system to optinally flip textures when it renders them so we don't have to jump through hoops when we are generating data in the GDAL pipeline.
+New terrain lighting system.
+Port height profiling tests to AltusDemo from Mapp.
+Put old resource manager in as option.
+Add mult-view support.
+Add test for multi-view system.
+Updating default terrain color.
+Port air traffic dynamic markers test from Mapp.
+Support UIImage in MarkerTileLoadComplete for virtual marker maps.
+Fix color mosaic test for new projection.
+Add route with markers demo.
+Add new sample, TileFactory, that demonstrates better default pattern of doing a tile provider that does thread management outside the work of generating a tile.
+Make raster package tile provider  handle missing tiles at higher levels.
+Refactor and simplify iOS marker API:
+    Consolidate all marker passing functions to use MEMarker.
+    Remove MEMarkerAnnotation, replace with MEMarker.
+    Remove MEDynamicMarker, replace with MEMarker.
+    Remove MEFastMarker, replace with MEMarker.
+    Remove MEMarkerInfo, replace with MEMarker.
+    Remove deprecated add/remove/update marker APIs that have been
+    superceded by the Dynamic marker APIs.
+Add support for hit testing to virtual marker system.
+Modify virtual marker map renderer to add marker to marker frame.
+Add MEVirtualMarkerMapInfo object for describing virtual marker maps.
+Add AddVirtualMarkerMapUsingMap info function to MEMapViewController.
+Add support for drawing polygons to dynamic vector map layers.
+
+New samples:
+Artistic/Asteroids: Demonstrates dynamic vector layers
+VectorMarkers/AnimatedVectorCircle: Demonstrates vector circles and range rings
+Utilities/TileFactory: Demonstrates how to properly create an asynchronous tile provider. Used in all of the raster maps and weather maps.
+UserInteracton/MultiView: Demonstrates how to use multiple instances of MEMapView and how to chain them together.
+Utilities/MovingObject2D: Demonstrates how to move an object around the globe over time.
+Markers/Clustered/BusStops: Demonstrates how to use in-memory clustered marker maps with different image loading strategies. If you were using the now-removed FastMarker API, these serve as a guide for using the new consolidated system.

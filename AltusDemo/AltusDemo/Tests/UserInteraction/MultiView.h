@@ -15,5 +15,4 @@
 @property (retain) UIButton* testButton2;
 @property (retain) UIPopoverController* testPopover1;
 @property (retain) UIPopoverController* testPopover2;
-
 @end

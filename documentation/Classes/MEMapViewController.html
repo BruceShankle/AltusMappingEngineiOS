@@ -37,6 +37,8 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/context">&nbsp;&nbsp;&nbsp;&nbsp;context</option>
+	
 	<option value="//api/name/coreCacheSize">&nbsp;&nbsp;&nbsp;&nbsp;coreCacheSize</option>
 	
 	<option value="//api/name/greenMode">&nbsp;&nbsp;&nbsp;&nbsp;greenMode</option>
@@ -46,6 +48,8 @@
 	<option value="//api/name/greenModeFullThrottleFramerate">&nbsp;&nbsp;&nbsp;&nbsp;greenModeFullThrottleFramerate</option>
 	
 	<option value="//api/name/greenModeIdleFramerate">&nbsp;&nbsp;&nbsp;&nbsp;greenModeIdleFramerate</option>
+	
+	<option value="//api/name/isInitialized">&nbsp;&nbsp;&nbsp;&nbsp;isInitialized</option>
 	
 	<option value="//api/name/isRunning">&nbsp;&nbsp;&nbsp;&nbsp;isRunning</option>
 	
@@ -64,6 +68,8 @@
 	<option value="//api/name/renderFlags">&nbsp;&nbsp;&nbsp;&nbsp;renderFlags</option>
 	
 	<option value="//api/name/uiTrackingRunLoopPreferredFramesPerSecond">&nbsp;&nbsp;&nbsp;&nbsp;uiTrackingRunLoopPreferredFramesPerSecond</option>
+	
+	<option value="//api/name/useLegacyResourceManager">&nbsp;&nbsp;&nbsp;&nbsp;useLegacyResourceManager</option>
 	
 	<option value="//api/name/verboseMessagesEnabled">&nbsp;&nbsp;&nbsp;&nbsp;verboseMessagesEnabled</option>
 	
@@ -99,6 +105,8 @@
 	
 	<option value="//api/name/addDynamicMarkerToMap:dynamicMarker:">&nbsp;&nbsp;&nbsp;&nbsp;- addDynamicMarkerToMap:dynamicMarker:</option>
 	
+	<option value="//api/name/addDynamicPolygonToVectorMap:shapeId:points:style:">&nbsp;&nbsp;&nbsp;&nbsp;- addDynamicPolygonToVectorMap:shapeId:points:style:</option>
+	
 	<option value="//api/name/addLineToVectorMap:points:style:">&nbsp;&nbsp;&nbsp;&nbsp;- addLineToVectorMap:points:style:</option>
 	
 	<option value="//api/name/addMBTilesMap:fileName:defaultTileName:imageDataType:compessTextures:zOrder:mapLoadingStrategy:">&nbsp;&nbsp;&nbsp;&nbsp;- addMBTilesMap:fileName:defaultTileName:imageDataType:compessTextures:zOrder:mapLoadingStrategy:</option>
@@ -107,9 +115,7 @@
 	
 	<option value="//api/name/addMapUsingMapInfo:">&nbsp;&nbsp;&nbsp;&nbsp;- addMapUsingMapInfo:</option>
 	
-	<option value="//api/name/addMarkerToMap:markerAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- addMarkerToMap:markerAnnotation:</option>
-	
-	<option value="//api/name/addPackagedVectorMap:packageFileName:">&nbsp;&nbsp;&nbsp;&nbsp;- addPackagedVectorMap:packageFileName:</option>
+	<option value="//api/name/addPackagedMap:packageFileName:">&nbsp;&nbsp;&nbsp;&nbsp;- addPackagedMap:packageFileName:</option>
 	
 	<option value="//api/name/addPolygonStyleToVectorMap:featureId:style:">&nbsp;&nbsp;&nbsp;&nbsp;- addPolygonStyleToVectorMap:featureId:style:</option>
 	
@@ -121,11 +127,7 @@
 	
 	<option value="//api/name/addSphericalMercatorMosaicRasterMap:imageFileName:minX:minY:maxX:maxY:maxLevel:defaultTileName:compressTextures:zOrder:mapLoadingStrategy:">&nbsp;&nbsp;&nbsp;&nbsp;- addSphericalMercatorMosaicRasterMap:imageFileName:minX:minY:maxX:maxY:maxLevel:defaultTileName:compressTextures:zOrder:mapLoadingStrategy:</option>
 	
-	<option value="//api/name/addSymbiote:">&nbsp;&nbsp;&nbsp;&nbsp;- addSymbiote:</option>
-	
 	<option value="//api/name/addVectorMap:mapSqliteFileName:mapDataFileName:">&nbsp;&nbsp;&nbsp;&nbsp;- addVectorMap:mapSqliteFileName:mapDataFileName:</option>
-	
-	<option value="//api/name/addVirtualMarkerMap:">&nbsp;&nbsp;&nbsp;&nbsp;- addVirtualMarkerMap:</option>
 	
 	<option value="//api/name/applicationDidBecomeActive:">&nbsp;&nbsp;&nbsp;&nbsp;- applicationDidBecomeActive:</option>
 	
@@ -159,8 +161,6 @@
 	
 	<option value="//api/name/greenModeFulleThrottle">&nbsp;&nbsp;&nbsp;&nbsp;- greenModeFulleThrottle</option>
 	
-	<option value="//api/name/hideMarkerInMap:metaData:">&nbsp;&nbsp;&nbsp;&nbsp;- hideMarkerInMap:metaData:</option>
-	
 	<option value="//api/name/initialize">&nbsp;&nbsp;&nbsp;&nbsp;- initialize</option>
 	
 	<option value="//api/name/invalidateMap:">&nbsp;&nbsp;&nbsp;&nbsp;- invalidateMap:</option>
@@ -190,10 +190,6 @@
 	<option value="//api/name/removeCachedImage:">&nbsp;&nbsp;&nbsp;&nbsp;- removeCachedImage:</option>
 	
 	<option value="//api/name/removeMap:clearCache:">&nbsp;&nbsp;&nbsp;&nbsp;- removeMap:clearCache:</option>
-	
-	<option value="//api/name/removeMarkerFromMap:markerMetaData:">&nbsp;&nbsp;&nbsp;&nbsp;- removeMarkerFromMap:markerMetaData:</option>
-	
-	<option value="//api/name/removeSymbiote:">&nbsp;&nbsp;&nbsp;&nbsp;- removeSymbiote:</option>
 	
 	<option value="//api/name/screenRotationForLocation:withHeading:">&nbsp;&nbsp;&nbsp;&nbsp;- screenRotationForLocation:withHeading:</option>
 	
@@ -251,16 +247,6 @@
 	
 	<option value="//api/name/updateAnimatedVectorReticleLocation:newLocation:animationDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- updateAnimatedVectorReticleLocation:newLocation:animationDuration:</option>
 	
-	<option value="//api/name/updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:</option>
-	
-	<option value="//api/name/updateMarkerLocationInMap:metaData:newLocation:">&nbsp;&nbsp;&nbsp;&nbsp;- updateMarkerLocationInMap:metaData:newLocation:</option>
-	
-	<option value="//api/name/updateMarkerLocationInMap:metaData:newLocation:animationDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- updateMarkerLocationInMap:metaData:newLocation:animationDuration:</option>
-	
-	<option value="//api/name/updateMarkerRotationInMap:metaData:newRotation:">&nbsp;&nbsp;&nbsp;&nbsp;- updateMarkerRotationInMap:metaData:newRotation:</option>
-	
-	<option value="//api/name/updateMarkerRotationInMap:metaData:newRotation:animationDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- updateMarkerRotationInMap:metaData:newRotation:animationDuration:</option>
-	
 	<option value="//api/name/updatePolygonStyleInVectorMap:featureId:style:animationDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- updatePolygonStyleInVectorMap:featureId:style:animationDuration:</option>
 	
 	<option value="//api/name/updateTawsAltitude:">&nbsp;&nbsp;&nbsp;&nbsp;- updateTawsAltitude:</option>
@@ -297,6 +283,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/context">context</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/coreCacheSize">coreCacheSize</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/greenMode">greenMode</a></span></li>
@@ -306,6 +294,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/greenModeFullThrottleFramerate">greenModeFullThrottleFramerate</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/greenModeIdleFramerate">greenModeIdleFramerate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isInitialized">isInitialized</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isRunning">isRunning</a></span></li>
 	
@@ -324,6 +314,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderFlags">renderFlags</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uiTrackingRunLoopPreferredFramesPerSecond">uiTrackingRunLoopPreferredFramesPerSecond</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useLegacyResourceManager">useLegacyResourceManager</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/verboseMessagesEnabled">verboseMessagesEnabled</a></span></li>
 	
@@ -361,6 +353,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addDynamicMarkerToMap:dynamicMarker:">addDynamicMarkerToMap:dynamicMarker:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addDynamicPolygonToVectorMap:shapeId:points:style:">addDynamicPolygonToVectorMap:shapeId:points:style:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addLineToVectorMap:points:style:">addLineToVectorMap:points:style:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addMBTilesMap:fileName:defaultTileName:imageDataType:compessTextures:zOrder:mapLoadingStrategy:">addMBTilesMap:fileName:defaultTileName:imageDataType:compessTextures:zOrder:mapLoadingStrategy:</a></span></li>
@@ -369,9 +363,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addMapUsingMapInfo:">addMapUsingMapInfo:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addMarkerToMap:markerAnnotation:">addMarkerToMap:markerAnnotation:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addPackagedVectorMap:packageFileName:">addPackagedVectorMap:packageFileName:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addPackagedMap:packageFileName:">addPackagedMap:packageFileName:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addPolygonStyleToVectorMap:featureId:style:">addPolygonStyleToVectorMap:featureId:style:</a></span></li>
 	
@@ -383,11 +375,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addSphericalMercatorMosaicRasterMap:imageFileName:minX:minY:maxX:maxY:maxLevel:defaultTileName:compressTextures:zOrder:mapLoadingStrategy:">addSphericalMercatorMosaicRasterMap:imageFileName:minX:minY:maxX:maxY:maxLevel:defaultTileName:compressTextures:zOrder:mapLoadingStrategy:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addSymbiote:">addSymbiote:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addVectorMap:mapSqliteFileName:mapDataFileName:">addVectorMap:mapSqliteFileName:mapDataFileName:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addVirtualMarkerMap:">addVirtualMarkerMap:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applicationDidBecomeActive:">applicationDidBecomeActive:</a></span></li>
 	
@@ -421,8 +409,6 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/greenModeFulleThrottle">greenModeFulleThrottle</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hideMarkerInMap:metaData:">hideMarkerInMap:metaData:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initialize">initialize</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invalidateMap:">invalidateMap:</a></span></li>
@@ -452,10 +438,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeCachedImage:">removeCachedImage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeMap:clearCache:">removeMap:clearCache:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeMarkerFromMap:markerMetaData:">removeMarkerFromMap:markerMetaData:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeSymbiote:">removeSymbiote:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/screenRotationForLocation:withHeading:">screenRotationForLocation:withHeading:</a></span></li>
 	
@@ -512,16 +494,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateAnimatedVectorCircleLocation:newLocation:animationDuration:">updateAnimatedVectorCircleLocation:newLocation:animationDuration:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateAnimatedVectorReticleLocation:newLocation:animationDuration:">updateAnimatedVectorReticleLocation:newLocation:animationDuration:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:">updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateMarkerLocationInMap:metaData:newLocation:">updateMarkerLocationInMap:metaData:newLocation:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateMarkerLocationInMap:metaData:newLocation:animationDuration:">updateMarkerLocationInMap:metaData:newLocation:animationDuration:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateMarkerRotationInMap:metaData:newRotation:">updateMarkerRotationInMap:metaData:newRotation:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateMarkerRotationInMap:metaData:newRotation:animationDuration:">updateMarkerRotationInMap:metaData:newRotation:animationDuration:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updatePolygonStyleInVectorMap:featureId:style:animationDuration:">updatePolygonStyleInVectorMap:featureId:style:animationDuration:</a></span></li>
 	
@@ -593,7 +565,25 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/context">&nbsp;&nbsp;context</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/multiThreaded">&nbsp;&nbsp;multiThreaded</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isInitialized">&nbsp;&nbsp;isInitialized</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/useLegacyResourceManager">&nbsp;&nbsp;useLegacyResourceManager</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -731,7 +721,7 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/addPackagedVectorMap:packageFileName:">&ndash;&nbsp;addPackagedVectorMap:packageFileName:</a></code>
+		<code><a href="#//api/name/addPackagedMap:packageFileName:">&ndash;&nbsp;addPackagedMap:packageFileName:</a></code>
 	</span>
 	
 	
@@ -750,12 +740,6 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/addVectorMap:mapSqliteFileName:mapDataFileName:">&ndash;&nbsp;addVectorMap:mapSqliteFileName:mapDataFileName:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/addVirtualMarkerMap:">&ndash;&nbsp;addVirtualMarkerMap:</a></code>
 	</span>
 	
 	
@@ -917,18 +901,6 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/addMarkerToMap:markerAnnotation:">&ndash;&nbsp;addMarkerToMap:markerAnnotation:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/removeMarkerFromMap:markerMetaData:">&ndash;&nbsp;removeMarkerFromMap:markerMetaData:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/setMarkerMapColorBar:colorBar:">&ndash;&nbsp;setMarkerMapColorBar:colorBar:</a></code>
 	</span>
 	
@@ -936,42 +908,6 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setMarkerMapColorBarEnabled:enabled:">&ndash;&nbsp;setMarkerMapColorBarEnabled:enabled:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/updateMarkerLocationInMap:metaData:newLocation:">&ndash;&nbsp;updateMarkerLocationInMap:metaData:newLocation:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/updateMarkerLocationInMap:metaData:newLocation:animationDuration:">&ndash;&nbsp;updateMarkerLocationInMap:metaData:newLocation:animationDuration:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:">&ndash;&nbsp;updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/updateMarkerRotationInMap:metaData:newRotation:">&ndash;&nbsp;updateMarkerRotationInMap:metaData:newRotation:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/updateMarkerRotationInMap:metaData:newRotation:animationDuration:">&ndash;&nbsp;updateMarkerRotationInMap:metaData:newRotation:animationDuration:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/hideMarkerInMap:metaData:">&ndash;&nbsp;hideMarkerInMap:metaData:</a></code>
 	</span>
 	
 	
@@ -1013,6 +949,12 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/addDynamicPolygonToVectorMap:shapeId:points:style:">&ndash;&nbsp;addDynamicPolygonToVectorMap:shapeId:points:style:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/addShapeFileToVectorMap:shapeFilePath:style:">&ndash;&nbsp;addShapeFileToVectorMap:shapeFilePath:style:</a></code>
 	</span>
 	
@@ -1038,18 +980,6 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/addClipMapToMap:clipMapName:">&ndash;&nbsp;addClipMapToMap:clipMapName:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/addSymbiote:">&ndash;&nbsp;addSymbiote:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/removeSymbiote:">&ndash;&nbsp;removeSymbiote:</a></code>
 	</span>
 	
 	
@@ -1283,6 +1213,42 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/context" title="context"></a>
+	<h3 class="subsubtitle method-title">context</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The EAGLContext in use by this view controller and its view.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) EAGLContext *context</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/coreCacheSize" title="coreCacheSize"></a>
 	<h3 class="subsubtitle method-title">coreCacheSize</h3>
 	
@@ -1439,6 +1405,42 @@
     
 
 	<div class="method-subsection method-declaration"><code>@property (assign) unsigned int greenModeIdleFramerate</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isInitialized" title="isInitialized"></a>
+	<h3 class="subsubtitle method-title">isInitialized</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates whether or not this instance of the view controller is initialized.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, assign) BOOL isInitialized</code></div>
 
     
 	
@@ -1763,6 +1765,43 @@
     
 
 	<div class="method-subsection method-declaration"><code>@property (assign) unsigned int uiTrackingRunLoopPreferredFramesPerSecond</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/useLegacyResourceManager" title="useLegacyResourceManager"></a>
+	<h3 class="subsubtitle method-title">useLegacyResourceManager</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If set to YES, prior to calling <a href="#//api/name/initialize">initialize</a>, Altus will use its first-gen
+thread management system.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic) BOOL useLegacyResourceManager</code></div>
 
     
 	
@@ -2189,7 +2228,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Adds a dynamic line to a vector map.</p>
+		<p>Adds a dynamic line to a dynamic vector map.</p>
 	</div>		
 	
     
@@ -2250,7 +2289,7 @@
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)addDynamicMarkerToMap:(NSString *)<em>mapName</em> dynamicMarker:(MEDynamicMarker *)<em>dynamicMarker</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)addDynamicMarkerToMap:(NSString *)<em>mapName</em> dynamicMarker:(MEMarker *)<em>dynamicMarker</em></code></div>
 
     
 	
@@ -2265,6 +2304,62 @@
 		<dl class="argument-def parameter-def">
 			<dt><em>dynamicMarker</em></dt>
 			<dd><p>Object that fully describes the dynamic marker. Either uiImage or cachedImageName MUST be set.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addDynamicPolygonToVectorMap:shapeId:points:style:" title="addDynamicPolygonToVectorMap:shapeId:points:style:"></a>
+	<h3 class="subsubtitle method-title">addDynamicPolygonToVectorMap:shapeId:points:style:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds a dynamic polygon to a dynamic vector map.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addDynamicPolygonToVectorMap:(NSString *)<em>mapName</em> shapeId:(NSString *)<em>shapeId</em> points:(NSArray *)<em>points</em> style:(MEPolygonStyle *)<em>style</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapName</em></dt>
+			<dd><p>The name of the vector map.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>points</em></dt>
+			<dd><p>An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude for each point in the line.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>style</em></dt>
+			<dd><p>The style of the polygon.</p></dd>
 		</dl>
 		
 	</div>
@@ -2519,64 +2614,8 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/addMarkerToMap:markerAnnotation:" title="addMarkerToMap:markerAnnotation:"></a>
-	<h3 class="subsubtitle method-title">addMarkerToMap:markerAnnotation:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>For dynamic and memory marker maps, adds a new marker to the marker map.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)addMarkerToMap:(NSString *)<em>mapName</em> markerAnnotation:(MEMarkerAnnotation *)<em>markerAnnotation</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>mapName</em></dt>
-			<dd><p>Unique name of the marker map layer.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>markerAnnotation</em></dt>
-			<dd><p>Marker annotation that describes the marker.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p><strong>Warning:</strong> This API has been deprecated and will be removed in a future release.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/addPackagedVectorMap:packageFileName:" title="addPackagedVectorMap:packageFileName:"></a>
-	<h3 class="subsubtitle method-title">addPackagedVectorMap:packageFileName:</h3>
+	<a name="//api/name/addPackagedMap:packageFileName:" title="addPackagedMap:packageFileName:"></a>
+	<h3 class="subsubtitle method-title">addPackagedMap:packageFileName:</h3>
 	
 	
 	
@@ -2586,7 +2625,7 @@
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)addPackagedVectorMap:(NSString *)<em>mapName</em> packageFileName:(NSString *)<em>packageFileName</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)addPackagedMap:(NSString *)<em>mapName</em> packageFileName:(NSString *)<em>packageFileName</em></code></div>
 
     
 	
@@ -2632,11 +2671,6 @@
 		<dl class="argument-def parameter-def">
 			<dt><em>mapName</em></dt>
 			<dd><p>The name of the vector map.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>featureID</em></dt>
-			<dd><p>The polygon feature of the map to apply the style to.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
@@ -2936,42 +2970,6 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/addSymbiote:" title="addSymbiote:"></a>
-	<h3 class="subsubtitle method-title">addSymbiote:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Adds an object that implements the <a href="../Protocols/MESymbiote.html">MESymbiote</a> protocol. <a href="../Protocols/MESymbiote.html">MESymbiote</a> objects are notified when to <a href="#//api/name/update">update</a> their positions on screen and/or to re<a href="#//api/name/draw">draw</a> themselves to stay synchronized with drawing done by the mapping engine. See the <a href="../Protocols/MESymbiote.html">MESymbiote</a> protocol.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)addSymbiote:(id&lt;MESymbiote&gt;)<em>symbiote</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/addVectorMap:mapSqliteFileName:mapDataFileName:" title="addVectorMap:mapSqliteFileName:mapDataFileName:"></a>
 	<h3 class="subsubtitle method-title">addVectorMap:mapSqliteFileName:mapDataFileName:</h3>
 	
@@ -2984,42 +2982,6 @@
     
 
 	<div class="method-subsection method-declaration"><code>- (void)addVectorMap:(NSString *)<em>mapName</em> mapSqliteFileName:(NSString *)<em>mapSqliteFileName</em> mapDataFileName:(NSString *)<em>mapDataFileName</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/addVirtualMarkerMap:" title="addVirtualMarkerMap:"></a>
-	<h3 class="subsubtitle method-title">addVirtualMarkerMap:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Add a marker map layer to the current view with from a file</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)addVirtualMarkerMap:(MEMarkerMapInfo *)<em>mapInfo</em></code></div>
 
     
 	
@@ -3665,54 +3627,13 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/hideMarkerInMap:metaData:" title="hideMarkerInMap:metaData:"></a>
-	<h3 class="subsubtitle method-title">hideMarkerInMap:metaData:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Tells the rendering engine to stop drawing a marker. The marker will fade out. Presently, this is a one-way operation.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)hideMarkerInMap:(NSString *)<em>mapName</em> metaData:(NSString *)<em>metaData</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p><strong>Warning:</strong> This API has been deprecated and will be removed in a future release.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/initialize" title="initialize"></a>
 	<h3 class="subsubtitle method-title">initialize</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Allocates resources for caching and map loading. Should be called after the cooresponding <a href="../Classes/MEMapView.html">MEMapView</a> is loaded.</p>
+		<p>Allocates resources for thread management, data caching, and map loading. Should be called after the cooresponding <a href="../Classes/MEMapView.html">MEMapView</a> is loaded.</p>
 	</div>		
 	
     
@@ -4289,98 +4210,6 @@
 		</dl>
 		
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/removeMarkerFromMap:markerMetaData:" title="removeMarkerFromMap:markerMetaData:"></a>
-	<h3 class="subsubtitle method-title">removeMarkerFromMap:markerMetaData:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>For dynamic and memory marker maps, removes a marker from the map.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)removeMarkerFromMap:(NSString *)<em>mapName</em> markerMetaData:(NSString *)<em>markerMetaData</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>mapName</em></dt>
-			<dd><p>Unique name of the marker map layer.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>markerMetaData</em></dt>
-			<dd><p>The meta data supplied with the marker when it was added.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p><strong>Warning:</strong> This API has been deprecated and will be removed in a future release.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/removeSymbiote:" title="removeSymbiote:"></a>
-	<h3 class="subsubtitle method-title">removeSymbiote:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Removes a symbiote object. When the object is removed, it will not longer be updated by the mapping engine. See the <a href="../Protocols/MESymbiote.html">MESymbiote</a> protocol.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)removeSymbiote:(id&lt;MESymbiote&gt;)<em>symbiote</em></code></div>
-
-    
 	
 	
 	
@@ -5522,256 +5351,6 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:" title="updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:"></a>
-	<h3 class="subsubtitle method-title">updateMarkerInMap:metaData:newLocation:newRotation:animationDuration:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>For dynamic marker maps, <a href="#//api/name/update">update</a> multiple attributes of a marker.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)updateMarkerInMap:(NSString *)<em>mapName</em> metaData:(NSString *)<em>metaData</em> newLocation:(CLLocationCoordinate2D)<em>newLocation</em> newRotation:(double)<em>newRotation</em> animationDuration:(double)<em>animationDuration</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p><strong>Warning:</strong> This API has been deprecated and will be removed in a future release.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/updateMarkerLocationInMap:metaData:newLocation:" title="updateMarkerLocationInMap:metaData:newLocation:"></a>
-	<h3 class="subsubtitle method-title">updateMarkerLocationInMap:metaData:newLocation:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>For dynamic marker maps, updates the geographic position of the specified marker.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)updateMarkerLocationInMap:(NSString *)<em>mapName</em> metaData:(NSString *)<em>metaData</em> newLocation:(CLLocationCoordinate2D)<em>newLocation</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>mapName</em></dt>
-			<dd><p>Unique name of the marker map.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>metaData</em></dt>
-			<dd><p>Unique ID of the marker to <a href="#//api/name/update">update</a>.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>newLocation</em></dt>
-			<dd><p>New geographic location of the marker.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p><strong>Warning:</strong> This API has been deprecated and will be removed in a future release.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/updateMarkerLocationInMap:metaData:newLocation:animationDuration:" title="updateMarkerLocationInMap:metaData:newLocation:animationDuration:"></a>
-	<h3 class="subsubtitle method-title">updateMarkerLocationInMap:metaData:newLocation:animationDuration:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>For dynamic marker maps, updates the geographic position of the specified marker, optionally with animation.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)updateMarkerLocationInMap:(NSString *)<em>mapName</em> metaData:(NSString *)<em>metaData</em> newLocation:(CLLocationCoordinate2D)<em>newLocation</em> animationDuration:(double)<em>animationDuration</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>mapName</em></dt>
-			<dd><p>Unique name of the marker map.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>metaData</em></dt>
-			<dd><p>Unique ID of the marker to <a href="#//api/name/update">update</a>.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>newLocation</em></dt>
-			<dd><p>New geographic location of the marker.</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>animationDuration</em></dt>
-			<dd><p>The animation duration in seconds.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p><strong>Warning:</strong> This API has been deprecated and will be removed in a future release.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/updateMarkerRotationInMap:metaData:newRotation:" title="updateMarkerRotationInMap:metaData:newRotation:"></a>
-	<h3 class="subsubtitle method-title">updateMarkerRotationInMap:metaData:newRotation:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>For dynamic marker maps, updates the rotation of the marker.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)updateMarkerRotationInMap:(NSString *)<em>mapName</em> metaData:(NSString *)<em>metaData</em> newRotation:(double)<em>newRotation</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p><strong>Warning:</strong> This API has been deprecated and will be removed in a future release.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/updateMarkerRotationInMap:metaData:newRotation:animationDuration:" title="updateMarkerRotationInMap:metaData:newRotation:animationDuration:"></a>
-	<h3 class="subsubtitle method-title">updateMarkerRotationInMap:metaData:newRotation:animationDuration:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>For dynamic marker maps, updates the rotation of the marker.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)updateMarkerRotationInMap:(NSString *)<em>mapName</em> metaData:(NSString *)<em>metaData</em> newRotation:(double)<em>newRotation</em> animationDuration:(double)<em>animationDuration</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p><strong>Warning:</strong> This API has been deprecated and will be removed in a future release.</p></div>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEMapViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/updatePolygonStyleInVectorMap:featureId:style:animationDuration:" title="updatePolygonStyleInVectorMap:featureId:style:animationDuration:"></a>
 	<h3 class="subsubtitle method-title">updatePolygonStyleInVectorMap:featureId:style:animationDuration:</h3>
 	
@@ -6073,7 +5652,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-04-14)</span><br />
+						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-05-23)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

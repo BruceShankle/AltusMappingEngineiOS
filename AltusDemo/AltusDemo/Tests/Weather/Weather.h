@@ -2,3 +2,4 @@
 #pragma once
 #import "Markers/WorldSamples.h"
 #import "Raster/ColorMosaicTest.h"
+#import "Raster/ColorMosaicTest2.h"

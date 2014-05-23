@@ -51,9 +51,6 @@
 - (void) updateBoundingGraphics;
 @end
 
-@interface FF254205 : TerrainProfileBasicTest
-@end
-
 @interface TerrainProfileDeathValley : TerrainProfileBasicTest
 @end
 

@@ -21,7 +21,6 @@
                                                                 subDomains:subDomains
                                                                 numWorkers:numWorkers
                                                                enableAlpha:enableAlpha];
-    virtualMapInfo.meMapViewController = meMapViewController;
     virtualMapInfo.zOrder = zOrder;
     virtualMapInfo.loadingStrategy = kHighestDetailOnly;
     virtualMapInfo.contentType = kZoomDependent;

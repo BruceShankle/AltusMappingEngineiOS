@@ -87,8 +87,8 @@
 
 //Adds a new dynamic marker to the dynamic marker map
 - (void) addDynamicMarker:(NSString*) label location:(CLLocationCoordinate2D) location{
-    MEDynamicMarker* marker = [[MEDynamicMarker alloc]init];
-    marker.name = label; //Dynamic markers must have unique names
+    MEMarker* marker = [[MEMarker alloc]init];
+    marker.uniqueName = label; //Dynamic markers must have unique names
     marker.location = location;
     CGPoint anchor;
     marker.uiImage = [WayPointMarkerImage createCustomMarkerImage:label
@@ -106,7 +106,6 @@
     MEDynamicMarkerMapInfo* mapInfo = [[MEDynamicMarkerMapInfo alloc]init];
     mapInfo.zOrder = 101;
     mapInfo.name = self.markerMapName;
-    mapInfo.meMapViewController = self.meMapViewController;
     mapInfo.meDynamicMarkerMapDelegate = self;
     [self.meMapViewController addMapUsingMapInfo:mapInfo];
     

@@ -11,10 +11,10 @@
 	return self;
 }
 
-- (MEDynamicMarker*) createMarkerWithName:(NSString*)name
-                              andLocation:(CLLocationCoordinate2D)location{
-	MEDynamicMarker* marker = [[MEDynamicMarker alloc]init];
-	marker.name = name;
+- (MEMarker*) createMarkerWithName:(NSString*)name
+                       andLocation:(CLLocationCoordinate2D)location{
+	MEMarker* marker = [[MEMarker alloc]init];
+	marker.uniqueName = name;
 	marker.cachedImageName = @"pinRed";
 	marker.compressTexture = NO;
 	marker.location = location;
@@ -41,7 +41,7 @@
             double lon = meTileRequest.minX + x * width;
             double lat = meTileRequest.minY + y * height;
             NSString* name = [NSString stringWithFormat:@"%llu (%f, %f)", meTileRequest.uid, lon, lat];
-            [markers addObject:[self createMarkerWithName:name//You can put some data in here if you want
+            [markers addObject:[self createMarkerWithName:name
                                               andLocation:CLLocationCoordinate2DMake(lat, lon)]];
         }
         
@@ -76,14 +76,17 @@
                     nearestNeighborTextureSampling:NO];
     
 	//Create virtual map info
-	MEVirtualMapInfo* mapInfo = [[MEVirtualMapInfo alloc]init];
-	mapInfo.meMapViewController = self.meMapViewController;
+	MEVirtualMarkerMapInfo* mapInfo = [[MEVirtualMarkerMapInfo alloc]init];
+    mapInfo.hitTestingEnabled = YES;
+    mapInfo.meDynamicMarkerMapDelegate = self;
 	mapInfo.meTileProvider = [[CustomMarkerProvider alloc]init];
     mapInfo.meTileProvider.meMapViewController = self.meMapViewController;
 	mapInfo.mapType = kMapTypeVirtualMarker;
 	mapInfo.zOrder = 10;
 	mapInfo.name = self.name;
-	
+	mapInfo.fadeEnabled=YES;
+    mapInfo.fadeInTime = 1.0;
+
 	//Add map
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
     
@@ -97,6 +100,15 @@
 	[self.meMapViewController removeMap:self.name clearCache:YES];
 	self.isRunning = NO;
 }
+
+-(void) tapOnDynamicMarker:(NSString *)markerName
+                 onMapView:(MEMapView *)mapView
+                   mapName:(NSString *)mapName
+             atScreenPoint:(CGPoint)screenPoint
+             atMarkerPoint:(CGPoint)markerPoint{
+    NSLog(@"You tapped on marker %@.", markerName);
+}
+
 
 
 @end

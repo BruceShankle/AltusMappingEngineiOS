@@ -28,17 +28,25 @@
 }
 
 
+- (void) tickInternal{
+    NSDate *currentTime = [NSDate date];
+    self.elapsedTime = [currentTime timeIntervalSinceDate:self.lastTickTime];
+    self.lastTickTime = currentTime;
+    [self timerTick];
+}
 
 - (void) startTimer{
+    self.lastTickTime = [NSDate date];
 	self.timer = [NSTimer scheduledTimerWithTimeInterval:self.interval
                                                   target:self
-                                                selector:@selector(timerTick)
+                                                selector:@selector(tickInternal)
                                                 userInfo:nil
                                                  repeats:YES];
 	NSRunLoop *runloop = [NSRunLoop currentRunLoop];
 	[runloop addTimer:self.timer forMode:NSRunLoopCommonModes];
 	[runloop addTimer:self.timer forMode:UITrackingRunLoopMode];
 }
+
 
 - (void) start{
 	if(self.isRunning){
@@ -115,6 +123,19 @@
 	return min + drange*(max-min);
 }
 
++(float)randomFloat:(float)min
+                max:(float)max{
+    return (float)[METest randomDouble:min max:max];
+}
 
+
++ (CLLocationCoordinate2D) randomLocation{
+    return CLLocationCoordinate2DMake([METest randomDouble:-90 max:90],
+                                      [METest randomDouble:-180 max:180]);
+}
+
++ (float) randomHeading{
+    return (float)[METest randomDouble:0 max:360];
+}
 
 @end

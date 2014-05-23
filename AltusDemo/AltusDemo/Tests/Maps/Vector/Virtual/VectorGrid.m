@@ -17,7 +17,6 @@
     
 	//Create virtual map info
 	MEVirtualMapInfo* mapInfo = [[MEVirtualMapInfo alloc]init];
-	mapInfo.meMapViewController = self.meMapViewController;
 	mapInfo.meTileProvider = dataProvider;
 	mapInfo.mapType = kMapTypeVirtualVector;
 	mapInfo.zOrder = 100;

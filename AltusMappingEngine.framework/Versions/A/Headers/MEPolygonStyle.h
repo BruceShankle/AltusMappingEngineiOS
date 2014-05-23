@@ -16,6 +16,9 @@
 /**Color for drop shadow.*/
 @property (atomic, retain) UIColor* shadowColor;
 
+/**The x/y point offset of the drop shadow. The default is (2,-2)*/
+@property (atomic, assign) CGPoint shadowOffset;
+
 /**Init with stroke color, stroke width, and fill color.*/
 - (id) initWithStrokeColor:(UIColor*) color
                strokeWidth:(CGFloat) width

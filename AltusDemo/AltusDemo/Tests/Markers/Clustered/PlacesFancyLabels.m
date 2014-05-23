@@ -24,6 +24,7 @@
 	mapInfo.zOrder = 100;
 	mapInfo.meMarkerMapDelegate = self;
     mapInfo.hitTestingEnabled = YES;
+    mapInfo.fadeOutTime = 1.0;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
     
 }
@@ -50,17 +51,17 @@
 
 
 - (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
+    updateMarker:(MEMarker *)marker
 		 mapName:(NSString *)mapName{
 	
     //Create a custom marker image (and get is anchor point)
     CGPoint anchorPoint;
-    UIImage* markerImage = [WayPointMarkerImage createCustomMarkerImage:markerInfo.metaData
+    UIImage* markerImage = [WayPointMarkerImage createCustomMarkerImage:marker.metaData
                                                             anchorPoint:&anchorPoint];
     
     //Return the custom marker image and anchor point to the mapping engine
-    markerInfo.uiImage = markerImage;
-    markerInfo.anchorPoint = anchorPoint;
+    marker.uiImage = markerImage;
+    marker.anchorPoint = anchorPoint;
 }
 
 -(void) tapOnMarker:(NSString *)metaData

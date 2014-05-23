@@ -68,8 +68,8 @@
 	movingObject.alive = YES;
 	
 	//Add the dynamic marker
-	MEDynamicMarker* marker = [[MEDynamicMarker alloc]init];
-	marker.name = movingObject.name;
+	MEMarker* marker = [[MEMarker alloc]init];
+	marker.uniqueName = movingObject.name;
 	marker.cachedImageName = @"blueplane"; //you could otherwise set uiImage here
 	marker.anchorPoint = self.markerAnchorPoint; //computed in init
 	marker.location = movingObject.currentLocation;
@@ -79,13 +79,13 @@
 									  dynamicMarker:marker];
 	
 	//Add dynamic label marker and hide it.
-	marker.name = movingObject.labelMarkerName;
+	marker.uniqueName = movingObject.labelMarkerName;
 	marker.rotationType = kMarkerRotationScreenEdgeAligned;
 	marker.rotation = 0;
 	marker.offset = CGPointMake(0,64);
 	[self.meMapViewController addDynamicMarkerToMap:self.name
 									  dynamicMarker:marker];
-	[self.meMapViewController hideDynamicMarker:self.name markerName:marker.name];
+	[self.meMapViewController hideDynamicMarker:self.name markerName:marker.uniqueName];
 	
 	//Animate the marker to it's target location.
 	[self.meMapViewController updateDynamicMarkerLocation:self.name
@@ -119,7 +119,6 @@
 	mapInfo.zOrder = 200;
 	mapInfo.hitTestingEnabled = YES;
 	mapInfo.meDynamicMarkerMapDelegate = self;
-	mapInfo.meMapViewController = self.meMapViewController;
 	mapInfo.fadeInTime = 1.0;
 	mapInfo.fadeOutTime = 1.0;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];

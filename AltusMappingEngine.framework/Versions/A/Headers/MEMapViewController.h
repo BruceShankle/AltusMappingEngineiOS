@@ -16,8 +16,6 @@
 #import "MEPolygonStyle.h"
 #import "MEAnimatedVectorCircle.h"
 #import "MEAnimatedVectorReticle.h"
-#import "MEMarkerAnnotation.h"
-#import "MEMarkerInfo.h"
 #import "MEMapInfo.h"
 #import "MEHitTesting.h"
 
@@ -37,6 +35,9 @@
  Enables or disables multithreaded resource loading. The default is YES.
  */
 @property (nonatomic, getter=isMultithreaded) BOOL multiThreaded;
+
+/**Indicates whether or not this instance of the view controller is initialized.*/
+@property (nonatomic, readonly, assign) BOOL isInitialized;
 
 /**
  If set to YES, prior to calling initialize, Altus will use its first-gen
@@ -167,11 +168,6 @@
 /** Add a vector map layer to the current view. The map must have been a map produced by the BA3 metool.
  */
 - (void) addVectorMap:(NSString*) mapName mapSqliteFileName:(NSString*) mapSqliteFileName mapDataFileName:(NSString*) mapDataFileName;
-
-
-/** Add a marker map layer to the current view with from a file
- */
-- (void) addVirtualMarkerMap:(MEMarkerMapInfo*) mapInfo;
 
 /** Adds a raster map generated from raw double data */
 - (void) addDataGridMap:(NSString*)mapName
@@ -315,7 +311,7 @@
  @param mapName Unique name of the dynamic marker map layer.
  @param dynamicMarker Object that fully describes the dynamic marker. Either uiImage or cachedImageName MUST be set.
  */
-- (void) addDynamicMarkerToMap:(NSString*) mapName dynamicMarker:(MEDynamicMarker*) dynamicMarker;
+- (void) addDynamicMarkerToMap:(NSString*) mapName dynamicMarker:(MEMarker*) dynamicMarker;
 - (void) removeDynamicMarkerFromMap:(NSString*) mapName markerName:(NSString*) markerName;
 - (void) updateDynamicMarkerImage:(NSString*) mapName markerName:(NSString*) markerName uiImage:(UIImage*) uiImage anchorPoint:(CGPoint) anchorPoint offset:(CGPoint) offset compressTexture:(BOOL) compressTexture;
 - (void) updateDynamicMarkerImage:(NSString *) mapName markerName:(NSString *) markerName cachedImageName:(NSString*) cachedImageName anchorPoint:(CGPoint) anchorPoint offset:(CGPoint) offset;
@@ -326,23 +322,6 @@
 - (void) showDynamicMarker:(NSString*) mapName markerName:(NSString*) markerName;
 
 
-/**
- For dynamic and memory marker maps, adds a new marker to the marker map.
- @param mapName Unique name of the marker map layer.
- @param markerAnnotation Marker annotation that describes the marker.
- @warning This API has been deprecated and will be removed in a future release.
- */
-- (void) addMarkerToMap:(NSString*)mapName
-	   markerAnnotation:(MEMarkerAnnotation*)markerAnnotation;
-
-/** For dynamic and memory marker maps, removes a marker from the map.
- @param mapName Unique name of the marker map layer.
- @param markerMetaData The meta data supplied with the marker when it was added.
- @warning This API has been deprecated and will be removed in a future release.
- */
-- (void) removeMarkerFromMap:(NSString*) mapName
-			  markerMetaData:(NSString*) markerMetaData;
-
 
 /** Sets a height color bar for the specified marker map. Once set you can call setMarkerMapColorBarEnabled to turn use of the color bar on and off.*/
 - (void) setMarkerMapColorBar:(NSString*)mapName
@@ -351,60 +330,6 @@
 /** Sets where or not a color bar is applied when rendering markers.*/
 - (void) setMarkerMapColorBarEnabled:(NSString*)mapName
 							 enabled:(BOOL) enabled;
-
-/** For dynamic marker maps, updates the geographic position of the specified marker.
- @param mapName Unique name of the marker map.
- @param metaData Unique ID of the marker to update.
- @param newLocation New geographic location of the marker.
- @warning This API has been deprecated and will be removed in a future release.
- */
-- (void) updateMarkerLocationInMap:(NSString*) mapName
-						  metaData:(NSString*) metaData
-                       newLocation:(CLLocationCoordinate2D) newLocation;
-
-/** For dynamic marker maps, updates the geographic position of the specified marker, optionally with animation.
- @param mapName Unique name of the marker map.
- @param metaData Unique ID of the marker to update.
- @param newLocation New geographic location of the marker.
- @param animationDuration The animation duration in seconds.
- @warning This API has been deprecated and will be removed in a future release.
- */
-- (void) updateMarkerLocationInMap:(NSString*) mapName
-						  metaData:(NSString*) metaData
-                       newLocation:(CLLocationCoordinate2D) newLocation
-				 animationDuration:(double) animationDuration;
-
-/** For dynamic marker maps, update multiple attributes of a marker.
- @warning This API has been deprecated and will be removed in a future release.*/
-- (void) updateMarkerInMap:(NSString*) mapName
-				  metaData:(NSString*) metaData
-			   newLocation:(CLLocationCoordinate2D) newLocation
-			   newRotation:(double) newRotation
-		 animationDuration:(double) animationDuration;
-
-/** For dynamic marker maps, updates the rotation of the marker.
- @warning This API has been deprecated and will be removed in a future release.
- */
-- (void) updateMarkerRotationInMap:(NSString*) mapName
-						  metaData:(NSString*) metaData
-                       newRotation:(double) newRotation;
-
-/**
- For dynamic marker maps, updates the rotation of the marker.
- @warning This API has been deprecated and will be removed in a future release.
- */
-- (void) updateMarkerRotationInMap:(NSString*) mapName
-						  metaData:(NSString*) metaData
-                       newRotation:(double) newRotation
-				 animationDuration:(double) animationDuration;
-
-/**
- Tells the rendering engine to stop drawing a marker. The marker will fade out. Presently, this is a one-way operation.
- @warning This API has been deprecated and will be removed in a future release.
- */
-- (void) hideMarkerInMap:(NSString*) mapName
-				metaData:(NSString*) metaData;
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Vector map management
@@ -453,7 +378,7 @@
                      points:(NSArray*)points
                       style:(MELineStyle*)style;
 
-/**Adds a dynamic line to a vector map.
+/**Adds a dynamic line to a dynamic vector map.
  @param mapName The name of the vector map.
  @param points An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude for each point in the line.
  @param style The style of the polygon.*/
@@ -461,6 +386,16 @@
                             lineId:(NSString*) lineId
                             points:(NSArray*)points
                              style:(MELineStyle*)style;
+
+/**Adds a dynamic polygon to a dynamic vector map.
+ @param mapName The name of the vector map.
+ @param points An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude for each point in the line.
+ @param style The style of the polygon.*/
+- (void) addDynamicPolygonToVectorMap:(NSString*) mapName
+                              shapeId:(NSString*) shapeId
+                               points:(NSArray*)points
+                                style:(MEPolygonStyle*)style;
+
 
 /**Adds an ESRI shape file to an in-memory vector map.
  @param mapName The name of the vector map.
@@ -492,19 +427,6 @@
 /** Allow one map to clip another map. Anywhere the clip map would draw is will not be drawn by the target map.*/
 - (void) addClipMapToMap:(NSString*)mapName
              clipMapName:(NSString*)clipMapName;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-//Symbiote management
-/** Adds an object that implements the MESymbiote protocol. MESymbiote objects are notified when to update their positions on screen and/or to redraw themselves to stay synchronized with drawing done by the mapping engine. See the MESymbiote protocol.*/
-- (void) addSymbiote:(id<MESymbiote>) symbiote;
-
-/** Removes a symbiote object. When the object is removed, it will not longer be updated by the mapping engine. See the MESymbiote protocol.*/
-- (void) removeSymbiote:(id<MESymbiote>) symbiote;
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-//Map management API - This will be removed
 
 /**Updates the terrain color bar. When updated, the base map layer derived from terrain will be colored using the new color bar. 3D terrain will also use these colors. If not set, the mapping engine will use a default terrain color bar. You should set this value before beginning animation, otherwise cached tiles may not inherit the new colors.
  */
@@ -646,8 +568,8 @@ nearestNeighborTextureSampling:(BOOL) nearestNeighborTextureSampling;
 
 /**Returns the version tag for this build of Altus.*/
 + (NSString*) getVersionTag;
-    
+
 /**	*/
 + (NSString*) getVersionHash;
-    
+
 @end

@@ -88,4 +88,7 @@
 // force tap gesture handler
 - (void) tapGestureAtPoint:(CGPoint)point;
 
+-(void) addSubscriber:(MEMapView*) subscriber;
+-(void) clearSubscribers;
+
 @end

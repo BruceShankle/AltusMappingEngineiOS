@@ -1,11 +1,13 @@
 //  Copyright (c) 2014 BA3, LLC. All rights reserved.
 #import "METestManager.h"
+#import "Artistic/Artistic.h"
 #import "Maps/Maps.h"
 #import "Markers/Markers.h"
 #import "Weather/Weather.h"
 #import "Terrain/Terrain.h"
 #import "UserInteraction/UserInteraction.h"
 #import "HeightProfiling/HeightProfiling.h"
+#import "VectorMarkers/VectorMarkers.h"
 
 @implementation METestManager
 
@@ -58,6 +60,7 @@
 }
 
 - (void) createAllTests{
+    [self createVectorMarkersTests];
     [self createHeightProfilingTests];
     [self createUserInteractionTests];
     [self createTerrainTests];
@@ -67,13 +70,22 @@
     [self createMarkerTests];
     [self createDynamicMarkerTests];
     [self createWeatherTests];
+    [self createArtisticTests];
+}
+
+- (void) createVectorMarkersTests{
+    METestCategory* testCategory = [[METestCategory alloc]init];
+    testCategory.name = @"Vector Markers";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[AnimatedVectorCircle class]];
+    [testCategory addTestClass:[AnimatedVectorCircleTrackObject class]];
+    [testCategory addTestClass:[AnimatedVectorCircleTrackObjectRangeRings class]];
 }
 
 - (void) createHeightProfilingTests{
     METestCategory* testCategory = [[METestCategory alloc]init];
     testCategory.name = @"Height Profiling";
     [self addCategory:testCategory];
-    [testCategory addTestClass:[FF254205 class]];
     [testCategory addTestClass:[TerrainRadiusPerf class]];
     [testCategory addTestClass:[TerrainRadiusPerfCached class]];
     [testCategory addTestClass:[TerrainRadiusPerfCachedBigRadius class]];
@@ -118,7 +130,9 @@
     testCategory.name = @"User Interaction";
     [self addCategory:testCategory];
     [testCategory addTestClass:[MultiView class]];
+    [testCategory addTestClass:[MultiViewControl class]];
     [testCategory addTestClass:[RoutePlanning class]];
+    [testCategory addTestClass:[RouteWithMarkers class]];
 }
 
 - (void) createRasterMapTests{
@@ -159,6 +173,9 @@
     [testCategory addTestClass:[Places class]];
     [testCategory addTestClass:[PlacesFancyLabels class]];
     [testCategory addTestClass:[Towers class]];
+    [testCategory addTestClass:[BusStopsMemoryCached class]];
+    [testCategory addTestClass:[BusStopsMemoryAsync class]];
+    [testCategory addTestClass:[BusStopsMemorySync class]];
 }
 
 - (void) createDynamicMarkerTests{
@@ -174,6 +191,8 @@
     [self addCategory:testCategory];
     [testCategory addTestClass:[WorldSamples class]];
     [testCategory addTestClass:[ColorMosaicTest class]];
+    [testCategory addTestClass:[ColorMosaicTest2 class]];
+    [testCategory addTestClass:[ColorMosaicNativeTest class]];
 }
 
 - (void) createTerrainTests {
@@ -183,6 +202,18 @@
 	[testCategory addTestClass:[Earth class]];
     [testCategory addTestClass:[DynamicColorBar class]];
 }
+
+- (void) createArtisticTests {
+    METestCategory* testCategory = [[METestCategory alloc]init];
+    testCategory.name = @"Artistic";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[Asteroids class]];
+    [testCategory addTestClass:[AsteroidCount class]];
+    [testCategory addTestClass:[AsteroidsRenderingMode class]];
+    [testCategory addTestClass:[AsteroidsCameraMode class]];
+
+}
+
 
 - (void) startTestInCategory:(NSString*) categoryName
                     withName:(NSString*) testName{

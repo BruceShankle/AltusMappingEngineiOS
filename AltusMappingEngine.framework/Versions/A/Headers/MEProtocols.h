@@ -1,5 +1,4 @@
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
-
 #pragma once
 #import <MapKit/MapKit.h>
 #import <UIKit/UIKit.h>
@@ -57,24 +56,8 @@
 
 @end
 
-/*Protocol for objects that need to keep a 2D location in sync with the map view.*/
-@protocol MESymbiote <NSObject>
 
-@optional
-
-/**Called by the mapping engine when the map view camera position has changed. If you implement this method, no other methods will be called as it is assumed the object knows it needs to update its screen position.*/
-- (void) mapViewCameraDidChange;
-
-/**Called by the mapping engine to get the current geographic coordinate of the object.*/
-- (MELocationCoordinate2D) centerCoordinate;
-
-/**Called by the mapping engine when the screen position of the object should change.*/
-- (void) updateScreenPosition:(CGPoint) newPosition;
-
-@end
-
-
-@class MEMarkerInfo;
+@class MEMarker;
 
 /**
  The MEMarkerMapDelegate protocol defines a set of methods that you can use to receive marker map related update messages. Implement this protocol when you add marker maps.
@@ -89,7 +72,7 @@
  @param mapName The name of the map.
  */
 - (void) mapView:(MEMapView*)mapView
-            updateMarkerInfo:(MEMarkerInfo*) markerInfo
+    updateMarker:(MEMarker*) marker
 		 mapName:(NSString*) mapName;
 
 /**
@@ -107,7 +90,7 @@
  @param screenPoint The point on the screen on where the tap occurred.
  @param markerPoint The relative point within the marker where the tap occurred. Useful for markers that have button UI on them.
  */
-- (void) tapOnMarker:(MEMarkerInfo*) markerInfo
+- (void) tapOnMarker:(MEMarker*) markerInfo
 		   onMapView:(MEMapView*) mapView
 			 mapName:(NSString*) mapName
 	   atScreenPoint:(CGPoint)screenPoint

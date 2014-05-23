@@ -1,16 +1,17 @@
 //  Copyright (c) 2014 BA3, LLC. All rights reserved.
 #import "MultiView.h"
 #import "../METestViewControllers.h"
+#import "ViewManager.h"
 
 @implementation MultiView
 
-
 - (id) init {
 	if(self=[super init]){
-		self.name = @"Multi View";
+		self.name = @"Multi-View";
 	}
 	return self;
 }
+
 
 - (UIPopoverController*)invokeTestManager:(METestManager*) testManager
                                    inView:(UIView*) view
@@ -69,10 +70,10 @@
      forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:title forState:UIControlStateNormal];
     
-    float width = 125;
-    float height = 50;
+    float width = 100;
+    float height = 40;
     float x = 5;
-    float y = parentView.bounds.size.height - height*2;
+    float y = parentView.bounds.size.height - height*2.2;
     button.frame = CGRectMake(x, y, width, height);
     button.backgroundColor = [UIColor whiteColor];
     [parentView addSubview:button];
@@ -83,7 +84,6 @@
     button.layer.cornerRadius = 5;
     button.layer.borderWidth = 1.0;
     button.layer.borderColor = button.titleLabel.textColor.CGColor;
-    //button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:35];
     
     return button;
     
@@ -140,13 +140,13 @@
     //Set resizing masks
     self.meMapView2.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin;
 	
-    //Set names
-    self.meMapView1.name = @"View 1";
-    self.meMapView2.name = @"View 2";
-    
 	//Initialize the map view controllers
 	[self.meMapViewController1 initialize];
     [self.meMapViewController2 initialize];
+    
+    //Register with our view manager and assign a name
+    self.meMapView1.name = [ViewManager registerView:self.meMapView1];
+    self.meMapView2.name = [ViewManager registerView:self.meMapView2];
     
     //Enable level biasing which makes the mapping engine
     //display a consistent level at all times (at the cost of additional memory)
@@ -163,41 +163,46 @@
     [self.testManager2 startInitialTest];
     
     self.testButton1 = [self addTestButton:self.meMapViewController1.view
-                                     title:@"Tests"
+                                     title:self.meMapView1.name
                                     action:@selector(testButton1Tapped)];
     
     self.testButton2 = [self addTestButton:self.meMapViewController2.view
-                                     title:@"Tests"
+                                     title:self.meMapView2.name
                                     action:@selector(testButton2Tapped)];
-    
-    
 }
 
-
-- (void) removeUI{
-    
-}
 
 - (void) removeMultipleMapViews{
+    
+    //Unregister map views from our view manager
+    [ViewManager unregisterView:self.meMapView1];
+    [ViewManager unregisterView:self.meMapView2];
+    
     //Stop all tests
     [self.testManager1 stopAllTests];
     [self.testManager2 stopAllTests];
+    
     //Shut down the view controllers
     [self.meMapViewController1 shutdown];
     [self.meMapViewController2 shutdown];
+    
     //Remove the views
     [self.meMapViewController1.view removeFromSuperview];
     [self.meMapViewController2.view removeFromSuperview];
+    
     self.meMapViewController1 = nil;
     self.meMapViewController2 = nil;
-    //Remove UI
-    [self removeUI];
 }
 
 - (void) start{
-	if(self.isRunning){
+	
+    if(self.isRunning){
 		return;
 	}
+    
+    //Unregister from the view manager
+    [ViewManager unregisterView:self.meMapViewController.meMapView];
+    
     //Stop all other tests
     [self.meTestManager stopAllTests];
     

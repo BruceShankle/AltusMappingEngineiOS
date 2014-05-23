@@ -47,18 +47,18 @@
 
 
 - (void) mapView:(MEMapView *)mapView
-updateMarkerInfo:(MEMarkerInfo *)markerInfo
+    updateMarker:(MEMarker *)marker
 		 mapName:(NSString *)mapName{
 	UIImage* image = [MEFontUtil newImageWithFont:@"ArialMT"
-						fontSize:15
-					   fillColor:[UIColor blackColor]
-					 strokeColor:[UIColor whiteColor]
-					 strokeWidth:1.0
-							text:markerInfo.metaData];
-	markerInfo.uiImage = image;
-	markerInfo.anchorPoint = CGPointMake(image.size.width/2,
-										image.size.height/2);
-    markerInfo.hitTestSize = image.size;
+                                         fontSize:15
+                                        fillColor:[UIColor blackColor]
+                                      strokeColor:[UIColor whiteColor]
+                                      strokeWidth:1.0
+                                             text:marker.metaData];
+	marker.uiImage = image;
+	marker.anchorPoint = CGPointMake(image.size.width/2,
+                                     image.size.height/2);
+    marker.hitTestSize = image.size;
 }
 
 -(void) tapOnMarker:(NSString *)metaData
