@@ -132,6 +132,7 @@
     [testCategory addTestClass:[MultiView class]];
     [testCategory addTestClass:[MultiViewControl class]];
     [testCategory addTestClass:[RoutePlanning class]];
+    [testCategory addTestClass:[RoutePlotting class]];
     [testCategory addTestClass:[RouteWithMarkers class]];
 }
 

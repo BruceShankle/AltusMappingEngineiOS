@@ -33,6 +33,7 @@
 		321E0D0B18B67DFD0011218A /* ColorMosaicTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D0618B67DFD0011218A /* ColorMosaicTest.m */; };
 		321E0D0C18B67DFD0011218A /* DataGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D0818B67DFD0011218A /* DataGrid.m */; };
 		321E0D0D18B67DFD0011218A /* ds.temp.xyz in Resources */ = {isa = PBXBuildFile; fileRef = 321E0D0918B67DFD0011218A /* ds.temp.xyz */; };
+		3227D1F91945902600493374 /* RoutePlotting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227D1F81945902600493374 /* RoutePlotting.m */; };
 		322D9DA4193AB7F9002C3E01 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 322D9DA0193AB7F9002C3E01 /* Main_iPad.storyboard */; };
 		322D9DA5193AB7F9002C3E01 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 322D9DA2193AB7F9002C3E01 /* Main_iPhone.storyboard */; };
 		3247FCE618D8275300F2A449 /* ds.wdir.xyz in Resources */ = {isa = PBXBuildFile; fileRef = 3247FCE418D8275300F2A449 /* ds.wdir.xyz */; };
@@ -188,6 +189,8 @@
 		321E0D0818B67DFD0011218A /* DataGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGrid.m; sourceTree = "<group>"; };
 		321E0D0918B67DFD0011218A /* ds.temp.xyz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ds.temp.xyz; sourceTree = "<group>"; };
 		321E0D0F18B67F680011218A /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
+		3227D1F71945902600493374 /* RoutePlotting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutePlotting.h; sourceTree = "<group>"; };
+		3227D1F81945902600493374 /* RoutePlotting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutePlotting.m; sourceTree = "<group>"; };
 		322D9DA1193AB7F9002C3E01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		322D9DA3193AB7F9002C3E01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		3247FCE418D8275300F2A449 /* ds.wdir.xyz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ds.wdir.xyz; sourceTree = "<group>"; };
@@ -683,6 +686,8 @@
 		32803D75190F7F1B00099DD5 /* UserInteraction */ = {
 			isa = PBXGroup;
 			children = (
+				3227D1F71945902600493374 /* RoutePlotting.h */,
+				3227D1F81945902600493374 /* RoutePlotting.m */,
 				32803D79190F7F6100099DD5 /* UserInteraction.h */,
 				32803D76190F7F1B00099DD5 /* RoutePlanning.h */,
 				32803D77190F7F1B00099DD5 /* RoutePlanning.m */,
@@ -982,6 +987,7 @@
 				32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */,
 				32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */,
 				327D106F192FA82E00EF84D8 /* MovingObject2D.m in Sources */,
+				3227D1F91945902600493374 /* RoutePlotting.m in Sources */,
 				328869E71928F9ED00A528FA /* ViewManager.m in Sources */,
 				B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */,
 				321E0D0B18B67DFD0011218A /* ColorMosaicTest.m in Sources */,
