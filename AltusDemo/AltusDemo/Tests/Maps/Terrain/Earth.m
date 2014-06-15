@@ -63,11 +63,7 @@
     return colorBar;
 }
 
-- (void) start{
-    if(self.isRunning){
-        return;
-    }
-    
+- (void) beginTest{
     [self.meTestCategory stopAllTests];
     
     NSString* sqliteFile = [[NSBundle mainBundle] pathForResource:@"Earth"
@@ -98,16 +94,10 @@
     
     
     [self.meMapViewController updateTerrainColorBar:[Earth createNE3Colors]];
-    self.isRunning = YES;
-    
 }
 
-- (void) stop{
-    if(!self.isRunning){
-        return;
-    }
+- (void) endTest{
     [self.meMapViewController removeMap:self.name clearCache:NO];
-    self.isRunning = NO;
 }
 
 @end

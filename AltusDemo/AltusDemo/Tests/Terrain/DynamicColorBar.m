@@ -10,12 +10,10 @@
     return self;
 }
 
-- (void) start{
-    if(self.isRunning){
-        return;
-    }
-    
+- (void) beginTest{
+    self.isRunning = NO;
     [self.meTestCategory stopAllTests];
+    self.isRunning = YES;
     
     NSString* sqliteFile = [[NSBundle mainBundle] pathForResource:@"Earth"
                                                            ofType:@"sqlite"];
@@ -65,12 +63,8 @@
     
 }
 
-- (void) stop{
-    if(!self.isRunning){
-        return;
-    }
+- (void) endTest{
     [self.meMapViewController removeMap:self.name clearCache:NO];
-    self.isRunning = NO;
 }
 
 @end

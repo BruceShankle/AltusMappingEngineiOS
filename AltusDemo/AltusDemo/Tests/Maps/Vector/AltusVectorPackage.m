@@ -20,11 +20,7 @@
         [labels stop];
 }
 
-- (void) start{
-    
-    if(self.isRunning){
-        return;
-    }
+- (void) beginTest{
     
     //Stop tests that obscure or affect this one
     [self.meTestManager stopBaseMapTests];
@@ -43,23 +39,14 @@
     
     //Turn on labels
     [self enableLabels:YES];
-    
-	self.isRunning = YES;
 }
 
-- (void) stop{
-    
-    if(!self.isRunning){
-        return;
-    }
-    
+- (void) endTest{
 	[self.meMapViewController removeMap:self.name
 							 clearCache:NO];
     
     //Turn off labels
     [self enableLabels:NO];
-    
-	self.isRunning = NO;
 }
 
 @end

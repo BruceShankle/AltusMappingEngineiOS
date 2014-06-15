@@ -14,8 +14,7 @@
 	return self;
 }
 
-- (void) addMap{
-	
+- (void) beginTest{
 	MEMarkerMapInfo* mapInfo = [[MEMarkerMapInfo alloc]init];
 	mapInfo.name = self.name;
 	mapInfo.mapType = kMapTypeFileMarker;
@@ -26,27 +25,10 @@
     mapInfo.hitTestingEnabled = YES;
     mapInfo.fadeOutTime = 1.0;
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-    
 }
 
-- (void) removeMap{
+- (void) endTest{
     [self.meMapViewController removeMap:self.name clearCache:NO];
-}
-
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
-	[self addMap];
-	self.isRunning = YES;
-}
-
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
-	[self removeMap];
-	self.isRunning = NO;
 }
 
 

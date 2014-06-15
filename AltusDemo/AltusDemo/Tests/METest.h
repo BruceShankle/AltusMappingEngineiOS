@@ -11,6 +11,8 @@
 @property (retain) METestManager* meTestManager;
 @property (retain) METestCategory* meTestCategory;
 @property (retain) NSTimer* timer;
+@property (retain) UILabel* lblMessage;
+@property (retain) METimer* benchMarkTimer;
 @property (copy) NSString* name;
 @property (copy) NSString* label;
 @property (readonly) NSString* uiLabel;
@@ -23,14 +25,22 @@
 @property (retain) IBOutlet UILabel* lblStatus;
 @property (retain) NSDate* lastTickTime;
 @property (assign) NSTimeInterval elapsedTime;
+
 - (void) startTimer;
 - (void) stopTimer;
 - (void) timerTick;
+- (void) startBenchmarkTimer;
+- (long) stopBenchMarkTimer;
+- (void) setMessageText:(NSString*) msgText;
 - (void) start;
 - (void) stop;
+- (void) beginTest;
+- (void) endTest;
 - (void) lookAtSanFrancisco;
 - (void) lookAtUnitedStates;
 - (void) userTapped;
+- (void) stopAllOtherTests;
+- (void) stopTestsInThisCategory;
 + (NSString*) getDocumentsPath;
 + (NSString*) getCachePath;
 + (double) randomDouble:(double)min max:(double)max;

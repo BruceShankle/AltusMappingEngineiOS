@@ -33,9 +33,6 @@
 		321E0D0B18B67DFD0011218A /* ColorMosaicTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D0618B67DFD0011218A /* ColorMosaicTest.m */; };
 		321E0D0C18B67DFD0011218A /* DataGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 321E0D0818B67DFD0011218A /* DataGrid.m */; };
 		321E0D0D18B67DFD0011218A /* ds.temp.xyz in Resources */ = {isa = PBXBuildFile; fileRef = 321E0D0918B67DFD0011218A /* ds.temp.xyz */; };
-		3227D1F91945902600493374 /* RoutePlotting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3227D1F81945902600493374 /* RoutePlotting.m */; };
-		322D9DA4193AB7F9002C3E01 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 322D9DA0193AB7F9002C3E01 /* Main_iPad.storyboard */; };
-		322D9DA5193AB7F9002C3E01 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 322D9DA2193AB7F9002C3E01 /* Main_iPhone.storyboard */; };
 		3247FCE618D8275300F2A449 /* ds.wdir.xyz in Resources */ = {isa = PBXBuildFile; fileRef = 3247FCE418D8275300F2A449 /* ds.wdir.xyz */; };
 		3247FCE718D8275300F2A449 /* ds.wspd.xyz in Resources */ = {isa = PBXBuildFile; fileRef = 3247FCE518D8275300F2A449 /* ds.wspd.xyz */; };
 		3247FCFB18D827BE00F2A449 /* knots0.png in Resources */ = {isa = PBXBuildFile; fileRef = 3247FCE918D827BE00F2A449 /* knots0.png */; };
@@ -88,7 +85,6 @@
 		324E3BA4191AD3F300B1961A /* blueplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B98191AD3F300B1961A /* blueplane.png */; };
 		324E3BA5191AD3F300B1961A /* blueplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B99191AD3F300B1961A /* blueplane@2x.png */; };
 		324E777618FF66BE00630F18 /* CustomClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E777518FF66BE00630F18 /* CustomClustering.m */; };
-		325758F519223F0C008BE941 /* RouteWithMarkers.m in Sources */ = {isa = PBXBuildFile; fileRef = 325758F419223F0C008BE941 /* RouteWithMarkers.m */; };
 		32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF519121062008B9C0C /* TerrainInRadiusTests.m */; };
 		32587D0019121062008B9C0C /* TerrainMapFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF719121062008B9C0C /* TerrainMapFinder.m */; };
 		32587D0119121062008B9C0C /* TerrainProfileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF919121062008B9C0C /* TerrainProfileTests.m */; };
@@ -98,7 +94,9 @@
 		32587D0A19121965008B9C0C /* pinGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0619121965008B9C0C /* pinGreen@2x.png */; };
 		32587D0B19121965008B9C0C /* pinPurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0719121965008B9C0C /* pinPurple.png */; };
 		32587D0C19121965008B9C0C /* pinPurple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0819121965008B9C0C /* pinPurple@2x.png */; };
-		325F0F37192FDDB10001814B /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 325F0F36192FDDB10001814B /* AltusMappingEngine.framework */; };
+		3262FCC2194D6C600033FC0A /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3262FCC1194D6C600033FC0A /* AltusMappingEngine.framework */; };
+		326914A5193D9E4000DBFE45 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326914A1193D9E4000DBFE45 /* Main_iPad.storyboard */; };
+		326914A6193D9E4000DBFE45 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326914A3193D9E4000DBFE45 /* Main_iPhone.storyboard */; };
 		326C92D3190F70A50097C50D /* WayPointMarkerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 326C92D2190F70A50097C50D /* WayPointMarkerImage.m */; };
 		326C92D6190F712E0097C50D /* WayPointStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 326C92D4190F712E0097C50D /* WayPointStar@2x.png */; };
 		326C92D7190F712E0097C50D /* WayPointStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 326C92D5190F712E0097C50D /* WayPointStar.png */; };
@@ -124,12 +122,19 @@
 		328869E71928F9ED00A528FA /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 328869E61928F9ED00A528FA /* ViewManager.m */; };
 		3296D42E1902629500A275DF /* VectorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296D42D1902629500A275DF /* VectorGrid.m */; };
 		32988A56192AC8CB0038B2A5 /* Asteroids.m in Sources */ = {isa = PBXBuildFile; fileRef = 32988A55192AC8CB0038B2A5 /* Asteroids.m */; };
+		329B4D991910D0F300E40B79 /* AltusTerrainPackage.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 329B4D981910D0F300E40B79 /* AltusTerrainPackage.sqlite */; };
+		329C31F919391C1D0074B604 /* TileWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31F819391C1D0074B604 /* TileWorker.m */; };
+		329C31FD19391C9E0074B604 /* TileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31FC19391C9E0074B604 /* TileDownloader.m */; };
+		329C320019391EAB0074B604 /* RasterPackageReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31FF19391EAB0074B604 /* RasterPackageReader.m */; };
+		32A889B5193E82660008D909 /* SimpleWorld.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32A889B4193E82660008D909 /* SimpleWorld.sqlite */; };
+		32A889BB193E82B40008D909 /* SimpleWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A889BA193E82B40008D909 /* SimpleWorld.m */; };
 		32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6B63718EE114C00E429AB /* AltusVectorPackage.m */; };
 		32BAC4C018AF261400DE8583 /* Acadia.map in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4BE18AF261400DE8583 /* Acadia.map */; };
 		32BAC4C118AF261400DE8583 /* Acadia.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4BF18AF261400DE8583 /* Acadia.sqlite */; };
 		32BAC4C518AF264500DE8583 /* BA3Native.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAC4C418AF264500DE8583 /* BA3Native.m */; };
 		32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BAC4D918AF3F9E00DE8583 /* Places.m */; };
 		32BAC4DC18AF3F9E00DE8583 /* Places.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32BAC4DA18AF3F9E00DE8583 /* Places.sqlite */; };
+		32BBEC5A1910617F0091BC7A /* AltusTerrainPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BBEC591910617F0091BC7A /* AltusTerrainPackage.m */; };
 		32BBEC5E191062950091BC7A /* Earth.map in Resources */ = {isa = PBXBuildFile; fileRef = 32BBEC5C191062950091BC7A /* Earth.map */; };
 		32BBEC5F191062950091BC7A /* Earth.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32BBEC5D191062950091BC7A /* Earth.sqlite */; };
 		32BBEC62191062BD0091BC7A /* Earth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BBEC61191062BD0091BC7A /* Earth.m */; };
@@ -137,7 +142,11 @@
 		32D7CF681924B67200F1125C /* MapFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D7CF671924B67200F1125C /* MapFactory.m */; };
 		32EE6FBF18FE30A6005F65CE /* AltusRasterPackage.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */; };
 		32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */; };
+		32F0A1F21945825400E82C6E /* RoutePlotting.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F0A1F11945825400E82C6E /* RoutePlotting.m */; };
+		32FB97D4193E6350004A9371 /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FB97D3193E6350004A9371 /* Stats.m */; };
+		B9078A50193D18EB00963D45 /* radar.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B908913E19395972004F7FC2 /* radar.sqlite */; };
 		B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C70FE18CB8815003FB579 /* WorldSimple.m */; };
+		B929BC501937EC0A00762488 /* RadarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B929BC4F1937EC0A00762488 /* RadarTest.m */; };
 		B941659E18F880700061DEEB /* DynamicColorBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B941659D18F880700061DEEB /* DynamicColorBar.m */; };
 /* End PBXBuildFile section */
 
@@ -189,10 +198,6 @@
 		321E0D0818B67DFD0011218A /* DataGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataGrid.m; sourceTree = "<group>"; };
 		321E0D0918B67DFD0011218A /* ds.temp.xyz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ds.temp.xyz; sourceTree = "<group>"; };
 		321E0D0F18B67F680011218A /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
-		3227D1F71945902600493374 /* RoutePlotting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutePlotting.h; sourceTree = "<group>"; };
-		3227D1F81945902600493374 /* RoutePlotting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutePlotting.m; sourceTree = "<group>"; };
-		322D9DA1193AB7F9002C3E01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		322D9DA3193AB7F9002C3E01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		3247FCE418D8275300F2A449 /* ds.wdir.xyz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ds.wdir.xyz; sourceTree = "<group>"; };
 		3247FCE518D8275300F2A449 /* ds.wspd.xyz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ds.wspd.xyz; sourceTree = "<group>"; };
 		3247FCE918D827BE00F2A449 /* knots0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = knots0.png; sourceTree = "<group>"; };
@@ -250,8 +255,6 @@
 		324E3B99191AD3F300B1961A /* blueplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueplane@2x.png"; sourceTree = "<group>"; };
 		324E777418FF66BE00630F18 /* CustomClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomClustering.h; sourceTree = "<group>"; };
 		324E777518FF66BE00630F18 /* CustomClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomClustering.m; sourceTree = "<group>"; };
-		325758F319223F0C008BE941 /* RouteWithMarkers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteWithMarkers.h; sourceTree = "<group>"; };
-		325758F419223F0C008BE941 /* RouteWithMarkers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteWithMarkers.m; sourceTree = "<group>"; };
 		32587CF419121062008B9C0C /* TerrainInRadiusTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainInRadiusTests.h; sourceTree = "<group>"; };
 		32587CF519121062008B9C0C /* TerrainInRadiusTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainInRadiusTests.m; sourceTree = "<group>"; };
 		32587CF619121062008B9C0C /* TerrainMapFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainMapFinder.h; sourceTree = "<group>"; };
@@ -267,7 +270,9 @@
 		32587D0619121965008B9C0C /* pinGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinGreen@2x.png"; sourceTree = "<group>"; };
 		32587D0719121965008B9C0C /* pinPurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinPurple.png; sourceTree = "<group>"; };
 		32587D0819121965008B9C0C /* pinPurple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinPurple@2x.png"; sourceTree = "<group>"; };
-		325F0F36192FDDB10001814B /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
+		3262FCC1194D6C600033FC0A /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
+		326914A2193D9E4000DBFE45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		326914A4193D9E4000DBFE45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		326C92D1190F70A50097C50D /* WayPointMarkerImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WayPointMarkerImage.h; sourceTree = "<group>"; };
 		326C92D2190F70A50097C50D /* WayPointMarkerImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WayPointMarkerImage.m; sourceTree = "<group>"; };
 		326C92D4190F712E0097C50D /* WayPointStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WayPointStar@2x.png"; sourceTree = "<group>"; };
@@ -316,6 +321,16 @@
 		32988A54192AC8CB0038B2A5 /* Asteroids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asteroids.h; sourceTree = "<group>"; };
 		32988A55192AC8CB0038B2A5 /* Asteroids.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asteroids.m; sourceTree = "<group>"; };
 		32988A57192AC9030038B2A5 /* Artistic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Artistic.h; sourceTree = "<group>"; };
+		329B4D981910D0F300E40B79 /* AltusTerrainPackage.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AltusTerrainPackage.sqlite; sourceTree = "<group>"; };
+		329C31F719391C1D0074B604 /* TileWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileWorker.h; sourceTree = "<group>"; };
+		329C31F819391C1D0074B604 /* TileWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileWorker.m; sourceTree = "<group>"; };
+		329C31FB19391C9E0074B604 /* TileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileDownloader.h; sourceTree = "<group>"; };
+		329C31FC19391C9E0074B604 /* TileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileDownloader.m; sourceTree = "<group>"; };
+		329C31FE19391EAB0074B604 /* RasterPackageReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasterPackageReader.h; sourceTree = "<group>"; };
+		329C31FF19391EAB0074B604 /* RasterPackageReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasterPackageReader.m; sourceTree = "<group>"; };
+		32A889B4193E82660008D909 /* SimpleWorld.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleWorld.sqlite; sourceTree = "<group>"; };
+		32A889B9193E82B40008D909 /* SimpleWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleWorld.h; sourceTree = "<group>"; };
+		32A889BA193E82B40008D909 /* SimpleWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleWorld.m; sourceTree = "<group>"; };
 		32B6B63618EE114C00E429AB /* AltusVectorPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltusVectorPackage.h; sourceTree = "<group>"; };
 		32B6B63718EE114C00E429AB /* AltusVectorPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltusVectorPackage.m; sourceTree = "<group>"; };
 		32BAC4BE18AF261400DE8583 /* Acadia.map */ = {isa = PBXFileReference; lastKnownFileType = file; path = Acadia.map; sourceTree = "<group>"; };
@@ -327,6 +342,8 @@
 		32BAC4DA18AF3F9E00DE8583 /* Places.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Places.sqlite; sourceTree = "<group>"; };
 		32BAC4DD18AF405900DE8583 /* Maps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maps.h; sourceTree = "<group>"; };
 		32BAC4DE18AF40D500DE8583 /* Markers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markers.h; sourceTree = "<group>"; };
+		32BBEC581910617F0091BC7A /* AltusTerrainPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltusTerrainPackage.h; sourceTree = "<group>"; };
+		32BBEC591910617F0091BC7A /* AltusTerrainPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltusTerrainPackage.m; sourceTree = "<group>"; };
 		32BBEC5B191061D50091BC7A /* Terrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terrain.h; sourceTree = "<group>"; };
 		32BBEC5C191062950091BC7A /* Earth.map */ = {isa = PBXFileReference; lastKnownFileType = file; path = Earth.map; sourceTree = "<group>"; };
 		32BBEC5D191062950091BC7A /* Earth.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Earth.sqlite; sourceTree = "<group>"; };
@@ -339,8 +356,16 @@
 		32EE6FBE18FE30A6005F65CE /* AltusRasterPackage.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AltusRasterPackage.sqlite; sourceTree = "<group>"; };
 		32EE6FC118FE30BC005F65CE /* AltusRasterPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltusRasterPackage.h; sourceTree = "<group>"; };
 		32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltusRasterPackage.m; sourceTree = "<group>"; };
+		32F0A1F01945825400E82C6E /* RoutePlotting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutePlotting.h; sourceTree = "<group>"; };
+		32F0A1F11945825400E82C6E /* RoutePlotting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutePlotting.m; sourceTree = "<group>"; };
+		32FB97D3193E6350004A9371 /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stats.m; sourceTree = "<group>"; };
+		32FB97D6193E6372004A9371 /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
+		32FB97D7193E6372004A9371 /* Stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
+		B908913E19395972004F7FC2 /* radar.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = radar.sqlite; sourceTree = "<group>"; };
 		B91C70FD18CB8815003FB579 /* WorldSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldSimple.h; sourceTree = "<group>"; };
 		B91C70FE18CB8815003FB579 /* WorldSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldSimple.m; sourceTree = "<group>"; };
+		B929BC4E1937EC0A00762488 /* RadarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarTest.h; sourceTree = "<group>"; };
+		B929BC4F1937EC0A00762488 /* RadarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarTest.m; sourceTree = "<group>"; };
 		B941659818F877890061DEEB /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terrain.h; path = Terrain/Terrain.h; sourceTree = "<group>"; };
 		B941659C18F880700061DEEB /* DynamicColorBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicColorBar.h; path = Terrain/DynamicColorBar.h; sourceTree = "<group>"; };
 		B941659D18F880700061DEEB /* DynamicColorBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicColorBar.m; path = Terrain/DynamicColorBar.m; sourceTree = "<group>"; };
@@ -354,7 +379,7 @@
 				32131B9A18AC89E700799EBD /* libsqlite3.dylib in Frameworks */,
 				32131B9818AC89D300799EBD /* libstdc++.dylib in Frameworks */,
 				32131B5318AC864700799EBD /* CoreGraphics.framework in Frameworks */,
-				325F0F37192FDDB10001814B /* AltusMappingEngine.framework in Frameworks */,
+				3262FCC2194D6C600033FC0A /* AltusMappingEngine.framework in Frameworks */,
 				32131B5518AC864700799EBD /* UIKit.framework in Frameworks */,
 				32131B5118AC864700799EBD /* Foundation.framework in Frameworks */,
 			);
@@ -394,7 +419,7 @@
 		32131B4F18AC864700799EBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				325F0F36192FDDB10001814B /* AltusMappingEngine.framework */,
+				3262FCC1194D6C600033FC0A /* AltusMappingEngine.framework */,
 				32131B9918AC89E700799EBD /* libsqlite3.dylib */,
 				32131B9718AC89D300799EBD /* libstdc++.dylib */,
 				32131B5018AC864700799EBD /* Foundation.framework */,
@@ -412,8 +437,8 @@
 				327E334118ADA52000FBBB90 /* Tests */,
 				32131B5F18AC864700799EBD /* AppDelegate.h */,
 				32131B6018AC864700799EBD /* AppDelegate.m */,
-				322D9DA0193AB7F9002C3E01 /* Main_iPad.storyboard */,
-				322D9DA2193AB7F9002C3E01 /* Main_iPhone.storyboard */,
+				326914A1193D9E4000DBFE45 /* Main_iPad.storyboard */,
+				326914A3193D9E4000DBFE45 /* Main_iPhone.storyboard */,
 				32131B6818AC864700799EBD /* ViewController.h */,
 				32131B6918AC864700799EBD /* ViewController.m */,
 				32131B6B18AC864700799EBD /* Images.xcassets */,
@@ -436,10 +461,16 @@
 		321D3DB219237352004ACD80 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				321D3DB4192373D8004ACD80 /* TileFactory.h */,
-				321D3DB5192373D8004ACD80 /* TileFactory.m */,
 				32D7CF661924B67200F1125C /* MapFactory.h */,
 				32D7CF671924B67200F1125C /* MapFactory.m */,
+				321D3DB4192373D8004ACD80 /* TileFactory.h */,
+				321D3DB5192373D8004ACD80 /* TileFactory.m */,
+				329C31F719391C1D0074B604 /* TileWorker.h */,
+				329C31F819391C1D0074B604 /* TileWorker.m */,
+				329C31FB19391C9E0074B604 /* TileDownloader.h */,
+				329C31FC19391C9E0074B604 /* TileDownloader.m */,
+				329C31FE19391EAB0074B604 /* RasterPackageReader.h */,
+				329C31FF19391EAB0074B604 /* RasterPackageReader.m */,
 				327D106D192FA82E00EF84D8 /* MovingObject2D.h */,
 				327D106E192FA82E00EF84D8 /* MovingObject2D.m */,
 			);
@@ -495,6 +526,9 @@
 				321E0D0918B67DFD0011218A /* ds.temp.xyz */,
 				321D3DB719238F46004ACD80 /* ColorMosaicTest2.h */,
 				321D3DB819238F46004ACD80 /* ColorMosaicTest2.m */,
+				B929BC4E1937EC0A00762488 /* RadarTest.h */,
+				B929BC4F1937EC0A00762488 /* RadarTest.m */,
+				B908913E19395972004F7FC2 /* radar.sqlite */,
 			);
 			path = Raster;
 			sourceTree = "<group>";
@@ -514,6 +548,9 @@
 				B91C70FE18CB8815003FB579 /* WorldSimple.m */,
 				32B6B63618EE114C00E429AB /* AltusVectorPackage.h */,
 				32B6B63718EE114C00E429AB /* AltusVectorPackage.m */,
+				32A889B9193E82B40008D909 /* SimpleWorld.h */,
+				32A889BA193E82B40008D909 /* SimpleWorld.m */,
+				32A889B4193E82660008D909 /* SimpleWorld.sqlite */,
 			);
 			path = Vector;
 			sourceTree = "<group>";
@@ -599,6 +636,7 @@
 		327E334118ADA52000FBBB90 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				32FB97D2193E6350004A9371 /* Core */,
 				327D1068192FA72100EF84D8 /* VectorMarkers */,
 				32988A52192AC8310038B2A5 /* Artistic */,
 				321D3DB219237352004ACD80 /* Utilities */,
@@ -686,19 +724,17 @@
 		32803D75190F7F1B00099DD5 /* UserInteraction */ = {
 			isa = PBXGroup;
 			children = (
-				3227D1F71945902600493374 /* RoutePlotting.h */,
-				3227D1F81945902600493374 /* RoutePlotting.m */,
 				32803D79190F7F6100099DD5 /* UserInteraction.h */,
 				32803D76190F7F1B00099DD5 /* RoutePlanning.h */,
 				32803D77190F7F1B00099DD5 /* RoutePlanning.m */,
 				324E3B83191AAD5E00B1961A /* MultiView.h */,
 				324E3B84191AAD5E00B1961A /* MultiView.m */,
-				325758F319223F0C008BE941 /* RouteWithMarkers.h */,
-				325758F419223F0C008BE941 /* RouteWithMarkers.m */,
 				328869E51928F9ED00A528FA /* ViewManager.h */,
 				328869E61928F9ED00A528FA /* ViewManager.m */,
 				32C5159219296053000ECFFE /* MultiViewControl.h */,
 				32C5159319296053000ECFFE /* MultiViewControl.m */,
+				32F0A1F01945825400E82C6E /* RoutePlotting.h */,
+				32F0A1F11945825400E82C6E /* RoutePlotting.m */,
 			);
 			path = UserInteraction;
 			sourceTree = "<group>";
@@ -765,8 +801,21 @@
 				32BBEC61191062BD0091BC7A /* Earth.m */,
 				32BBEC5C191062950091BC7A /* Earth.map */,
 				32BBEC5D191062950091BC7A /* Earth.sqlite */,
+				32BBEC581910617F0091BC7A /* AltusTerrainPackage.h */,
+				32BBEC591910617F0091BC7A /* AltusTerrainPackage.m */,
+				329B4D981910D0F300E40B79 /* AltusTerrainPackage.sqlite */,
 			);
 			path = Terrain;
+			sourceTree = "<group>";
+		};
+		32FB97D2193E6350004A9371 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				32FB97D6193E6372004A9371 /* Core.h */,
+				32FB97D7193E6372004A9371 /* Stats.h */,
+				32FB97D3193E6350004A9371 /* Stats.m */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		B941659218F876AE0061DEEB /* Terrain */ = {
@@ -858,7 +907,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				322D9DA4193AB7F9002C3E01 /* Main_iPad.storyboard in Resources */,
+				329B4D991910D0F300E40B79 /* AltusTerrainPackage.sqlite in Resources */,
 				324ACC2A18AEB00600833819 /* apple_land@2x.png in Resources */,
 				32587D0C19121965008B9C0C /* pinPurple@2x.png in Resources */,
 				324ACC3118AEB00600833819 /* park.png in Resources */,
@@ -879,6 +928,7 @@
 				324ACC2C18AEB00600833819 /* apple_park@2x.png in Resources */,
 				324ACC3718AEB01400833819 /* HoustonStreets.map in Resources */,
 				324ACC2F18AEB00600833819 /* landTexture.png in Resources */,
+				326914A5193D9E4000DBFE45 /* Main_iPad.storyboard in Resources */,
 				3247FD0818D827BE00F2A449 /* knots30@2x.png in Resources */,
 				32587D0B19121965008B9C0C /* pinPurple.png in Resources */,
 				32BAC4DC18AF3F9E00DE8583 /* Places.sqlite in Resources */,
@@ -910,9 +960,11 @@
 				3219134118C90ECE008B2143 /* Towers.sqlite in Resources */,
 				324ACC2718AEB00600833819 /* apple_golf.png in Resources */,
 				32EE6FBF18FE30A6005F65CE /* AltusRasterPackage.sqlite in Resources */,
-				322D9DA5193AB7F9002C3E01 /* Main_iPhone.storyboard in Resources */,
 				3247FD0518D827BE00F2A449 /* knots25.png in Resources */,
+				326914A6193D9E4000DBFE45 /* Main_iPhone.storyboard in Resources */,
+				32A889B5193E82660008D909 /* SimpleWorld.sqlite in Resources */,
 				327E336918ADE97000FBBB90 /* pinRed@2x.png in Resources */,
+				B9078A50193D18EB00963D45 /* radar.sqlite in Resources */,
 				32BBEC5F191062950091BC7A /* Earth.sqlite in Resources */,
 				3247FD0318D827BE00F2A449 /* knots20.png in Resources */,
 				32BAC4C018AF261400DE8583 /* Acadia.map in Resources */,
@@ -951,8 +1003,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B929BC501937EC0A00762488 /* RadarTest.m in Sources */,
 				32131B6A18AC864700799EBD /* ViewController.m in Sources */,
-				325758F519223F0C008BE941 /* RouteWithMarkers.m in Sources */,
 				321D3DB919238F46004ACD80 /* ColorMosaicTest2.m in Sources */,
 				327E509A192A1FD300B31837 /* BusStops.m in Sources */,
 				327E334D18ADA52000FBBB90 /* METestManager.m in Sources */,
@@ -961,18 +1013,22 @@
 				326C92D3190F70A50097C50D /* WayPointMarkerImage.m in Sources */,
 				32803D78190F7F1B00099DD5 /* RoutePlanning.m in Sources */,
 				321E0D0C18B67DFD0011218A /* DataGrid.m in Sources */,
+				32A889BB193E82B40008D909 /* SimpleWorld.m in Sources */,
 				32587D0219121062008B9C0C /* TerrainProfileView.m in Sources */,
 				324ACC3B18AEB0A300833819 /* HoustonStreets.m in Sources */,
 				327E336118ADE5EC00FBBB90 /* MapBoxStreets.m in Sources */,
 				327D106C192FA76600EF84D8 /* AnimatedVectorCircle.m in Sources */,
 				32C5159419296053000ECFFE /* MultiViewControl.m in Sources */,
+				329C31F919391C1D0074B604 /* TileWorker.m in Sources */,
 				32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */,
 				32131B6118AC864700799EBD /* AppDelegate.m in Sources */,
 				326C92DA190F72670097C50D /* PlacesFancyLabels.m in Sources */,
+				329C320019391EAB0074B604 /* RasterPackageReader.m in Sources */,
 				324E777618FF66BE00630F18 /* CustomClustering.m in Sources */,
 				32988A56192AC8CB0038B2A5 /* Asteroids.m in Sources */,
 				327E334E18ADA52000FBBB90 /* METestViewControllers.m in Sources */,
 				32BAC4C518AF264500DE8583 /* BA3Native.m in Sources */,
+				329C31FD19391C9E0074B604 /* TileDownloader.m in Sources */,
 				324E3B85191AAD5E00B1961A /* MultiView.m in Sources */,
 				3296D42E1902629500A275DF /* VectorGrid.m in Sources */,
 				32587D0019121062008B9C0C /* TerrainMapFinder.m in Sources */,
@@ -980,14 +1036,16 @@
 				32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */,
 				321D3DB6192373D8004ACD80 /* TileFactory.m in Sources */,
 				32131B5D18AC864700799EBD /* main.m in Sources */,
+				32BBEC5A1910617F0091BC7A /* AltusTerrainPackage.m in Sources */,
 				32BBEC62191062BD0091BC7A /* Earth.m in Sources */,
 				327E337618AE0BC100FBBB90 /* MapBoxSatellite.m in Sources */,
 				324E3B8C191AD25200B1961A /* AirTrafficScenario.m in Sources */,
+				32FB97D4193E6350004A9371 /* Stats.m in Sources */,
 				32D7CF681924B67200F1125C /* MapFactory.m in Sources */,
 				32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */,
+				32F0A1F21945825400E82C6E /* RoutePlotting.m in Sources */,
 				32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */,
 				327D106F192FA82E00EF84D8 /* MovingObject2D.m in Sources */,
-				3227D1F91945902600493374 /* RoutePlotting.m in Sources */,
 				328869E71928F9ED00A528FA /* ViewManager.m in Sources */,
 				B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */,
 				321E0D0B18B67DFD0011218A /* ColorMosaicTest.m in Sources */,
@@ -1027,18 +1085,18 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		322D9DA0193AB7F9002C3E01 /* Main_iPad.storyboard */ = {
+		326914A1193D9E4000DBFE45 /* Main_iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				322D9DA1193AB7F9002C3E01 /* Base */,
+				326914A2193D9E4000DBFE45 /* Base */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
-		322D9DA2193AB7F9002C3E01 /* Main_iPhone.storyboard */ = {
+		326914A3193D9E4000DBFE45 /* Main_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				322D9DA3193AB7F9002C3E01 /* Base */,
+				326914A4193D9E4000DBFE45 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";

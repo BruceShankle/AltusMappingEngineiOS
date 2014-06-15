@@ -27,23 +27,14 @@
     return NO;
 }
 
--(void) start{
-    if(self.isRunning){
-		return;
-	}
+-(void) beginTest{
     [ViewManager setControllingView:self.meMapViewController.meMapView];
-	self.isRunning = YES;
 }
 
--(void) stop{
-    if(!self.isRunning){
-		return;
-	}
+-(void) endTest{
     if(self.meMapViewController.meMapView == [ViewManager getControllingView]){
         [ViewManager setControllingView:nil];
     }
-    
-	self.isRunning = NO;
 }
 
 @end

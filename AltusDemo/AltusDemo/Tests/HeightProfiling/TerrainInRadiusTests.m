@@ -26,13 +26,14 @@
 	return self;
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
 	
+    [self.meMapViewController addCachedImage:[UIImage imageNamed:@"pinRed"]
+                                    withName:@"pinRed"
+                             compressTexture:NO];
+    
 	//Stop other tests in this category
-	[self.meTestManager stopCategory:self.meTestCategory.name];
+    [self.meTestCategory stopAllTests];
 	self.terrainMaps = [TerrainMapFinder getTerrainMaps];
 	[self addBoundingGraphics];
 	[self.meMapViewController.meMapView lookAtCoordinate:self.peakLocation
@@ -42,16 +43,11 @@
 									   animationDuration:1.0];
 	[self addMarkerMap];
 	[self getTerrainMinMax];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[self removeBoundingGraphics];
 	[self removeMarkerMap];
-	self.isRunning = NO;
 }
 
 - (double) lineSegmentHitTestPixelBufferDistance{return 10;}

@@ -22,22 +22,15 @@
     [self.meMapViewController removeAnimatedVectorCircle:self.name];
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
     [self addCircle];
     [self lookAtUnitedStates];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
     [self removeCircle];
-	self.isRunning = NO;
 }
+
 @end
 
 ////////////////////////////////////////////////////////////////////////
@@ -123,24 +116,15 @@
 
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
-    
+- (void) beginTest{
     [self addLayers];
     [self startTimer];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
-    [self stopTimer];
+- (void) endTest{
     [self removeLayers];
-	self.isRunning = NO;
 }
+
 @end
 
 ////////////////////////////////////////////////////////////////////////
@@ -151,6 +135,11 @@
         self.rangeRingName = @"Range Ring";
 	}
 	return self;
+}
+
+-(void) removeRange:(int) distance{
+    NSString* name=[NSString stringWithFormat:@"rangeRing_%d", distance];
+    [self.meMapViewController removeMap:name clearCache:YES];
 }
 
 -(void) addRangeRing:(int) distance{
@@ -239,6 +228,9 @@
 
 -(void) removeLayers{
     [super removeLayers];
+    [self removeRange:500];
+    [self removeRange:1000];
+    [self removeRange:1500];
     [self.meMapViewController removeAnimatedVectorCircle:self.rangeRingName];
 }
 

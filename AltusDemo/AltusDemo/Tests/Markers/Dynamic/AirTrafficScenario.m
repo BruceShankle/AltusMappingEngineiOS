@@ -378,18 +378,12 @@
 	
 }
 
-- (void) start
-{
-	if(self.isRunning)
-		return;
-	
-	[self.meTestCategory stopAllTests];
+- (void) beginTest{
+    [self stopAllOtherTests];
 	[self addMap];
 	[self addBeacon];
 	[self addObjects];
 	[self startTimer];
-	
-	self.isRunning = YES;
 }
 
 
@@ -408,15 +402,10 @@
 	[self flashDangerousObjects];
 }
 
-- (void) stop
-{
-	if(!self.isRunning)
-		return;
-	[self stopTimer];
+- (void) endTest{
 	[self.meMapViewController removeMap:self.name clearCache:NO];
 	[self.meMapViewController removeAnimatedVectorCircle:@"beacon"];
 	[self.movingObjects removeAllObjects];
-	self.isRunning = NO;
 }
 
 

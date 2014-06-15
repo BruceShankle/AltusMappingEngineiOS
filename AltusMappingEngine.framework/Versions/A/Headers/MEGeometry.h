@@ -1,5 +1,4 @@
 //  Copyright (c) 2012 BA3, LLC. All rights reserved.
-
 #pragma once
 
 typedef struct {
@@ -12,6 +11,9 @@ typedef struct {
 	double altitude;
 } MELocation;
 
+MELocation MELocationMake(double longitude,
+                          double latitude,
+                          double altitude);
 typedef struct {
 	MELocationCoordinate2D min;
 	MELocationCoordinate2D max;

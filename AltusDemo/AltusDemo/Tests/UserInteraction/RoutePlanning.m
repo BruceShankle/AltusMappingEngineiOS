@@ -134,22 +134,14 @@
 }
 
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
 	[self addMaps];
     //Look at the route
 	[self lookAtRoute];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[self removeMaps];
-	self.isRunning = NO;
 }
 
 @end

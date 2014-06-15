@@ -9,7 +9,3 @@
 @interface ColorMosaicTest : METest
 
 @end
-
-@interface ColorMosaicNativeTest : METest
-
-@end

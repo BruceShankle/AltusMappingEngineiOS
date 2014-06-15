@@ -354,10 +354,7 @@ static int _lastAsteroidCount;
     }
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
     //Cache polygon texture
     [self.meMapViewController addCachedImage:[UIImage imageNamed:@"Asteroid"]
                                     withName:@"Asteroid"
@@ -490,12 +487,7 @@ static int _lastAsteroidCount;
     }
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
-    self.isRunning = NO;
-    [self stopTimer];
+- (void) endTest{
     
     [self.meMapViewController.meMapView setCameraOrientation:0
                                                         roll:0

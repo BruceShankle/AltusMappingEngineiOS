@@ -90,7 +90,7 @@
         NSString* lineID = [NSString stringWithFormat:@"North_line %d", i];
         NSArray* wayPoints = [self createWayPoints:0 yoffset:0.5 * i];
         [self.meMapViewController addDynamicLineToVectorMap:self.name
-                                                     lineId:lineID
+                                                     lineId:@"route"
                                                      points:wayPoints
                                                       style:self.vectorLineStyle];
     }
@@ -195,23 +195,6 @@
 
 - (void) endTest{
 	[self removeMaps];
-}
-
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
-	[self beginTest];
-    self.isRunning = YES;
-}
-
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
-	[self removeMaps];
-	self.isRunning = NO;
-    [self endTest];
 }
 
 @end

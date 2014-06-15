@@ -35,6 +35,8 @@
 + (void *) bitmapFromImage:(UIImage *)image
                             fippedY:(BOOL) flippedY;
 
++ (void *) bitmapFromSingleChannelImage:(UIImage*)image flippedY:(BOOL) flippedY;
+
 /**Gets a power-of-two RGBA bitmap from a UIImage. optionally flipping the Y.*/
 + (void *) bitmapFromImagePow2:(UIImage *) image
 					  flippedY:(BOOL) flippedY

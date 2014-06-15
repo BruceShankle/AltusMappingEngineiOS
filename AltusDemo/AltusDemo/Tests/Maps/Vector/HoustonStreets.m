@@ -15,7 +15,7 @@
 
 - (void) enableLabels:(BOOL) enabled{
     METest* labels= [self.meTestManager testInCategory:@"Markers"
-                                              withName:@"Places"];
+                                              withName:@"Places - Arial"];
     
     if(enabled)
         [labels start];
@@ -23,12 +23,7 @@
         [labels stop];
 }
 
-- (void) start{
-    
-    if(self.isRunning){
-        return;
-    }
-    
+- (void) beginTest{
     //Stop tests that obscure or affect this one
     [self.meTestManager stopBaseMapTests];
    
@@ -55,20 +50,12 @@
     
     
     [self enableLabels:YES];
-    
-	self.isRunning = YES;
 }
 
-- (void) stop{
-    
-    if(!self.isRunning){
-        return;
-    }
-    
+- (void) endTest{
     [self enableLabels:NO];
 	[self.meMapViewController removeMap:self.mapName
 							 clearCache:NO];
-	self.isRunning = NO;
 }
 
 - (void) cacheVectorMapTextures {

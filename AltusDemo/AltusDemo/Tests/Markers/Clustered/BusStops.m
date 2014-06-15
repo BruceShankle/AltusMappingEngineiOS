@@ -43,21 +43,13 @@
                              clearCache:YES];
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
 	[self addMap];
     [self lookAtSanFrancisco];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[self removeMap];
-	self.isRunning = NO;
 }
 @end
 
@@ -101,21 +93,13 @@
                              clearCache:YES];
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
 	[self addMap];
     [self lookAtSanFrancisco];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[self removeMap];
-	self.isRunning = NO;
 }
 @end
 
@@ -159,20 +143,12 @@
                              clearCache:YES];
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
 	[self addMap];
     [self lookAtSanFrancisco];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[self removeMap];
-	self.isRunning = NO;
 }
 @end

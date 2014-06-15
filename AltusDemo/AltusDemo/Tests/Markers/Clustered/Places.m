@@ -5,7 +5,7 @@
 
 - (id) init {
 	if(self=[super init]){
-		self.name = @"Places";
+		self.name = @"Places - Arial";
 	}
 	return self;
 }
@@ -28,27 +28,19 @@
     [self.meMapViewController removeMap:self.name clearCache:NO];
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
 	[self addMap];
-	
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[self removeMap];
-	self.isRunning = NO;
 }
 
 
 - (void) mapView:(MEMapView *)mapView
     updateMarker:(MEMarker *)marker
 		 mapName:(NSString *)mapName{
+    
 	UIImage* image = [MEFontUtil newImageWithFont:@"ArialMT"
                                          fontSize:15
                                         fillColor:[UIColor blackColor]
@@ -65,6 +57,37 @@
           onMapView:(MEMapView *)mapView
       atScreenPoint:(CGPoint)point{
     NSLog(@"You tapped on marker %@.", metaData);
+}
+
+@end
+
+///////////////////////////////////////////////////////////
+@implementation PlacesAvenir
+
+- (id) init {
+	if(self=[super init]){
+		self.name = @"Places - Avenir";
+	}
+	return self;
+}
+
+- (void) mapView:(MEMapView *)mapView
+    updateMarker:(MEMarker *)marker
+		 mapName:(NSString *)mapName{
+    
+    UIImage* image = [MEFontUtil newImageWithFontOutlined:@"AvenirNext-Bold"
+                                                 fontSize:20.0
+                                                fillColor:[UIColor colorWithRed:9/255.0
+                                                                          green:49/255.0
+                                                                           blue:56/255.0
+                                                                          alpha:1.0]
+                                              strokeColor:[UIColor whiteColor]
+                                              strokeWidth:2.0
+                                                     text:marker.metaData];
+	marker.uiImage = image;
+	marker.anchorPoint = CGPointMake(image.size.width/2,
+                                     image.size.height/2);
+    marker.hitTestSize = image.size;
 }
 
 @end

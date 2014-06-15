@@ -194,39 +194,31 @@
     self.meMapViewController2 = nil;
 }
 
-- (void) start{
-	
-    if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
     
     //Unregister from the view manager
     [ViewManager unregisterView:self.meMapViewController.meMapView];
     
     //Stop all other tests
+    self.isRunning = NO;
     [self.meTestManager stopAllTests];
+    self.isRunning = YES;
     
     //Shut down the main view
     [self.meMapViewController shutdown];
     
     //Add 2 new map controller views
     [self addMultipleMapViews:self.meMapViewController.view];
-    
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
-    
+- (void) endTest{
     [self removeMultipleMapViews];
     
     //Reinitialize main view
     [self.meMapViewController initialize];
     
     //Turn on terrain base map
-    [self.meTestManager startTestInCategory:@"Terrain" withName:@"Earth"];
+    [self.meTestManager startInitialTest];
     
 	self.isRunning = NO;
 }

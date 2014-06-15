@@ -269,7 +269,7 @@ double GetPoleScaledPixelSpacing(double targetPixelSpacing, METileProviderReques
     return self;
 }
 
-- (void) start
+- (void) beginTest
 {
     WindGrid *windSpeedGrid = [[WindGrid alloc]init];
     [windSpeedGrid readFromXYZ:[[NSBundle mainBundle] pathForResource:@"ds.wspd" ofType:@"xyz"]];
@@ -303,10 +303,6 @@ double GetPoleScaledPixelSpacing(double targetPixelSpacing, METileProviderReques
     
 	//Add map
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-    
-    
-    
-    self.isRunning = YES;
 }
 
 + (NSString*) getWindBarbNameForWindSpeed:(double)windSpeed {
@@ -318,11 +314,10 @@ double GetPoleScaledPixelSpacing(double targetPixelSpacing, METileProviderReques
     return [NSString stringWithFormat:@"knots%d", windIndex];
 }
 
-- (void) stop
+- (void) endTest
 {
     [self.meMapViewController removeMap:self.name
                              clearCache:YES];
-    self.isRunning = NO;
 }
 
 @end

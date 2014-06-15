@@ -60,11 +60,8 @@
 	
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
-	
+- (void) beginTest{
+    
 	[TerrainProfileHelper showTowers:self.meTestManager];
 	
 	//Stop other tests in this category
@@ -100,23 +97,14 @@
 	
 	//Look at the route
 	[self lookAtRoute];
-	
-	//[self addBoundingGraphics];
-	
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[TerrainProfileHelper hideTowers:self.meTestManager];
 	[self removeTerrainProfileView];
 	[self removeVectorMap];
 	[self.meMapViewController removeMap:@"obstacles" clearCache:YES];
 	[self.meMapViewController removeMap:self.boundingGraphicsMapName clearCache:YES];
-	
-	self.isRunning = NO;
 }
 
 - (void) lookAtRoute{
@@ -328,30 +316,6 @@
 }
 
 @end
-
-///////////////////////////////////////////////////////////////////
-//FF Case 254205 - BEGIN
-static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoordinate2D sourceLocation, double distanceInNauticalMiles, double bearingTrue) {
-    
-    double lat1 = sourceLocation.latitude * M_PI / 180.0;
-    double lon1 = sourceLocation.longitude * M_PI / 180.0;
-    double distanceInKm = distanceInNauticalMiles / 0.539957;
-    
-    double dOverRadius = distanceInKm / 6371.0; // 6,371 km earth radius
-    
-    bearingTrue = bearingTrue * M_PI / 180.0;
-    
-    double lat2 = asin( sin(lat1)*cos(dOverRadius) +
-                       cos(lat1)*sin(dOverRadius)*cos(bearingTrue) );
-    double lon2 = lon1 + atan2(sin(bearingTrue)*sin(dOverRadius)*cos(lat1),
-                               cos(dOverRadius)-sin(lat1)*sin(lat2));
-    
-    lat2 = lat2 * 180.0 / M_PI;
-    lon2 = lon2 * 180.0 / M_PI;
-    
-    return CLLocationCoordinate2DMake(lat2, lon2);
-}
-
 
 ///////////////////////////////////////////////////////////////////
 @implementation TerrainProfileDeathValley
@@ -700,24 +664,13 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	return self;
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
 	[TerrainProfileHelper showTowers:self.meTestManager];
 	self.currLongitude = SFO_COORD.longitude;
-	[super start];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[TerrainProfileHelper hideTowers:self.meTestManager];
-	[self stopTimer];
-	[super stop];
-	self.isRunning = NO;
 }
 
 - (void) createWayPoints{
@@ -762,24 +715,12 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	return self;
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
-	[super start];
-	self.isRunning = YES;
-}
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
-	[self stopTimer];
+- (void) endTest{
 	if([self.meMapViewController containsMap:self.name]){
 		[self.meMapViewController removeMap:self.name clearCache:YES];
 	}
-	[super stop];
-	self.isRunning = NO;
+	[super endTest];
 }
 
 - (void) createWayPoints{
@@ -851,10 +792,7 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	return self;
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest{
 	//Stop other tests
 	[self.meTestCategory stopAllTests];
 	
@@ -888,7 +826,6 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	
 	self.interval = 1;
 	[self startTimer];
-	self.isRunning = YES;
 }
 
 - (void) addBoundingGraphics{
@@ -956,15 +893,10 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	[self showMarkers: self.currentLocation];
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[TerrainProfileHelper hideTowers:self.meTestManager];
-	[self stopTimer];
 	[self.meMapViewController removeMap:self.name clearCache:YES];
 	[self removeBoundingGraphics];
-	self.isRunning = NO;
 }
 
 - (BOOL) markerIsInSet:(MEMarker*) marker markerSet:(NSArray*) someMarkerSet{
@@ -1245,9 +1177,9 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	return self;
 }
 
-- (void) start{
+- (void) beginTest{
 	self.heading = 0;
-	[super start];
+	[super beginTest];
 	[super updateCamera];
 }
 
@@ -1350,11 +1282,7 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	return self;
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
-	
+- (void) beginTest{
 	//Stop other tests in this category
 	[self.meTestManager stopCategory:self.meTestCategory.name];
 	
@@ -1368,19 +1296,12 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 	
 	[self addMarkers];
 	[self updateCamera];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest{
 	[TerrainProfileHelper hideTowers:self.meTestManager];
-	
 	[self.meMapViewController removeMap:self.name clearCache:NO];
 	[self.meMapViewController removeMap:@"highestTowers" clearCache:NO];
-	
-	self.isRunning = NO;
 }
 
 -(void) updateCamera{
@@ -1636,10 +1557,8 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
 }
 
 
-- (void) start {
-	if(self.isRunning){
-		return;
-	}
+- (void) beginTest {
+	
 	[self.meTestManager stopCategory:self.meTestCategory.name];
 	[self addBoundingGraphics];
 	[self lookAt];
@@ -1721,17 +1640,11 @@ static inline CLLocationCoordinate2D SurfaceLocationUsingDistance(CLLocationCoor
     //    [self runTest:44.215622 lon:-71.062017 SRTM:2864.173233 OSM:2929.790031 ME:3520.341309];
     //    [self runTest:44.240343 lon:-71.350354 SRTM:4688.320217 OSM:4753.937015 ME:4921.259766];
     //    [self runTest:44.201456 lon:-71.280630 SRTM:3110.236225 OSM:3090.551186 ME:3969.816406];
-    
-	self.isRunning = YES;
 }
 
-- (void) stop {
-	if(!self.isRunning){
-		return;
-	}
+- (void) endTest {
 	[self removeBoundingGraphics];
 	[self removeMarkerMap];
-	self.isRunning = NO;
 }
 
 - (double) lineSegmentHitTestPixelBufferDistance{return 10;}

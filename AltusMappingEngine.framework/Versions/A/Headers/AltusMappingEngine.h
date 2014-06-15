@@ -24,3 +24,5 @@
 #import <AltusMappingEngine/MEHeightProfiling.h>
 #import <AltusMappingEngine/MEMarker.h>
 #import <AltusMappingEngine/MEMarkerQuery.h>
+#import <AltusMappingEngine/MEPackage.h>
+#import <AltusMappingEngine/METimer.h>

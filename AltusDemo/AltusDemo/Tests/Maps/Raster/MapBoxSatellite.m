@@ -12,11 +12,7 @@
     return self;
 }
 
-- (void) start{
-    
-    if(self.isRunning){
-        return;
-    }
+- (void) beginTest{
     
     //Stop tests that obscure or affect this one
     [self.meTestManager stopBaseMapTests];
@@ -31,20 +27,10 @@
                                 zOrder:2
                             numWorkers:3
                            enableAlpha:NO]];
-	
-	self.isRunning = YES;
 }
 
-- (void) stop{
-    
-    if(!self.isRunning){
-        return;
-    }
-    
+- (void) endTest{
 	[self.meMapViewController removeMap:self.name
 							 clearCache:NO];
-	self.isRunning = NO;
 }
-
-
 @end

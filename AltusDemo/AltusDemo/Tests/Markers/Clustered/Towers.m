@@ -28,26 +28,16 @@
     [self.meMapViewController removeMap:self.name clearCache:YES];
 }
 
-- (void) start{
-	if(self.isRunning){
-		return;
-	}
-    
+- (void) beginTest{
     [self.meMapViewController addCachedMarkerImage:[UIImage imageNamed:@"pinRed"]
                                           withName:@"pinRed"
                                    compressTexture:YES
                     nearestNeighborTextureSampling:NO];
 	[self addMap];
-	self.isRunning = YES;
 }
 
-- (void) stop{
-	if(!self.isRunning){
-		return;
-	}
-    [self stopTimer];
+- (void) endTest{
 	[self removeMap];
-	self.isRunning = NO;
 }
 
 
@@ -82,7 +72,4 @@
 	marker.anchorPoint = anchorPoint;
 	marker.nearestNeighborTextureSampling = YES;
 }
-
-
-
 @end

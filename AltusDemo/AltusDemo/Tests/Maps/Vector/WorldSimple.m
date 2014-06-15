@@ -76,13 +76,12 @@
     return self;
 }
 
-- (void) start{
-    if(self.isRunning){
-        return;
-    }
+- (void) beginTest{
     
     //Stop tests that obscure or affect this one
     [self.meTestManager stopBaseMapTests];
+    //Stop other tests in this category
+	[self.meTestCategory stopAllTests];
     
     InternetVectorTileProvider *tileProvider = [[InternetVectorTileProvider alloc]init];
     tileProvider.meMapViewController = self.meMapViewController;
@@ -96,18 +95,9 @@
 	
 	//Add map
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-    
-    //Stop other tests in this category
-	[self.meTestCategory stopAllTests];
-    
-    self.isRunning = YES;
 }
 
-- (void) stop {
-    if(!self.isRunning){
-        return;
-    }
-    self.isRunning = NO;
+- (void) endTest {
     [self.meMapViewController removeMap:self.name clearCache:NO];
 }
 

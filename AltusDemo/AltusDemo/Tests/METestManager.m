@@ -1,5 +1,6 @@
 //  Copyright (c) 2014 BA3, LLC. All rights reserved.
 #import "METestManager.h"
+#import "Core/Core.h"
 #import "Artistic/Artistic.h"
 #import "Maps/Maps.h"
 #import "Markers/Markers.h"
@@ -24,6 +25,7 @@
 
 - (void) startInitialTest{
     [self startTestInCategory:@"Terrain" withName:@"Earth"];
+    [self startTestInCategory:@"Core" withName:@"Stats"];
 }
 
 - (void) stopBaseMapTests{
@@ -60,6 +62,7 @@
 }
 
 - (void) createAllTests{
+    [self createCoreTests];
     [self createVectorMarkersTests];
     [self createHeightProfilingTests];
     [self createUserInteractionTests];
@@ -71,6 +74,13 @@
     [self createDynamicMarkerTests];
     [self createWeatherTests];
     [self createArtisticTests];
+}
+
+- (void) createCoreTests{
+    METestCategory* testCategory = [[METestCategory alloc]init];
+    testCategory.name = @"Core";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[Stats class]];
 }
 
 - (void) createVectorMarkersTests{
@@ -133,19 +143,19 @@
     [testCategory addTestClass:[MultiViewControl class]];
     [testCategory addTestClass:[RoutePlanning class]];
     [testCategory addTestClass:[RoutePlotting class]];
-    [testCategory addTestClass:[RouteWithMarkers class]];
 }
 
 - (void) createRasterMapTests{
     METestCategory* testCategory = [[METestCategory alloc]init];
     testCategory.name = @"Raster Maps";
     [self addCategory:testCategory];
-    [testCategory addTestClass:[AltusRasterPackage class]];
     [testCategory addTestClass:[MapQuestAerial class]];
     [testCategory addTestClass:[MapBoxSatellite class]];
     [testCategory addTestClass:[MapBoxStreets class]];
     [testCategory addTestClass:[MBTilesNative class]];
     [testCategory addTestClass:[BA3NativeAcadia class]];
+    [testCategory addTestClass:[AltusRasterPackageNative class]];
+    [testCategory addTestClass:[AltusRasterPackageCustom class]];
 }
 
 - (void) createVectorMapTests{
@@ -157,6 +167,10 @@
     [testCategory addTestClass:[HoustonStreetsStyle1 class]];
     [testCategory addTestClass:[HoustonStreetsStyle2 class]];
     [testCategory addTestClass:[HoustonStreetsStyle3 class]];
+    [testCategory addTestClass:[SimpleWorld class]];
+    [testCategory addTestClass:[SimpleWorldBenchmarkBias class]];
+    [testCategory addTestClass:[SimpleWorldBenchmarkNoBias class]];
+    
 }
 
 - (void) createVirtualVectorMapTests{
@@ -170,9 +184,10 @@
     METestCategory* testCategory = [[METestCategory alloc]init];
     testCategory.name = @"Markers";
     [self addCategory:testCategory];
-    [testCategory addTestClass:[CustomClustering class]];
     [testCategory addTestClass:[Places class]];
+    [testCategory addTestClass:[PlacesAvenir class]];
     [testCategory addTestClass:[PlacesFancyLabels class]];
+    [testCategory addTestClass:[CustomClustering class]];
     [testCategory addTestClass:[Towers class]];
     [testCategory addTestClass:[BusStopsMemoryCached class]];
     [testCategory addTestClass:[BusStopsMemoryAsync class]];
@@ -193,7 +208,7 @@
     [testCategory addTestClass:[WorldSamples class]];
     [testCategory addTestClass:[ColorMosaicTest class]];
     [testCategory addTestClass:[ColorMosaicTest2 class]];
-    [testCategory addTestClass:[ColorMosaicNativeTest class]];
+    [testCategory addTestClass:[RadarTest class]];
 }
 
 - (void) createTerrainTests {
@@ -202,6 +217,7 @@
     [self addCategory:testCategory];
 	[testCategory addTestClass:[Earth class]];
     [testCategory addTestClass:[DynamicColorBar class]];
+    [testCategory addTestClass:[AltusTerrainPackage class]];
 }
 
 - (void) createArtisticTests {

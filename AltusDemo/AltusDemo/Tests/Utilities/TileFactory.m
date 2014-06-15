@@ -1,155 +1,10 @@
 //  Copyright (c) 2014 BA3, LLC. All rights reserved.
 #import "TileFactory.h"
-
-/////////////////////////////////////////////////////////////////////
-//Base class for objects that create or retrieve tiles
-//in the context of a TileFactor
-@implementation TileWorker
-
--(id) init{
-    if(self=[super init]){
-        self.serialQueue = dispatch_queue_create("TileWorker", DISPATCH_QUEUE_SERIAL);
-        self.isBusy = NO;
-    }
-    return self;
-}
-
--(void) doWork:(METileProviderRequest *) meTileRequest{
-    NSLog(@"TileFactoryWorker:doWork You should be overriding this method. Exiting.");
-    exit(0);
-}
-
--(void) startTile:(METileProviderRequest *) meTileRequest{
-    self.isBusy = YES;
-    dispatch_async(self.serialQueue, ^{
-        //Do work on background thread
-        [self doWork:meTileRequest];
-        self.isBusy = NO;
-        //On main thred tell manager I'm done
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.isBusy = NO;
-            if(self.tileFactory!=nil){
-                [self.tileFactory finishTile:meTileRequest];
-            }
-            else{
-                NSLog(@"The worker has no factory object. Exiting.");
-                exit(0);
-            }
-        });
-    });
-}
-
-@end
-
-/////////////////////////////////////////////////////////////////////
-//Tile worker that can download raster tiles
-@implementation TileDownloader
-
--(id) initWithURLTemplate:(NSString*) urlTemplate
-               subDomains:(NSString*) subDomains
-              enableAlpha:(BOOL) enableAlpha{
-    if(self=[super init]){
-        self.urlTemplate = urlTemplate;
-        self.enableAlpha = enableAlpha;
-        self.subDomains = [subDomains componentsSeparatedByString:@","];
-        self.currentSubdomain = 0;
-    }
-    return self;
-}
-
-- (NSString*) nextSubdomain{
-    
-    if(self.subDomains.count==0){
-        return @"";
-    }
-    
-    int next;
-    @synchronized(self){
-        next = self.currentSubdomain;
-        self.currentSubdomain++;
-        if(self.currentSubdomain>self.subDomains.count-1){
-            self.currentSubdomain = 0;
-        }
-    }
-    
-    return (NSString*)[self.subDomains objectAtIndex:next];
-}
-
-- (NSString*) urlForTile:(MESphericalMercatorTile*) smTile{
-    NSString* url = self.urlTemplate;
-    
-    url = [url stringByReplacingOccurrencesOfString:@"{s}" withString:
-           [self nextSubdomain]];
-    
-    url = [url stringByReplacingOccurrencesOfString:@"{z}" withString:
-           [NSString stringWithFormat:@"%d", smTile.slippyZ]];
-    
-    url = [url stringByReplacingOccurrencesOfString:@"{x}" withString:
-           [NSString stringWithFormat:@"%d", smTile.slippyX]];
-    
-    url = [url stringByReplacingOccurrencesOfString:@"{y}" withString:
-           [NSString stringWithFormat:@"%d", smTile.slippyY]];
-    
-	return url;
-}
-
-- (NSData*) download:(NSString*) urlString{
-	
-	//Create a URL request
-	NSURLRequest* request=[[NSURLRequest alloc]initWithURL:[NSURL URLWithString:urlString]
-											   cachePolicy:NSURLRequestReturnCacheDataElseLoad
-										   timeoutInterval:3];
-	
-	BOOL success = NO;
-	NSHTTPURLResponse* response;
-	NSError* error;
-	NSData* data;
-	
-	
-	data = [NSURLConnection sendSynchronousRequest:request
-								 returningResponse:&response
-											 error:&error];
-    
-	if(response.statusCode==200){
-		success = YES;
-    }
-    else{
-        NSLog(@"Got %ld for %@", (long)response.statusCode, urlString);
-    }
-    
-	//Return
-	if(success){
-		return data;
-	}
-	
-	return nil;
-}
-
-
-
-- (void) doWork:(METileProviderRequest *)meTileRequest{
-    
-    //Download all tiles
-    for(MESphericalMercatorTile* smTile in meTileRequest.sphericalMercatorTiles){
-        NSString* url = [self urlForTile:smTile];
-        NSData* tileData = [self download:url];
-        if(tileData!=nil){
-            smTile.uiImage = [UIImage imageWithData:tileData];
-            meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
-            meTileRequest.isOpaque = !self.enableAlpha;
-        }
-        else{
-            meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
-            break;
-        }
-    }
-}
-
-@end
-
+#import "TileDownloader.h"
+#import "RasterPackageReader.h"
 
 /////////////////////////////////////////////////////////////////////////////////
-//A tile provider that farms out work to TileWorks and provides
+//A tile provider that farms out work to TileWorkers and provides
 //resources on demand.
 @implementation TileFactory
 
@@ -160,6 +15,12 @@
         self.tileWorkers = [[NSMutableArray alloc]init];
     }
     return self;
+}
+
+-(void) dealloc{
+    if(self.tileWorkers){
+        self.tileWorkers = nil;
+    }
 }
 
 -(void) addWorker:(TileWorker*) tileWorker{
@@ -177,6 +38,10 @@
     NSMutableArray* staleRequests = [NSMutableArray array];
     for (METileProviderRequest* request in self.activeTileRequests){
         if(![self.meMapViewController tileIsNeeded:request]){
+            //We must call tileLoadComplete, even for tiles that are no longer
+            //needed so the engine can clean up internal data structures
+            request.tileProviderResponse = kTileResponseWasCancelled;
+            [self.meMapViewController tileLoadComplete:request];
             [staleRequests addObject:request];
         }
     }
@@ -215,7 +80,7 @@
 }
 
 -(void) finishTile:(METileProviderRequest *) meTileRequest{
-    [self.meMapViewController tileLoadComplete:meTileRequest];
+    [self.meMapViewController tileLoadComplete:meTileRequest loadImmediate:YES];
     [self queueWork];
 }
 
@@ -244,6 +109,17 @@
         [newFactory addWorker:[[TileDownloader alloc]initWithURLTemplate:urlTemplate
                                                               subDomains:subDomains
                                                              enableAlpha:enableAlpha]];
+    }
+    return newFactory;
+}
+
++(TileFactory*) createPackageTileFactory:(MEMapViewController*) meMapViewController
+                         packageFileName:(NSString*) packageFileName
+                              numWorkers:(int) numWorkers{
+    TileFactory* newFactory = [[TileFactory alloc]init];
+    newFactory.meMapViewController = meMapViewController;
+    for(int i=0; i<numWorkers; i++){
+        [newFactory addWorker:[[RasterPackageReader alloc]initWithFileName:packageFileName]];
     }
     return newFactory;
 }

@@ -5,6 +5,7 @@
 
 /** A conveniience class to assist with the creation of map info objects.*/
 @interface MapFactory : NSObject
+
 /**Creates an virtual map info object for an internet map.*/
 +(MEVirtualMapInfo*) createInternetMapInfo:(MEMapViewController*) meMapViewController
                                    mapName:(NSString*) mapName
@@ -14,4 +15,12 @@
                                     zOrder:(unsigned int) zOrder
                                 numWorkers:(int) numWorkers
                                enableAlpha:(BOOL) enableAlpha;
+
+/**Creates an virtual map info object for a packaged raster map.*/
++(MEVirtualMapInfo*) createRasterPackageMapInfo:(MEMapViewController*) meMapViewController
+                                        mapName:(NSString*) mapName
+                                packageFileName:(NSString*) packageFileName
+                            isSphericalMercator:(BOOL) isSphericalMercator
+                                         zOrder:(unsigned int) zOrder
+                                     numWorkers:(int) numWorkers;
 @end

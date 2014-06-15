@@ -59,60 +59,11 @@
         return;
     }
     
-    // size of the tile image
-    const int WIDTH = 256;
-    const int HEIGHT = 256;
+    // create image from data
+    UIImage *image = [self.grid createImageForBounds:tileBounds];
     
-    // allocate data for the tile image and clear it
-    unsigned char *imageData = (unsigned char*)malloc(WIDTH * HEIGHT * 4);
-    memset(imageData, 0, WIDTH * HEIGHT * 4);
-    
-    // get mercator latitude bounds
-    double normalizedMinY = [self mercatorLatitude:meTileRequest.minY];
-    double normalizedMaxY = [self mercatorLatitude:meTileRequest.maxY];
-    
-    for (int y = 0; y < HEIGHT; ++y) {
-        
-        // interpolate y coordinate in mercator space
-        double t = (y + 0.5) / HEIGHT;
-        double mercatorY = normalizedMinY + t * (normalizedMaxY - normalizedMinY);
-        
-        // convert mercator space y to latitude
-        CLLocationCoordinate2D sampleLocation;
-        sampleLocation.latitude = [self inverseMercatorLatitude:mercatorY];
-        
-        for (int x = 0; x < WIDTH; ++x) {
-            
-            // interpolate x coordinate
-            double s = (x + 0.5) / WIDTH;
-            sampleLocation.longitude = tileBounds.origin.x + s * tileBounds.size.width;
-            
-            // filter out pixels outside bounds
-            if (!CGRectContainsPoint(self.grid.bounds, CGPointMake(sampleLocation.longitude, sampleLocation.latitude)))
-            continue;
-            
-            // get value from source data at location
-            double value = [self.grid getValueForLocationBilinear:sampleLocation];
-            
-            // invert Y index because images start with y = 0 at the top
-            int invY = HEIGHT - y - 1;
-            
-            // get uint color
-            uint color = [self.grid getColorForValue:value];
-            
-            // swap bytes in uint color in order to assign them to a byte array
-            unsigned char *pixel = &imageData[(x + invY * WIDTH)*4];
-            pixel[0] = (color & 0xff000000) >> 24;
-            pixel[1] = (color & 0xff0000) >> 16;
-            pixel[2] = (color & 0xff00) >> 8;
-            pixel[3] = (color & 0xff);
-        }
-    }
-    
-    UIImage *result = [self imageFromBytes:imageData];
-    free(imageData);
-    
-    meTileRequest.uiImage = result;
+    // fill in response object
+    meTileRequest.uiImage = image;
     meTileRequest.isOpaque = NO;
     meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
 }
@@ -128,11 +79,7 @@
     return self;
 }
 
-- (void) start{
-    
-    if(self.isRunning){
-        return;
-    }
+- (void) beginTest{
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"ds.temp" ofType:@"xyz"];
     DataGrid *grid = [[DataGrid alloc] initWithFile:path
@@ -143,7 +90,7 @@
     // convert data from kelvin to fahrenheit
     //int dataCount = width * height;
     for (int i = 0; i < grid.width * grid.height; ++i) {
-        grid.dataArray[i] = (grid.dataArray[i] - 273.15) * 1.8000 + 32.00;
+        grid->dataArray[i] = (grid->dataArray[i] - 273.15) * 1.8000 + 32.00;
     }
     
     //Create a tile factory
@@ -167,19 +114,12 @@
     mapInfo.isSphericalMercator = NO;
     
     [self.meMapViewController addMapUsingMapInfo:mapInfo];
-    self.isRunning = YES;
 }
 
-- (void) stop{
-    
-    if(!self.isRunning){
-        return;
-    }
-    
+- (void) endTest{
     //Remove the map
     [self.meMapViewController removeMap:self.name
                              clearCache:YES];
-    self.isRunning = NO;
 }
 
 @end

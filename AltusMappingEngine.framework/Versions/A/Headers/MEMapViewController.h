@@ -435,8 +435,12 @@
 /**Returns the current terrain color bar.*/
 -(METerrainColorBar*) terrainColorBar;
 
-/**Called when a tile has been loaded through a virtual layer. Should only be called on the main thread.*/
+/**Called when a tile has been loaded through a virtual layer. Should only be called on the main thread, otherwise, a syncrhonous lock is used to ensure internal data structure integrity. Places the complete tile request back in the loading queue. See maxAsyncTileLoadsPerFrame.*/
 - (void) tileLoadComplete:(METileProviderRequest*) meTileRequest;
+
+/**Called when a tile has been loaded through a virtual layer. If loadImmediate is NO, places the tile request in the loading queue (see maxAsyncTileLoadsPerFrame), otherwise the loading is immediate. NOTE: if loadImmediate is YES you must only make the call from the main thread, otherwise you risk corrupting internal data structure. Warning: immediate loading too many tiles can cause frame hitching.*/
+- (void) tileLoadComplete:(METileProviderRequest*) meTileRequest
+            loadImmediate:(BOOL) loadImmediate;
 
 /**Called by vector tile providers to supply geometry for a requested tile.*/
 - (void) markerTileLoadComplete:(METileProviderRequest*) meTileRequest markerArray:(NSArray*) markerArray;

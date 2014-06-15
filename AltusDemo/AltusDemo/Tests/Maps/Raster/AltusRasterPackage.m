@@ -1,51 +1,88 @@
 //  Copyright (c) 2014 BA3, LLC. All rights reserved.
 #import "AltusRasterPackage.h"
+#import "../../Utilities/MapFactory.h"
 
-@implementation AltusRasterPackage
+///////////////////////////////////////////////////////////////////////////
+@implementation AltusRasterPackageNative
 
 -(id) init{
     if(self=[super init]){
-        self.name = @"AltusRasterPackage";
+        self.name = @"Package - Native";
+        self.pacakgeFileName = [[NSBundle mainBundle] pathForResource:@"AltusRasterPackage"
+                                                               ofType:@"sqlite"];
     }
     return self;
 }
 
-- (void) start{
-    
-    if(self.isRunning){
-        return;
-    }
-    
-    //Get documents path
-    //NSString* docPath = [METest getDocumentsPath];
-    //NSLog(docPath);
-    //NSString* packageFileName = [NSString stringWithFormat:@"%@/vfr_usa_0_11.sqlite", docPath];
-    
-    //Get map package name
-    NSString* packageFileName = [[NSBundle mainBundle] pathForResource:@"AltusRasterPackage"
-                                                              ofType:@"sqlite"];
-    
-    //Add the map
+- (void) addMap{
     [self.meMapViewController setMaxVirtualMapParentSearchDepth:20];
-    [self.meMapViewController addPackagedMap:self.name packageFileName:packageFileName];
+    [self.meMapViewController addPackagedMap:self.name
+                             packageFileName:self.pacakgeFileName];
     [self.meMapViewController setMapZOrder:self.name zOrder:10];
-    //[self.meMapViewController setMapAlpha:self.name  alpha:0.5];
-       
-    
-	self.isRunning = YES;
 }
 
-- (void) stop{
-    
-    if(!self.isRunning){
-        return;
-    }
-    
-	[self.meMapViewController removeMap:self.name
+- (void) removeMap{
+    [self.meMapViewController removeMap:self.name
 							 clearCache:YES];
-    
-	self.isRunning = NO;
+}
+
+//Don't enable if other test is running
+-(BOOL) isEnabled{
+    METest* otherTest = [self.meTestCategory testWithName:@"Package - Custom"];
+    return(!otherTest.isRunning);
+}
+
+- (void) beginTest{
+    [self addMap];
+}
+
+- (void) endTest{
+    [self removeMap];
+}
+@end
+
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+@implementation AltusRasterPackageCustom
+
+-(id) init{
+    if(self=[super init]){
+        self.name = @"Package - Custom";
+        self.pacakgeFileName = [[NSBundle mainBundle] pathForResource:@"AltusRasterPackage"
+                                                               ofType:@"sqlite"];
+    }
+    return self;
+}
+
+- (void) addMap{
+    [self.meMapViewController setMaxVirtualMapParentSearchDepth:20];
+    [self.meMapViewController addMapUsingMapInfo:
+     [MapFactory createRasterPackageMapInfo:self.meMapViewController
+                                    mapName:self.name
+                            packageFileName:self.pacakgeFileName
+                        isSphericalMercator:NO
+                                     zOrder:10
+                                 numWorkers:3]
+     ];
+}
+
+- (void) removeMap{
+    [self.meMapViewController removeMap:self.name
+                             clearCache:YES];
+}
+
+//Don't enable if other test is running
+-(BOOL) isEnabled{
+    METest* otherTest = [self.meTestCategory testWithName:@"Package - Native"];
+    return(!otherTest.isRunning);
+}
+
+- (void) beginTest{
+    [self addMap];
+}
+
+- (void) endTest{
+    [self removeMap];
 }
 
 @end
-

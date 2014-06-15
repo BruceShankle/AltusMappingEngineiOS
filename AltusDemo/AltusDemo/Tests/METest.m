@@ -28,6 +28,21 @@
 }
 
 
+- (void) startBenchmarkTimer{
+    if(self.benchMarkTimer==nil){
+        NSString* timerMessage=[NSString stringWithFormat:@"%@ benchmark:", self.name];
+        self.benchMarkTimer = [[METimer alloc]initWithMessage:timerMessage];
+    }
+    [self.benchMarkTimer start];
+}
+
+-(long) stopBenchMarkTimer{
+    if(self.benchMarkTimer==nil){
+        return 0;
+    }
+    return [self.benchMarkTimer stop];
+}
+
 - (void) tickInternal{
     NSDate *currentTime = [NSDate date];
     self.elapsedTime = [currentTime timeIntervalSinceDate:self.lastTickTime];
@@ -48,10 +63,50 @@
 }
 
 
+-(void) addUI{
+    if(self.lblMessage!=nil){
+        return;
+    }
+    self.lblMessage = [[UILabel alloc]initWithFrame:CGRectMake(20,20,200,100)];
+    [self.lblMessage setTextColor:[UIColor greenColor]];
+    [self.lblMessage setBackgroundColor:[UIColor blackColor]];
+    [self.lblMessage.layer setCornerRadius:10];
+    [self.lblMessage setFont:[UIFont fontWithName: @"Arial-BoldMT" size: 20.0f]];
+    [self.meMapViewController.meMapView addSubview:self.lblMessage];
+    [self.meMapViewController.meMapView bringSubviewToFront:self.lblMessage];
+}
+
+-(void) removeUI{
+    if(self.lblMessage==nil){
+        return;
+    }
+    [self.lblMessage removeFromSuperview];
+    self.lblMessage = nil;
+}
+
+-(void) setMessageText:(NSString *)msgText{
+    if(self.lblMessage==nil){
+        [self addUI];
+    }
+    self.lblMessage.text = msgText;
+    [self.lblMessage sizeToFit];
+}
+
+- (void) beginTest{
+    NSLog(@"You must override the beginTest function. Exiting.");
+    exit(0);
+}
+
+- (void) endTest{
+    NSLog(@"You must override the endTest function. Exiting.");
+    exit(0);
+}
+
 - (void) start{
 	if(self.isRunning){
 		return;
     }
+    [self beginTest];
     self.isRunning = YES;
 }
 
@@ -67,6 +122,8 @@
 		return;
     }
     [self stopTimer];
+    [self endTest];
+    [self removeUI];
     self.isRunning = NO;
 }
 
@@ -98,6 +155,18 @@
                                     withHorizontalBuffer:0
                                       withVerticalBuffer:0
                                        animationDuration:1.0];
+}
+
+- (void) stopAllOtherTests{
+    self.isRunning = NO;
+    [self.meTestManager stopAllTests];
+    self.isRunning = YES;
+}
+
+- (void) stopTestsInThisCategory{
+    self.isRunning = NO;
+    [self.meTestManager stopAllTests];
+    self.isRunning = YES;
 }
 
 + (NSString*) getDocumentsPath{

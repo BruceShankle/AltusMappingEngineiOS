@@ -1,3 +1,21 @@
+Release Notes v1.5-63
+=============================
+Added METimer utility class for doing benchmarking.
+Added benchmarking support to test harness system in AltusDemo.
+Fix memory resource leak in TileFactory sample tile provider. Was not calling TileLoadComplete on cancelled tiles.
+Add some tests for dynamic vector lines to AltusDemo.
+Add a very simple world-wide vector map produced by AltusVector.
+Remove png files that aren't used in the AltusDemo project.
+Fix story board file references in AltusDemo project.
+Add level to METileProviderRequest object.
+Add Objective-C path for reading from a raster package produced by AltusPackage.
+Add immediate loading path for smart tile providers so they can bypass the loading queue in the iOS layer.
+(For details, see: http://dev1.ba3.us/ios/doc/Classes/MEMapViewController.html#//api/name/tileLoadComplete:loadImmediate:)
+Adding new indexed radar test.
+Add test for tracking object inside animated vector circle.
+Add animated vector circle test.
+
+
 Major changes from 1.4 to 1.5
 =============================
 Update version number for release.

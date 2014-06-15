@@ -85,6 +85,9 @@ typedef enum {
 /**The internal 64-bit ID of the tile.*/
 @property (assign, readonly) uint64_t uid;
 
+/**The 'level' of thie tile being requested.*/
+@property (assign, readonly) unsigned int level;
+
 /**Contains an array of MESlippyTile objects. Your tile provider will need to furnish image data for each MESlippyTile object in this array for virtual spherical mercator maps.*/
 @property (retain) NSArray* sphericalMercatorTiles;
 

@@ -65,9 +65,7 @@
 	return self;
 }
 
-- (void) start {
-	if(self.isRunning)
-		return;
+- (void) beginTest {
 	
     //Cache red pin image
     [self.meMapViewController addCachedMarkerImage:[UIImage imageNamed:@"pinRed"]
@@ -89,16 +87,10 @@
 
 	//Add map
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
-    
-	self.isRunning = YES;
 }
 
-- (void) stop {
-	if(!self.isRunning)
-		return;
-	
+- (void) endTest {
 	[self.meMapViewController removeMap:self.name clearCache:YES];
-	self.isRunning = NO;
 }
 
 -(void) tapOnDynamicMarker:(NSString *)markerName
@@ -108,7 +100,5 @@
              atMarkerPoint:(CGPoint)markerPoint{
     NSLog(@"You tapped on marker %@.", markerName);
 }
-
-
 
 @end
