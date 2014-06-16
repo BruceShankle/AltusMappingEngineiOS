@@ -20,18 +20,19 @@
 -(void) startTile:(METileProviderRequest *) meTileRequest{
     self.isBusy = YES;
     dispatch_async(self.serialQueue, ^{
+        
         //Do work on background thread
         [self doWork:meTileRequest];
-        self.isBusy = NO;
-        //On main thred tell manager I'm done
+        
+        //On main thread:
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            //1. Indicate available for more work so Factory will load us with work again.
             self.isBusy = NO;
+            
+            //2. Tell factory current work is complete.
             if(self.tileFactory!=nil){
                 [self.tileFactory finishTile:meTileRequest];
-            }
-            else{
-                NSLog(@"The worker has no factory object. Exiting.");
-                exit(0);
             }
         });
     });

@@ -17,9 +17,15 @@
     return self;
 }
 
+//Workers have a weak reference to the factory, so we'll
+//nil that out here. When they come back from background
+//threads with work, they will not attempt to send it to the
+//non-existent factory.
 -(void) dealloc{
     if(self.tileWorkers){
-        self.tileWorkers = nil;
+        for(TileWorker* worker in self.tileWorkers){
+            worker.tileFactory = nil;
+        }
     }
 }
 
