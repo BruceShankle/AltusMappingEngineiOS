@@ -7,7 +7,6 @@
     if(self=[super init]){
         self.name = @"MapBox Streets - Raster";
         
-        //self.urlTemplate = @"https://www.mygdc.com/new/mapserver_proxy.php?product=vfr_usa_near&location=cache&z={z}&x={x}&y={y}.png";
         self.urlTemplate = @"http://{s}.tiles.mapbox.com/v3/dxjacob.map-s5qr595q/{z}/{x}/{y}.png";
     }
     return self;
