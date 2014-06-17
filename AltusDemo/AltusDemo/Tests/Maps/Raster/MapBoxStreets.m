@@ -23,7 +23,7 @@
                                mapName:self.name
                            urlTemplate:self.urlTemplate
                             subDomains:@"a,b,c,d"
-                              maxLevel:11
+                              maxLevel:18
                                 zOrder:2
                             numWorkers:3
                            enableAlpha:NO]];
