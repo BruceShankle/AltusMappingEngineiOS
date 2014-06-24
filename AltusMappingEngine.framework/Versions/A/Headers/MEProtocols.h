@@ -121,21 +121,18 @@
 
 @end
 
-
 /**The MEVectorMapDelegate protocol defines a set of methods that you can use to receive vector map related update messages. Implement this protocol when you add dynamic vector maps and you need to receive vector map related notifications*/
 @protocol MEVectorMapDelegate <NSObject>
 
-@required
-
-/** Required: Returns the number of pixels used as a buffer between vector line segments and hit test points.*/
-- (double) lineSegmentHitTestPixelBufferDistance;
-
-/** Required: Returns the number of pixels used as a buffer between vector line vertices and hit test points.*/
-- (double) vertexHitTestPixelBufferDistance;
-
 @optional
 
-/**Called when a hit is detected on a vector line segment.*/
+/** Returns the number of pixels used as a buffer between vector line segments and hit test points.*/
+- (double) lineSegmentHitTestPixelBufferDistance;
+
+/** Returns the number of pixels used as a buffer between vector line vertices and hit test points.*/
+- (double) vertexHitTestPixelBufferDistance;
+
+/**Called when a hit (tap) is detected on a vector line segment.*/
 - (void) lineSegmentHitDetected:(MEMapView*) mapView
 						mapName:(NSString*) mapName
 						shapeId:(NSString*) shapeId
@@ -149,5 +146,12 @@
 				   shapeId:(NSString*) shapeId
 				coordinate:(CLLocationCoordinate2D) coordinate
 			   vertexIndex:(int) vertexIndex;
+
+/**Called whan a hit (tap) is detected on a polygon in a vector map layer that has enabled polygon hit testing.
+ @param mapView The MEMapView object where the hit originated.
+ @param An array of one or more MEVectorGeometryHit objects.*/
+- (void) polygonHitDetected:(MEMapView*) mapView
+                       hits:(NSArray*)polygonHits;
+
 
 @end

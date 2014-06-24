@@ -137,6 +137,9 @@ typedef enum {
 /**Maximum detail level of the map. (Specified for in-memory marker maps and virtual maps).*/
 @property (assign) unsigned int maxLevel;
 
+/**Specifies the relative priority of this map layer. Please read see MEMapViewController's setMapPriority function for an explanation of priority.*/
+@property (assign) int priority;
+
 /**0 to 1 value for the map alpha. 0 is invisible, 1 is opaque.*/
 @property (assign) double alpha;
 
@@ -241,6 +244,9 @@ typedef enum {
 
 /**Optional delegate that will receive touch events on dynamic vector geometry objects.*/
 @property (retain) id<MEVectorMapDelegate> meVectorMapDelegate;
+
+/**Specifies if polygon hit detection is enabled for this map. If YES, the meVectrMapDelegate will receive notification of polygons that user taps on.*/
+@property (assign) BOOL polygonHitDetectionEnabled;
 
 @end
 

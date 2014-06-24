@@ -6,7 +6,7 @@
 
 -(id) init{
     if(self=[super init]){
-        self.name = @"MapBox Satellite - Raster";
+        self.name = @"MapBox Satellite";
         self.urlTemplate = @"http://{s}.tiles.mapbox.com/v3/dxjacob.ho6k3ag9/{z}/{x}/{y}.jpg";
     }
     return self;
@@ -26,6 +26,7 @@
                               maxLevel:20
                                 zOrder:2
                             numWorkers:3
+                              useCache:YES
                            enableAlpha:NO]];
 }
 

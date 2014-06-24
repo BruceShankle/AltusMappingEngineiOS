@@ -5,9 +5,9 @@
 
 -(id) init{
     if(self=[super init]){
-        self.name = @"MapBox Streets - Raster";
-        
+        self.name = @"MapBox Streets";
         self.urlTemplate = @"http://{s}.tiles.mapbox.com/v3/dxjacob.map-s5qr595q/{z}/{x}/{y}.png";
+        self.useNetworkCache = YES;
     }
     return self;
 }
@@ -23,9 +23,10 @@
                                mapName:self.name
                            urlTemplate:self.urlTemplate
                             subDomains:@"a,b,c,d"
-                              maxLevel:18
+                              maxLevel:20
                                 zOrder:2
                             numWorkers:3
+                              useCache:self.useNetworkCache
                            enableAlpha:NO]];
 }
 
@@ -33,6 +34,22 @@
 	[self.meMapViewController removeMap:self.name
 							 clearCache:NO];
 }
+@end
 
+@implementation MapBoxStreetsNoCache
+
+-(id) init{
+    if(self=[super init]){
+        self.name = @"MapBox Streets - No Cache";
+        self.useNetworkCache = NO;
+    }
+    return self;
+}
+
+- (void) endTest{
+	[self.meMapViewController removeMap:self.name
+							 clearCache:YES];
+}
 
 @end
+

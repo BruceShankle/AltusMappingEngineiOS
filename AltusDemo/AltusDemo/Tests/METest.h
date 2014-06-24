@@ -25,6 +25,7 @@
 @property (retain) IBOutlet UILabel* lblStatus;
 @property (retain) NSDate* lastTickTime;
 @property (assign) NSTimeInterval elapsedTime;
+@property (retain) UIAlertView* alertView;
 
 - (void) startTimer;
 - (void) stopTimer;
@@ -41,6 +42,12 @@
 - (void) userTapped;
 - (void) stopAllOtherTests;
 - (void) stopTestsInThisCategory;
+/**Show an alert to the user.
+ @param message Text to display.
+ @param timeout If non-zero, the number of seconds to display the alert before removing it. If zero, the alert will not time out.*/
+- (void) showAlert:(NSString *)message
+           timeout:(double)timeout;
+
 + (NSString*) getDocumentsPath;
 + (NSString*) getCachePath;
 + (double) randomDouble:(double)min max:(double)max;

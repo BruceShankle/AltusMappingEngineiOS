@@ -3,14 +3,29 @@
 
 @implementation TileDownloader
 
+-(id) init {
+    if(self=[super init]){
+        [self commonInit];
+    }
+    return self;
+}
+
+-(void) commonInit{
+    self.timeOutInterval = 3;
+    self.useCache = YES;
+}
+
 -(id) initWithURLTemplate:(NSString*) urlTemplate
                subDomains:(NSString*) subDomains
-              enableAlpha:(BOOL) enableAlpha{
+              enableAlpha:(BOOL) enableAlpha
+                 useCache:(BOOL) useCache{
     if(self=[super init]){
+        [self commonInit];
         self.urlTemplate = urlTemplate;
         self.enableAlpha = enableAlpha;
         self.subDomains = [subDomains componentsSeparatedByString:@","];
         self.currentSubdomain = 0;
+        self.useCache = useCache;
     }
     return self;
 }
@@ -33,7 +48,7 @@
     return (NSString*)[self.subDomains objectAtIndex:next];
 }
 
-- (NSString*) urlForTile:(MESphericalMercatorTile*) smTile{
+- (NSString*) urlForSMTile:(MESphericalMercatorTile*) smTile{
     NSString* url = self.urlTemplate;
     
     url = [url stringByReplacingOccurrencesOfString:@"{s}" withString:
@@ -51,13 +66,23 @@
 	return url;
 }
 
+- (NSString*) urlForTile:(METileProviderRequest*) meTileProviderRequest {
+    NSLog(@"TileDownloader:urlForTile: Sub-classes should override this method. Exiting.");
+    exit(0);
+}
+
 - (NSData*) download:(NSString*) urlString{
 	
-	//Create a URL request
+    //Determine cache policy
+    NSURLRequestCachePolicy cachePolicy = NSURLRequestReturnCacheDataElseLoad;
+    if(!self.useCache){
+        cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    }
+    
 	NSURLRequest* request=[[NSURLRequest alloc]initWithURL:[NSURL URLWithString:urlString]
-											   cachePolicy:NSURLRequestReturnCacheDataElseLoad
-										   timeoutInterval:3];
-	
+											   cachePolicy:cachePolicy
+										   timeoutInterval:self.timeOutInterval];
+    
 	BOOL success = NO;
 	NSHTTPURLResponse* response;
 	NSError* error;
@@ -72,7 +97,7 @@
 		success = YES;
     }
     else{
-        NSLog(@"Got %ld for %@", (long)response.statusCode, urlString);
+        NSLog(@"TileDownloader Error %ld for %@", (long)response.statusCode, urlString);
     }
     
 	//Return
@@ -85,18 +110,32 @@
 
 - (void) doWork:(METileProviderRequest *)meTileRequest{
     
-    //Download all tiles
-    for(MESphericalMercatorTile* smTile in meTileRequest.sphericalMercatorTiles){
-        NSString* url = [self urlForTile:smTile];
+    //Get spherical mercator tiless?
+    if(meTileRequest.sphericalMercatorTiles.count>0){
+        for(MESphericalMercatorTile* smTile in meTileRequest.sphericalMercatorTiles){
+            NSString* url = [self urlForSMTile:smTile];
+            NSData* tileData = [self download:url];
+            if(tileData!=nil){
+                smTile.uiImage = [UIImage imageWithData:tileData];
+                meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
+                meTileRequest.isOpaque = !self.enableAlpha;
+            }
+            else{
+                meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
+                return;
+            }
+        }
+    }
+    else{
+        NSString* url = [self urlForTile:meTileRequest];
         NSData* tileData = [self download:url];
         if(tileData!=nil){
-            smTile.uiImage = [UIImage imageWithData:tileData];
+            meTileRequest.uiImage = [UIImage imageWithData:tileData];
             meTileRequest.tileProviderResponse = kTileResponseRenderUIImage;
             meTileRequest.isOpaque = !self.enableAlpha;
         }
         else{
             meTileRequest.tileProviderResponse = kTileResponseNotAvailable;
-            break;
         }
     }
 }

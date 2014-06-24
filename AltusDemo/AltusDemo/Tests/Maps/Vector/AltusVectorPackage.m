@@ -12,7 +12,7 @@
 
 - (void) enableLabels:(BOOL) enabled{
     METest* labels= [self.meTestManager testInCategory:@"Markers"
-                                              withName:@"Places"];
+                                              withName:@"Places - Arial"];
     
     if(enabled)
         [labels start];
@@ -34,8 +34,6 @@
     
     //Set the zOrder
     [self.meMapViewController setMapZOrder:self.name zOrder:2];
-    
-    [self lookAtUnitedStates];
     
     //Turn on labels
     [self enableLabels:YES];

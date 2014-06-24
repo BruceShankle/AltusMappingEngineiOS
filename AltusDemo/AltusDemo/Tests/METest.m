@@ -122,6 +122,7 @@
 		return;
     }
     [self stopTimer];
+    [self hideAlert];
     [self endTest];
     [self removeUI];
     self.isRunning = NO;
@@ -167,6 +168,39 @@
     self.isRunning = NO;
     [self.meTestManager stopAllTests];
     self.isRunning = YES;
+}
+
+-(void) hideAlert{
+    if(self.alertView!=nil){
+        [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
+        self.alertView=nil;
+    }
+}
+
+- (void)alertTimeOut:(NSTimer *)timer {
+    [self hideAlert];
+}
+
+- (void)showAlert:(NSString *)message
+          timeout:(double)timeout {
+    
+    [self hideAlert];
+    
+    NSString* alertMessage = [NSString stringWithFormat:@"%@\n%@", self.name, message];
+    
+    self.alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                message:alertMessage
+                                               delegate:nil
+                                      cancelButtonTitle:@"OK"
+                                      otherButtonTitles:nil];
+    [self.alertView show];
+    if(timeout>0){
+        [NSTimer scheduledTimerWithTimeInterval:timeout
+                                         target:self
+                                       selector:@selector(alertTimeOut:)
+                                       userInfo:nil
+                                        repeats:NO];
+    }
 }
 
 + (NSString*) getDocumentsPath{

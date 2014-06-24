@@ -224,30 +224,43 @@
 - (BOOL) containsMap:(NSString*) mapName;
 
 /** Set the alpha value of a map layer.
- @param mapPath The name of the map file wihout the file extension.
+ @param mapName The name of the map file wihout the file extension.
  @param alpha Value to set alpha to. Range is 0 to 1.*/
-- (void) setMapAlpha:(NSString*) mapPath
+- (void) setMapAlpha:(NSString*) mapName
                alpha:(CGFloat) alpha;
 
 /** Get the alpha value of a map layer.
- @param mapPath The name of the map.*/
-- (double) getMapAlpha:(NSString*) mapPath;
+ @param mapName The name of the map.*/
+- (double) getMapAlpha:(NSString*) mapName;
 
 /**Sets whether or not a loaded map is visible or not visible. This is not the same as setting the alpha to 0.0. When alpha is set to 0.0, the engine will still draw the map 'invisibly' going through all drawing logic. When the map is not visible, all loading logic for a map occurs, but the drawing logic is skipped. This can be used, for example, if you want to add a map, set it to invisible, wait for the engine to load it, then when your delegate is notified that loading is complete, to set visibilty to true to have the map instantly appear without the user seeing loading.*/
-- (void) setMapIsVisible:(NSString*) mapPath
+- (void) setMapIsVisible:(NSString*) mapName
 			   isVisible:(BOOL) isVisible;
 
 /**Returns whether or not a map is visible.*/
-- (BOOL) getMapIsVisible:(NSString*) mapPath;
+- (BOOL) getMapIsVisible:(NSString*) mapName;
 
 /** Set the zorder value of a map layer.
  @param mapPath The name of the map.
  @param zOrder Value to set the zorder to.*/
-- (void) setMapZOrder:(NSString*) mapPath
+- (void) setMapZOrder:(NSString*) mapName
                zOrder:(int) zOrder;
 
 /** Get the current zorder value of a map layer.*/
-- (int) getMapZOrder:(NSString*) mapPath;
+- (int) getMapZOrder:(NSString*) mapName;
+
+/** Set the priority of a map layer.
+ @param mapName The name of the map.
+ @param priority Value to set the priority to. Default is 1. The lower the value, the greater the priority. Priority 0 is treated as a special case.
+ In the general case you will not need to use this API. By default, all maps default to priority 1 and there is no special treatment to any layer with regards to how resources get scheduled for loading. The engine will not exceed the maxTilesInFlight setting in order to rate limit resource loading and requests to tile providers. The default tiles in flight setting is 7.
+ In some scenarios, you might desire to have a level of control over priority and tiles in flight. For example, if you have a custom map where resources are served by your own METileProvider derived class and if the production of tiles for the map is CPU intensive, you might decide to make that layer be scheduled after other layers by increasing its priority number. In that way, it will not block maps that might load faster. This can give the perceptions of faster loading to the user.
+ If you have an advanced tile provider (see the TileFactory examples in our reference application) that is already capable of throttling the processing of requests and you want to insure that it is never 'starved' by maps that may take a long time to load, you can set the priority of the layer to 0. But you must be diligent in doing this as maps with priority 0 will always have all visible tiles requested and outstanding tile reqeusts can go beyond the maxTilesInFlight setting.
+ */
+- (void) setMapPriority:(NSString*) mapName
+               priority:(int) priority;
+
+/** Get the current priority vof a map layer.*/
+- (int) getMapPriority:(NSString*) mapName;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Terrain avoidance
@@ -339,6 +352,11 @@
  @param points An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude.
  @param style The style of the polygon.*/
 - (void) addPolygonToVectorMap:(NSString*) mapName
+                        points:(NSMutableArray*)points
+                         style:(MEPolygonStyle*)style;
+
+- (void) addPolygonToVectorMap:(NSString*) mapName
+                     polygonId:(NSString*)polygonId
                         points:(NSMutableArray*)points
                          style:(MEPolygonStyle*)style;
 

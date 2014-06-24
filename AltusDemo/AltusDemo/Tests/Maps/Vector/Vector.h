@@ -4,3 +4,4 @@
 #import "AltusVectorPackage.h"
 #import "WorldSimple.h"
 #import "SimpleWorld.h"
+#import "Polygons.h"

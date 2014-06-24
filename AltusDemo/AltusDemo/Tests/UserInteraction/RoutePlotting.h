@@ -4,7 +4,7 @@
 #import "../METestCategory.h"
 #import <Foundation/Foundation.h>
 
-@interface RoutePlotting : METest <MEDynamicMarkerMapDelegate>
+@interface RoutePlotting : METest <MEMarkerMapDelegate>
 /**Contains an array of NSValues that wrap CGPoints for waypoints along the route.*/
 @property (retain) NSMutableArray* wayPoints;
 /**Style for drawing vector lines on the map.*/

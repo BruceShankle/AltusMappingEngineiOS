@@ -1,6 +1,7 @@
 //  Copyright (c) 2014 BA3, LLC. All rights reserved.
 #import "METestManager.h"
 #import "Core/Core.h"
+#import "Stress/Stress.h"
 #import "Artistic/Artistic.h"
 #import "Maps/Maps.h"
 #import "Markers/Markers.h"
@@ -63,6 +64,7 @@
 
 - (void) createAllTests{
     [self createCoreTests];
+    [self createStressTests];
     [self createVectorMarkersTests];
     [self createHeightProfilingTests];
     [self createUserInteractionTests];
@@ -73,6 +75,7 @@
     [self createMarkerTests];
     [self createDynamicMarkerTests];
     [self createWeatherTests];
+    [self createWMSTests];
     [self createArtisticTests];
 }
 
@@ -81,6 +84,19 @@
     testCategory.name = @"Core";
     [self addCategory:testCategory];
     [testCategory addTestClass:[Stats class]];
+    [testCategory addTestClass:[MapLoadingStats class]];
+}
+
+- (void) createStressTests{
+    METestCategory* testCategory = [[METestCategory alloc]init];
+    testCategory.name = @"Stress";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[ContentLoading class]];
+    [testCategory addTestClass:[ContentLoadingAdjustPriorities class]];
+    [testCategory addTestClass:[ContentLoadingNoBiasDynFPSAdjustPriorities class]];
+    [testCategory addTestClass:[ContentLoadingNoBias class]];
+    [testCategory addTestClass:[ContentLoadingNoBiasDynFPS class]];
+    [testCategory addTestClass:[ContentLoadingNoBiasDynFPSTIF class]];
 }
 
 - (void) createVectorMarkersTests{
@@ -152,11 +168,31 @@
     [testCategory addTestClass:[MapQuestAerial class]];
     [testCategory addTestClass:[MapBoxSatellite class]];
     [testCategory addTestClass:[MapBoxStreets class]];
+    [testCategory addTestClass:[MapBoxStreetsNoCache class]];
     [testCategory addTestClass:[MBTilesNative class]];
     [testCategory addTestClass:[BA3NativeAcadia class]];
     [testCategory addTestClass:[AltusRasterPackageNative class]];
     [testCategory addTestClass:[AltusRasterPackageCustom class]];
 }
+
+- (void) createWMSTests {
+	METestCategory* testCategory = [[METestCategory alloc]init];
+    testCategory.name = @"WMS Maps";
+    [self addCategory:testCategory];
+    [testCategory addTestClass:[NOAARadar class]];
+	[testCategory addTestClass:[MEWMSNationalAtlas2008Election class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasStates class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasCitiesTowns class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasUrbanAreas class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasTreeCanopy class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasPorts class]];
+	[testCategory addTestClass:[MEWMSNationalAtlasPrecipitation class]];
+	[testCategory addTestClass:[MEWMSBlueMarbleTest class]];
+	[testCategory addTestClass:[MEWMSDCTest class]];
+	[testCategory addTestClass:[MEWMSSeattleTest class]];
+	[testCategory addTestClass:[MEWMSOregonTest class]];
+}
+
 
 - (void) createVectorMapTests{
     METestCategory* testCategory = [[METestCategory alloc]init];
@@ -170,6 +206,7 @@
     [testCategory addTestClass:[SimpleWorld class]];
     [testCategory addTestClass:[SimpleWorldBenchmarkBias class]];
     [testCategory addTestClass:[SimpleWorldBenchmarkNoBias class]];
+    [testCategory addTestClass:[Polygons class]];
     
 }
 
@@ -224,6 +261,13 @@
     METestCategory* testCategory = [[METestCategory alloc]init];
     testCategory.name = @"Artistic";
     [self addCategory:testCategory];
+    [testCategory addTestClass:[SierpinskiTriangle class]];
+    [testCategory addTestClass:[SierpinskiTriangleWorkers4 class]];
+    [testCategory addTestClass:[SierpinskiTriangleWorkers3Sleep3 class]];
+    [testCategory addTestClass:[SierpinskiTriangleLow class]];
+    [testCategory addTestClass:[SierpinskiTriangleLowSleep1 class]];
+    [testCategory addTestClass:[SierpinskiTriangleBackground class]];
+    [testCategory addTestClass:[SierpinskiTriangleBackgroundSleep1 class]];
     [testCategory addTestClass:[Asteroids class]];
     [testCategory addTestClass:[AsteroidCount class]];
     [testCategory addTestClass:[AsteroidsRenderingMode class]];

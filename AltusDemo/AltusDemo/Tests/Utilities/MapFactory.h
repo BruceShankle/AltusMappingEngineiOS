@@ -14,6 +14,7 @@
                                   maxLevel:(unsigned int) maxLevel
                                     zOrder:(unsigned int) zOrder
                                 numWorkers:(int) numWorkers
+                                  useCache:(BOOL) useCache
                                enableAlpha:(BOOL) enableAlpha;
 
 /**Creates an virtual map info object for a packaged raster map.*/

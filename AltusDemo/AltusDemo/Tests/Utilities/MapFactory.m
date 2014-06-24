@@ -10,6 +10,7 @@
                                   maxLevel:(unsigned int) maxLevel
                                     zOrder:(unsigned int) zOrder
                                 numWorkers:(int) numWorkers
+                                  useCache:(BOOL) useCache
                                enableAlpha:(BOOL) enableAlpha;{
     
     MEVirtualMapInfo* virtualMapInfo = [[MEVirtualMapInfo alloc]init];
@@ -20,6 +21,7 @@
                                                                urlTemplate:urlTemplate
                                                                 subDomains:subDomains
                                                                 numWorkers:numWorkers
+                                                                  useCache:useCache
                                                                enableAlpha:enableAlpha];
     virtualMapInfo.zOrder = zOrder;
     virtualMapInfo.loadingStrategy = kHighestDetailOnly;

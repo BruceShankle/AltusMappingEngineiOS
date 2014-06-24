@@ -8,6 +8,15 @@
 @interface TileFactory : METileProvider
 @property (retain) NSMutableArray* activeTileRequests;
 @property (retain) NSMutableArray* tileWorkers;
+
+/**The queue on which the worker works. Default is DISPATCH_QUEUE_PRIORITY_DEFAULT.
+ You can set this to:
+ DISPATCH_QUEUE_PRIORITY_HIGH
+ DISPATCH_QUEUE_PRIORITY_DEFAULT
+ DISPATCH_QUEUE_PRIORITY_LOW
+ DISPATCH_QUEUE_PRIORITY_BACKGROUND*/
+@property (assign) dispatch_queue_priority_t targetQueuePriority;
+
 -(void) addWorker:(TileWorker*) tileWorker;
 -(void) finishTile:(METileProviderRequest *) meTileRequest;
 
@@ -16,6 +25,7 @@
                               urlTemplate:(NSString*) urlTemplate
                                subDomains:(NSString*) subDomains
                                numWorkers:(int) numWorkers
+                                 useCache:(BOOL) useCache
                               enableAlpha:(BOOL) enableAlpha;
 
 /**Creates a factory that manages TilePackageReader objects for serving up a package map.*/

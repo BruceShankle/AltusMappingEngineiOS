@@ -2,14 +2,34 @@
 #import "TileWorker.h"
 #import "TileFactory.h"
 
+@interface TileWorker () {
+	dispatch_queue_priority_t _queuePriority;
+}
+@end
+
 @implementation TileWorker
 
 -(id) init{
     if(self=[super init]){
+        
+        //Create serial queue
         self.serialQueue = dispatch_queue_create("TileWorker", DISPATCH_QUEUE_SERIAL);
+        
+        //And set it's priority to default
+        [self setTargetQueuePriority:DISPATCH_QUEUE_PRIORITY_DEFAULT];
         self.isBusy = NO;
     }
     return self;
+}
+
+-(void) setTargetQueuePriority:(dispatch_queue_priority_t)targetQueuePriority{
+    _queuePriority = targetQueuePriority;
+    dispatch_set_target_queue(self.serialQueue,
+                              dispatch_get_global_queue(_queuePriority, 0));
+}
+
+-(dispatch_queue_priority_t) targetQueuePriority{
+    return _queuePriority;
 }
 
 -(void) doWork:(METileProviderRequest *) meTileRequest{

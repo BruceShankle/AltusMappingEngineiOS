@@ -3,6 +3,12 @@
 #import "TileDownloader.h"
 #import "RasterPackageReader.h"
 
+
+@interface TileFactory () {
+	dispatch_queue_priority_t _queuePriority;
+}
+@end
+
 /////////////////////////////////////////////////////////////////////////////////
 //A tile provider that farms out work to TileWorkers and provides
 //resources on demand.
@@ -15,6 +21,17 @@
         self.tileWorkers = [[NSMutableArray alloc]init];
     }
     return self;
+}
+
+-(void) setTargetQueuePriority:(dispatch_queue_priority_t)targetQueuePriority{
+    _queuePriority = targetQueuePriority;
+    for(TileWorker* worker in self.tileWorkers){
+        worker.targetQueuePriority = _queuePriority;
+    }
+}
+
+-(dispatch_queue_priority_t) targetQueuePriority{
+    return _queuePriority;
 }
 
 //Workers have a weak reference to the factory, so we'll
@@ -31,6 +48,7 @@
 
 -(void) addWorker:(TileWorker*) tileWorker{
     tileWorker.tileFactory = self;
+    tileWorker.targetQueuePriority = _queuePriority;
     [self.tileWorkers addObject:tileWorker];
 }
 
@@ -108,13 +126,15 @@
                               urlTemplate:(NSString*) urlTemplate
                                subDomains:(NSString*) subDomains
                                numWorkers:(int) numWorkers
+                                 useCache:(BOOL) useCache
                               enableAlpha:(BOOL) enableAlpha;{
     TileFactory* newFactory = [[TileFactory alloc]init];
     newFactory.meMapViewController = meMapViewController;
     for(int i=0; i<numWorkers; i++){
         [newFactory addWorker:[[TileDownloader alloc]initWithURLTemplate:urlTemplate
                                                               subDomains:subDomains
-                                                             enableAlpha:enableAlpha]];
+                                                             enableAlpha:enableAlpha
+                               useCache:useCache]];
     }
     return newFactory;
 }

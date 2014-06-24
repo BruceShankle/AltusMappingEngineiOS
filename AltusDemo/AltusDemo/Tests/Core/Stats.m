@@ -24,7 +24,7 @@
         self.lblStats.layer.shadowOpacity = 1.0;
         self.lblStats.adjustsFontSizeToFitWidth=NO;
         [self.lblStats setFont:[UIFont boldSystemFontOfSize:18.0f]];
-        self.lblStats.numberOfLines = 15;
+        self.lblStats.numberOfLines = 16;
         self.lblStats.lineBreakMode = NSLineBreakByWordWrapping;
         [self.meMapViewController.meMapView addSubview:self.lblStats];
         [self.meMapViewController.meMapView bringSubviewToFront:self.lblStats];
@@ -42,7 +42,6 @@
 }
 
 -(void) timerTick{
-    CLLocationCoordinate2D currentLocation = self.meMapViewController.meMapView.centerCoordinate;
     MEInfo* meInfo = self.meMapViewController.meInfo;
     NSString* cameraIsMoving;
     if(meInfo.cameraIsMoving){
@@ -51,6 +50,8 @@
     else{
         cameraIsMoving=@"No";
     }
+    
+    MELocation currentLocation = self.meMapViewController.meMapView.location;
     
     self.lblStats.text=[NSString stringWithFormat:
                         @"FPS:  %f\n"
@@ -62,6 +63,7 @@
                         "Multi-Tiles:  %d\n"
                         "QTotal:  %d\n"
                         "Center:  (%.3f, %.3f)\n"
+                        "Alt: %.3f M\n"
                         "Visible Tiles:  %d\n"
                         "Animation Count:  %d\n"
                         "Updateables Count:  %d\n"
@@ -74,8 +76,9 @@
                         meInfo.inFlightTileCount,
                         meInfo.multiInFlightTileCount,
                         meInfo.totalWorkerCount,
-                        currentLocation.longitude,
-                        currentLocation.latitude,
+                        currentLocation.center.longitude,
+                        currentLocation.center.latitude,
+                        currentLocation.altitude,
                         meInfo.visibleTileCount,
 						meInfo.animationCount,
 						meInfo.updateablesCount,

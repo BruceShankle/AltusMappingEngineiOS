@@ -6,7 +6,7 @@
 
 -(id) init{
     if(self=[super init]){
-        self.name = @"MapQuest Aerial - Raster";
+        self.name = @"MapQuest Aerial";
         self.urlTemplate = @"http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg";
     }
     return self;
@@ -27,6 +27,7 @@
                               maxLevel:20
                                 zOrder:2
                             numWorkers:3
+                              useCache:YES
                            enableAlpha:NO]];
 }
 

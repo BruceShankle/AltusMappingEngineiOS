@@ -6,4 +6,8 @@
 
 @interface MapBoxStreets : METest
 @property (retain) NSString* urlTemplate;
+@property (assign) BOOL useNetworkCache;
+@end
+
+@interface MapBoxStreetsNoCache : MapBoxStreets
 @end

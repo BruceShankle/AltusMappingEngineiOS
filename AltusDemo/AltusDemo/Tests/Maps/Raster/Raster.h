@@ -6,7 +6,6 @@
 #import "MapBoxSatellite.h"
 #import "BA3Native.h"
 #import "AltusRasterPackage.h"
-
-
+#import "WMSTests.h"
 
 

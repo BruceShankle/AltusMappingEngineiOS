@@ -15,9 +15,12 @@
  @param enableAlpha Set to NO for base maps tha cover the planet. Set to yes for maps that have sparse coverage, i.e. wather.*/
 -(id) initWithURLTemplate:(NSString*) urlTemplate
                subDomains:(NSString*) subDomains
-              enableAlpha:(BOOL) enableAlpha;
+              enableAlpha:(BOOL) enableAlpha
+                 useCache:(BOOL) useCache;
 @property (retain) NSString* urlTemplate;
 @property (retain) NSArray* subDomains;
+@property (assign) BOOL useCache;
 @property (assign) int currentSubdomain;
 @property (assign) bool enableAlpha;
+@property (assign) int timeOutInterval;
 @end

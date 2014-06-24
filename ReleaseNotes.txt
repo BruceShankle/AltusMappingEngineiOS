@@ -1,3 +1,22 @@
+Release Notes v1.7-0
+=============================
+Engine / SDK:
+Added map priority system to enable finer-grained control over how map resources are scheduled.
+Added in-engine polygon hit detection system for polygons on vector maps.
+Made vertex buffer distances optional on MEVectorMapDelegate protocol.
+Added optional string id for AddPolygon function. This gets returned in a polygon hit event.
+
+
+AltusDemo Reference Application:
+Added Stress test category and several stress tests to demonstrate how map priorities work in different scenarios.
+Add Polygon test for demonstrating new Polygon hit-testing system.
+Added alert message support to METest base class.
+Added Test to show cumulative map loading times.
+Add WMS TileWorker that demonstrates how to download raster tiles from WMS servers.
+Make network caching optional in all example network tile workers.
+Port all WMS tests from older reference application to AltusDemo.
+Add fractal map layer to demonstrate a computationally expensive tile provider.
+
 Release Notes v1.5-63
 =============================
 Added METimer utility class for doing benchmarking.

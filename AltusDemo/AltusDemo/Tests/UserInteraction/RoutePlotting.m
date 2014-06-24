@@ -8,7 +8,7 @@
 - (id) init {
 	if(self=[super init]){
 		self.name = @"Route Plotting";
-        self.markerMapName = @"Route Plotting - WayPoints";
+        self.markerMapName = @"Route Plotting - Markers";
 	}
 	return self;
 }
@@ -46,6 +46,41 @@
     [wayPoints addObject:[NSValue valueWithCGPoint:
 							   CGPointMake(-134.4+xoffset, 51+yoffset)
                                ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-124.4+xoffset, 40+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-104.4+xoffset, 65+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-104.4+xoffset, 65+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-77.4+xoffset, 61+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-77+xoffset, 50+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-70+xoffset, 35+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-60+xoffset, 0+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-50+xoffset, 20+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-40+xoffset, 67+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-30+xoffset, 78+yoffset)
+                          ]];
+    [wayPoints addObject:[NSValue valueWithCGPoint:
+                          CGPointMake(-20+xoffset, 0+yoffset)
+                          ]];
+    
+    
     return wayPoints;
 }
 
@@ -54,11 +89,6 @@
     
     //Initial points of route
     self.wayPoints = [self createWayPoints:0 yoffset:0];
-    
-    
-    //"lats":["35.322","36","38","38","36","32","23.943"],
-    //"lons":["145.997","150","160","170","180","-170","-160.763"]
-    
     
     //Create and add dynamic vector map
 	MEVectorMapInfo* vectorMapInfo = [[MEVectorMapInfo alloc]init];
@@ -85,26 +115,6 @@
                                                  lineId:@"route"
                                                  points:self.wayPoints
                                                   style:self.vectorLineStyle];
-    
-    for(int i=1; i< 50; i++){
-        NSString* lineID = [NSString stringWithFormat:@"North_line %d", i];
-        NSArray* wayPoints = [self createWayPoints:0 yoffset:0.5 * i];
-        [self.meMapViewController addDynamicLineToVectorMap:self.name
-                                                     lineId:@"route"
-                                                     points:wayPoints
-                                                      style:self.vectorLineStyle];
-    }
-    
-    for(int i=1; i< 50; i++){
-        NSString* lineID = [NSString stringWithFormat:@"South_line %d", i];
-        NSArray* wayPoints = [self createWayPoints:0 yoffset:-0.5 * i];
-        [self.meMapViewController addDynamicLineToVectorMap:self.name
-                                                     lineId:lineID
-                                                     points:wayPoints
-                                                      style:self.vectorLineStyle];
-    }
-    
-    
 }
 
 //Converts NSValue from way point array to CLLocationCoordinate2D
@@ -151,21 +161,60 @@
                                       dynamicMarker:marker];
 }
 
+-(NSArray*) createMarkers{
+    NSMutableArray* markers = [[NSMutableArray alloc]init];
+    for(int i=0; i<self.wayPoints.count; i++){
+        MEMarker* marker = [[MEMarker alloc]init];
+        if(i==0){
+            marker.metaData=@"Start";
+            marker.weight=10;
+        }
+        else if(i==self.wayPoints.count-1){
+            marker.metaData=@"End";
+            marker.weight=10;
+        }
+        else{
+            marker.weight=5;
+            marker.metaData = [NSString stringWithFormat:@"Waypoint %d", i];
+        }
+        marker.location = [self wayPointLocation:i];
+        [markers addObject:marker];
+    }
+    return markers;
+}
+
 //Add a dynamic marker map (you can also add an in-memory clustered marker route
 //if you have a lot of markers along a route that may touch
 - (void) addMarkerMap{
     
-    //Add dynamic marker map
-    MEDynamicMarkerMapInfo* mapInfo = [[MEDynamicMarkerMapInfo alloc]init];
-    mapInfo.zOrder = 101;
-    mapInfo.name = self.markerMapName;
-    mapInfo.meDynamicMarkerMapDelegate = self;
-    [self.meMapViewController addMapUsingMapInfo:mapInfo];
+    MEMarkerMapInfo* mapInfo = [[MEMarkerMapInfo alloc]init];
+	mapInfo.name = self.markerMapName;
+	mapInfo.mapType = kMapTypeMemoryMarker;
+	mapInfo.zOrder = 101;
+	mapInfo.meMarkerMapDelegate = self;
+    mapInfo.clusterDistance = 20;
+    mapInfo.maxLevel = 18;
+    mapInfo.fadeEnabled = YES;
+    mapInfo.markers = [self createMarkers];
+    mapInfo.markerImageLoadingStrategy = kMarkerImageLoadingAsynchronous;
+	[self.meMapViewController addMapUsingMapInfo:mapInfo];
     
-    //Add markers
-    [self addDynamicMarker:@"Start" location:[self wayPointLocation:0]];
-    [self addDynamicMarker:@"End" location:[self wayPointLocation:self.wayPoints.count-1]];
 }
+
+- (void) mapView:(MEMapView *)mapView
+    updateMarker:(MEMarker *)marker
+		 mapName:(NSString *)mapName{
+	
+    //Create a custom marker image (and get is anchor point)
+    CGPoint anchorPoint;
+    UIImage* markerImage = [WayPointMarkerImage createCustomMarkerImage:marker.metaData
+                                                            anchorPoint:&anchorPoint];
+    
+    //Return the custom marker image and anchor point to the mapping engine
+    marker.uiImage = markerImage;
+    marker.anchorPoint = anchorPoint;
+}
+
 
 //Removes marker map
 - (void) removeMarkerMap{
@@ -189,8 +238,6 @@
 
 - (void) beginTest{
 	[self addMaps];
-    //Look at the route
-	[self lookAtRoute];
 }
 
 - (void) endTest{
