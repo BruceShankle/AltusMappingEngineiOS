@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>MEImage Class Reference</title>
+		<title>MEVectorGeometryHit Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">MEImage Class Reference</h1>
+				<h1 class="hideInXcode">MEVectorGeometryHit Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -39,7 +39,11 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/centerOffset">&nbsp;&nbsp;&nbsp;&nbsp;centerOffset</option>
+	<option value="//api/name/location">&nbsp;&nbsp;&nbsp;&nbsp;location</option>
+	
+	<option value="//api/name/mapName">&nbsp;&nbsp;&nbsp;&nbsp;mapName</option>
+	
+	<option value="//api/name/shapeId">&nbsp;&nbsp;&nbsp;&nbsp;shapeId</option>
 	
 	
 	
@@ -69,7 +73,11 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/centerOffset">centerOffset</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/location">location</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mapName">mapName</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shapeId">shapeId</a></span></li>
 	
 </ul></li>
 
@@ -82,7 +90,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="MEImage Class Reference" name="top"></a>
+				<a title="MEVectorGeometryHit Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -91,7 +99,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">MEImage Class Reference</h1>
+						<h1 class="title title-header">MEVectorGeometryHit Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -99,10 +107,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIImage</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">MEImage.h<br />MEImage.m</td>
+	<td class="specification-value">MEHitTesting.h<br />MEHitTesting.m</td>
 </tr>
 						</tbody></table></div>
 					
@@ -112,7 +120,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Holds an image that can be used by the mapping engine.</p>
+						<p>Conveys the geometry (line or polygon) ther user has tapped on geometry in vector maps where hit testing is enabled.</p>
 					</div>
 					
 					
@@ -130,7 +138,19 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/centerOffset">&nbsp;&nbsp;centerOffset</a></code>
+		<code><a href="#//api/name/mapName">&nbsp;&nbsp;mapName</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shapeId">&nbsp;&nbsp;shapeId</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/location">&nbsp;&nbsp;location</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -148,18 +168,18 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/centerOffset" title="centerOffset"></a>
-	<h3 class="subsubtitle method-title">centerOffset</h3>
+	<a name="//api/name/location" title="location"></a>
+	<h3 class="subsubtitle method-title">location</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Allows the user to offset the image from its default drawing position, which is typically over the center of whatever element this image represents (eg: over marker&rsquo;s (lat, long) point).</p>
+		<p>The location of the tap.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGPoint centerOffset</code></div>
+	<div class="method-subsection method-declaration"><code>@property (assign) CLLocationCoordinate2D location</code></div>
 
     
 	
@@ -177,7 +197,79 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEImage.h</code><br />
+		<code class="declared-in-ref">MEHitTesting.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/mapName" title="mapName"></a>
+	<h3 class="subsubtitle method-title">mapName</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The map name.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (retain) NSString *mapName</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEHitTesting.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shapeId" title="shapeId"></a>
+	<h3 class="subsubtitle method-title">shapeId</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The id of the geometry that was tapped.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (retain) NSString *shapeId</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEHitTesting.h</code><br />
 	</div>				
 	
 	

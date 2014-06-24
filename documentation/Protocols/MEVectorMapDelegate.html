@@ -47,6 +47,8 @@
 	
 	<option value="//api/name/lineSegmentHitTestPixelBufferDistance">&nbsp;&nbsp;&nbsp;&nbsp;- lineSegmentHitTestPixelBufferDistance</option>
 	
+	<option value="//api/name/polygonHitDetected:hits:">&nbsp;&nbsp;&nbsp;&nbsp;- polygonHitDetected:hits:</option>
+	
 	<option value="//api/name/vertexHitDetected:mapName:shapeId:coordinate:vertexIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- vertexHitDetected:mapName:shapeId:coordinate:vertexIndex:</option>
 	
 	<option value="//api/name/vertexHitTestPixelBufferDistance">&nbsp;&nbsp;&nbsp;&nbsp;- vertexHitTestPixelBufferDistance</option>
@@ -82,6 +84,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lineSegmentHitDetected:mapName:shapeId:coordinate:segmentStartIndex:segmentEndIndex:">lineSegmentHitDetected:mapName:shapeId:coordinate:segmentStartIndex:segmentEndIndex:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lineSegmentHitTestPixelBufferDistance">lineSegmentHitTestPixelBufferDistance</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/polygonHitDetected:hits:">polygonHitDetected:hits:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/vertexHitDetected:mapName:shapeId:coordinate:vertexIndex:">vertexHitDetected:mapName:shapeId:coordinate:vertexIndex:</a></span></li>
 	
@@ -145,13 +149,13 @@
 		<code><a href="#//api/name/lineSegmentHitTestPixelBufferDistance">&ndash;&nbsp;lineSegmentHitTestPixelBufferDistance</a></code>
 	</span>
 	
-	<span class="task-item-suffix">required method</span>
+	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/vertexHitTestPixelBufferDistance">&ndash;&nbsp;vertexHitTestPixelBufferDistance</a></code>
 	</span>
 	
-	<span class="task-item-suffix">required method</span>
+	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/lineSegmentHitDetected:mapName:shapeId:coordinate:segmentStartIndex:segmentEndIndex:">&ndash;&nbsp;lineSegmentHitDetected:mapName:shapeId:coordinate:segmentStartIndex:segmentEndIndex:</a></code>
@@ -161,6 +165,12 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/vertexHitDetected:mapName:shapeId:coordinate:vertexIndex:">&ndash;&nbsp;vertexHitDetected:mapName:shapeId:coordinate:vertexIndex:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/polygonHitDetected:hits:">&ndash;&nbsp;polygonHitDetected:hits:</a></code>
 	</span>
 	
 	
@@ -188,7 +198,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when a hit is detected on a vector line segment.</p>
+		<p>Called when a hit (tap) is detected on a vector line segment.</p>
 	</div>		
 	
     
@@ -224,7 +234,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Required: Returns the number of pixels used as a buffer between vector line segments and hit test points.</p>
+		<p>Returns the number of pixels used as a buffer between vector line segments and hit test points.</p>
 	</div>		
 	
     
@@ -232,6 +242,57 @@
 	<div class="method-subsection method-declaration"><code>- (double)lineSegmentHitTestPixelBufferDistance</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEProtocols.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/polygonHitDetected:hits:" title="polygonHitDetected:hits:"></a>
+	<h3 class="subsubtitle method-title">polygonHitDetected:hits:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called whan a hit (tap) is detected on a polygon in a vector map layer that has enabled polygon hit testing.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)polygonHitDetected:(MEMapView *)<em>mapView</em> hits:(NSArray *)<em>polygonHits</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapView</em></dt>
+			<dd><p>The <a href="../Classes/MEMapView.html">MEMapView</a> object where the hit originated.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>An</em></dt>
+			<dd><p>array of one or more <a href="../Classes/MEVectorGeometryHit.html">MEVectorGeometryHit</a> objects.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
@@ -296,7 +357,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Required: Returns the number of pixels used as a buffer between vector line vertices and hit test points.</p>
+		<p>Returns the number of pixels used as a buffer between vector line vertices and hit test points.</p>
 	</div>		
 	
     
@@ -340,7 +401,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-06-15)</span><br />
+						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-06-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

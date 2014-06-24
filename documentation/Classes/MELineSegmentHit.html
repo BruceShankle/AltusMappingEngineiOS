@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>MEImage Class Reference</title>
+		<title>MELineSegmentHit Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">MEImage Class Reference</h1>
+				<h1 class="hideInXcode">MELineSegmentHit Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -39,7 +39,9 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/centerOffset">&nbsp;&nbsp;&nbsp;&nbsp;centerOffset</option>
+	<option value="//api/name/endPointIndex">&nbsp;&nbsp;&nbsp;&nbsp;endPointIndex</option>
+	
+	<option value="//api/name/startPointIndex">&nbsp;&nbsp;&nbsp;&nbsp;startPointIndex</option>
 	
 	
 	
@@ -69,7 +71,9 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/centerOffset">centerOffset</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endPointIndex">endPointIndex</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startPointIndex">startPointIndex</a></span></li>
 	
 </ul></li>
 
@@ -82,7 +86,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="MEImage Class Reference" name="top"></a>
+				<a title="MELineSegmentHit Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -91,7 +95,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">MEImage Class Reference</h1>
+						<h1 class="title title-header">MELineSegmentHit Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -99,10 +103,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIImage</td>
+	<td class="specification-value"><a href="../Classes/MEVectorGeometryHit.html">MEVectorGeometryHit</a> : NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">MEImage.h<br />MEImage.m</td>
+	<td class="specification-value">MEHitTesting.h<br />MEHitTesting.m</td>
 </tr>
 						</tbody></table></div>
 					
@@ -112,7 +116,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Holds an image that can be used by the mapping engine.</p>
+						<p>Conveys start end end-indexes for line segments the user has tapped on a vector map where hit testing is enabled.</p>
 					</div>
 					
 					
@@ -130,7 +134,13 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/centerOffset">&nbsp;&nbsp;centerOffset</a></code>
+		<code><a href="#//api/name/startPointIndex">&nbsp;&nbsp;startPointIndex</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/endPointIndex">&nbsp;&nbsp;endPointIndex</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -148,18 +158,18 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/centerOffset" title="centerOffset"></a>
-	<h3 class="subsubtitle method-title">centerOffset</h3>
+	<a name="//api/name/endPointIndex" title="endPointIndex"></a>
+	<h3 class="subsubtitle method-title">endPointIndex</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Allows the user to offset the image from its default drawing position, which is typically over the center of whatever element this image represents (eg: over marker&rsquo;s (lat, long) point).</p>
+		<p>The end index of the point of the line segment that was tapped.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGPoint centerOffset</code></div>
+	<div class="method-subsection method-declaration"><code>@property (assign) unsigned int endPointIndex</code></div>
 
     
 	
@@ -177,7 +187,43 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">MEImage.h</code><br />
+		<code class="declared-in-ref">MEHitTesting.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/startPointIndex" title="startPointIndex"></a>
+	<h3 class="subsubtitle method-title">startPointIndex</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The start index of the point of the line segment that was tapped.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (assign) unsigned int startPointIndex</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEHitTesting.h</code><br />
 	</div>				
 	
 	

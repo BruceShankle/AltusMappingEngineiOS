@@ -153,6 +153,8 @@
 	
 	<option value="//api/name/getMapIsVisible:">&nbsp;&nbsp;&nbsp;&nbsp;- getMapIsVisible:</option>
 	
+	<option value="//api/name/getMapPriority:">&nbsp;&nbsp;&nbsp;&nbsp;- getMapPriority:</option>
+	
 	<option value="//api/name/getMapZOrder:">&nbsp;&nbsp;&nbsp;&nbsp;- getMapZOrder:</option>
 	
 	<option value="//api/name/getTrackUpForwardDistance">&nbsp;&nbsp;&nbsp;&nbsp;- getTrackUpForwardDistance</option>
@@ -212,6 +214,8 @@
 	<option value="//api/name/setMapAlpha:alpha:">&nbsp;&nbsp;&nbsp;&nbsp;- setMapAlpha:alpha:</option>
 	
 	<option value="//api/name/setMapIsVisible:isVisible:">&nbsp;&nbsp;&nbsp;&nbsp;- setMapIsVisible:isVisible:</option>
+	
+	<option value="//api/name/setMapPriority:priority:">&nbsp;&nbsp;&nbsp;&nbsp;- setMapPriority:priority:</option>
 	
 	<option value="//api/name/setMapZOrder:zOrder:">&nbsp;&nbsp;&nbsp;&nbsp;- setMapZOrder:zOrder:</option>
 	
@@ -403,6 +407,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMapIsVisible:">getMapIsVisible:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMapPriority:">getMapPriority:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getMapZOrder:">getMapZOrder:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getTrackUpForwardDistance">getTrackUpForwardDistance</a></span></li>
@@ -462,6 +468,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMapAlpha:alpha:">setMapAlpha:alpha:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMapIsVisible:isVisible:">setMapIsVisible:isVisible:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMapPriority:priority:">setMapPriority:priority:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setMapZOrder:zOrder:">setMapZOrder:zOrder:</a></span></li>
 	
@@ -834,6 +842,18 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/getMapZOrder:">&ndash;&nbsp;getMapZOrder:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setMapPriority:priority:">&ndash;&nbsp;setMapPriority:priority:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getMapPriority:">&ndash;&nbsp;getMapPriority:</a></code>
 	</span>
 	
 	
@@ -3412,7 +3432,7 @@ thread management system.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (double)getMapAlpha:(NSString *)<em>mapPath</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (double)getMapAlpha:(NSString *)<em>mapName</em></code></div>
 
     
 	
@@ -3420,7 +3440,7 @@ thread management system.</p>
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>mapPath</em></dt>
+			<dt><em>mapName</em></dt>
 			<dd><p>The name of the map.</p></dd>
 		</dl>
 		
@@ -3458,7 +3478,43 @@ thread management system.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (BOOL)getMapIsVisible:(NSString *)<em>mapPath</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)getMapIsVisible:(NSString *)<em>mapName</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getMapPriority:" title="getMapPriority:"></a>
+	<h3 class="subsubtitle method-title">getMapPriority:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get the current priority vof a map layer.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (int)getMapPriority:(NSString *)<em>mapName</em></code></div>
 
     
 	
@@ -3494,7 +3550,7 @@ thread management system.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (int)getMapZOrder:(NSString *)<em>mapPath</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (int)getMapZOrder:(NSString *)<em>mapName</em></code></div>
 
     
 	
@@ -4627,7 +4683,7 @@ thread management system.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)setMapAlpha:(NSString *)<em>mapPath</em> alpha:(CGFloat)<em>alpha</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)setMapAlpha:(NSString *)<em>mapName</em> alpha:(CGFloat)<em>alpha</em></code></div>
 
     
 	
@@ -4635,7 +4691,7 @@ thread management system.</p>
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>mapPath</em></dt>
+			<dt><em>mapName</em></dt>
 			<dd><p>The name of the map file wihout the file extension.</p></dd>
 		</dl>
 		
@@ -4678,9 +4734,63 @@ thread management system.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)setMapIsVisible:(NSString *)<em>mapPath</em> isVisible:(BOOL)<em>isVisible</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)setMapIsVisible:(NSString *)<em>mapName</em> isVisible:(BOOL)<em>isVisible</em></code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setMapPriority:priority:" title="setMapPriority:priority:"></a>
+	<h3 class="subsubtitle method-title">setMapPriority:priority:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the priority of a map layer.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setMapPriority:(NSString *)<em>mapName</em> priority:(int)<em>priority</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapName</em></dt>
+			<dd><p>The name of the map.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>priority</em></dt>
+			<dd><p>Value to set the priority to. Default is 1. The lower the value, the greater the priority. Priority 0 is treated as a special case.
+In the general case you will not need to use this API. By default, all maps default to priority 1 and there is no special treatment to any layer with regards to how resources get scheduled for loading. The engine will not exceed the <a href="#//api/name/maxTilesInFlight">maxTilesInFlight</a> setting in order to rate limit resource loading and requests to tile providers. The default tiles in flight setting is 7.
+In some scenarios, you might desire to have a level of control over priority and tiles in flight. For example, if you have a custom map where resources are served by your own <a href="../Classes/METileProvider.html">METileProvider</a> derived class and if the production of tiles for the map is CPU intensive, you might decide to make that layer be scheduled after other layers by increasing its priority number. In that way, it will not block maps that might load faster. This can give the perceptions of faster loading to the user.
+If you have an advanced tile provider (see the TileFactory examples in our reference application) that is already capable of throttling the processing of requests and you want to insure that it is never &lsquo;starved&rsquo; by maps that may take a long time to load, you can set the priority of the layer to 0. But you must be diligent in doing this as maps with priority 0 will always have all visible tiles requested and outstanding tile reqeusts can go beyond the <a href="#//api/name/maxTilesInFlight">maxTilesInFlight</a> setting.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
@@ -4714,7 +4824,7 @@ thread management system.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)setMapZOrder:(NSString *)<em>mapPath</em> zOrder:(int)<em>zOrder</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)setMapZOrder:(NSString *)<em>mapName</em> zOrder:(int)<em>zOrder</em></code></div>
 
     
 	
@@ -4722,13 +4832,13 @@ thread management system.</p>
 		<h4 class="method-subtitle parameter-title">Parameters</h4>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>mapPath</em></dt>
-			<dd><p>The name of the map.</p></dd>
+			<dt><em>zOrder</em></dt>
+			<dd><p>Value to set the zorder to.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
-			<dt><em>zOrder</em></dt>
-			<dd><p>Value to set the zorder to.</p></dd>
+			<dt><em>mapPath</em></dt>
+			<dd><p>The name of the map.</p></dd>
 		</dl>
 		
 	</div>
@@ -5698,7 +5808,7 @@ thread management system.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-06-15)</span><br />
+						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-06-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
