@@ -124,7 +124,7 @@ typedef enum {
 /** If setting nsImageData or pImageData, you should set this to the appropriate image data type.*/
 @property (assign) MEImageDataType imageDataType;
 
-/**If set, tells the mapping engine that every pixel of the tile is lit and has no semi-transparenty pixels. This allows the engine to optimize storage and layering of the tile (i.e. no tile underneath this tile will be visible if it is opaque.*/
+/**If set, tells the mapping engine that every pixel of the tile is lit and has no semi-transparent pixels. This allows the engine to optimize storage and layering of the tile (i.e. no tile underneath this tile will be visible if it is opaque.*/
 @property (assign) BOOL isOpaque;
 
 /**If set to YES, this tile can be ejected and re-requested by calling refreshDirtyTiles on the MEMapViewController object.*/
