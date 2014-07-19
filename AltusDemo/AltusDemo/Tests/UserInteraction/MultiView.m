@@ -143,6 +143,9 @@
 	//Initialize the map view controllers
 	[self.meMapViewController1 initialize];
     [self.meMapViewController2 initialize];
+    //If you have license keys, set them here.
+    //[self.meMapViewController1 setLicenseKey:@"YOURLICE-NSEK-EYWO-GOIN-THISFUNCTION"];
+    //[self.meMapViewController2 setLicenseKey:@"YOURLICE-NSEK-EYWO-GOIN-THISFUNCTION"];
     
     //Register with our view manager and assign a name
     self.meMapView1.name = [ViewManager registerView:self.meMapView1];

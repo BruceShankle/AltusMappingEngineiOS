@@ -10,6 +10,8 @@
 #import "UserInteraction/UserInteraction.h"
 #import "HeightProfiling/HeightProfiling.h"
 #import "VectorMarkers/VectorMarkers.h"
+#import "AnimatedShapes/AnimatedShapes.h"
+#import "Lines/Lines.h"
 
 @implementation METestManager
 
@@ -101,11 +103,14 @@
 
 - (void) createVectorMarkersTests{
     METestCategory* testCategory = [[METestCategory alloc]init];
-    testCategory.name = @"Vector Markers";
+    testCategory.name = @"Vector Drawing";
     [self addCategory:testCategory];
     [testCategory addTestClass:[AnimatedVectorCircle class]];
     [testCategory addTestClass:[AnimatedVectorCircleTrackObject class]];
     [testCategory addTestClass:[AnimatedVectorCircleTrackObjectRangeRings class]];
+    [testCategory addTestClass:[AnimatedLine class]];
+    [testCategory addTestClass:[AnimatedLineAccumulate class]];
+    [testCategory addTestClass:[DynamicLines class]];
 }
 
 - (void) createHeightProfilingTests{
@@ -199,6 +204,7 @@
     testCategory.name = @"Vector Maps";
     [self addCategory:testCategory];
     [testCategory addTestClass:[AltusVectorPackage class]];
+    [testCategory addTestClass:[AltusVectorPackageBenchmark class]];
     [testCategory addTestClass:[WorldSimple class]];
     [testCategory addTestClass:[HoustonStreetsStyle1 class]];
     [testCategory addTestClass:[HoustonStreetsStyle2 class]];

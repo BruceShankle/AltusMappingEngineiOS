@@ -14,8 +14,9 @@
     METest* labels= [self.meTestManager testInCategory:@"Markers"
                                               withName:@"Places - Arial"];
     
-    if(enabled)
+    if(enabled){
         [labels start];
+    }
     else
         [labels stop];
 }
@@ -45,7 +46,81 @@
     
     //Turn off labels
     [self enableLabels:NO];
+    
+}
+@end
+
+
+///////////////////////////////////////////////////////////////////
+@implementation AltusVectorPackageBenchmark
+
+-(id) init{
+    if(self=[super init]){
+        self.name = @"AltusVectorPackage - Benchmark";
+        self.initialFPS = 60;
+        self.loadingFPS = 30;
+    }
+    return self;
+}
+
+- (void) enableLabels:(BOOL) enabled{
+}
+
+- (void) beginTest{
+    
+    [super beginTest];
+    [self.meMapViewController setMapIsVisible:self.name isVisible:false];
+    self.oldMapViewDelegate = self.meMapViewController.meMapView.meMapViewDelegate;
+    self.meMapViewController.meMapView.meMapViewDelegate = self;
+    //[self.meMapViewController setMapPriority:self.name priority:1];
+    //self.meMapViewController.meMapView.tileLevelBias = 0.0;
+    //self.meMapViewController.meMapView.tileBiasSmoothingEnabled = NO;
+}
+
+- (void) endTest{
+    [super endTest];
+    self.meMapViewController.meMapView.meMapViewDelegate = self.oldMapViewDelegate;
+    self.oldMapViewDelegate = nil;
+}
+
+- (void) mapView:(MEMapView *)mapView willStartLoadingMap:(NSString*) mapName{
+    
+    NSLog(@"Will start loading: %@", mapName);
+    
+    if(self.oldMapViewDelegate){
+        [self.oldMapViewDelegate mapView:mapView willStartLoadingMap:mapName];
+    }
+    
+    if([mapName isEqualToString:self.name]){
+        [self startBenchmarkTimer];
+    }
+    
+    //self.meMapViewController.preferredFramesPerSecond = self.loadingFPS;
+    self.mapsLoadingCount++;
+}
+
+
+- (void) mapView:(MEMapView *)mapView didFinishLoadingMap:(NSString*) mapName{
+    
+    NSLog(@"Did finish loading: %@", mapName);
+    
+    if(self.oldMapViewDelegate){
+        [self.oldMapViewDelegate mapView:mapView didFinishLoadingMap:mapName];
+    }
+    
+    if([mapName isEqualToString:self.name]){
+        long elapsedTime = [self stopBenchMarkTimer];
+        NSString* msg = [NSString stringWithFormat:@"Loading time: %lds",elapsedTime/1000];
+        [self showAlert:msg timeout:5];
+        NSLog(msg);
+    }
+    
+    self.mapsLoadingCount--;
+    if(self.mapsLoadingCount==0){
+        //self.meMapViewController.preferredFramesPerSecond = self.initialFPS;
+    }
 }
 
 @end
+
 

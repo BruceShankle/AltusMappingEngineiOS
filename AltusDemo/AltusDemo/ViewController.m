@@ -29,6 +29,10 @@
 	
 	//Initialize the map view controller
 	[self.meMapViewController initialize];
+    
+    //If you have an actual license from BA3, set your license key just after engine initialization
+    //[self.meMapViewController setLicenseKey:@"YOURLICE-NSEK-EYGO-ESIN-THISFUNCTION"];
+    
     self.meMapViewController.verboseMessagesEnabled = YES;
     
     //Enable level biasing which makes the mapping engine

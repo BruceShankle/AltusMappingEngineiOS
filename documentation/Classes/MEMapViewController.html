@@ -103,6 +103,8 @@
 	
 	<option value="//api/name/addDynamicLineToVectorMap:lineId:points:style:">&nbsp;&nbsp;&nbsp;&nbsp;- addDynamicLineToVectorMap:lineId:points:style:</option>
 	
+	<option value="//api/name/addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:</option>
+	
 	<option value="//api/name/addDynamicMarkerToMap:dynamicMarker:">&nbsp;&nbsp;&nbsp;&nbsp;- addDynamicMarkerToMap:dynamicMarker:</option>
 	
 	<option value="//api/name/addDynamicPolygonToVectorMap:shapeId:points:style:">&nbsp;&nbsp;&nbsp;&nbsp;- addDynamicPolygonToVectorMap:shapeId:points:style:</option>
@@ -356,6 +358,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addDataGridMap:withArray:withWidth:withHeight:withBounds:">addDataGridMap:withArray:withWidth:withHeight:withBounds:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addDynamicLineToVectorMap:lineId:points:style:">addDynamicLineToVectorMap:lineId:points:style:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:">addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addDynamicMarkerToMap:dynamicMarker:">addDynamicMarkerToMap:dynamicMarker:</a></span></li>
 	
@@ -968,6 +972,12 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/addDynamicLineToVectorMap:lineId:points:style:">&ndash;&nbsp;addDynamicLineToVectorMap:lineId:points:style:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:">&ndash;&nbsp;addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:</a></code>
 	</span>
 	
 	
@@ -2186,7 +2196,7 @@ thread management system.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Allow one map to clip another map. Anywhere the clip map would <a href="#//api/name/draw">draw</a> is will not be drawn by the target map.</p>
+		<p>Allow one map to clip another map. Anywhere the clip map would <a href="#//api/name/draw">draw</a> is not be drawn by the target map.</p>
 	</div>		
 	
     
@@ -2276,13 +2286,89 @@ thread management system.</p>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
+			<dt><em>lineId</em></dt>
+			<dd><p>The identifier of the line (relevant for hit testing).</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
 			<dt><em>points</em></dt>
 			<dd><p>An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude for each point in the line.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>style</em></dt>
-			<dd><p>The style of the polygon.</p></dd>
+			<dd><p>The style of the line.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:" title="addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:"></a>
+	<h3 class="subsubtitle method-title">addDynamicLineToVectorMap:lineId:startLocation:endLocation:style:animationDuration:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds a dynamic line to a dynamic vector map.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addDynamicLineToVectorMap:(NSString *)<em>mapName</em> lineId:(NSString *)<em>lineId</em> startLocation:(CLLocationCoordinate2D)<em>startLocation</em> endLocation:(CLLocationCoordinate2D)<em>endLocation</em> style:(MELineStyle *)<em>style</em> animationDuration:(CGFloat)<em>animationDuration</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapName</em></dt>
+			<dd><p>The name of the vector map.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>lineId</em></dt>
+			<dd><p>The identifier of the line (relevant for hit testing).</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>startLocation</em></dt>
+			<dd><p>The starting point of the line.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>endLocation</em></dt>
+			<dd><p>The ending point of the line.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>style</em></dt>
+			<dd><p>The style of the line.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>animationDuration</em></dt>
+			<dd><p>If animated, the animation interval in seconds, zero otherwise.</p></dd>
 		</dl>
 		
 	</div>
@@ -5808,7 +5894,7 @@ If you have an advanced tile provider (see the TileFactory examples in our refer
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-06-24)</span><br />
+						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-07-19)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

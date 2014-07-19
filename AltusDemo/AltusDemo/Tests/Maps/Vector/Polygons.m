@@ -196,7 +196,6 @@
     
     //Show a pop up with all polygons that were tapped
     [self showAlert:alertMessage timeout:2];
-    
 }
 
 

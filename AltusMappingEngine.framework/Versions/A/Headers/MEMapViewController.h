@@ -398,12 +398,27 @@
 
 /**Adds a dynamic line to a dynamic vector map.
  @param mapName The name of the vector map.
+ @param lineId The identifier of the line (relevant for hit testing).
  @param points An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude for each point in the line.
- @param style The style of the polygon.*/
+ @param style The style of the line.*/
 - (void) addDynamicLineToVectorMap:(NSString*) mapName
                             lineId:(NSString*) lineId
                             points:(NSArray*)points
                              style:(MELineStyle*)style;
+
+/**Adds a dynamic line to a dynamic vector map.
+ @param mapName The name of the vector map.
+ @param lineId The identifier of the line (relevant for hit testing).
+ @param startLocation The starting point of the line.
+ @param endLocation The ending point of the line.
+ @param style The style of the line.
+ @param animationDuration If animated, the animation interval in seconds, zero otherwise.*/
+- (void) addDynamicLineToVectorMap:(NSString*) mapName
+                            lineId:(NSString*) lineId
+                     startLocation:(CLLocationCoordinate2D) startLocation
+                       endLocation:(CLLocationCoordinate2D) endLocation
+                             style:(MELineStyle*)style
+                 animationDuration:(CGFloat) animationDuration;
 
 /**Adds a dynamic polygon to a dynamic vector map.
  @param mapName The name of the vector map.
@@ -442,7 +457,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Clipping
-/** Allow one map to clip another map. Anywhere the clip map would draw is will not be drawn by the target map.*/
+/** Allow one map to clip another map. Anywhere the clip map would draw is not be drawn by the target map.*/
 - (void) addClipMapToMap:(NSString*)mapName
              clipMapName:(NSString*)clipMapName;
 
@@ -496,8 +511,6 @@
 /**Forward this call form your AppDelegate so the mapping engine can manage internal state.*/
 - (void)applicationWillTerminate:(UIApplication *)application;
 
-
-- (void) setClippingPlaneValue:(CGFloat) newValue;
 
 /**Adds an animated vector circle. This can be used for pulsating location beacons.*/
 - (void) addAnimatedVectorCircle:(MEAnimatedVectorCircle*) animatedVectorCircle;

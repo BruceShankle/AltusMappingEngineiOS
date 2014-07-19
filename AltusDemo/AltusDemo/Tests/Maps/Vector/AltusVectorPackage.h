@@ -6,3 +6,11 @@
 @interface AltusVectorPackage : METest
 @property (retain) METest* placeLabelsTest;
 @end
+
+@interface AltusVectorPackageBenchmark : AltusVectorPackage
+@property (retain) id<MEMapViewDelegate> oldMapViewDelegate;
+@property (assign) int mapsLoadingCount;
+@property (assign) int initialFPS;
+@property (assign) int loadingFPS;
+@end
+

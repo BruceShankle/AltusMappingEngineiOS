@@ -2,10 +2,13 @@
 #pragma once
 #import <CoreLocation/CoreLocation.h>
 
-static const double US_NORTHMOST = 49.0 + 23.0/60.0 + 4.1/3600.0;	//Lake Woods, Minnesoa
-static const double US_SOUTHMOST = 24.0 + 31.0/60.0 + 15.0/3600.0;	//Ballast Key, Florida
+//United States - Useful coordinates
+static const double US_NORTHMOST = 49.0 + 23.0/60.0 + 4.1/3600.0;       //Lake Woods, Minnesoa
+static const double US_SOUTHMOST = 24.0 + 31.0/60.0 + 15.0/3600.0;      //Ballast Key, Florida
 static const double US_EASTMOST = -66.0 - 56.0 / 60.0 - 59.2/3600.0;	//West Quoddy Head, Maine
-static const double US_WESTMOST = -124.0 - 46.0 / 60.0 - 18.1/3600.0;//Cape Alava, Washington
+static const double US_WESTMOST = -124.0 - 46.0 / 60.0 - 18.1/3600.0;   //Cape Alava, Washington
+static const double US_CENTERLAT = 39.828175;                           //Center latitude
+static const double US_CENTERLON = -98.5795;                            //Center longitude
 
 //Some test locations
 static const CLLocationCoordinate2D JFK_COORD = {40.64365972925757, -73.78208504094064};
@@ -16,6 +19,7 @@ static const CLLocationCoordinate2D RDU_COORD = {35.882872, -78.790864};
 static const CLLocationCoordinate2D MT_RANIER = {46.8533, -121.7604};
 static const CLLocationCoordinate2D US_MIN = {US_SOUTHMOST, US_WESTMOST};
 static const CLLocationCoordinate2D US_MAX = {US_NORTHMOST, US_EASTMOST};
+static const CLLocationCoordinate2D US_CENTER = {US_CENTERLAT, US_CENTERLON};
 
 static const CLLocationCoordinate2D HOUSTON_COORD = {29.76277777777778, -95.38305555555556};
 static const CLLocationCoordinate2D AUSTIN_COORD = {30.2500, -97.7500};
