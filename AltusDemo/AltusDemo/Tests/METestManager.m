@@ -12,6 +12,7 @@
 #import "VectorMarkers/VectorMarkers.h"
 #import "AnimatedShapes/AnimatedShapes.h"
 #import "Lines/Lines.h"
+#import "Polygons/Polygons.h"
 
 @implementation METestManager
 
@@ -111,6 +112,8 @@
     [testCategory addTestClass:[AnimatedLine class]];
     [testCategory addTestClass:[AnimatedLineAccumulate class]];
     [testCategory addTestClass:[DynamicLines class]];
+    [testCategory addTestClass:[DynamicPolygons class]];
+    [testCategory addTestClass:[NonDynamicPolygons class]];
 }
 
 - (void) createHeightProfilingTests{

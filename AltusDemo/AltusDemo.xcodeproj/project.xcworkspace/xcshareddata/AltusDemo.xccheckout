@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6EF38C79-2392-42C2-9220-4ECE8C62354B</string>
+	<string>E993190A-3A2F-413D-A9D6-E9A31AA90D7E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>AltusDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>82639B31-B5A2-40FA-8736-C627DCB920D9</key>
-		<string>https://github.com/ba3llc/AltusMappingEngineiOS.git</string>
+		<key>6B13EAB3-3172-41A1-8DED-F9A091691F15</key>
+		<string>skypack@dev1.ba3.us:/develop/Skypack.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>AltusDemo/AltusDemo.xcodeproj/project.xcworkspace</string>
+	<string>iOS/AltusDemo/AltusDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>82639B31-B5A2-40FA-8736-C627DCB920D9</key>
-		<string>../../..</string>
+		<key>6B13EAB3-3172-41A1-8DED-F9A091691F15</key>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/ba3llc/AltusMappingEngineiOS.git</string>
+	<string>skypack@dev1.ba3.us:/develop/Skypack.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>82639B31-B5A2-40FA-8736-C627DCB920D9</string>
+	<string>6B13EAB3-3172-41A1-8DED-F9A091691F15</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>82639B31-B5A2-40FA-8736-C627DCB920D9</string>
+			<string>6B13EAB3-3172-41A1-8DED-F9A091691F15</string>
 			<key>IDESourceControlWCCName</key>
-			<string>AltusMappingEngineiOS</string>
+			<string>Skypack</string>
 		</dict>
 	</array>
 </dict>

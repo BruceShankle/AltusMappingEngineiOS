@@ -97,6 +97,23 @@
                                               style:[self getRandomStyle]];
 }
 
+- (void) addPolygonCrossingAntimeridian {
+    // add a box using SF and Shangai as corners
+    NSMutableArray* points = [[NSMutableArray alloc]init];
+    
+    [points addObject:[NSValue valueWithCGPoint:CGPointMake(-122.5,31.3)]];
+    [points addObject:[NSValue valueWithCGPoint:CGPointMake(121.5,31.3)]];
+    [points addObject:[NSValue valueWithCGPoint:CGPointMake(121.5,37.8)]];
+    [points addObject:[NSValue valueWithCGPoint:CGPointMake(-122.5,37.8)]];
+    [points addObject:[NSValue valueWithCGPoint:CGPointMake(-122.5,31.3)]];
+    
+    NSString* polygonId = [NSString stringWithFormat:@"crosses antimeridan"];
+    [self.meMapViewController addPolygonToVectorMap:self.name
+                                          polygonId:polygonId
+                                             points:points
+                                              style:[self getRandomStyle]];
+}
+
 - (void) addStatePolygons{
     
     int count=0;
@@ -143,6 +160,8 @@
         }
     }
     
+    [self addPolygonCrossingAntimeridian];
+    
     /*Uncomment this to add a lot more polygons
     for(float lon = 20; lon < 150; lon+=7){
         for(float lat = -75; lat<75; lat+=7){
@@ -152,6 +171,9 @@
             count++;
         }
     }*/
+    
+    
+
     
     NSLog(@"Added %d polygons.", count);
 }
