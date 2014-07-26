@@ -4,4 +4,5 @@
 #import "../METest.h"
 #import "../METestMovingObject.h"
 @interface NonDynamicPolygons : METest
+@property (assign) BOOL isOn;
 @end

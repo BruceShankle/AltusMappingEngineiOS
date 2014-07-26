@@ -355,10 +355,25 @@
                         points:(NSMutableArray*)points
                          style:(MEPolygonStyle*)style;
 
+/**Adds a polygon to a vector map.
+ @param mapName The name of the vector map.
+ @param polygonId The polygon's unique name (returned during hit testing).
+ @param An array of NSValue wrapped CGPoints where x is longitude, y is latitude that created a closed shape.
+ @param style The style to apply.*/
 - (void) addPolygonToVectorMap:(NSString*) mapName
                      polygonId:(NSString*)polygonId
                         points:(NSMutableArray*)points
                          style:(MEPolygonStyle*)style;
+
+/**Updates a style previously set for a polygon in a vector map.
+ @param mapName The name of the vector map.
+ @param polygonId The polygon's unique name.
+ @param style The style to apply.
+ @param animationDuration The duration in seconds to animation to this style from the previous style*/
+- (void) updatePolygonStyleInVectorMap:(NSString*) mapName
+                             polygonId:(NSString*)polygonId
+                                 style:(MEPolygonStyle*)style
+                     animationDuration:(CGFloat)animationDuration;
 
 - (void) setStyleSetOnVectorMap:(NSString*) mapName
                   styleFileName:(NSString*) styleFileName

@@ -22,10 +22,20 @@
 @property (atomic, retain) NSString* name;
 
 @property (nonatomic, assign) id <MEMapViewDelegate> meMapViewDelegate;
+
+/**Controls the lower level functions that compute how many tiles should be displayed on a physical device screen. The default is 380.*/
 @property (nonatomic, assign) uint maxTileRenderSize;
+
+/**When set to 1.0, the mapping engine will force all levels to be coherent. In other words, if you have a raster street map, you can force it to always display a consistent. This results in more work for the engine and increased tile counts being displayed. Sometimes this can have a drastic impact on performance at certain viewing angles and distances. This should always be set to 0.0 when possible.*/
 @property (nonatomic, assign) double tileLevelBias;
+
+/**When tileLevelBias is greater than zero, setting this to YES limits level bias flip-flopping with smooth camera motion. NOTE: Enabling this setting can result in potentially more tiles being loaded for virtual maps than are necessary for the current camera position.*/
 @property (nonatomic, assign) BOOL tileBiasSmoothingEnabled;
+
+/**Scales the velocity of panning gestures up or down. Default is 1.0. If you increase this value, the user's gestures velocities will be multiplied by this value. Consider adjusting the panAcceleration before changing this value.*/
 @property (nonatomic, assign) double panVelocityScale;
+
+/**The MEMapViewController that is driving this view.*/
 @property (nonatomic, assign) MEMapViewController* meMapViewController;
 
 @property(nonatomic, readonly, retain) UIPanGestureRecognizer *panGestureRecognizer;
@@ -34,22 +44,40 @@
 @property(nonatomic, readonly, retain) UITapGestureRecognizer *tapZoomInGestureRecognizer;
 @property(nonatomic, readonly, retain) UITapGestureRecognizer *tapZoomOutGestureRecognizer;
 
+/**If set to YES, enables pan deceleration, othersie pan deceleration is disabled. Defaults to YES.*/
 @property (nonatomic, assign, getter = isPanDecelerationEnabled) BOOL isPanDecelerationEnabled;
+
+/**Controls the rate at which a panning gesture's velocity slows down once the user finishes the gesture. The default value is -10.0. If you increase this value, it has the affect of giving more momentum to panning gestures. If you set this value to 0, panning gestures will create a motion that will not stop and just continue.*/
 @property (nonatomic, assign) double panAcceleration;
+
+/**The color displayed when the screen is cleared with prior to drawing the map.*/
 @property (nonatomic, retain) UIColor* clearColor;
 
 /** Sets the minimum distance in meters from the camera/viewer to the map */
 @property (nonatomic, assign) double minimumZoom;
+
 /** Sets the maximum distance in meters from the camera/viewer to the map */
 @property (nonatomic, assign) double maximumZoom;
 
+/**If set to YES, the view can be panned, otherwise it panning is disabled. Defaults to YES.*/
 @property (nonatomic, getter=isPanEnabled) BOOL panEnabled;
+
+/**If set to YES, the view can be zoomed, otherwise it zooming is disabled. Defaults to YES.*/
 @property (nonatomic, getter=isZoomEnabled) BOOL zoomEnabled;
+
+/**Returns YES if current physical display is retina.*/
 @property (nonatomic, readonly) BOOL isRetinaDisplay;
 
+/**Converts a geographic coordinate to a screen positiion.*/
 - (CGPoint)convertCoordinate:(CLLocationCoordinate2D)coordinate;
+
+/**Converts a screen position to a geographic coordinate.*/
 - (CLLocationCoordinate2D)convertPoint:(CGPoint)point;
+
+/**Returns the distance from the screen coordinate to the horizon.*/
 - (double)distanceToHorizonFromPoint:(CGPoint)point;
+
+/**Helpfer funciton to convert an MELocationCoordinate2D into a CGPoint.*/
 - (CGPoint)convertMECoordinate:(MELocationCoordinate2D)coordinate;
 
 - (void)setCenterCoordinate:(CLLocationCoordinate2D)coordinate animationDuration:(CGFloat) animationDuration;

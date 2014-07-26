@@ -8,6 +8,7 @@
 - (id) init {
 	if(self=[super init]){
 		self.name = @"Non-Dynamic Polygons";
+        self.isOn = YES;
 	}
 	return self;
 }
@@ -20,7 +21,7 @@
     style.strokeColor = [UIColor blueColor];
     style.outlineColor = [UIColor whiteColor];
     style.shadowColor = [UIColor blackColor];
-    style.shadowOffset = CGPointMake(2,2);
+    style.shadowOffset = CGPointMake(0.5,0.5);
     style.fillColor = [[UIColor blueColor]colorWithAlphaComponent:0.50];
     return style;
 }
@@ -33,6 +34,7 @@
     lineStyle.outlineColor = [UIColor blackColor];
     return lineStyle;
 }
+
 
 - (void) addMapLayers{
     
@@ -95,16 +97,10 @@
     
     
     [self.meMapViewController addPolygonToVectorMap:self.name
-                                          polygonId:@"DynamicPolygon"
+                                          polygonId:@"NonDynamicPolygon"
                                              points:points
                                               style:[self createPolygonStyle]];
     
-    
-    
-    [self.meMapViewController addDynamicLineToVectorMap:self.name
-                                                 lineId:@"Outline"
-                                                 points:points
-                                                  style:[self createLineStyle]];
 }
 
 - (void) beginTest{
@@ -121,6 +117,8 @@
     [self.meMapViewController.meMapView setCenterCoordinate:CLLocationCoordinate2DMake(-10, -180)
                                           animationDuration:0];
     
+    [self startTimer];
+    
 }
 
 - (void) endTest{
@@ -128,5 +126,21 @@
     
 }
 
+- (void) timerTick{
+    self.isOn = !self.isOn;
+    MEPolygonStyle* style = [self createPolygonStyle];
+    if(!self.isOn){
+        style.fillColor = [UIColor clearColor];
+        style.strokeColor = [UIColor clearColor];
+        style.outlineColor = [UIColor clearColor];
+        style.shadowColor = [UIColor clearColor];
+    }
+    
+    //Change polygon style
+    [self.meMapViewController updatePolygonStyleInVectorMap:self.name
+                                                  polygonId:@"NonDynamicPolygon"
+                                                      style:style
+                                          animationDuration:0];
+}
 @end
 
