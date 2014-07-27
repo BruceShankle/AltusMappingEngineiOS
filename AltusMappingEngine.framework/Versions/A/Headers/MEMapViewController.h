@@ -355,15 +355,25 @@
                         points:(NSMutableArray*)points
                          style:(MEPolygonStyle*)style;
 
-/**Adds a polygon to a vector map.
+/**Adds a polygon to a vector map with the specified style. If you have many polygons of the same style, it is more efficient (less draw calls) to use the other funciton which takes a featureId instead of a style.
  @param mapName The name of the vector map.
- @param polygonId The polygon's unique name (returned during hit testing).
+ @param polygonId The polygon's unique name that is returned during hit testing.
+ @param points  An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude.
+ @param style The style to apply.*/
+- (void) addPolygonToVectorMap:(NSString*) mapName
+                     polygonId:(NSString*) polygonId
+                        points:(NSMutableArray*)points
+                         style:(MEPolygonStyle*)style;
+
+/**Adds a polygon to a vector map and applies a previously added style based featureId. If you have many polygons with the same style, this is the most efficient way to add them.
+ @param mapName The name of the vector map.
+ @param polygonId The polygon's unique name that is returned during hit testing.
  @param An array of NSValue wrapped CGPoints where x is longitude, y is latitude that created a closed shape.
  @param style The style to apply.*/
 - (void) addPolygonToVectorMap:(NSString*) mapName
-                     polygonId:(NSString*)polygonId
+                     polygonId:(NSString*) polygonId
                         points:(NSMutableArray*)points
-                         style:(MEPolygonStyle*)style;
+                     featureId:(unsigned int) featureId;
 
 /**Updates a style previously set for a polygon in a vector map.
  @param mapName The name of the vector map.
@@ -401,7 +411,10 @@
  @param featureID The polygon feature of the map to apply the style to.
  @param scale the target scale for the style
  @param style The style to apply.*/
-- (void) addPolygonStyleToVectorMap:(NSString*) mapName scale:(double) scale featureId:(unsigned int) featureID style:(MEPolygonStyle*)style;
+- (void) addPolygonStyleToVectorMap:(NSString*) mapName
+                              scale:(double) scale
+                          featureId:(unsigned int) featureID
+                              style:(MEPolygonStyle*)style;
 
 /**Adds a line to a vector map.
  @param mapName The name of the vector map.
