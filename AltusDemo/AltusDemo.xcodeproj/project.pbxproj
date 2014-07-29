@@ -109,7 +109,6 @@
 		326C92D6190F712E0097C50D /* WayPointStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 326C92D4190F712E0097C50D /* WayPointStar@2x.png */; };
 		326C92D7190F712E0097C50D /* WayPointStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 326C92D5190F712E0097C50D /* WayPointStar.png */; };
 		326C92DA190F72670097C50D /* PlacesFancyLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 326C92D9190F72670097C50D /* PlacesFancyLabels.m */; };
-		327D106C192FA76600EF84D8 /* AnimatedVectorCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 327D106B192FA76600EF84D8 /* AnimatedVectorCircle.m */; };
 		327D106F192FA82E00EF84D8 /* MovingObject2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 327D106E192FA82E00EF84D8 /* MovingObject2D.m */; };
 		327D1073192FCB1800EF84D8 /* shuttle.png in Resources */ = {isa = PBXBuildFile; fileRef = 327D1071192FCB1800EF84D8 /* shuttle.png */; };
 		327D1074192FCB1800EF84D8 /* shuttle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 327D1072192FCB1800EF84D8 /* shuttle@2x.png */; };
@@ -132,7 +131,7 @@
 		328192281977C68A0006DB63 /* bluecircle_semitransparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 328192241977C68A0006DB63 /* bluecircle_semitransparent.png */; };
 		328192291977C68A0006DB63 /* bluecircle_semitransparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 328192251977C68A0006DB63 /* bluecircle_semitransparent@2x.png */; };
 		328869E71928F9ED00A528FA /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 328869E61928F9ED00A528FA /* ViewManager.m */; };
-		3288E5261983A12500397154 /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3288E5251983A12500397154 /* AltusMappingEngine.framework */; };
+		3288E52E1984E35B00397154 /* PolygonPerf.m in Sources */ = {isa = PBXBuildFile; fileRef = 3288E52D1984E35B00397154 /* PolygonPerf.m */; };
 		3296D42E1902629500A275DF /* VectorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296D42D1902629500A275DF /* VectorGrid.m */; };
 		32988A56192AC8CB0038B2A5 /* Asteroids.m in Sources */ = {isa = PBXBuildFile; fileRef = 32988A55192AC8CB0038B2A5 /* Asteroids.m */; };
 		329A6E381979E222008FCF9C /* DynamicLines.m in Sources */ = {isa = PBXBuildFile; fileRef = 329A6E371979E222008FCF9C /* DynamicLines.m */; };
@@ -140,6 +139,7 @@
 		329C31F919391C1D0074B604 /* TileWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31F819391C1D0074B604 /* TileWorker.m */; };
 		329C31FD19391C9E0074B604 /* TileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31FC19391C9E0074B604 /* TileDownloader.m */; };
 		329C320019391EAB0074B604 /* RasterPackageReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31FF19391EAB0074B604 /* RasterPackageReader.m */; };
+		32A371411987989F00D9E64E /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A371401987989F00D9E64E /* AltusMappingEngine.framework */; };
 		32A889B5193E82660008D909 /* SimpleWorld.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32A889B4193E82660008D909 /* SimpleWorld.sqlite */; };
 		32A889BB193E82B40008D909 /* SimpleWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A889BA193E82B40008D909 /* SimpleWorld.m */; };
 		32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6B63718EE114C00E429AB /* AltusVectorPackage.m */; };
@@ -165,6 +165,8 @@
 		B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C70FE18CB8815003FB579 /* WorldSimple.m */; };
 		B929BC501937EC0A00762488 /* RadarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B929BC4F1937EC0A00762488 /* RadarTest.m */; };
 		B941659E18F880700061DEEB /* DynamicColorBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B941659D18F880700061DEEB /* DynamicColorBar.m */; };
+		B9A983FD1986B2B700B73F37 /* PolygonStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A983FC1986B2B700B73F37 /* PolygonStyle.m */; };
+		B9A984021986B53300B73F37 /* AnimatedVectorCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A984001986B53300B73F37 /* AnimatedVectorCircle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,11 +315,8 @@
 		326C92D5190F712E0097C50D /* WayPointStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WayPointStar.png; sourceTree = "<group>"; };
 		326C92D8190F72670097C50D /* PlacesFancyLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesFancyLabels.h; sourceTree = "<group>"; };
 		326C92D9190F72670097C50D /* PlacesFancyLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesFancyLabels.m; sourceTree = "<group>"; };
-		327D106A192FA76600EF84D8 /* AnimatedVectorCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedVectorCircle.h; sourceTree = "<group>"; };
-		327D106B192FA76600EF84D8 /* AnimatedVectorCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedVectorCircle.m; sourceTree = "<group>"; };
 		327D106D192FA82E00EF84D8 /* MovingObject2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovingObject2D.h; sourceTree = "<group>"; };
 		327D106E192FA82E00EF84D8 /* MovingObject2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovingObject2D.m; sourceTree = "<group>"; };
-		327D1070192FB29D00EF84D8 /* VectorMarkers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VectorMarkers.h; sourceTree = "<group>"; };
 		327D1071192FCB1800EF84D8 /* shuttle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuttle.png; sourceTree = "<group>"; };
 		327D1072192FCB1800EF84D8 /* shuttle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shuttle@2x.png"; sourceTree = "<group>"; };
 		327E334218ADA52000FBBB90 /* METest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METest.h; sourceTree = "<group>"; };
@@ -354,7 +353,8 @@
 		328192251977C68A0006DB63 /* bluecircle_semitransparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluecircle_semitransparent@2x.png"; sourceTree = "<group>"; };
 		328869E51928F9ED00A528FA /* ViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewManager.h; sourceTree = "<group>"; };
 		328869E61928F9ED00A528FA /* ViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewManager.m; sourceTree = "<group>"; };
-		3288E5251983A12500397154 /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
+		3288E52C1984E35B00397154 /* PolygonPerf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolygonPerf.h; sourceTree = "<group>"; };
+		3288E52D1984E35B00397154 /* PolygonPerf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonPerf.m; sourceTree = "<group>"; };
 		3296D42C1902629500A275DF /* VectorGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorGrid.h; sourceTree = "<group>"; };
 		3296D42D1902629500A275DF /* VectorGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VectorGrid.m; sourceTree = "<group>"; };
 		32988A54192AC8CB0038B2A5 /* Asteroids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asteroids.h; sourceTree = "<group>"; };
@@ -370,6 +370,7 @@
 		329C31FC19391C9E0074B604 /* TileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileDownloader.m; sourceTree = "<group>"; };
 		329C31FE19391EAB0074B604 /* RasterPackageReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RasterPackageReader.h; sourceTree = "<group>"; };
 		329C31FF19391EAB0074B604 /* RasterPackageReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RasterPackageReader.m; sourceTree = "<group>"; };
+		32A371401987989F00D9E64E /* AltusMappingEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AltusMappingEngine.framework; path = ../AltusMappingEngine.framework; sourceTree = "<group>"; };
 		32A889B4193E82660008D909 /* SimpleWorld.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleWorld.sqlite; sourceTree = "<group>"; };
 		32A889B9193E82B40008D909 /* SimpleWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleWorld.h; sourceTree = "<group>"; };
 		32A889BA193E82B40008D909 /* SimpleWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleWorld.m; sourceTree = "<group>"; };
@@ -419,6 +420,11 @@
 		B941659818F877890061DEEB /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terrain.h; path = Terrain/Terrain.h; sourceTree = "<group>"; };
 		B941659C18F880700061DEEB /* DynamicColorBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicColorBar.h; path = Terrain/DynamicColorBar.h; sourceTree = "<group>"; };
 		B941659D18F880700061DEEB /* DynamicColorBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicColorBar.m; path = Terrain/DynamicColorBar.m; sourceTree = "<group>"; };
+		B9A983FB1986B2B700B73F37 /* PolygonStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolygonStyle.h; sourceTree = "<group>"; };
+		B9A983FC1986B2B700B73F37 /* PolygonStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolygonStyle.m; sourceTree = "<group>"; };
+		B9A983FF1986B53300B73F37 /* AnimatedVectorCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimatedVectorCircle.h; path = VectorOverlay/AnimatedVectorCircle.h; sourceTree = "<group>"; };
+		B9A984001986B53300B73F37 /* AnimatedVectorCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimatedVectorCircle.m; path = VectorOverlay/AnimatedVectorCircle.m; sourceTree = "<group>"; };
+		B9A984011986B53300B73F37 /* VectorOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VectorOverlay.h; path = VectorOverlay/VectorOverlay.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -429,7 +435,7 @@
 				32131B9A18AC89E700799EBD /* libsqlite3.dylib in Frameworks */,
 				32131B9818AC89D300799EBD /* libstdc++.dylib in Frameworks */,
 				32131B5318AC864700799EBD /* CoreGraphics.framework in Frameworks */,
-				3288E5261983A12500397154 /* AltusMappingEngine.framework in Frameworks */,
+				32A371411987989F00D9E64E /* AltusMappingEngine.framework in Frameworks */,
 				32131B5518AC864700799EBD /* UIKit.framework in Frameworks */,
 				32131B5118AC864700799EBD /* Foundation.framework in Frameworks */,
 			);
@@ -479,7 +485,7 @@
 		32131B4F18AC864700799EBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3288E5251983A12500397154 /* AltusMappingEngine.framework */,
+				32A371401987989F00D9E64E /* AltusMappingEngine.framework */,
 				32131B9918AC89E700799EBD /* libsqlite3.dylib */,
 				32131B9718AC89D300799EBD /* libstdc++.dylib */,
 				32131B5018AC864700799EBD /* Foundation.framework */,
@@ -688,19 +694,10 @@
 			path = MarkerImageCreators;
 			sourceTree = "<group>";
 		};
-		327D1068192FA72100EF84D8 /* VectorMarkers */ = {
-			isa = PBXGroup;
-			children = (
-				327D106A192FA76600EF84D8 /* AnimatedVectorCircle.h */,
-				327D106B192FA76600EF84D8 /* AnimatedVectorCircle.m */,
-				327D1070192FB29D00EF84D8 /* VectorMarkers.h */,
-			);
-			path = VectorMarkers;
-			sourceTree = "<group>";
-		};
 		327E334118ADA52000FBBB90 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B9A983FE1986B52500B73F37 /* VectorOverlay */,
 				3202DAEA1973B5CC00691332 /* AnimatedShapes */,
 				32988A52192AC8310038B2A5 /* Artistic */,
 				32FB97D2193E6350004A9371 /* Core */,
@@ -713,7 +710,6 @@
 				B941659218F876AE0061DEEB /* Terrain */,
 				32803D75190F7F1B00099DD5 /* UserInteraction */,
 				321D3DB219237352004ACD80 /* Utilities */,
-				327D1068192FA72100EF84D8 /* VectorMarkers */,
 				321E0D0018B67DFD0011218A /* Weather */,
 				327E334218ADA52000FBBB90 /* METest.h */,
 				327E334318ADA52000FBBB90 /* METest.m */,
@@ -903,10 +899,14 @@
 			isa = PBXGroup;
 			children = (
 				32C20CA3197D9D46006DCE84 /* Polygons.h */,
+				3288E52C1984E35B00397154 /* PolygonPerf.h */,
+				3288E52D1984E35B00397154 /* PolygonPerf.m */,
 				32C20CA4197D9D64006DCE84 /* DynamicPolygons.h */,
 				32C20CA5197D9D64006DCE84 /* DynamicPolygons.m */,
 				324C18BF197E8F6400A02E25 /* NonDynamicPolygons.h */,
 				324C18C0197E8F6400A02E25 /* NonDynamicPolygons.m */,
+				B9A983FB1986B2B700B73F37 /* PolygonStyle.h */,
+				B9A983FC1986B2B700B73F37 /* PolygonStyle.m */,
 			);
 			path = Polygons;
 			sourceTree = "<group>";
@@ -941,6 +941,16 @@
 				B941659D18F880700061DEEB /* DynamicColorBar.m */,
 			);
 			name = Terrain;
+			sourceTree = "<group>";
+		};
+		B9A983FE1986B52500B73F37 /* VectorOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				B9A983FF1986B53300B73F37 /* AnimatedVectorCircle.h */,
+				B9A984001986B53300B73F37 /* AnimatedVectorCircle.m */,
+				B9A984011986B53300B73F37 /* VectorOverlay.h */,
+			);
+			name = VectorOverlay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1142,7 +1152,6 @@
 				32587D0219121062008B9C0C /* TerrainProfileView.m in Sources */,
 				324ACC3B18AEB0A300833819 /* HoustonStreets.m in Sources */,
 				327E336118ADE5EC00FBBB90 /* MapBoxStreets.m in Sources */,
-				327D106C192FA76600EF84D8 /* AnimatedVectorCircle.m in Sources */,
 				32C5159419296053000ECFFE /* MultiViewControl.m in Sources */,
 				329C31F919391C1D0074B604 /* TileWorker.m in Sources */,
 				32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */,
@@ -1164,6 +1173,7 @@
 				32587D0319121062008B9C0C /* TerrainRadiusPerf.m in Sources */,
 				32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */,
 				321476E4195169B7008461D5 /* WMSTileDownloader.m in Sources */,
+				3288E52E1984E35B00397154 /* PolygonPerf.m in Sources */,
 				321D3DB6192373D8004ACD80 /* TileFactory.m in Sources */,
 				32131B5D18AC864700799EBD /* main.m in Sources */,
 				32BBEC5A1910617F0091BC7A /* AltusTerrainPackage.m in Sources */,
@@ -1175,7 +1185,9 @@
 				32D7CF681924B67200F1125C /* MapFactory.m in Sources */,
 				32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */,
 				32F0A1F21945825400E82C6E /* RoutePlotting.m in Sources */,
+				B9A983FD1986B2B700B73F37 /* PolygonStyle.m in Sources */,
 				32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */,
+				B9A984021986B53300B73F37 /* AnimatedVectorCircle.m in Sources */,
 				327D106F192FA82E00EF84D8 /* MovingObject2D.m in Sources */,
 				328869E71928F9ED00A528FA /* ViewManager.m in Sources */,
 				B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */,

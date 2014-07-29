@@ -1,3 +1,44 @@
+
+Release Notes v1.8-35
+=============================
+Engine / SDK:
+Fixed vector styles disappearing when zoomed out in some polygon styles.
+
+Release Notes v1.8-29
+=============================
+Engine / SDK:
+Add API for changing style of polygon based on its string id.
+http://dev1.ba3.us/ios/doc/Classes/MEMapViewController.html#//api/name/updatePolygonStyleInVectorMap:polygonId:style:animationDuration:
+
+
+Release Notes v1.8-15
+=============================
+Engine / SDK:
+Fix polygon tessellation issue.
+Polygons that crossed the antemeridian added using addPolygonToVectorMap were sometimes not drawing the correct shape.
+
+
+Release Notes v1.8-15
+=============================
+Engine / SDK:
+New vector line API, new shader management system.
+We've added a simple API for adding a line segment to a vector map such that it animates in sync with the rest of the engine. This allows you to 'tack on' segments of a line in scenarios where you might be displaying a route.
+
+We also removed our legacy shader management system and replaced with a new one.
+
+For developers with mission critical applications, please do thorough testing with this release to ensure all scenarios work correctly. If you see any issues, please report them.
+
+NOTE: Altus 1.x will soon go into maintenance mode as we begin rolling out Altus 2.0.
+
+Contact info@ba3.us for details.
+
+
+Release Notes v1.7-18
+=============================
+Engine / SDK:
+Patch for 64-bit Support.
+This fixes a small type conversion problem related to 64-bit size_t usage.
+
 Release Notes v1.7-0
 =============================
 Engine / SDK:

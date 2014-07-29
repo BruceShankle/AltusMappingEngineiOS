@@ -125,6 +125,10 @@
 	
 	<option value="//api/name/addPolygonToVectorMap:points:style:">&nbsp;&nbsp;&nbsp;&nbsp;- addPolygonToVectorMap:points:style:</option>
 	
+	<option value="//api/name/addPolygonToVectorMap:polygonId:points:featureId:">&nbsp;&nbsp;&nbsp;&nbsp;- addPolygonToVectorMap:polygonId:points:featureId:</option>
+	
+	<option value="//api/name/addPolygonToVectorMap:polygonId:points:style:">&nbsp;&nbsp;&nbsp;&nbsp;- addPolygonToVectorMap:polygonId:points:style:</option>
+	
 	<option value="//api/name/addShapeFileToVectorMap:shapeFilePath:style:">&nbsp;&nbsp;&nbsp;&nbsp;- addShapeFileToVectorMap:shapeFilePath:style:</option>
 	
 	<option value="//api/name/addSphericalMercatorMosaicRasterMap:imageFileName:minX:minY:maxX:maxY:maxLevel:defaultTileName:compressTextures:zOrder:mapLoadingStrategy:">&nbsp;&nbsp;&nbsp;&nbsp;- addSphericalMercatorMosaicRasterMap:imageFileName:minX:minY:maxX:maxY:maxLevel:defaultTileName:compressTextures:zOrder:mapLoadingStrategy:</option>
@@ -257,6 +261,8 @@
 	
 	<option value="//api/name/updatePolygonStyleInVectorMap:featureId:style:animationDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- updatePolygonStyleInVectorMap:featureId:style:animationDuration:</option>
 	
+	<option value="//api/name/updatePolygonStyleInVectorMap:polygonId:style:animationDuration:">&nbsp;&nbsp;&nbsp;&nbsp;- updatePolygonStyleInVectorMap:polygonId:style:animationDuration:</option>
+	
 	<option value="//api/name/updateTawsAltitude:">&nbsp;&nbsp;&nbsp;&nbsp;- updateTawsAltitude:</option>
 	
 	<option value="//api/name/updateTawsColorBar:">&nbsp;&nbsp;&nbsp;&nbsp;- updateTawsColorBar:</option>
@@ -380,6 +386,10 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addPolygonStyleToVectorMap:scale:featureId:style:">addPolygonStyleToVectorMap:scale:featureId:style:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addPolygonToVectorMap:points:style:">addPolygonToVectorMap:points:style:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addPolygonToVectorMap:polygonId:points:featureId:">addPolygonToVectorMap:polygonId:points:featureId:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addPolygonToVectorMap:polygonId:points:style:">addPolygonToVectorMap:polygonId:points:style:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addShapeFileToVectorMap:shapeFilePath:style:">addShapeFileToVectorMap:shapeFilePath:style:</a></span></li>
 	
@@ -512,6 +522,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateAnimatedVectorReticleLocation:newLocation:animationDuration:">updateAnimatedVectorReticleLocation:newLocation:animationDuration:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updatePolygonStyleInVectorMap:featureId:style:animationDuration:">updatePolygonStyleInVectorMap:featureId:style:animationDuration:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updatePolygonStyleInVectorMap:polygonId:style:animationDuration:">updatePolygonStyleInVectorMap:polygonId:style:animationDuration:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateTawsAltitude:">updateTawsAltitude:</a></span></li>
 	
@@ -942,6 +954,24 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/addPolygonToVectorMap:points:style:">&ndash;&nbsp;addPolygonToVectorMap:points:style:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addPolygonToVectorMap:polygonId:points:style:">&ndash;&nbsp;addPolygonToVectorMap:polygonId:points:style:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addPolygonToVectorMap:polygonId:points:featureId:">&ndash;&nbsp;addPolygonToVectorMap:polygonId:points:featureId:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updatePolygonStyleInVectorMap:polygonId:style:animationDuration:">&ndash;&nbsp;updatePolygonStyleInVectorMap:polygonId:style:animationDuration:</a></code>
 	</span>
 	
 	
@@ -2909,6 +2939,128 @@ thread management system.</p>
 		<dl class="argument-def parameter-def">
 			<dt><em>style</em></dt>
 			<dd><p>The style of the polygon.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addPolygonToVectorMap:polygonId:points:featureId:" title="addPolygonToVectorMap:polygonId:points:featureId:"></a>
+	<h3 class="subsubtitle method-title">addPolygonToVectorMap:polygonId:points:featureId:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds a polygon to a vector map and applies a previously added style based featureId. If you have many polygons with the same style, this is the most efficient way to add them.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addPolygonToVectorMap:(NSString *)<em>mapName</em> polygonId:(NSString *)<em>polygonId</em> points:(NSMutableArray *)<em>points</em> featureId:(unsigned int)<em>featureId</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapName</em></dt>
+			<dd><p>The name of the vector map.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>polygonId</em></dt>
+			<dd><p>The polygon&rsquo;s unique name that is returned during hit testing.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>style</em></dt>
+			<dd><p>The style to apply.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>An</em></dt>
+			<dd><p>array of NSValue wrapped CGPoints where x is longitude, y is latitude that created a closed shape.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addPolygonToVectorMap:polygonId:points:style:" title="addPolygonToVectorMap:polygonId:points:style:"></a>
+	<h3 class="subsubtitle method-title">addPolygonToVectorMap:polygonId:points:style:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds a polygon to a vector map with the specified style. If you have many polygons of the same style, it is more efficient (less <a href="#//api/name/draw">draw</a> calls) to use the other funciton which takes a featureId instead of a style.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addPolygonToVectorMap:(NSString *)<em>mapName</em> polygonId:(NSString *)<em>polygonId</em> points:(NSMutableArray *)<em>points</em> style:(MEPolygonStyle *)<em>style</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapName</em></dt>
+			<dd><p>The name of the vector map.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>polygonId</em></dt>
+			<dd><p>The polygon&rsquo;s unique name that is returned during hit testing.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>points</em></dt>
+			<dd><p>An array of NSValue objects that wrap CGPoints. The x,y values of the point represent longitude,latitude.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>style</em></dt>
+			<dd><p>The style to apply.</p></dd>
 		</dl>
 		
 	</div>
@@ -5654,6 +5806,67 @@ If you have an advanced tile provider (see the TileFactory examples in our refer
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/updatePolygonStyleInVectorMap:polygonId:style:animationDuration:" title="updatePolygonStyleInVectorMap:polygonId:style:animationDuration:"></a>
+	<h3 class="subsubtitle method-title">updatePolygonStyleInVectorMap:polygonId:style:animationDuration:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Updates a style previously set for a polygon in a vector map.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)updatePolygonStyleInVectorMap:(NSString *)<em>mapName</em> polygonId:(NSString *)<em>polygonId</em> style:(MEPolygonStyle *)<em>style</em> animationDuration:(CGFloat)<em>animationDuration</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mapName</em></dt>
+			<dd><p>The name of the vector map.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>polygonId</em></dt>
+			<dd><p>The polygon&rsquo;s unique name.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>style</em></dt>
+			<dd><p>The style to apply.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>animationDuration</em></dt>
+			<dd><p>The duration in seconds to animation to this style from the previous style</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEMapViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/updateTawsAltitude:" title="updateTawsAltitude:"></a>
 	<h3 class="subsubtitle method-title">updateTawsAltitude:</h3>
 	
@@ -5894,7 +6107,7 @@ If you have an advanced tile provider (see the TileFactory examples in our refer
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-07-19)</span><br />
+						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-07-29)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

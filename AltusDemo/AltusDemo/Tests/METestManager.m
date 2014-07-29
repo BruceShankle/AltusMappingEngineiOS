@@ -9,7 +9,7 @@
 #import "Terrain/Terrain.h"
 #import "UserInteraction/UserInteraction.h"
 #import "HeightProfiling/HeightProfiling.h"
-#import "VectorMarkers/VectorMarkers.h"
+#import "VectorOverlay/VectorOverlay.h"
 #import "AnimatedShapes/AnimatedShapes.h"
 #import "Lines/Lines.h"
 #import "Polygons/Polygons.h"
@@ -68,7 +68,7 @@
 - (void) createAllTests{
     [self createCoreTests];
     [self createStressTests];
-    [self createVectorMarkersTests];
+    [self createVectorOverlayTests];
     [self createHeightProfilingTests];
     [self createUserInteractionTests];
     [self createTerrainTests];
@@ -102,10 +102,11 @@
     [testCategory addTestClass:[ContentLoadingNoBiasDynFPSTIF class]];
 }
 
-- (void) createVectorMarkersTests{
+- (void) createVectorOverlayTests{
     METestCategory* testCategory = [[METestCategory alloc]init];
-    testCategory.name = @"Vector Drawing";
+    testCategory.name = @"Vector Overlay";
     [self addCategory:testCategory];
+    [testCategory addTestClass:[PolygonStyle class]];
     [testCategory addTestClass:[AnimatedVectorCircle class]];
     [testCategory addTestClass:[AnimatedVectorCircleTrackObject class]];
     [testCategory addTestClass:[AnimatedVectorCircleTrackObjectRangeRings class]];
@@ -114,6 +115,8 @@
     [testCategory addTestClass:[DynamicLines class]];
     [testCategory addTestClass:[DynamicPolygons class]];
     [testCategory addTestClass:[NonDynamicPolygons class]];
+    [testCategory addTestClass:[PolygonPerfSlow class]];
+    [testCategory addTestClass:[PolygonPerfFast class]];
 }
 
 - (void) createHeightProfilingTests{
