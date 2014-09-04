@@ -102,8 +102,6 @@
 		32587D0A19121965008B9C0C /* pinGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0619121965008B9C0C /* pinGreen@2x.png */; };
 		32587D0B19121965008B9C0C /* pinPurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0719121965008B9C0C /* pinPurple.png */; };
 		32587D0C19121965008B9C0C /* pinPurple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32587D0819121965008B9C0C /* pinPurple@2x.png */; };
-		326914A5193D9E4000DBFE45 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326914A1193D9E4000DBFE45 /* Main_iPad.storyboard */; };
-		326914A6193D9E4000DBFE45 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326914A3193D9E4000DBFE45 /* Main_iPhone.storyboard */; };
 		326928B91954E9BE007108B3 /* MapLoadingStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 326928B81954E9BE007108B3 /* MapLoadingStats.m */; };
 		326C92D3190F70A50097C50D /* WayPointMarkerImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 326C92D2190F70A50097C50D /* WayPointMarkerImage.m */; };
 		326C92D6190F712E0097C50D /* WayPointStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 326C92D4190F712E0097C50D /* WayPointStar@2x.png */; };
@@ -132,6 +130,8 @@
 		328192291977C68A0006DB63 /* bluecircle_semitransparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 328192251977C68A0006DB63 /* bluecircle_semitransparent@2x.png */; };
 		328869E71928F9ED00A528FA /* ViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 328869E61928F9ED00A528FA /* ViewManager.m */; };
 		3288E52E1984E35B00397154 /* PolygonPerf.m in Sources */ = {isa = PBXBuildFile; fileRef = 3288E52D1984E35B00397154 /* PolygonPerf.m */; };
+		32917D3019B855BA00F41BCE /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326914A1193D9E4000DBFE45 /* Main_iPad.storyboard */; };
+		32917D3119B855BA00F41BCE /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326914A3193D9E4000DBFE45 /* Main_iPhone.storyboard */; };
 		3296D42E1902629500A275DF /* VectorGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296D42D1902629500A275DF /* VectorGrid.m */; };
 		32988A56192AC8CB0038B2A5 /* Asteroids.m in Sources */ = {isa = PBXBuildFile; fileRef = 32988A55192AC8CB0038B2A5 /* Asteroids.m */; };
 		329A6E381979E222008FCF9C /* DynamicLines.m in Sources */ = {isa = PBXBuildFile; fileRef = 329A6E371979E222008FCF9C /* DynamicLines.m */; };
@@ -1032,6 +1032,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32917D3019B855BA00F41BCE /* Main_iPad.storyboard in Resources */,
+				32917D3119B855BA00F41BCE /* Main_iPhone.storyboard in Resources */,
 				329B4D991910D0F300E40B79 /* AltusTerrainPackage.sqlite in Resources */,
 				324ACC2A18AEB00600833819 /* apple_land@2x.png in Resources */,
 				32587D0C19121965008B9C0C /* pinPurple@2x.png in Resources */,
@@ -1054,7 +1056,6 @@
 				324ACC2C18AEB00600833819 /* apple_park@2x.png in Resources */,
 				324ACC3718AEB01400833819 /* HoustonStreets.map in Resources */,
 				324ACC2F18AEB00600833819 /* landTexture.png in Resources */,
-				326914A5193D9E4000DBFE45 /* Main_iPad.storyboard in Resources */,
 				3247FD0818D827BE00F2A449 /* knots30@2x.png in Resources */,
 				32587D0B19121965008B9C0C /* pinPurple.png in Resources */,
 				32BAC4DC18AF3F9E00DE8583 /* Places.sqlite in Resources */,
@@ -1088,7 +1089,6 @@
 				324ACC2718AEB00600833819 /* apple_golf.png in Resources */,
 				32EE6FBF18FE30A6005F65CE /* AltusRasterPackage.sqlite in Resources */,
 				3247FD0518D827BE00F2A449 /* knots25.png in Resources */,
-				326914A6193D9E4000DBFE45 /* Main_iPhone.storyboard in Resources */,
 				32A889B5193E82660008D909 /* SimpleWorld.sqlite in Resources */,
 				327E336918ADE97000FBBB90 /* pinRed@2x.png in Resources */,
 				B9078A50193D18EB00963D45 /* radar.sqlite in Resources */,
