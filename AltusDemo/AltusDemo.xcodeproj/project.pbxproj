@@ -139,7 +139,6 @@
 		329C31F919391C1D0074B604 /* TileWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31F819391C1D0074B604 /* TileWorker.m */; };
 		329C31FD19391C9E0074B604 /* TileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31FC19391C9E0074B604 /* TileDownloader.m */; };
 		329C320019391EAB0074B604 /* RasterPackageReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 329C31FF19391EAB0074B604 /* RasterPackageReader.m */; };
-		32A371411987989F00D9E64E /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A371401987989F00D9E64E /* AltusMappingEngine.framework */; };
 		32A889B5193E82660008D909 /* SimpleWorld.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 32A889B4193E82660008D909 /* SimpleWorld.sqlite */; };
 		32A889BB193E82B40008D909 /* SimpleWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A889BA193E82B40008D909 /* SimpleWorld.m */; };
 		32B6B63818EE114C00E429AB /* AltusVectorPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B6B63718EE114C00E429AB /* AltusVectorPackage.m */; };
@@ -161,6 +160,7 @@
 		32EE6FC318FE30BC005F65CE /* AltusRasterPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE6FC218FE30BC005F65CE /* AltusRasterPackage.m */; };
 		32F0A1F21945825400E82C6E /* RoutePlotting.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F0A1F11945825400E82C6E /* RoutePlotting.m */; };
 		32FB97D4193E6350004A9371 /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FB97D3193E6350004A9371 /* Stats.m */; };
+		A4DDC7FC19BBB054000022AA /* AltusMappingEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A371401987989F00D9E64E /* AltusMappingEngine.framework */; };
 		B9078A50193D18EB00963D45 /* radar.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B908913E19395972004F7FC2 /* radar.sqlite */; };
 		B91C70FF18CB8815003FB579 /* WorldSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = B91C70FE18CB8815003FB579 /* WorldSimple.m */; };
 		B929BC501937EC0A00762488 /* RadarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B929BC4F1937EC0A00762488 /* RadarTest.m */; };
@@ -435,9 +435,9 @@
 				32131B9A18AC89E700799EBD /* libsqlite3.dylib in Frameworks */,
 				32131B9818AC89D300799EBD /* libstdc++.dylib in Frameworks */,
 				32131B5318AC864700799EBD /* CoreGraphics.framework in Frameworks */,
-				32A371411987989F00D9E64E /* AltusMappingEngine.framework in Frameworks */,
 				32131B5518AC864700799EBD /* UIKit.framework in Frameworks */,
 				32131B5118AC864700799EBD /* Foundation.framework in Frameworks */,
+				A4DDC7FC19BBB054000022AA /* AltusMappingEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1331,15 +1331,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Bruce/develop/AltusMappingEngineiOS,
+					"$(SRCROOT)/../",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AltusDemo/AltusDemo-Prefix.pch";
 				INFOPLIST_FILE = "AltusDemo/AltusDemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Bruce/develop/Skypack/iOS/AltusDemo/AltusDemo/libs,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1355,15 +1351,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Bruce/develop/AltusMappingEngineiOS,
+					"$(SRCROOT)/../",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AltusDemo/AltusDemo-Prefix.pch";
 				INFOPLIST_FILE = "AltusDemo/AltusDemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Bruce/develop/Skypack/iOS/AltusDemo/AltusDemo/libs,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1457,15 +1449,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Bruce/develop/AltusMappingEngineiOS,
+					"$(SRCROOT)/../",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AltusDemo/AltusDemo-Prefix.pch";
 				INFOPLIST_FILE = "AltusDemo/AltusDemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/Bruce/develop/Skypack/iOS/AltusDemo/AltusDemo/libs,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
