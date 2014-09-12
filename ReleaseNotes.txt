@@ -1,3 +1,19 @@
+Release Notes v1.8-77
+=============================
+Support iOS 8 and iPhone 6 Plus. iOS 8 has new APIs for detecting native screen scale factors. Additionally, removed 'isRetina' function from several iOS APIs since the Altus core engine is resolution independent. If you use @3x images for marker images on iOS 8 devices (like the iPhone 6 Plus), you should update to this release. If you have recompiled your application with Xcode 6 and have or have started using @3x resolution images, you should update to this release to avoid errors in marker anchor point offsets and hit-detection points.
+
+Release Notes v1.8-62
+=============================
+Memory optimizations. Decrease memory used by height profiling and terrain query system.
+
+Release Notes v1.8-52
+=============================
+Support min / max level in pre-generated clustered marker maps. Support requires using AltusMarker server component.
+
+Release Notes v1.8-40
+=============================
+Engine / SDK:
+Address height profile queries above 85N and below 85S.
 
 Release Notes v1.8-35
 =============================

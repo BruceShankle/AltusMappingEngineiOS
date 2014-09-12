@@ -65,9 +65,6 @@
 /**If set to YES, the view can be zoomed, otherwise it zooming is disabled. Defaults to YES.*/
 @property (nonatomic, getter=isZoomEnabled) BOOL zoomEnabled;
 
-/**Returns YES if current physical display is retina.*/
-@property (nonatomic, readonly) BOOL isRetinaDisplay;
-
 /**Converts a geographic coordinate to a screen positiion.*/
 - (CGPoint)convertCoordinate:(CLLocationCoordinate2D)coordinate;
 

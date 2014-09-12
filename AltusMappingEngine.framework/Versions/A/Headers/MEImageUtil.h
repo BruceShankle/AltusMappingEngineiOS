@@ -42,9 +42,6 @@
 					  flippedY:(BOOL) flippedY
 					   newSize:(CGSize*) newSize;
 
-/**Returns true if device is retina-based.*/
-+ (BOOL)isRetina;
-
 /**Returns a UIColor for r g b a bytes.*/
 + (UIColor*) makeColor:(int) r g:(int) g b:(int) b a:(int) a;
 
