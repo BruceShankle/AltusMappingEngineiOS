@@ -26,7 +26,7 @@
     virtualMapInfo.zOrder = zOrder;
     virtualMapInfo.loadingStrategy = kHighestDetailOnly;
     virtualMapInfo.contentType = kZoomDependent;
-    
+    virtualMapInfo.compressTextures=NO;
     return virtualMapInfo;
 }
 

@@ -27,13 +27,16 @@
 	self.meMapView.frame = self.view.bounds;
     self.meMapView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	
+    
+    self.meMapViewController.verboseMessagesEnabled = YES;
+    
 	//Initialize the map view controller
 	[self.meMapViewController initialize];
     
     //If you have an actual license from BA3, set your license key just after engine initialization
     //[self.meMapViewController setLicenseKey:@"YOURLICE-NSEK-EYGO-ESIN-THISFUNCTION"];
     
-    self.meMapViewController.verboseMessagesEnabled = YES;
+    
     
     //Enable level biasing which makes the mapping engine
     //display a consistent level at all times (at the cost of additional memory)

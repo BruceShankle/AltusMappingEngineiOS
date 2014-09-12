@@ -29,11 +29,12 @@
     mapInfo.clusterDistance = 40;
     mapInfo.maxLevel = 18;
     mapInfo.fadeEnabled = NO;
-    mapInfo.markers = [BusStopData getBusStopMarkers];
+    mapInfo.markers = [[BusStopData getBusStopMarkers] copy];
     mapInfo.markerImageLoadingStrategy = kMarkerImageLoadingPrecached;
     //For this loading strategy, we must set the cached image name
     for(MEMarker* marker in mapInfo.markers){
         marker.cachedImageName=@"pinRed";
+        marker.anchorPoint = CGPointMake(7,35);
     }
 	[self.meMapViewController addMapUsingMapInfo:mapInfo];
 }
