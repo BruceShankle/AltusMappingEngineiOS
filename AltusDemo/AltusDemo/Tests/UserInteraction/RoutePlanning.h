@@ -10,4 +10,8 @@
 /**Style for drawing vector lines on the map.*/
 @property (retain) MELineStyle* vectorLineStyle;
 @property (retain) NSString* markerMapName;
+@property (retain) UILongPressGestureRecognizer* longPressGesture;
+@property (retain) UIImageView* imageView;
+@property (assign) CGSize imageSize;
+@property (retain) MEMarker* userMarker;
 @end

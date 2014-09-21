@@ -10,29 +10,29 @@
 	<string>AltusDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FB24E396-A601-490B-A5EB-3112E78DA5BD</key>
+		<key>224F9857E6973BAD86CCBFDC1B1167698985C493</key>
 		<string>https://github.com/ba3llc/AltusMappingEngineiOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>AltusDemo/AltusDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FB24E396-A601-490B-A5EB-3112E78DA5BD</key>
+		<key>224F9857E6973BAD86CCBFDC1B1167698985C493</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ba3llc/AltusMappingEngineiOS.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FB24E396-A601-490B-A5EB-3112E78DA5BD</string>
+	<string>224F9857E6973BAD86CCBFDC1B1167698985C493</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FB24E396-A601-490B-A5EB-3112E78DA5BD</string>
+			<string>224F9857E6973BAD86CCBFDC1B1167698985C493</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AltusMappingEngineiOS</string>
 		</dict>
