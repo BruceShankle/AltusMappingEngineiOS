@@ -209,7 +209,11 @@
 
 - (void) beginTest{
     float screenScale = [UIScreen mainScreen].scale;
-    NSLog(@"Screen scale is %f", screenScale);
+    NSLog(@"[UIScreen mainScreen].scale = %f", screenScale);
+    
+    /**iOS 8*/
+    //float nativeScreenScale = [UIScreen mainScreen].nativeScale;
+    //NSLog(@"[UIScreen mainScreen].nativeScale = %f", nativeScreenScale);
     
 	[self addMaps];
     //Look at the route
