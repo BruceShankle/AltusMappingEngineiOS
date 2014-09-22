@@ -13,7 +13,9 @@
 
 -(void) addUI{
     if(self.lblStats==nil){
-        self.lblStats = [[UILabel alloc]initWithFrame:CGRectMake(10,50,300,300)];
+        float y = 50;
+        float maxWidth = self.meMapViewController.meMapView.bounds.size.width-y;
+        self.lblStats = [[UILabel alloc]initWithFrame:CGRectMake(10,y,maxWidth,300)];
         [self.lblStats setTextColor:[UIColor whiteColor]];
         [self.lblStats setBackgroundColor:[UIColor clearColor]];
         self.lblStats.shadowColor = [UIColor blackColor];
@@ -24,7 +26,7 @@
         self.lblStats.layer.shadowOpacity = 1.0;
         self.lblStats.adjustsFontSizeToFitWidth=NO;
         [self.lblStats setFont:[UIFont boldSystemFontOfSize:18.0f]];
-        self.lblStats.numberOfLines = 16;
+        self.lblStats.numberOfLines = 0;
         self.lblStats.lineBreakMode = NSLineBreakByWordWrapping;
         [self.meMapViewController.meMapView addSubview:self.lblStats];
         [self.meMapViewController.meMapView bringSubviewToFront:self.lblStats];
@@ -58,31 +60,35 @@
                         "Draw Calls:  %d\n"
                         "RAM:  %.1f MB\n"
                         "Cache:  %.1f MB\n"
-                        "Tile Count:  %d\n"
-                        "Tiles In Flight:  %d\n"
-                        "Multi-Tiles:  %d\n"
-                        "QTotal:  %d\n"
+                        //"Tile Count:  %d\n"
+                        //"Tiles In Flight:  %d\n"
+                        //"Multi-Tiles:  %d\n"
+                        //"QTotal:  %d\n"
                         "Center:  (%.3f, %.3f)\n"
                         "Alt: %.3f M\n"
                         "Visible Tiles:  %d\n"
-                        "Animation Count:  %d\n"
-                        "Updateables Count:  %d\n"
-                        "Camera Moving:  %@",
+                        //"Animation Count:  %d\n"
+                        //"Updateables Count:  %d\n"
+                        //"Camera Moving:  %@\n"
+                        "",
                         meInfo.frameRate,
                         meInfo.drawCallsPerFrame,
                         (float)meInfo.appMemoryUsage / 1000000.0f,
                         (float)meInfo.tileCacheMemorySize / 1000000.0f,
-                        meInfo.tileCacheTileCount,
-                        meInfo.inFlightTileCount,
-                        meInfo.multiInFlightTileCount,
-                        meInfo.totalWorkerCount,
+                        //meInfo.tileCacheTileCount,
+                        //meInfo.inFlightTileCount,
+                        //meInfo.multiInFlightTileCount,
+                        //meInfo.totalWorkerCount,
                         currentLocation.center.longitude,
                         currentLocation.center.latitude,
                         currentLocation.altitude,
-                        meInfo.visibleTileCount,
-						meInfo.animationCount,
-						meInfo.updateablesCount,
-						cameraIsMoving];
+                        meInfo.visibleTileCount
+						//meInfo.animationCount,
+						//meInfo.updateablesCount,
+						//cameraIsMoving
+                        ];
+    
+    [self.lblStats sizeToFit];
 }
 
 -(void) endTest{

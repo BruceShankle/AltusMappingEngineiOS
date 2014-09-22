@@ -93,6 +93,7 @@
 		324E3BA4191AD3F300B1961A /* blueplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B98191AD3F300B1961A /* blueplane.png */; };
 		324E3BA5191AD3F300B1961A /* blueplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B99191AD3F300B1961A /* blueplane@2x.png */; };
 		324E777618FF66BE00630F18 /* CustomClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E777518FF66BE00630F18 /* CustomClustering.m */; };
+		3250914419CFE69D00B9B312 /* GLKViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3250914219CFE69D00B9B312 /* GLKViewInfo.m */; };
 		32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF519121062008B9C0C /* TerrainInRadiusTests.m */; };
 		32587D0019121062008B9C0C /* TerrainMapFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF719121062008B9C0C /* TerrainMapFinder.m */; };
 		32587D0119121062008B9C0C /* TerrainProfileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF919121062008B9C0C /* TerrainProfileTests.m */; };
@@ -291,6 +292,8 @@
 		324E3B99191AD3F300B1961A /* blueplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueplane@2x.png"; sourceTree = "<group>"; };
 		324E777418FF66BE00630F18 /* CustomClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomClustering.h; sourceTree = "<group>"; };
 		324E777518FF66BE00630F18 /* CustomClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomClustering.m; sourceTree = "<group>"; };
+		3250914219CFE69D00B9B312 /* GLKViewInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLKViewInfo.m; sourceTree = "<group>"; };
+		3250914319CFE69D00B9B312 /* GLKViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLKViewInfo.h; sourceTree = "<group>"; };
 		32587CF419121062008B9C0C /* TerrainInRadiusTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainInRadiusTests.h; sourceTree = "<group>"; };
 		32587CF519121062008B9C0C /* TerrainInRadiusTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainInRadiusTests.m; sourceTree = "<group>"; };
 		32587CF619121062008B9C0C /* TerrainMapFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainMapFinder.h; sourceTree = "<group>"; };
@@ -928,6 +931,8 @@
 			isa = PBXGroup;
 			children = (
 				32FB97D6193E6372004A9371 /* Core.h */,
+				3250914319CFE69D00B9B312 /* GLKViewInfo.h */,
+				3250914219CFE69D00B9B312 /* GLKViewInfo.m */,
 				32FB97D7193E6372004A9371 /* Stats.h */,
 				32FB97D3193E6350004A9371 /* Stats.m */,
 				326928B71954E9BE007108B3 /* MapLoadingStats.h */,
@@ -1190,6 +1195,7 @@
 				32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */,
 				32F0A1F21945825400E82C6E /* RoutePlotting.m in Sources */,
 				B9A983FD1986B2B700B73F37 /* PolygonStyle.m in Sources */,
+				3250914419CFE69D00B9B312 /* GLKViewInfo.m in Sources */,
 				32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */,
 				B9A984021986B53300B73F37 /* AnimatedVectorCircle.m in Sources */,
 				327D106F192FA82E00EF84D8 /* MovingObject2D.m in Sources */,

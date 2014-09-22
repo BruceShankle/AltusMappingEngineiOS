@@ -67,11 +67,14 @@
     if(self.lblMessage!=nil){
         return;
     }
-    self.lblMessage = [[UILabel alloc]initWithFrame:CGRectMake(20,20,200,100)];
+    float maxWidth = self.meMapViewController.meMapView.bounds.size.width;
+    self.lblMessage = [[UILabel alloc]initWithFrame:CGRectMake(0,20,maxWidth,100)];
+    self.lblMessage.numberOfLines=0;
+    self.lblMessage.alpha=0.7;
     [self.lblMessage setTextColor:[UIColor greenColor]];
     [self.lblMessage setBackgroundColor:[UIColor blackColor]];
-    [self.lblMessage.layer setCornerRadius:10];
-    [self.lblMessage setFont:[UIFont fontWithName: @"Arial-BoldMT" size: 20.0f]];
+    //[self.lblMessage.layer setCornerRadius:10];
+    [self.lblMessage setFont:[UIFont fontWithName: @"Arial-BoldMT" size: 15.0f]];
     [self.meMapViewController.meMapView addSubview:self.lblMessage];
     [self.meMapViewController.meMapView bringSubviewToFront:self.lblMessage];
 }

@@ -2,3 +2,4 @@
 #pragma once
 #import "Stats.h"
 #import "MapLoadingStats.h"
+#import "GLKViewInfo.h"
