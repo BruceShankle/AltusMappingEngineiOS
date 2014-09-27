@@ -2,6 +2,7 @@
 #pragma once
 #import <Foundation/Foundation.h>
 #import <AltusMappingEngine/AltusMappingEngine.h>
+#import "METestView.h"
 
 @class METestManager;
 @class METestCategory;
@@ -26,6 +27,7 @@
 @property (retain) NSDate* lastTickTime;
 @property (assign) NSTimeInterval elapsedTime;
 @property (retain) UIAlertView* alertView;
+@property (retain) METestView* view;
 
 - (void) startTimer;
 - (void) stopTimer;
@@ -33,6 +35,7 @@
 - (void) startBenchmarkTimer;
 - (long) stopBenchMarkTimer;
 - (void) setMessageText:(NSString*) msgText;
+- (void) createView;
 - (void) start;
 - (void) stop;
 - (void) beginTest;

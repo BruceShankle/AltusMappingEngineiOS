@@ -27,7 +27,6 @@
 	}
 }
 
-
 - (void) startBenchmarkTimer{
     if(self.benchMarkTimer==nil){
         NSString* timerMessage=[NSString stringWithFormat:@"%@ benchmark:", self.name];
@@ -62,7 +61,6 @@
 	[runloop addTimer:self.timer forMode:UITrackingRunLoopMode];
 }
 
-
 -(void) addUI{
     if(self.lblMessage!=nil){
         return;
@@ -79,12 +77,22 @@
     [self.meMapViewController.meMapView bringSubviewToFront:self.lblMessage];
 }
 
+-(void) createView {
+    // create a local view to add stuff to.  that way no test has to handle removing UI
+    self.view = [[METestView alloc] initWithFrame:self.meMapViewController.meMapView.bounds];
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.meMapViewController.meMapView addSubview:self.view];
+}
+
 -(void) removeUI{
-    if(self.lblMessage==nil){
-        return;
+    if(self.view != nil) {
+        [self.view removeFromSuperview];
+        self.view = nil;
     }
-    [self.lblMessage removeFromSuperview];
-    self.lblMessage = nil;
+    if(self.lblMessage!=nil){
+        [self.lblMessage removeFromSuperview];
+        self.lblMessage = nil;
+    }
 }
 
 -(void) setMessageText:(NSString *)msgText{
@@ -96,13 +104,15 @@
 }
 
 - (void) beginTest{
-    NSLog(@"You must override the beginTest function. Exiting.");
-    exit(0);
+#ifdef DEBUG
+    NSLog(@"beginTest not implemented.");
+#endif
 }
 
 - (void) endTest{
-    NSLog(@"You must override the endTest function. Exiting.");
-    exit(0);
+#ifdef DEBUG
+    NSLog(@"endTest not implemented.");
+#endif
 }
 
 - (void) start{

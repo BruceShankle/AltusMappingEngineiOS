@@ -1,3 +1,62 @@
+Release Notes v1.9-1 (9/27/2014)
+================================
+* New automatic marker scaling feature for better support of iPhone 6 and iPhone 6 plus.
+* New MEMapView delegate callbacks to notify applications of device scale changes.
+* New test: Core/Scale Test that allows you to test different content scales.
+
+Technical explanation:
+http://wiki.ba3.us/index.php/September_26,_2014_-_iOS_Release_v1.9-1-g67bad06
+
+API documentation:
+http://dev1.ba3.us/ios/doc/Classes/MEMapViewController.html#//api/name/autoScaleMarkerImages
+
+Relevant code samples:
+AltusDemo/AltusDemo/Tests/Core/ScaleTest.m
+
+Apple's recently introduced the iPhone 6 and iPhone 6 Plus. We have updated Altus to account for some changes introduced by these devices. At a high level:
+* These are the first iOS devices where the physical resolution of render target the GPU is drawing to is by default different than the physical resolution of the screen.
+* With these devices, Apple has introduced a Zoom mode that allows the change the scale and thus affect how things appear. The intent of Zoom mode is to make things appear a bit larger to the user.
+* On iPhone 6 and iPhone 6 Plus, scaling is done for apps that don't have @3x resolution image assets.
+* Even when an application does have appropriately scaled assets (@3x resolution images, etc.), by default, there is still a scaling (downscaling on iPhone 6 Plus, upscaling on iPhone 6) step to the physical screen because the screen's physical resolution is different the the GPU render target resolution.
+
+The bottom line is that on iPhone 6 and iPhone 6 Plus scaling operations are occurring in some form, by default, in most cases. The type of and the amount of scaling can vary depending on a variety of factors.
+
+== What Does This Mean For Your Application? ==
+
+=== It May Not Be An Issue  ===
+If you are using any version prior to Altus 1.9, and you are only targeting the iPad or up to iPhone 5s, then this will not affect you as long as:
+* On non-Retina (@1x) devices you always supply marker images that are @1x resolution
+* On Retina devices (@2x) you always supply marker images that are @2x resolution.
+
+=== It May Be An Issue ===
+If you are targeting iPhone 6 or iPhone 6 Plus and you have @2x marker assets you could see issues with marker image size and locations.
+
+If you are using Altus prior to version 1.9 you may see these issues. There are 2 issues:
+
+* Altus 1.8 and older, on iOS, assumes the render target will always be 1x or 2x. It also assumes marker images may be scaled based on the UIImage scale value. The marker anchoring and hit test logic won't work when the render target is between 2x and 3x.
+
+* The iPhone 6 and 6 Plus use variable scale factors depending on a variety of factors. In other words scale can be anything.
+
+== What You Can Do ==
+
+In the ideal scenario, you upgrade to Altus 1.9 or later and make sure that your raster assets for markers have the same scale as the MEMapView content scale. In this way you will have the most ideal representation of your map assets.
+
+If this is not practical for you, you can use the Altus 1.9 to automatically scale marker images to the right resolution for you.
+
+=== Altus 1.9 Automatic Marker Scaling ===
+
+This is new feature introduced in Altus 1.9 that is enabled by default. With this feature, Altus disregards the scale of UIImages used for markers and scales them up or down based on the content scale factor of the map view.
+
+== In Summary ==
+There are 3 possible "native" scales for just the iPhone 6 plus, if you include the simulator so marker assets must be scaled in some way to appear at the correct relative size.
+
+The ideal scenario would be to provide assets at the exact same scale at the default MEMapView, so use @2x assets on when the scale factor is 2.0. But unless you are dynamically generating raster assets (with something like PaintCode) it may not be feasible to do this.
+
+In that case, if the assets are higher (@3x) than the native scale, Altus 1.9 will scale them appropriately.
+
+If the assets are lower (@1x or @2x) than the native scale, Altus 1.9 will scale them up. The upscale filtering may be noticeable, but there will be no extra performance hit for rendering them.
+
+
 Release Notes v1.8-77
 =============================
 Support iOS 8 and iPhone 6 Plus. iOS 8 has new APIs for detecting native screen scale factors. Additionally, removed 'isRetina' function from several iOS APIs since the Altus core engine is resolution independent. If you use @3x images for marker images on iOS 8 devices (like the iPhone 6 Plus), you should update to this release. If you have recompiled your application with Xcode 6 and have or have started using @3x resolution images, you should update to this release to avoid errors in marker anchor point offsets and hit-detection points.

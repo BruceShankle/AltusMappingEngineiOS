@@ -16,12 +16,6 @@
                          scale:(float) scale
                       flippedY:(BOOL) flippedY;
 
-/**Creates a context that is power-of-two.*/
-+ (CGContextRef) createContextPow2:(CGSize) size
-							 scale:(float) scale
-						  flippedY:(BOOL) flippedY
-						   newSize:(CGSize*) newSize;
-
 /**Destroys a context created by MEImageUtil*/
 + (void) destroyContext:(CGContextRef) context;
 
@@ -31,18 +25,24 @@
 /**Converts a UIView into a UIImage.*/
 + (UIImage *) createImageFromView:(UIView*) uiView;
 
-/**Gets RGBA bitmap data from a UIImage, optionally flipping the Y.*/
+/**Copies and scales RGBA bitmap data from a UIImage to specified memory returning the new physical size in pixels in resultantWidht and resultantHeight, optionally flipping the Y. You must free the memory
+ with a call to free().*/
 + (void *) bitmapFromImage:(UIImage *)image
-                            fippedY:(BOOL) flippedY;
+                  flippedY:(BOOL) flippedY
+                     scale:(float) scale
+            resultantWidth:(unsigned int*) resultantWidth
+           resultantHeight:(unsigned int*) resultantHeight;
 
-+ (void *) bitmapFromSingleChannelImage:(UIImage*)image flippedY:(BOOL) flippedY;
-
-/**Gets a power-of-two RGBA bitmap from a UIImage. optionally flipping the Y.*/
-+ (void *) bitmapFromImagePow2:(UIImage *) image
-					  flippedY:(BOOL) flippedY
-					   newSize:(CGSize*) newSize;
+/**Reads data from a UIImage, malloc's memory at imageData and copies it there in RGBA8888 format. Stores image attributes in imageWidth, imageHeight, and imageDataLenght*/
++ (void) imageToRGBA8888:(UIImage *)image
+               imageData:(void**) imageData
+              imageWidth:(unsigned int*) imageWidth
+             imageHeight:(unsigned int*) imageHeight
+         imageDataLenght:(unsigned int*) imageDataLength;
 
 /**Returns a UIColor for r g b a bytes.*/
 + (UIColor*) makeColor:(int) r g:(int) g b:(int) b a:(int) a;
+
+
 
 @end

@@ -54,6 +54,12 @@
 /**Called to determine if the given gesture recognizer should begin.*/
 - (BOOL) meGestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
 
+/**Called when the physical device scale changes.*/
+- (void) deviceScaleChanged:(MEMapView *) mapView;
+
+/**Called when the tile point size changes.*/
+- (void) tileSizeChanged:(MEMapView *) mapView;
+
 @end
 
 

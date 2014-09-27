@@ -87,8 +87,8 @@
     testCategory.name = @"Core";
     [self addCategory:testCategory];
     [testCategory addTestClass:[Stats class]];
+    [testCategory addTestClass:[ScaleTest class]];
     [testCategory addTestClass:[MapLoadingStats class]];
-    [testCategory addTestClass:[GLKViewInfo class]];
 }
 
 - (void) createStressTests{

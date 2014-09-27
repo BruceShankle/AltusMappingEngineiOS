@@ -93,7 +93,6 @@
 		324E3BA4191AD3F300B1961A /* blueplane.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B98191AD3F300B1961A /* blueplane.png */; };
 		324E3BA5191AD3F300B1961A /* blueplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 324E3B99191AD3F300B1961A /* blueplane@2x.png */; };
 		324E777618FF66BE00630F18 /* CustomClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 324E777518FF66BE00630F18 /* CustomClustering.m */; };
-		3250914419CFE69D00B9B312 /* GLKViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3250914219CFE69D00B9B312 /* GLKViewInfo.m */; };
 		32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF519121062008B9C0C /* TerrainInRadiusTests.m */; };
 		32587D0019121062008B9C0C /* TerrainMapFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF719121062008B9C0C /* TerrainMapFinder.m */; };
 		32587D0119121062008B9C0C /* TerrainProfileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32587CF919121062008B9C0C /* TerrainProfileTests.m */; };
@@ -155,6 +154,14 @@
 		32C20CA6197D9D64006DCE84 /* DynamicPolygons.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C20CA5197D9D64006DCE84 /* DynamicPolygons.m */; };
 		32C5159419296053000ECFFE /* MultiViewControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C5159319296053000ECFFE /* MultiViewControl.m */; };
 		32C97F0019CE9FCC004D7179 /* reticle.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C97EFF19CE9FCC004D7179 /* reticle.png */; };
+		32CD0B7319D6B2430040B043 /* ScaleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CD0B6C19D6B2430040B043 /* ScaleTest.m */; };
+		32CD0B7419D6B2430040B043 /* ScaleTest.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CD0B6D19D6B2430040B043 /* ScaleTest.png */; };
+		32CD0B7519D6B2430040B043 /* ScaleTest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CD0B6E19D6B2430040B043 /* ScaleTest@2x.png */; };
+		32CD0B7619D6B2430040B043 /* ScaleTest@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CD0B6F19D6B2430040B043 /* ScaleTest@3x.png */; };
+		32CD0B7719D6B2430040B043 /* ScaleTestCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CD0B7019D6B2430040B043 /* ScaleTestCircle.png */; };
+		32CD0B7819D6B2430040B043 /* ScaleTestCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CD0B7119D6B2430040B043 /* ScaleTestCircle@2x.png */; };
+		32CD0B7919D6B2430040B043 /* ScaleTestCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 32CD0B7219D6B2430040B043 /* ScaleTestCircle@3x.png */; };
+		32CD0B7C19D6B2D40040B043 /* METestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CD0B7B19D6B2D40040B043 /* METestView.m */; };
 		32D7CF681924B67200F1125C /* MapFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D7CF671924B67200F1125C /* MapFactory.m */; };
 		32E0B83B19513F90009F37A3 /* Fractals.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B83A19513F90009F37A3 /* Fractals.m */; };
 		32E0B84019515991009F37A3 /* ContentLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B83F19515991009F37A3 /* ContentLoading.m */; };
@@ -292,8 +299,6 @@
 		324E3B99191AD3F300B1961A /* blueplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueplane@2x.png"; sourceTree = "<group>"; };
 		324E777418FF66BE00630F18 /* CustomClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomClustering.h; sourceTree = "<group>"; };
 		324E777518FF66BE00630F18 /* CustomClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomClustering.m; sourceTree = "<group>"; };
-		3250914219CFE69D00B9B312 /* GLKViewInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLKViewInfo.m; sourceTree = "<group>"; };
-		3250914319CFE69D00B9B312 /* GLKViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLKViewInfo.h; sourceTree = "<group>"; };
 		32587CF419121062008B9C0C /* TerrainInRadiusTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainInRadiusTests.h; sourceTree = "<group>"; };
 		32587CF519121062008B9C0C /* TerrainInRadiusTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainInRadiusTests.m; sourceTree = "<group>"; };
 		32587CF619121062008B9C0C /* TerrainMapFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainMapFinder.h; sourceTree = "<group>"; };
@@ -402,6 +407,16 @@
 		32C5159219296053000ECFFE /* MultiViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiViewControl.h; sourceTree = "<group>"; };
 		32C5159319296053000ECFFE /* MultiViewControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiViewControl.m; sourceTree = "<group>"; };
 		32C97EFF19CE9FCC004D7179 /* reticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reticle.png; sourceTree = "<group>"; };
+		32CD0B6B19D6B2430040B043 /* ScaleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleTest.h; sourceTree = "<group>"; };
+		32CD0B6C19D6B2430040B043 /* ScaleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleTest.m; sourceTree = "<group>"; };
+		32CD0B6D19D6B2430040B043 /* ScaleTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScaleTest.png; sourceTree = "<group>"; };
+		32CD0B6E19D6B2430040B043 /* ScaleTest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScaleTest@2x.png"; sourceTree = "<group>"; };
+		32CD0B6F19D6B2430040B043 /* ScaleTest@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScaleTest@3x.png"; sourceTree = "<group>"; };
+		32CD0B7019D6B2430040B043 /* ScaleTestCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScaleTestCircle.png; sourceTree = "<group>"; };
+		32CD0B7119D6B2430040B043 /* ScaleTestCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScaleTestCircle@2x.png"; sourceTree = "<group>"; };
+		32CD0B7219D6B2430040B043 /* ScaleTestCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScaleTestCircle@3x.png"; sourceTree = "<group>"; };
+		32CD0B7A19D6B2D40040B043 /* METestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METestView.h; sourceTree = "<group>"; };
+		32CD0B7B19D6B2D40040B043 /* METestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METestView.m; sourceTree = "<group>"; };
 		32D7CF661924B67200F1125C /* MapFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapFactory.h; sourceTree = "<group>"; };
 		32D7CF671924B67200F1125C /* MapFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapFactory.m; sourceTree = "<group>"; };
 		32E0B83919513F90009F37A3 /* Fractals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fractals.h; sourceTree = "<group>"; };
@@ -718,6 +733,8 @@
 				321E0D0018B67DFD0011218A /* Weather */,
 				327E334218ADA52000FBBB90 /* METest.h */,
 				327E334318ADA52000FBBB90 /* METest.m */,
+				32CD0B7A19D6B2D40040B043 /* METestView.h */,
+				32CD0B7B19D6B2D40040B043 /* METestView.m */,
 				327E334418ADA52000FBBB90 /* METestCategory.h */,
 				327E334518ADA52000FBBB90 /* METestCategory.m */,
 				327E334618ADA52000FBBB90 /* METestConsts.h */,
@@ -931,10 +948,16 @@
 			isa = PBXGroup;
 			children = (
 				32FB97D6193E6372004A9371 /* Core.h */,
-				3250914319CFE69D00B9B312 /* GLKViewInfo.h */,
-				3250914219CFE69D00B9B312 /* GLKViewInfo.m */,
 				32FB97D7193E6372004A9371 /* Stats.h */,
 				32FB97D3193E6350004A9371 /* Stats.m */,
+				32CD0B6B19D6B2430040B043 /* ScaleTest.h */,
+				32CD0B6C19D6B2430040B043 /* ScaleTest.m */,
+				32CD0B6D19D6B2430040B043 /* ScaleTest.png */,
+				32CD0B6E19D6B2430040B043 /* ScaleTest@2x.png */,
+				32CD0B6F19D6B2430040B043 /* ScaleTest@3x.png */,
+				32CD0B7019D6B2430040B043 /* ScaleTestCircle.png */,
+				32CD0B7119D6B2430040B043 /* ScaleTestCircle@2x.png */,
+				32CD0B7219D6B2430040B043 /* ScaleTestCircle@3x.png */,
 				326928B71954E9BE007108B3 /* MapLoadingStats.h */,
 				326928B81954E9BE007108B3 /* MapLoadingStats.m */,
 			);
@@ -1058,6 +1081,8 @@
 				3247FD0618D827BE00F2A449 /* knots25@2x.png in Resources */,
 				324ACC2818AEB00600833819 /* apple_golf@2x.png in Resources */,
 				3247FD0918D827BE00F2A449 /* knots35.png in Resources */,
+				32CD0B7919D6B2430040B043 /* ScaleTestCircle@3x.png in Resources */,
+				32CD0B7619D6B2430040B043 /* ScaleTest@3x.png in Resources */,
 				324E3B9E191AD3F300B1961A /* redplane.png in Resources */,
 				3247FD0118D827BE00F2A449 /* knots15.png in Resources */,
 				3247FD0B18D827BE00F2A449 /* knots40.png in Resources */,
@@ -1069,6 +1094,7 @@
 				32BAC4DC18AF3F9E00DE8583 /* Places.sqlite in Resources */,
 				324E3B9D191AD3F300B1961A /* purpleplane@2x.png in Resources */,
 				3247FD0A18D827BE00F2A449 /* knots35@2x.png in Resources */,
+				32CD0B7719D6B2430040B043 /* ScaleTestCircle.png in Resources */,
 				3247FCFE18D827BE00F2A449 /* knots5@2x.png in Resources */,
 				324ACC3818AEB01400833819 /* HoustonStreets.sqlite in Resources */,
 				3247FCFC18D827BE00F2A449 /* knots0@2x.png in Resources */,
@@ -1092,6 +1118,8 @@
 				3219133E18C90ADD008B2143 /* Tower.png in Resources */,
 				3202DAFC197473A400691332 /* whitecircle_solid.png in Resources */,
 				327E335E18ADE27000FBBB90 /* Earthquakes.mbtiles in Resources */,
+				32CD0B7419D6B2430040B043 /* ScaleTest.png in Resources */,
+				32CD0B7519D6B2430040B043 /* ScaleTest@2x.png in Resources */,
 				3247FD0218D827BE00F2A449 /* knots15@2x.png in Resources */,
 				3200E99F192B7FF900D59E55 /* Asteroid@2x.png in Resources */,
 				3219134118C90ECE008B2143 /* Towers.sqlite in Resources */,
@@ -1105,6 +1133,7 @@
 				3247FD0318D827BE00F2A449 /* knots20.png in Resources */,
 				32BAC4C018AF261400DE8583 /* Acadia.map in Resources */,
 				328192281977C68A0006DB63 /* bluecircle_semitransparent.png in Resources */,
+				32CD0B7819D6B2430040B043 /* ScaleTestCircle@2x.png in Resources */,
 				3247FD0718D827BE00F2A449 /* knots30.png in Resources */,
 				324ACC3218AEB00600833819 /* park@2x.png in Resources */,
 				324ACC3318AEB00600833819 /* waterTexture.png in Resources */,
@@ -1191,11 +1220,11 @@
 				32E0B84019515991009F37A3 /* ContentLoading.m in Sources */,
 				324E3B8C191AD25200B1961A /* AirTrafficScenario.m in Sources */,
 				32FB97D4193E6350004A9371 /* Stats.m in Sources */,
+				32CD0B7C19D6B2D40040B043 /* METestView.m in Sources */,
 				32D7CF681924B67200F1125C /* MapFactory.m in Sources */,
 				32BAC4DB18AF3F9E00DE8583 /* Places.m in Sources */,
 				32F0A1F21945825400E82C6E /* RoutePlotting.m in Sources */,
 				B9A983FD1986B2B700B73F37 /* PolygonStyle.m in Sources */,
-				3250914419CFE69D00B9B312 /* GLKViewInfo.m in Sources */,
 				32587CFF19121062008B9C0C /* TerrainInRadiusTests.m in Sources */,
 				B9A984021986B53300B73F37 /* AnimatedVectorCircle.m in Sources */,
 				327D106F192FA82E00EF84D8 /* MovingObject2D.m in Sources */,
@@ -1209,6 +1238,7 @@
 				B941659E18F880700061DEEB /* DynamicColorBar.m in Sources */,
 				327E337018AE010F00FBBB90 /* MapQuestAerial.m in Sources */,
 				327E335C18ADE1CD00FBBB90 /* MBTilesNative.m in Sources */,
+				32CD0B7319D6B2430040B043 /* ScaleTest.m in Sources */,
 				327E334C18ADA52000FBBB90 /* METestCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

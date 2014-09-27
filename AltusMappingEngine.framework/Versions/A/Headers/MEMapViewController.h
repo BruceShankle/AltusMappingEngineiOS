@@ -87,6 +87,13 @@
 /** The frame rate to render at when the user is interacting with the map. Defaults to 30 fps.*/
 @property (assign) unsigned int greenModeFullThrottleFramerate;
 
+/** When set to YES, UIImages provided for markers are scaled by the map view content scale factor, and not by their UIImage scale. In other words, an @3x marker image will render so that it is the correct apparent size to the user on an iPhone 6 Plus running at the default scale of 2.6 (unzoomed), 2.8 (zoomed), or 3.0 (simulator).
+ 
+ While this feature will allow the use of lower-resolution marker assets on high resolution displays this is not the intended purpose of the feature. You should scale your marker content so it renders well at the physical resolution of the display. Due to the iPhone 6 and iPhone 6 Plus having variable scaling, this setting defaults to YES.
+ 
+ If the UIImage provided for a marker is a different scale than map view content scale factor and this setting is disabled, then marker locations, anchor points, hit-test sizes, and reported hit test coordinates could be incorrect. The mapping engine will issue a warning when you attempt to add a marker image with mis-matched scale and this feature is disabled. In the case where this feature is enabled and the image scale is mismatched, the engine will perform a magnification or minification of the incoming marker image to size it to the correct physical size. This can degrade marker image quality.*/
+@property (assign) BOOL autoScaleMarkerImages;
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //Core rendering engine management
 /** Allocates resources for thread management, data caching, and map loading. Should be called after the cooresponding MEMapView is loaded.*/

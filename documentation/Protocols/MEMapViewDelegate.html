@@ -43,6 +43,8 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/deviceScaleChanged:">&nbsp;&nbsp;&nbsp;&nbsp;- deviceScaleChanged:</option>
+	
 	<option value="//api/name/mapView:animationFrameChangedOnMap:withFrame:">&nbsp;&nbsp;&nbsp;&nbsp;- mapView:animationFrameChangedOnMap:withFrame:</option>
 	
 	<option value="//api/name/mapView:animationPausedOnMap:">&nbsp;&nbsp;&nbsp;&nbsp;- mapView:animationPausedOnMap:</option>
@@ -68,6 +70,8 @@
 	<option value="//api/name/pinchBegan:">&nbsp;&nbsp;&nbsp;&nbsp;- pinchBegan:</option>
 	
 	<option value="//api/name/pinchEnded:">&nbsp;&nbsp;&nbsp;&nbsp;- pinchEnded:</option>
+	
+	<option value="//api/name/tileSizeChanged:">&nbsp;&nbsp;&nbsp;&nbsp;- tileSizeChanged:</option>
 	
 	
 	
@@ -97,6 +101,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deviceScaleChanged:">deviceScaleChanged:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mapView:animationFrameChangedOnMap:withFrame:">mapView:animationFrameChangedOnMap:withFrame:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mapView:animationPausedOnMap:">mapView:animationPausedOnMap:</a></span></li>
@@ -122,6 +128,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pinchBegan:">pinchBegan:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pinchEnded:">pinchEnded:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tileSizeChanged:">tileSizeChanged:</a></span></li>
 	
 </ul></li>
 
@@ -150,7 +158,7 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">MEMapViewDelegate.h<br />MEProtocols.h</td>
+	<td class="specification-value">MEProtocols.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -160,7 +168,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>The MEMapViewDelegate protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the <a href="../Classes/MEMapView.html">MEMapView</a> class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete.</p>
+						<p>The MEMapViewDelegate protocol defines a set of optional methods that you can use to receive map-related update messages. Because many map operations require the <a href="../Classes/MEMapView.html">MEMapView</a> class to load data asynchronously, the map view calls these methods to notify your application when specific operations complete. The map view also uses these methods to request annotation information.</p>
 					</div>
 					
 					
@@ -254,6 +262,18 @@
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deviceScaleChanged:">&ndash;&nbsp;deviceScaleChanged:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tileSizeChanged:">&ndash;&nbsp;tileSizeChanged:</a></code>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -270,6 +290,42 @@
 					<div class="section section-methods">
 						<a title="Instance Methods" name="instance_methods"></a>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/deviceScaleChanged:" title="deviceScaleChanged:"></a>
+	<h3 class="subsubtitle method-title">deviceScaleChanged:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when the physical device scale changes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)deviceScaleChanged:(MEMapView *)<em>mapView</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEProtocols.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/mapView:animationFrameChangedOnMap:withFrame:" title="mapView:animationFrameChangedOnMap:withFrame:"></a>
@@ -739,6 +795,42 @@
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/tileSizeChanged:" title="tileSizeChanged:"></a>
+	<h3 class="subsubtitle method-title">tileSizeChanged:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called when the tile point size changes.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)tileSizeChanged:(MEMapView *)<em>mapView</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MEProtocols.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -754,7 +846,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-07-29)</span><br />
+						<p><span class="copyright">&copy; 2014 BA3, LLC. All rights reserved. (Last updated: 2014-09-27)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

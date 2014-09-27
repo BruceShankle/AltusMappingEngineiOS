@@ -137,11 +137,13 @@
         return nil;
     }
     
-    int width = image.size.width;
-    int height = image.size.height;
-    
-    // read bytes from image
-    unsigned char *bytes = (unsigned char *)[MEImageUtil bitmapFromImage:image fippedY:NO];
+    unsigned int width=0;
+    unsigned int height=0;
+    unsigned char *bytes = (unsigned char *)[MEImageUtil bitmapFromImage:image
+                                                                flippedY:NO
+                                                                   scale:image.scale
+                                                          resultantWidth:&width
+                                                         resultantHeight:&height];
     
     // alloc output arrays
     double *reflectivityData = (double*)malloc(sizeof(double) * width * height);
@@ -162,6 +164,8 @@
             typeData[outputIndex] = precipitationTypeValue;
         }
     }
+    
+    free(bytes);
     
     // create a data grid from the arrays
     RadarDataGrid *grid = [[RadarDataGrid alloc] initWithData:reflectivityData

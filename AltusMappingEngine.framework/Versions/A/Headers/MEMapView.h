@@ -23,8 +23,11 @@
 
 @property (nonatomic, assign) id <MEMapViewDelegate> meMapViewDelegate;
 
-/**Controls the lower level functions that compute how many tiles should be displayed on a physical device screen. The default is 380.*/
-@property (nonatomic, assign) uint maxTileRenderSize;
+/**The device independent point width and height for map tiles. The default is 380.0.*/
+@property (nonatomic, assign) double tilePointSize;
+
+/**The device dependent pixel width and height for a map tile.*/
+@property (nonatomic, readonly) unsigned int tilePixelSize;
 
 /**When set to 1.0, the mapping engine will force all levels to be coherent. In other words, if you have a raster street map, you can force it to always display a consistent. This results in more work for the engine and increased tile counts being displayed. Sometimes this can have a drastic impact on performance at certain viewing angles and distances. This should always be set to 0.0 when possible.*/
 @property (nonatomic, assign) double tileLevelBias;
@@ -64,6 +67,9 @@
 
 /**If set to YES, the view can be zoomed, otherwise it zooming is disabled. Defaults to YES.*/
 @property (nonatomic, getter=isZoomEnabled) BOOL zoomEnabled;
+
+/** The scaling factor used to convert points to pixels. This value is computed when the render target size changes. Until there is a valid render target (i.e. the engine is initialized and there is an OpenGL surface available) this value may be 0.*/
+@property (readonly) CGFloat deviceScale;
 
 /**Converts a geographic coordinate to a screen positiion.*/
 - (CGPoint)convertCoordinate:(CLLocationCoordinate2D)coordinate;

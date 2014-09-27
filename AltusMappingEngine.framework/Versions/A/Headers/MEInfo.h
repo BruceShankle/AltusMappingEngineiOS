@@ -14,6 +14,9 @@
 @property BOOL cameraChangedSinceLastFrame;
 @property CGFloat frameRate;
 @property CGFloat frameTime;
+@property CGFloat deviceScale;
+@property uint renderTargetWidth;
+@property uint renderTargetHeight;
 @property uint drawCallsPerFrame;
 @property uint tileCacheMemorySize;
 @property uint tileCacheTileCount;
