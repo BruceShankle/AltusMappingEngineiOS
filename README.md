@@ -7,6 +7,9 @@ library designed for advanced GIS visualization. Altus has a proven track-record
 Developers using SDKs like MapKit, Route-Me, and others generally run into performance,
 capacity or feature walls that block development. The Altus Mapping Engine can eliminate those walls.
 
+<b> July 4, 2015</b><br>
+Altus Releases are now available at <a href="http://builds.ba3.us/">builds.ba3.us</a>
+
 <b> April 14, 2014</b><br>
 Today we have begun publishing our our ARC and ARM-64 branch out to GitHub. This release has several
 notable changes:
